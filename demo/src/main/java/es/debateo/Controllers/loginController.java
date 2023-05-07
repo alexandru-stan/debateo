@@ -19,7 +19,6 @@ import es.debateo.Services.Services;
 public class loginController {
 
 	Services servicio;
-	@Autowired
 	usersRepo repo;
 	@PostMapping("/login")
 	@CrossOrigin(origins = "http://localhost:1234")
