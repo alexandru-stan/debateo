@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import React from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-// import Login from '../../../js/Login';
+import Login from '../../../js/Login';
 
 
 
@@ -11,32 +11,17 @@ const Formulario = () => {
 
 const navigate = useNavigate();
 
-  function Login(){
-
-    let username = document.getElementById("username").value;
-    let password = document.getElementById("password").value;
-
-    let credentials = {
-      username: username,
-      password: password
-    }
-
-    
-
-
-    axios.post("http://localhost:8080/login",credentials).then(response => {
-      if(response.status = 201){
-        if(response.data){
-          navigate("/feed")
-        } else {
-          alert("NOP");
-        }
-      } else {
-        
-      }
-    })
-
+async function callLogin(){
+  
+  let response = await Login();
+  
+  if(response.data){
+    navigate("/feed")
+  } else {
+    alert("NOP");
   }
+}
+ 
 
 
 
@@ -56,7 +41,7 @@ const navigate = useNavigate();
       </Form>
       
     
-      <button onClick={Login} className="btn" >Iniciar sesión</button>
+      <button onClick={callLogin} className="btn" >Iniciar sesión</button>
 
       
       </div>
