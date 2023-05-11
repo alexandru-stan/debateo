@@ -22,6 +22,8 @@ async function callLogin(){
   
   let response = await Login();
   
+  console.log(response.status);
+
   if(response.data){
     navigate("/feed")
   } else {
@@ -59,9 +61,9 @@ let inputStyles = {
       <ThemeProvider theme={theme} >
       
         <div id='formularioLogin'>
-          <TextField color="secondary"  id="Lusername" label="Nombre de usuario" variant="outlined"></TextField>
-          <TextField color="secondary" id="Lpassword" label="Contraseña" variant="outlined"></TextField>
-          <Button style={{height:'50%'}}>Iniciar Sesión</Button>
+          <TextField color="secondary"  id="Lusername" label="Nombre de usuario" variant="filled"></TextField>
+          <TextField color="secondary" id="Lpassword" label="Contraseña" variant="filled"></TextField>
+          <Button onClick={callLogin} style={{height:'50%'}}>Iniciar Sesión</Button>
           </div>
         </ThemeProvider>
    

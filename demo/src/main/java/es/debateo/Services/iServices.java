@@ -10,5 +10,5 @@ public interface iServices {
 	
 	public boolean login(String username,String password);
 	
-	public Users signin(Users user);
+	public boolean signin(Users user);
 }

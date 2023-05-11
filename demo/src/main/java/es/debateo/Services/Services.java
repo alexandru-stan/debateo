@@ -31,10 +31,20 @@ public class Services implements iServices {
 	}
 	
 	
-	public Users signin(Users user) {
+	public boolean signin(Users user) {
 		
+		if(repo.existsById(user.getUsername())) {
+			
+			return false;
+		} else {
+			repo.save(user);
 		
-		return repo.save(user);
+		}
+		
+
+		
+		return true;
+
 	}
 	
 	

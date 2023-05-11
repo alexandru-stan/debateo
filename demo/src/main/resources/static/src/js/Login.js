@@ -1,12 +1,11 @@
 import axios from "axios";
+const $ = require('jquery');
 function Login(){
 
-     let username = document.getElementById("username").value;
-    let password = document.getElementById("password").value;
 
     let credentials = {
-      username: username,
-      password: password
+      username: $('#Lusername').val(),
+      password: $('#Lpassword').val()
     }
 
     return axios.post("http://localhost:8080/login",credentials);

@@ -2,6 +2,12 @@
     font-family: 'Comfortaa';
     src: url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
 }
+@font-face {
+    font-family: 'Roboto',sans-serif;
+   src : url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+}
+
+
 #root {
     background: linear-gradient(to bottom, #444073,#12111e);
     width:100%;
@@ -52,7 +58,7 @@ justify-content: space-around;
 #formularioRegistro{
     display:flex;
     flex-flow:column;
-   
+   font-family: 'Comfortaa';
     width:50%;
     height:50vh;
 }
@@ -82,8 +88,20 @@ label {
 button {
     color: black !important;
     background-color: #ff8c00!important;
+    font-family: 'Comfortaa',sans-serif !important  ;
+   text-transform: none !important;
+   font-size:110% !important;
 }
 
 #formularioRegistro button {
     margin-top:30px;
+}
+
+#registerResponse {
+    position: absolute;
+    bottom:0%;
+    right:0%;
+    width:50%;
+    /* display:none; */
+    
 }

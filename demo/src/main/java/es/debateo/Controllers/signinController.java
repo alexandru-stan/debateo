@@ -22,10 +22,23 @@ public class signinController {
 	
 	@PostMapping
 	@CrossOrigin(origins="http://localhost:1234")
-	public ResponseEntity<Users> registrarUsuario(@RequestBody Users user) {
+	public ResponseEntity<String> registrarUsuario(@RequestBody Users user) {
+	
+		boolean result = servicio.signin(user);
+		
+		if(result) {
+			
+			return  new ResponseEntity<String>("Cuenta creada correctamente",HttpStatus.CREATED);
+			
+		} else {
+			
+			return new ResponseEntity<String>("El nombre de usuario ya existe",HttpStatus.CONFLICT);
+		}
 		
 		
-		return new ResponseEntity<Users>(servicio.signin(user),HttpStatus.CREATED);
+		
+		
+		
 		
 	}
 	
