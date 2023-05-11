@@ -18,8 +18,8 @@ import Feed from './paginas/feed';
     return (
       <Router>
         <Routes>
-          <Route path="/" element={<Principal />} />
-          <Route path="/feed" element={<Feed />} />
+          <Route exact path="/" element={<Principal />} />
+          <Route exact path="/feed" element={<Feed />} />
         </Routes>
       </Router>
   

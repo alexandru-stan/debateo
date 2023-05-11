@@ -13,9 +13,10 @@ const Body = () => {
         
         <div id="carusel">
         <Carusel/>
-        </div>
+         </div>  
+        
 
-        <div id="formularioRegistro">
+        <div  id="formularioRegistro">
         <Formulario/>
         </div>
 

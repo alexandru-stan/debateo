@@ -1,107 +1,89 @@
-
-/*#ff8c00
-#444073
-#12111e
-  COLORES SECUNDARIOS*/
-#header{
-    background-color :#444073;
-    
-    display:flex;
+@font-face {
+    font-family: 'Comfortaa';
+    src: url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+}
+#root {
+    background: linear-gradient(to bottom, #444073,#12111e);
     width:100%;
-    height:20vh;
-    align-items:center;
-    color:white;
-    
-
+    height:100vh;
     
 }
 
+/* HEADER */
 
+#header {
+    display:flex;
+    align-items: center;
+    border-bottom: 1px solid black;
+    font-family: 'Comfortaa',sans-serif !important;
+   
+    
+    
+}
+.carousel-inner img {
+  margin: auto;
+}
 
-#carusel {
+#header img {
+    margin-right:auto;
+}
+#formularioLogin {
+    
+    display:flex;
+    align-items: center;
+    height:30%;
+  
+}
+
+/* BODY */
+
+#body{
+display:flex;
+justify-content: space-around;
+}
+
+#carusel{
+   
+    /* background-color: red; */
     width:50%;
-   
-
-    
-   
-   
-    
+    height:30vh;
 }
 
 #formularioRegistro{
-    
-    color:white;
-    
+    display:flex;
+    flex-flow:column;
+   
     width:50%;
-    height:80vh;
-    padding:5%
-  
-}
-
-#formularioRegistro > h1 {
-   
-}
-
-.carusel-tamano{
     height:50vh;
-    
 }
 
-
-#header img {
+#formularioRegistro * {
     
-    width:20%;
-    margin-right:auto;
-}
-
-#header input{
-
-    height:5vh;
+    width:100%;
+    
     
 
 }
 
-#header button{
-    background-color:#ff8c00;
-   
+/*GENERAL*/
+h1{
+    color:white;
+}
+input {
+    color:white !important;
+    font-family: 'Comfortaa',sans-serif !important;
+}
+
+label {
+    color:white !important;
+    font-family: 'Comfortaa',sans-serif !important;
+}
+
+button {
+    color: black !important;
+    background-color: #ff8c00!important;
 }
 
 #formularioRegistro button {
-    background-color:#ff8c00;
-}
-
-
-
-#body{
-    display:flex;
-    justify-content: space-around;
-    background: linear-gradient(to right, #12111e,#444073);
-  
-
-}
-
-#carusel img{
-    width:100%;
-    height: 70vh;
-}
-
-
-#root{
-    width:100%;
-    
-    
-    height:100vh;
-   
-}
-
-
-
-#footer{
-    background-color: antiquewhite;
-}
-
-
-#loginForm {
-    display:flex;
-    flex-wrap:wrap;
+    margin-top:30px;
 }

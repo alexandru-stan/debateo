@@ -1,37 +1,41 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+// import { Stack } from '@mui/material';
+// import { TextField } from '@mui/material';
+import theme from '../../../assets/material-ui-themes/DefaultTheme';
+import {ThemeProvider} from '@mui/material';
+import {Button,Stack, TextField }from '@mui/material';
+import Register from '../../../js/Register';
 function Formulario() {
+
+  function callSignin(){
+
+    Register();
+
+
+  }
+
     return (
-      <>
+    
+      <ThemeProvider theme={theme}>
+       
+       
       <h1>No tienes una cuenta? Regístrate!</h1>
-      <Form id='registro'>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Nombre</Form.Label>
-          <Form.Control type="text" placeholder="" />
-        </Form.Group>
-  
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Nombre de usuario</Form.Label>
-          <Form.Control type="text" placeholder="ej. JuanAlberto35" />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Contraseña</Form.Label>
-          <Form.Control type="password" placeholder="" />
-          <Form.Text>Debe tener entre 8 y 16 caracteres y al menos una letra mayúscula</Form.Text>
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Fecha de nacimiento</Form.Label>
-          <Form.Control type="date" placeholder="" />
-          
-        </Form.Group>
+        <TextField  color="secondary"  id="Rusername" label="Nombre de usuario" variant="standard"></TextField>
+        <TextField color="secondary" id="Rpassword" label="Contraseña" variant="standard"></TextField>
+        <TextField color="secondary"  id="Rname" label="Nombre" variant="standard"></TextField>
+        <TextField color="secondary"  id="Rmail" label="mail" variant="standard"></TextField>
+        <label>
+        Fecha de nacimiento
+        <TextField type='date' color="secondary"  id="Rbirth_date" label="" variant="standard"></TextField>
+        </label>
+        <Button style={{}} onClick={callSignin}>Registarse</Button>
         
-        <button className="btn" >Registrarse</button>
-      </Form>
+       
+     
 
-      </>
+      
+      </ThemeProvider>
+     
     );
   }
 

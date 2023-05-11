@@ -3,9 +3,16 @@ import Form from 'react-bootstrap/Form';
 import React from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import TextField from '@mui/material/TextField';
+
 import Login from '../../../js/Login';
+import { red } from '@mui/material/colors';
+import styles from '../../../assets/styles/Principal.css';
+import { InputLabel, Stack, ThemeProvider, Typography } from '@mui/material';
+// import { createMuiTheme } from '@material-ui/core/styles';
 
-
+import Container from '@mui/material';
+import theme from '../../../assets/material-ui-themes/DefaultTheme';
 
 const Formulario = () => {
 
@@ -24,27 +31,40 @@ async function callLogin(){
  
 
 
+let inputStyles = {
+  style:{
+   color:'white',
+   
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     return (
-       
-      
-        <div id='login'>
-        <Form id='loginForm'>
-        <Form.Group className="mb-3" >
-          <Form.Label>Nombre de usuario</Form.Label>
-          <Form.Control id="username" type="text" placeholder="" />
-        </Form.Group>
-        <Form.Group className="mb-3" >
-          <Form.Label>Contraseña</Form.Label>
-          <Form.Control id='password' type="password" placeholder="" />
-        </Form.Group>
-      </Form>
-      
-    
-      <button onClick={callLogin} className="btn" >Iniciar sesión</button>
 
       
-      </div>
+      <ThemeProvider theme={theme} >
+      
+        <div id='formularioLogin'>
+          <TextField color="secondary"  id="Lusername" label="Nombre de usuario" variant="outlined"></TextField>
+          <TextField color="secondary" id="Lpassword" label="Contraseña" variant="outlined"></TextField>
+          <Button style={{height:'50%'}}>Iniciar Sesión</Button>
+          </div>
+        </ThemeProvider>
+   
       
     )
 }

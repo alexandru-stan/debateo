@@ -1,9 +1,17 @@
 import React from "react";
-
+import Header from "../componentes/feed/header";
 
 const Feed = () => {
 
-    return (<h1>Hola Mundo</h1>)
+    return (
+
+    <Header/>
+    
+    
+    )
+    
+    
+    ;
 
 
 }

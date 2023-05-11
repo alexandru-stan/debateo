@@ -8,7 +8,7 @@ function Carusel() {
    
     <Carousel id="my-carousel" controls={false} indicators={false}>
     <Carousel.Item interval={2000}>
-      <img
+      <img draggable='false'
         className="d-block carusel-tamano"
         src={Carusel1}
         alt="First slide"
@@ -18,7 +18,7 @@ function Carusel() {
       </Carousel.Caption>
     </Carousel.Item>
     <Carousel.Item interval={2000}>
-      <img
+      <img draggable='false'
         className="d-block carusel-tamano"
         src={Carusel2}
         alt="Second slide"
@@ -28,7 +28,7 @@ function Carusel() {
       </Carousel.Caption>
     </Carousel.Item>
     <Carousel.Item interval={2000}>
-      <img
+      <img draggable='false'
         className="d-block carusel-tamano"
         src={Carusel3}
         alt="Third slide"

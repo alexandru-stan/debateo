@@ -21,6 +21,8 @@ public class Users {
 	@Column
 	private String name;
 	@Column
+	private String mail;
+	@Column
 	private Date birth_date;
 	public String getUsername() {
 		return username;
