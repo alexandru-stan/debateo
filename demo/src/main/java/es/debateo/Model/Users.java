@@ -14,7 +14,6 @@ import jakarta.persistence.Table;
 public class Users {
 
 	@Id
-	
 	private String username;
 	@Column
 	private String password;

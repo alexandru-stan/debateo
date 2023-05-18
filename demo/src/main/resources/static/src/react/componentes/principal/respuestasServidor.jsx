@@ -13,12 +13,12 @@ const RespuestaServidor = (props) => {
             severity = "error";
             break;
         default:
-            severity = "warning";
+            severity = "info";
             break;
     }
 
 return(
-<Alert id='registerResponse' variant='filled' severity={severity}>
+<Alert  id='registerResponse' variant='filled' severity={severity}>
 <AlertTitle>{props.texto}</AlertTitle>
 
 </Alert>

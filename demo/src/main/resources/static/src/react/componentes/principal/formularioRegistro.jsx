@@ -8,11 +8,17 @@ import Register from '../../../js/Register';
 import RespuestaServidor from './respuestasServidor';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useRef } from 'react';
+import Logo from '../atomos/img';
+import imagen from '../../../assets/img/LogoDebateo.PNG'
+const $ = require('jquery');
 
 
 const Formulario = () => {
 const [codigo,setCodigo] = useState(null);
 const [texto,setTexto] = useState(null);
+const [forzarRenderizado,setForzar] = useState(true);
+
 
 
      function callRegister(){
@@ -25,11 +31,13 @@ const [texto,setTexto] = useState(null);
       
       setCodigo(response.status);
       setTexto(response.data);
+      setForzar(!forzarRenderizado);
     }
 
       ).catch(error => {
         setCodigo(error.response.status);
         setTexto(error.response.data);
+        setForzar(!forzarRenderizado);
         
       });
 
@@ -37,18 +45,29 @@ const [texto,setTexto] = useState(null);
 
   }
 
-
-
-
-
  
+
+  const isInitialMount = useRef(true);
+
+  useEffect(() => {
+    if (isInitialMount.current) {
+       isInitialMount.current = false;
+    } else {
+    
+      $('#registerResponse').animate({ left: '30%' }, 'slow').delay(3000).animate({left:'130%'});
+      
+    }
+  },[forzarRenderizado]);
+
+
+
 
 
 
     return (
     
       <ThemeProvider theme={theme}>
-       
+    
       <h1>No tienes una cuenta? Regístrate!</h1>
         <TextField  color="secondary"  id="Rusername" label="Nombre de usuario" variant="standard"></TextField>
         <TextField type='password' color="secondary" id="Rpassword" label="Contraseña" variant="standard"></TextField>
