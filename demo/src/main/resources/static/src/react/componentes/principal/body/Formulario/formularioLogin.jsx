@@ -61,11 +61,12 @@ let inputStyles = {
       <ThemeProvider theme={theme} >
       
         <div id='form'>
-        <h1> Inicio de sesión</h1>
+        <h1>Bienvenido de vuelta!</h1>
+          <ToggleForm fn={props.fn} hasAccount = {props.hasAccount}/>
           <TextField color="secondary"  id="Lusername" label="Nombre de usuario" variant="filled"></TextField>
           <TextField color="secondary" id="Lpassword" label="Contraseña" variant="filled"></TextField>
           <Button onClick={callLogin} style={{height:'50%'}}>Iniciar Sesión</Button>
-          <ToggleForm fn={props.fn} hasAccount = {props.hasAccount}/>
+          
           </div>
          
         </ThemeProvider>
