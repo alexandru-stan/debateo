@@ -34,14 +34,7 @@
 #header img {
     margin-right:auto;
 }
-#formularioLogin {
-    
-    display:flex;
-    align-items: center;
-    height:30%;
-    padding-right:10%;
-  
-}
+
 
 /* BODY */
 
@@ -59,16 +52,22 @@ padding-right:10%; */
     height:30vh;
 }
 
-#formularioRegistro{
+#form{
     display:flex;
     flex-flow:column;
    font-family: 'Comfortaa';
+   
+   justify-content: center;
     width:50%;
     height:50vh;
     padding-right:10%;
 }
-
-#formularioRegistro * {
+#form h5 {
+   cursor:pointer; 
+   margin-top:20px;
+   color: #ff8c00;
+}
+#form * {
     
     width:100%;
     
@@ -100,8 +99,10 @@ button {
    font-size:110% !important;
 }
 
-#formularioRegistro button {
+#form button {
     margin-top:30px;
+    height:30px !important;
+
 }
 
 #registerResponse{
@@ -114,52 +115,9 @@ button {
 
 body {
     overflow:hidden;
+    margin:0;
 }
 
 
-@media (max-width:1176px) {
-    #header {
-        /* background-color: red; */
-    }
 
-    #header #formularioLogin {
-        /* background-color: yellow; */
-        
-        flex-flow: column;
-    }
-
-}
-
-
-@media (max-width:821px) {
-    #header img {
-        width:200px;
-    }
-
-
-}
-
-
-@media (max-width:960px){
-    #body  #carusel {
-        display:none;
-    }
-
-    #registerResponse {
-      display:none;
-
-    }
-
-    html,body{
-        height:100%;
-        
-
-    }
-
-    #root {
-        overflow-y:scroll;
-    }
-
-    
-}
 

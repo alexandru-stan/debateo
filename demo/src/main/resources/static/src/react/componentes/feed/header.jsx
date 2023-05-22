@@ -1,13 +1,20 @@
 import React from "react";
 import theme from "../../../assets/material-ui-themes/DefaultTheme";
-import { Stack } from "@mui/material";
+import Imagen from '../reusable/img.jsx';
+import Logo from '../../../assets/img/LogoDebateo.PNG';
+import { TextField } from "@mui/material";
 
 const Header = () => {
     return (
-        <>
-            <h1>Hola</h1>
-            <h1>Adios</h1>
-            </>
+        <div id='header-feed'>
+            <Imagen ruta = {Logo}/>
+            <TextField/>
+            <div>
+            <p>MENU</p>
+            <p>MENU</p>
+            <p>MENU</p>
+            </div>
+        </div>
     );
 }
 
