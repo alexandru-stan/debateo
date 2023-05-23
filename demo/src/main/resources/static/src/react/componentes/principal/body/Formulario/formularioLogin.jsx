@@ -18,17 +18,17 @@ const Formulario = (props) => {
 
 const navigate = useNavigate();
 
-async function callLogin(){
-  
-  let response = await Login();
-  
-  console.log(response.status);
+ function callLogin(){
 
-  if(response.data){
-    navigate("/feed")
-  } else {
-    alert("NOP");
-  }
+  Login().then(response => {
+    if(response.status >=200 && response.status <=299){
+        alert(response.data+" "+response.status);
+        navigate("/feed");
+    }
+  }).catch(error => {
+    alert(error.response.status+" "+error.response.data);
+  })
+
 }
  
 

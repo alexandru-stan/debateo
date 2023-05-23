@@ -70,10 +70,10 @@ const [forzarRenderizado,setForzar] = useState(true);
     
       <h1>Bienvenido!</h1>
         <ToggleForm fn={props.fn}  hasAccount = {props.hasAccount}/>
-        <TextField  color="secondary"  id="Rusername" label="Nombre de usuario" variant="filled"></TextField>
-        <TextField type='password' color="secondary" id="Rpassword" label="Contraseña" variant="filled"></TextField>
-        <TextField color="secondary"  id="Rname" label="Nombre" variant="filled"></TextField>
-        <TextField color="secondary"  id="Rmail" label="Mail" variant="filled"></TextField>
+        <TextField  color="secondary"  id="Rusername" label="Nombre de usuario" variant="standard"></TextField>
+        <TextField type='password' color="secondary" id="Rpassword" label="Contraseña" variant="standard"></TextField>
+        <TextField color="secondary"  id="Rname" label="Nombre" variant="standard"></TextField>
+        <TextField color="secondary"  id="Rmail" label="Mail" variant="standard"></TextField>
         <label>
         Fecha de nacimiento
         <TextField type='date' color="secondary"  id="Rbirth_date" label="" variant="filled"></TextField>

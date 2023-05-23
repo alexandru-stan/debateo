@@ -20,7 +20,8 @@
 
 #header {
     display:flex;
-    justify-content: center !important;
+    align-items: center;
+    justify-content: center;
     border-bottom: 1px solid black;
     font-family: 'Comfortaa',sans-serif !important;
     
@@ -33,6 +34,9 @@
   margin: auto;
 }
 
+#header img {
+   
+}
 
 
 /* BODY */
