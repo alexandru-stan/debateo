@@ -1,0 +1,24 @@
+import React from "react";
+import Header from "../componentes/feed/header";
+import Body from "../componentes/feed/body";
+import "../../assets/styles/Feed.css";
+import { TextField } from "@mui/material";
+const Feed = () => {
+
+    return (
+        <>
+    <Header/>
+    <Body/>
+        </>
+    
+    
+    )
+    
+    
+    ;
+
+
+}
+
+
+export default Feed;
