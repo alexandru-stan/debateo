@@ -2,13 +2,13 @@ import React from "react";
 import theme from "../../../assets/material-ui-themes/DefaultTheme";
 import Imagen from '../reusable/img.jsx';
 import Logo from '../../../assets/img/LogoDebateo.PNG';
-import { TextField } from "@mui/material";
+import { SearchBar } from "../reusable/SearchBar";
 
 const Header = () => {
     return (
         <div id='header-feed'>
             <Imagen ruta = {Logo}/>
-            <TextField/>
+            <SearchBar/>
             <div>
             <p>MENU</p>
             <p>MENU</p>

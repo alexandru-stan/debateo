@@ -18,17 +18,17 @@ const Formulario = (props) => {
 
 const navigate = useNavigate();
 
-async function callLogin(){
-  
-  let response = await Login();
-  
-  console.log(response.status);
+ function callLogin(){
 
-  if(response.data){
-    navigate("/feed")
-  } else {
-    alert("NOP");
-  }
+  Login().then(response => {
+    if(response.status >=200 && response.status <=299){
+        alert(response.data+" "+response.status);
+        navigate("/feed");
+    }
+  }).catch(error => {
+    alert(error.response.status+" "+error.response.data);
+  })
+
 }
  
 
@@ -61,11 +61,12 @@ let inputStyles = {
       <ThemeProvider theme={theme} >
       
         <div id='form'>
-        <h1> Inicio de sesión</h1>
+        <h1>Bienvenido de vuelta!</h1>
+          <ToggleForm fn={props.fn} hasAccount = {props.hasAccount}/>
           <TextField color="secondary"  id="Lusername" label="Nombre de usuario" variant="filled"></TextField>
           <TextField color="secondary" id="Lpassword" label="Contraseña" variant="filled"></TextField>
           <Button onClick={callLogin} style={{height:'50%'}}>Iniciar Sesión</Button>
-          <ToggleForm fn={props.fn} hasAccount = {props.hasAccount}/>
+          
           </div>
          
         </ThemeProvider>

@@ -47,6 +47,7 @@ public class Services implements iServices {
 			return new ServiceResponse("EL NOMBRE DE USUARIO YA EXISTE",HttpStatus.CONFLICT);
 		} else {
 			
+			repo.save(user);
 			return new ServiceResponse("CUENTA CREADA CORRECTAMENTE",HttpStatus.OK);
 			
 			

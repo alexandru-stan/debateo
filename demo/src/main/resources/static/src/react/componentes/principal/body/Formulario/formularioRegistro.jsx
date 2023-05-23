@@ -68,7 +68,8 @@ const [forzarRenderizado,setForzar] = useState(true);
     
       <ThemeProvider theme={theme}>
     
-      <h1> Registro</h1>
+      <h1>Bienvenido!</h1>
+        <ToggleForm fn={props.fn}  hasAccount = {props.hasAccount}/>
         <TextField  color="secondary"  id="Rusername" label="Nombre de usuario" variant="standard"></TextField>
         <TextField type='password' color="secondary" id="Rpassword" label="Contraseña" variant="standard"></TextField>
         <TextField color="secondary"  id="Rname" label="Nombre" variant="standard"></TextField>
@@ -78,7 +79,7 @@ const [forzarRenderizado,setForzar] = useState(true);
         <TextField type='date' color="secondary"  id="Rbirth_date" label="" variant="standard"></TextField>
         </label>
         <Button onClick={callRegister}   >Registarse</Button>
-        <ToggleForm fn={props.fn}  hasAccount = {props.hasAccount}/>
+        
         <RespuestaServidor codigo={codigo} texto={texto}/>
      
 
