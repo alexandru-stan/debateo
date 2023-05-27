@@ -5,41 +5,39 @@ import theme from '../../../../../assets/material-ui-themes/DefaultTheme';
 import {ThemeProvider} from '@mui/material';
 import {Button,Stack, TextField }from '@mui/material';
 import Register from '../../../../../js/Register';
-import RespuestaServidor from '../respuestasServidor';
-import { useState } from 'react';
+import RespuestaServidor from '../respuestasServidor';  
 import { useEffect } from 'react';
 import { useRef } from 'react';
 import ToggleForm from '../toggleForm';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { change, changeStatus } from '../../../../../redux-store/slices/StatusSlice';
 
 const $ = require('jquery');
-
+let codigoRespuesta;
+let mensajeRespuesta;
 
 const Formulario = (props) => {
-const [codigo,setCodigo] = useState(null);
-const [texto,setTexto] = useState(null);
-const [forzarRenderizado,setForzar] = useState(true);
 
-
+const status = useSelector((state) => state.status.value);
+const dispatch = useDispatch();
 
      function callRegister(){
 
-    // let respuesta = await Register();
-    // setCodigo(respuesta.status);
-    // setTexto(respuesta.data);
-
     Register().then(response => {
+      codigoRespuesta = response.status;
+      mensajeRespuesta = response.data;
+      dispatch(changeStatus(!status))
+    })
+  
+    
+    
+    .catch(error => {
+      codigoRespuesta = error.response.status;
+      mensajeRespuesta = error.response.data;
+       dispatch(changeStatus(!status))
       
-      setCodigo(response.status);
-      setTexto(response.data);
-      setForzar(!forzarRenderizado);
-    }
-
-      ).catch(error => {
-        setCodigo(error.response.status);
-        setTexto(error.response.data);
-        setForzar(!forzarRenderizado);
-        
-      });
+    });
 
     
 
@@ -49,17 +47,28 @@ const [forzarRenderizado,setForzar] = useState(true);
 
   const isInitialMount = useRef(true);
 
+
+
+
   useEffect(() => {
     if (isInitialMount.current) {
        isInitialMount.current = false;
+       $('#registerResponse').hide();
     } else {
+    //  if((parseInt($('#registerResponse').css('left'))) === 426) {
+    //   animateFunc();
+
+    //   if($('#registerResponse').is(':animated')){
+    //     $('#registerResponse').promise().done(animateFunc)
+    //   }
+
+    //  }
     
-      $('#registerResponse').animate({ left: '30%' }, 'slow').delay(3000).animate({left:'130%'});
+      $('#form button').fadeOut(()=>$('#registerResponse').fadeIn().delay(3000).fadeOut(() => $('#form button').fadeIn()));
       
+
     }
-  },[forzarRenderizado]);
-
-
+  },[status]);
 
 
 
@@ -80,7 +89,7 @@ const [forzarRenderizado,setForzar] = useState(true);
         </label>
         <Button onClick={callRegister}   >Registarse</Button>
         
-        <RespuestaServidor codigo={codigo} texto={texto}/>
+        <RespuestaServidor  codigo={codigoRespuesta} texto={mensajeRespuesta}/>
      
 
       
