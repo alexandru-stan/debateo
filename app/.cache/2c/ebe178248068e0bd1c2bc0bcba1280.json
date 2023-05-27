@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-{"id":"src/assets/img/actualidad.png","dependencies":[{"name":"G:\\Debateo\\app\\package.json","includedInParent":true,"mtime":1685198756536}],"generated":{"js":"module.exports = \"/e07085ef62f2403301daa29faa62473e.png\";"},"sourceMaps":null,"error":null,"hash":"e07813972ac57f3583bce067537c8196","cacheData":{"env":{}}}
-=======
-{"id":"src/assets/img/actualidad.png","dependencies":[{"name":"G:\\Debateo\\app\\package.json","includedInParent":true,"mtime":1684832127240}],"generated":{"js":"module.exports = \"/e07085ef62f2403301daa29faa62473e.png\";"},"sourceMaps":null,"error":null,"hash":"e07813972ac57f3583bce067537c8196","cacheData":{"env":{}}}
->>>>>>> reduxImplementation
+{"id":"src/assets/img/actualidad.png","dependencies":[{"name":"G:\\Debateo\\app\\package.json","includedInParent":true,"mtime":1685199231628}],"generated":{"js":"module.exports = \"/e07085ef62f2403301daa29faa62473e.png\";"},"sourceMaps":null,"error":null,"hash":"e07813972ac57f3583bce067537c8196","cacheData":{"env":{}}}

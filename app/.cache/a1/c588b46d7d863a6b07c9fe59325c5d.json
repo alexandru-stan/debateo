@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-{"id":"src/assets/img/LogoDebateo.PNG","dependencies":[{"name":"G:\\Debateo\\app\\package.json","includedInParent":true,"mtime":1685198756536}],"generated":{"js":"module.exports = \"/8eec0d8c3e07737035ca6b786468005f.PNG\";"},"sourceMaps":null,"error":null,"hash":"f5e9544cf43deba7f72e43b2b36799a9","cacheData":{"env":{}}}
-=======
-{"id":"src/assets/img/LogoDebateo.PNG","dependencies":[{"name":"G:\\Debateo\\app\\package.json","includedInParent":true,"mtime":1684832127240}],"generated":{"js":"module.exports = \"/8eec0d8c3e07737035ca6b786468005f.PNG\";"},"sourceMaps":null,"error":null,"hash":"f5e9544cf43deba7f72e43b2b36799a9","cacheData":{"env":{}}}
->>>>>>> reduxImplementation
+{"id":"src/assets/img/LogoDebateo.PNG","dependencies":[{"name":"G:\\Debateo\\app\\package.json","includedInParent":true,"mtime":1685199231628}],"generated":{"js":"module.exports = \"/8eec0d8c3e07737035ca6b786468005f.PNG\";"},"sourceMaps":null,"error":null,"hash":"f5e9544cf43deba7f72e43b2b36799a9","cacheData":{"env":{}}}

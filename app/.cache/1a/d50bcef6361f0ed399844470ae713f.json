@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-{"id":"src/assets/img/hobbies.png","dependencies":[{"name":"G:\\Debateo\\app\\package.json","includedInParent":true,"mtime":1685198756536}],"generated":{"js":"module.exports = \"/b4bb3b2743b14a63eb46e73e5690daad.png\";"},"sourceMaps":null,"error":null,"hash":"da3428f787b45c6b3b663937b2f48751","cacheData":{"env":{}}}
-=======
-{"id":"src/assets/img/hobbies.png","dependencies":[{"name":"G:\\Debateo\\app\\package.json","includedInParent":true,"mtime":1684832127240}],"generated":{"js":"module.exports = \"/b4bb3b2743b14a63eb46e73e5690daad.png\";"},"sourceMaps":null,"error":null,"hash":"da3428f787b45c6b3b663937b2f48751","cacheData":{"env":{}}}
->>>>>>> reduxImplementation
+{"id":"src/assets/img/hobbies.png","dependencies":[{"name":"G:\\Debateo\\app\\package.json","includedInParent":true,"mtime":1685199231628}],"generated":{"js":"module.exports = \"/b4bb3b2743b14a63eb46e73e5690daad.png\";"},"sourceMaps":null,"error":null,"hash":"da3428f787b45c6b3b663937b2f48751","cacheData":{"env":{}}}
