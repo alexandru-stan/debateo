@@ -13,23 +13,30 @@ import ToggleForm from '../toggleForm';
 
 import Container from '@mui/material';
 import theme from '../../../../../assets/material-ui-themes/DefaultTheme';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import RespuestaServidor from '../respuestasServidor';
+import { useRef } from 'react';
+import { useEffect } from 'react';
+let codigoRespuesta;
+let mensajeRespuesta;
+
+const $ = require('jquery');
 
 const Formulario = (props) => {
-
+  const status = useSelector((state) => state.status.value);
+  const dispatch = useDispatch();
 const navigate = useNavigate();
 
  function callLogin(){
 
   Login().then(response => {
-    if(response.status >=200 && response.status <=299){
-        alert(response.data+" "+response.status);
-        navigate("/feed");
-    }
-  }).catch(error => {
-    alert(error.response.status+" "+error.response.data);
-  })
+      navigate("/feed");
+    })
 
 }
+
+
  
 
 
@@ -42,7 +49,25 @@ let inputStyles = {
 
 
 
+const isInitialMount = useRef(true);
 
+
+
+
+  useEffect(() => {
+    if (isInitialMount.current) {
+       isInitialMount.current = false;
+       $('#registerResponse').hide();
+    } else {
+   
+      if($('#registerResponse').data('events')){
+       
+      } else {
+      $('#form button').fadeOut(()=>$('#registerResponse').fadeIn().delay(3000).fadeOut(() => $('#form button').fadeIn()));
+      }
+
+    }
+  },[status]);
 
 
 
@@ -66,7 +91,7 @@ let inputStyles = {
           <TextField color="secondary"  id="Lusername" label="Nombre de usuario" variant="filled"></TextField>
           <TextField color="secondary" id="Lpassword" label="Contraseña" variant="filled"></TextField>
           <Button onClick={callLogin} style={{height:'50%'}}>Iniciar Sesión</Button>
-          
+          <RespuestaServidor  codigo={codigoRespuesta} texto={mensajeRespuesta}/>
           </div>
          
         </ThemeProvider>

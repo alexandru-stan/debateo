@@ -6,10 +6,11 @@ import { TextField } from "@mui/material";
 const Feed = () => {
 
     return (
-        <>
+        <div id='feed'>
     <Header/>
     <Body/>
-        </>
+    </div>
+        
     
     
     )

@@ -4,11 +4,54 @@
     
 }
 
+#header-feed #search-bar {
+    width:20% !important;
+ 
+}
+
+#header-feed #search-bar * {
+
+    width:100%;
+}
+
+#menu img {
+    width:50%;
+    
+}
+
+#menu{
+    display:flex;
+    /* background-color: red; */
+    width:20%;
+    
+}
+
+#menu div:hover {
+    border-bottom: 1px solid #ff8c00;
+    cursor: pointer;
+}
+
+#menu * {
+    display: flex;
+    flex-flow:column;
+    /* justify-content: center; */
+    align-items: center;
+    
+    width:100%;
+}
+
+#menu * img {
+    width:50px;
+}
+
+
+
 #header-feed {
     border-bottom: 1px solid black;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    width:90%;
     
 }
 
@@ -16,47 +59,91 @@
 
     color:white;
     border-radius:20px;
-    border-color:#ff8c00;
+  
     
 }
 
-#header-feed input{
-   width:1000px !important;
+#feed {
+    display: flex;
+    flex-direction: column;
+   
+    align-items: center;
 }
 
 #body-feed {
-    background-color: red;
+    
     width:100%;
     display:flex;
     justify-content: center;
+    /* background-color: #12111e; */
+    width:50%;
+    margin-top:2%;
+    border-radius:10%;
+    height: 100%;
+   
+    flex-direction: column;
 }
 
-#body-post {
+.body-post {
    
-    background-color: yellow;
-    width:50%;
+   padding:2%;
+   overflow: hidden;
+   border-bottom:5px solid #ff8c00;
+   margin-top:10px;
+   
+   
+    background-color: #12111e;
+    width:100%;
     display: flex;
     flex-direction: column;
-    
+   border-radius:10px;
     height:50vh;
    
 } 
 
-#post-header {
-    background-color: blue;
+
+.post {
+    height:100%;
+    
+    border-radius: inherit;
+}
+
+.post :nth-child(1){
+    /* background-color: blue; */
     width: 100%;
     height:10%;
     color:white;
+    /* border:1px solid #ff8c00; */
+    
+    border-bottom:1px solid #444073;
 }
 
-#post-body {
-    background-color: purple;
+.post :nth-child(2){
+    /* background-color: purple; */
     height:80%;
     color:white;
+    /* border:1px solid #ff8c00; */
+    border-bottom:1px solid #444073;
 }
 
-#post-footer {
-    background-color: saddlebrown;
+.post :nth-child(3){
+    /* background-color: saddlebrown; */
     height:10%;
     color:white;
+    
+    /* border:1px solid #ff8c00; */
+}
+
+.post-footer  {
+ display:flex;
+ ;
+}
+
+.post-footer img {
+    width:20px;
+    height:100%;
+}
+
+html {
+    height:100%;
 }
