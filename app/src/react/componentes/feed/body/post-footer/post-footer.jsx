@@ -8,10 +8,15 @@ import IconoReportar from '../../../../../assets/img/postFooterIcons/reportar.pn
 export const PostFooter = () => {
     return (
         <div class='post-footer'>
-                {/* <Imagen ruta={IconoVotar}/> */}
-                <Imagen ruta={IconoComentar}/>
-                {/* <Imagen ruta={IconoGuardar}/> */}
-                <Imagen ruta={IconoReportar}/>
+            
+               <span title='Me gusta'> <Imagen ruta={IconoVotar}/></span>
+               <span title='Comentar'><Imagen ruta = {IconoComentar}/></span> 
+            
+
+           
+                <span title='Guardar publicación'><Imagen ruta = {IconoGuardar}/></span>
+                {/* <span title='Denunciar publicación'> <Imagen ruta = {IconoReportar}/></span> */}
+           
 
         </div>
     )

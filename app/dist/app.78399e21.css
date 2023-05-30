@@ -9,11 +9,13 @@
 
 
 #root {
-    background: linear-gradient(to bottom, #444073,#12111e);
+    background-color: #12111e;
     width:100%;
-    height:100%;
-   
-    
+    min-height:100%;
+}
+
+body,html {
+    height:100%!important;
 }
 
 /* HEADER */
@@ -22,8 +24,9 @@
     display:flex;
     align-items: center;
     justify-content: center;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #ff8c00;
     font-family: 'Comfortaa',sans-serif !important;
+   
     
     
    
@@ -34,9 +37,7 @@
   margin: auto;
 }
 
-#header img {
-   
-}
+
 
 
 /* BODY */
@@ -110,17 +111,8 @@ button {
 
 }
 
-#registerResponse{
-  
-  
-    
-    
-    
-}
 
-body {
-height:100vh;
-}
+
 
 
 
@@ -141,6 +133,7 @@ height:100vh;
 
 #header-feed #search-bar {
     width:20% !important;
+    position: relative;
  
 }
 
@@ -182,12 +175,32 @@ height:100vh;
 
 
 #header-feed {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #ff8c00;
     display: flex;
     justify-content: space-around;
     align-items: center;
     width:90%;
     
+}
+
+#header-feed * {
+    border-color:#ff8c00;
+}
+
+#searchResult{
+    /* background-color: #444073; */
+    position: absolute;
+}
+#searchResult *{
+   padding:10px;
+   border:1px solid #ff8c00;
+   background-color: #444073;
+   cursor:pointer;
+
+}
+#searchResult *:hover {
+    background-color: #ff8c00;
+
 }
 
 #header-feed *  {
@@ -224,7 +237,7 @@ height:100vh;
    padding:2%;
    overflow: hidden;
    border-bottom:5px solid #ff8c00;
-   margin-top:10px;
+ 
    
    
     background-color: #12111e;
@@ -237,31 +250,33 @@ height:100vh;
 } 
 
 
+
 .post {
     height:100%;
     
-    border-radius: inherit;
+
+
 }
 
-.post :nth-child(1){
+.post .post-header{
     /* background-color: blue; */
     width: 100%;
     height:10%;
     color:white;
     /* border:1px solid #ff8c00; */
-    
     border-bottom:1px solid #444073;
+
+   
 }
 
-.post :nth-child(2){
+.post .post-body{
     /* background-color: purple; */
     height:80%;
     color:white;
-    /* border:1px solid #ff8c00; */
-    border-bottom:1px solid #444073;
+   
 }
 
-.post :nth-child(3){
+.post .post-footer{
     /* background-color: saddlebrown; */
     height:10%;
     color:white;
@@ -271,16 +286,27 @@ height:100vh;
 
 .post-footer  {
  display:flex;
- ;
+ 
+ height:1000px !important;
 }
 
 .post-footer img {
-    width:20px;
-    height:100%;
+    margin-left:10px;
 }
+
+.post-footer img {
+    width:30px !important;
+    height:30px !important;
+}
+
+
 
 html {
     height:100%;
+}
+#communities  {
+    display: flex;
+    justify-content: center;
 }
 
 /*# sourceMappingURL=/app.78399e21.css.map */

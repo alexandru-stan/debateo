@@ -1,0 +1,36 @@
+package es.debateo.Controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import DTO.ServiceResponse;
+import es.debateo.Model.Posts;
+import es.debateo.Services.PostsServices;
+
+@RestController
+@CrossOrigin(origins="*")
+@RequestMapping("/posts")
+public class PostsController {
+
+	@Autowired
+	PostsServices services;
+	
+	@GetMapping("/{username}/{offset}")
+	public ResponseEntity<Page<Posts>> getPosts(@PathVariable String username, @PathVariable int offset){
+		
+		ServiceResponse<Posts> response = services.getPosts(username,offset);
+		
+		return new ResponseEntity<Page<Posts>>(response.getPagina(),response.getStatus());
+		
+	}
+	
+
+	
+	
+}

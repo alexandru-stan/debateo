@@ -6,6 +6,7 @@ import {
 
 import Principal from "./paginas/principal";
 import Feed from './paginas/feed';
+import {Communities} from './paginas/communities';
 
   
 
@@ -19,8 +20,10 @@ import Feed from './paginas/feed';
     return (
       <Router>
         <Routes>
+        
           <Route exact path="/" element={<Principal />} />
           <Route exact path="/feed" element={<Feed />} />
+          <Route exact path = "/communities" element={<Communities/>}></Route>
         </Routes>
       </Router>
   

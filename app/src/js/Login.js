@@ -8,7 +8,7 @@ function Login(){
       password: $('#Lpassword').val()
     }
 
-    return axios.post("http://localhost:8080/login",credentials);
+    return axios.post("http://localhost:8080/users/login",credentials);
 
 }
 
