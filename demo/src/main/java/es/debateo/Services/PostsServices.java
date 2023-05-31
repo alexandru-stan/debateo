@@ -13,6 +13,7 @@ import es.debateo.Model.Posts;
 import es.debateo.Repositories.postsRepo;
 
 @Service
+
 public class PostsServices {
 
 	

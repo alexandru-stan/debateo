@@ -14,8 +14,8 @@ import es.debateo.Model.Posts;
 import es.debateo.Services.PostsServices;
 
 @RestController
-@CrossOrigin(origins="*")
 @RequestMapping("/posts")
+@CrossOrigin(origins="http://localhost:1234")
 public class PostsController {
 
 	@Autowired
