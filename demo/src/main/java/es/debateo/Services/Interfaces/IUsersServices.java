@@ -1,6 +1,6 @@
 package es.debateo.Services.Interfaces;
 
-import DTO.ServiceResponse;
+import es.debateo.DTO.ServiceResponse;
 import es.debateo.Model.Users;
 
 

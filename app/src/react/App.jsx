@@ -23,7 +23,7 @@ import {Communities} from './paginas/communities';
         
           <Route exact path="/" element={<Principal />} />
           <Route exact path="/feed" element={<Feed />} />
-          <Route exact path = "/communities" element={<Communities/>}></Route>
+          <Route exact path = "/community/:id" element={<Communities/>}></Route>
         </Routes>
       </Router>
   

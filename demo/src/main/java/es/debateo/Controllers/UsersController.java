@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import DTO.ServiceResponse;
+import es.debateo.DTO.ServiceResponse;
 import es.debateo.Model.Users;
 import es.debateo.Services.Interfaces.IUsersServices;
 
@@ -26,7 +26,7 @@ public class UsersController {
 
 		ServiceResponse<String> response = servicio.login(credentials.getUsername(), credentials.getPassword());
 
-		return new ResponseEntity<String>(response.getMensaje(), response.getStatus());
+		return new ResponseEntity<String>(response.getObj(), response.getStatus());
 	}
 	
 	@PostMapping("/signin")
@@ -34,7 +34,7 @@ public class UsersController {
 		
 		ServiceResponse<String> response = servicio.signin(user);
 		
-		return new ResponseEntity<String>(response.getMensaje(),response.getStatus());
+		return new ResponseEntity<String>(response.getObj(),response.getStatus());
 	
 	}
 	

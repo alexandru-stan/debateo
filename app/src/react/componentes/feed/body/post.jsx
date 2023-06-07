@@ -2,7 +2,10 @@ import React from 'react';
 import { PostFooter } from './post-footer/post-footer';
 import { PostHeader } from './post-header/post-header';
 import { PostBody } from './post-body/post-body';
+import { formatImage } from '../../../../js/imageFormatting';
 const Post = (props) => {
+
+
 
     return (
         <>

@@ -1,11 +1,6 @@
 package es.debateo.Model;
 
-import java.sql.Blob;
-import java.sql.SQLException;
-
 import org.apache.tomcat.util.codec.binary.Base64;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

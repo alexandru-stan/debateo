@@ -238,14 +238,14 @@ button {
    overflow: hidden;
    border-bottom:5px solid #ff8c00;
  
-   
+  margin-bottom:10%;
    
     background-color: #12111e;
     width:100%;
     display: flex;
     flex-direction: column;
    border-radius:10px;
-    height:100vh;
+    /* height:100vh; */
    
 } 
 
@@ -254,16 +254,16 @@ button {
 
 
 .post {
-    height:100%;
+    
     
 
 
 }
 
 .post .post-header{
-    background-color: blue;
+    /* background-color: blue; */
     width: 100%;
-    height:10%;
+    /* height:10%; */
     color:white;
     /* border:1px solid #ff8c00; */
     border-bottom:1px solid #444073;
@@ -272,28 +272,32 @@ button {
    
 }
 
+
 .post .post-body{
     /* background-color: purple; */
-    height:80%;
+    /* height:80%; */
     color:white;
     word-break:break-all;   
     overflow-y: auto;
-    background-color: red;
+    /* background-color: red; */
+   max-height:80vh;
    
+   padding:20px;
 }
 
-.post .post-body img{
+.post .post-body  img{
     /* background-color: purple; */
-    height:100%;
+    /* height:100%; */
     color:white;
     width:100%;
+    height:80%;
     
    
 }
 
 .post .post-footer{
-    background-color: yellow;
-    height:10%;
+    /* background-color: yellow; */
+    /* height:10%; */
     color:white;
     
     /* border:1px solid #ff8c00; */
@@ -302,16 +306,24 @@ button {
 .post-footer  {
  display:flex;
  
- height:1000px !important;
+ /* height:1000px !important; */
 }
 
 .post-footer img {
     margin-left:10px;
+
+}
+
+.post-footer img:hover{
+   transform:scale(1.5);
+   cursor:pointer;
+   
 }
 
 .post-footer img {
     width:30px !important;
     height:30px !important;
+
 }
 
 
@@ -321,7 +333,62 @@ html {
 }
 #communities  {
     display: flex;
-    justify-content: center;
+    flex-flow:column;
+    align-items: center;
 }
+
+.community-backgroundImage{
+    /* background-color: red; */
+    min-height: 30%;
+   
+    min-width: 100%;
+    margin-top:10px;
+}
+
+
+
+  
+  .community-info  {
+    color:white;
+    
+    min-width: 100%;
+    
+  }
+
+  
+  .community-body{
+    width:100%;
+  }
+
+  .community-info {
+    width:100%;
+    max-height: 30vh;
+    min-height:30vh;
+/* background-color: red; */
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  .community-image{
+    /* background-color: yellow; */
+    margin-right:10px;
+    /* max-width: 30%; */
+
+  }
+
+  .info {
+    /* background-color: black; */
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+.community-image img{
+   border-radius: 50%;
+   max-height: 100%;
+  
+}
+ 
 
 /*# sourceMappingURL=/app.78399e21.css.map */

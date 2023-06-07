@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 export const Menu = () => {
     
     const navigate = useNavigate();
-
+    let name="Programacion";
     return (
         <div id='menu' >
             <div onClick={() => navigate("/feed")} id='menu-1' >
@@ -24,10 +24,10 @@ export const Menu = () => {
             <h6>Mensajes</h6>
             </div> 
 
-            <div onClick={() => navigate("/communities")} id='menu-4'>
+            {/* <div onClick={() => navigate("/communities/Programacion")} id='menu-4'>
             <Imagen ruta={IconoComunidades}></Imagen>
             <h6>Comunidades</h6>
-            </div> 
+            </div>  */}
 
 
                     </div>

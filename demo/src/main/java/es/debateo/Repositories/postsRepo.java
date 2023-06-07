@@ -13,6 +13,9 @@ public interface postsRepo extends JpaRepository<Posts,Long>{
 	@Query("SELECT p FROM Posts p WHERE p.community IN (SELECT communityId FROM Subscriptions s WHERE s.username=:param)")
     Page<Posts> getPosts(@Param("param") String username,PageRequest pageRequest);
 	
+	
+	Page<Posts> getPostsByCommunity(long community, PageRequest pageRequest);
+	
 
 
 	

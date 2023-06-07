@@ -1,14 +1,11 @@
 package es.debateo.Services;
 
-import java.sql.SQLException;
-
-import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import DTO.ServiceResponse;
+import es.debateo.DTO.ServiceResponse;
 import es.debateo.Model.Posts;
 import es.debateo.Repositories.postsRepo;
 
@@ -30,7 +27,16 @@ public class PostsServices {
 		
 		
 		
-		return new ServiceResponse<Posts>(repo.getPosts(username,PageRequest.of(offset, 5)),HttpStatus.OK);
+		return new ServiceResponse<Posts>(repo.getPosts(username,PageRequest.of(offset, 20)),HttpStatus.OK);
+	}
+	
+	
+	
+	
+	public ServiceResponse<Posts> getPostsByCommunity(int offset,long community){
+		
+		return new ServiceResponse<Posts>(repo.getPostsByCommunity(community,PageRequest.of(offset, 20)),HttpStatus.OK);
+		
 	}
 	
 	

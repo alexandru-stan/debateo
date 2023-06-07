@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import DTO.ServiceResponse;
+import es.debateo.DTO.ServiceResponse;
 import es.debateo.Model.Posts;
 import es.debateo.Services.PostsServices;
 
@@ -27,6 +27,18 @@ public class PostsController {
 		ServiceResponse<Posts> response = services.getPosts(username,offset);
 		
 		return new ResponseEntity<Page<Posts>>(response.getPagina(),response.getStatus());
+		
+	}
+	
+	@GetMapping("/byCommunity/{offset}/{communityId}")
+	public ResponseEntity<Page<Posts>> getPostsByCommunity( @PathVariable int offset, @PathVariable long communityId){
+		
+		
+		ServiceResponse<Posts> response = services.getPostsByCommunity(offset,communityId);
+		
+		return new ResponseEntity<Page<Posts>>(response.getPagina(),response.getStatus());
+		
+		
 		
 	}
 	
