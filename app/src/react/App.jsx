@@ -8,19 +8,11 @@ import Principal from "./paginas/principal";
 import Feed from './paginas/feed';
 import {Communities} from './paginas/communities';
 
-  
-
-
-
-
-
-
 
   function App() {
     return (
       <Router>
         <Routes>
-        
           <Route exact path="/" element={<Principal />} />
           <Route exact path="/feed" element={<Feed />} />
           <Route exact path = "/community/:id" element={<Communities/>}></Route>

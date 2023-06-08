@@ -3,11 +3,13 @@ import { CommunityInfo } from './body/communityInfo';
 import React, { useState,useEffect } from 'react';
 import { CommunityInfoRequest } from '../../../js/CommunityInfoRequest';
 import { formatImage } from '../../../js/imageFormatting';
-
+import { PostsRequest } from '../../../js/PostsRequest';
 
 export const Body = (props) => {
-  const [state,setState] = useState(localStorage.getItem('cid'));
+const [state,setState] = useState(localStorage.getItem('cid'));
 const [info,setInfo] = useState({});
+const [postsArr,setPostsArr] = useState([]);
+const [page,setPage] = useState(0);
    
    useEffect(() => {
   setState(localStorage.getItem('cid'));
@@ -18,6 +20,12 @@ const [info,setInfo] = useState({});
     CommunityInfoRequest(state).then(response => {
         console.log(response.data);
         let data = response.data;
+      
+      console.log(state)
+      PostsRequest(page,state).then(response => {
+        setPostsArr(response);
+        console.log(postsArr);
+      })
         
         setInfo({
             communityName: data.communityName,
@@ -35,10 +43,8 @@ const [info,setInfo] = useState({});
 
 
     return (<div class='community-body'>
-        <CommunityInfo
-            info={info}
-        />
-        <h1></h1>
+        <CommunityInfo info={info}/>
+       {postsArr}
         </div>
     )
 }

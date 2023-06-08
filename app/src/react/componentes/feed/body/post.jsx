@@ -10,7 +10,7 @@ const Post = (props) => {
     return (
         <>
        <div className='body-post'>
-        <div className='post'>
+        <div ref={props.referencia} className='post'>
             <PostHeader header = {props.header} community = {props.community}/>
             <PostBody body = {props.body} image = {props.image}/>
             <PostFooter footer = {props.footer}/>

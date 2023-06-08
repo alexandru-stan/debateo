@@ -1,4 +1,4 @@
-package es.debateo.Controllers;
+	package es.debateo.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
