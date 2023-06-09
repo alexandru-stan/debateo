@@ -15,7 +15,7 @@ import es.debateo.Services.PostsServices;
 
 @RestController
 @RequestMapping("/posts")
-@CrossOrigin(origins="http://localhost:1234")
+@CrossOrigin(origins="*")
 public class PostsController {
 
 	@Autowired
@@ -23,8 +23,11 @@ public class PostsController {
 	
 	@GetMapping("/{username}/{offset}")
 	public ResponseEntity<Page<Posts>> getPosts(@PathVariable String username, @PathVariable int offset){
-		
+		System.out.println("PUTA");
+		System.out.println("LA PAGINA ES:"+offset);
 		ServiceResponse<Posts> response = services.getPosts(username,offset);
+		
+		System.out.println(response.getPagina());
 		
 		return new ResponseEntity<Page<Posts>>(response.getPagina(),response.getStatus());
 		

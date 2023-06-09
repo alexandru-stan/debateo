@@ -6,12 +6,14 @@ export async function PostsRequest(page,id=null,myRef){
     let posts;
     
     let endpoint = id!=null ? `http://localhost:8080/posts/byCommunity/${page}/${id}` : "http://localhost:8080/posts/mistborn/"+page;
+    console.log("EL ENDPOINT ES:"+endpoint);
     let referencia;
    return axios.get(endpoint).then(response => {
+    
         let longitud = response.data.content.length;
         let responseArray = response.data.content;
         let hijoprodigo;
-        // console.log(responseArray);  
+        console.log(responseArray);  
        posts = new Array(longitud);
         for(let i=0;i<longitud;i++){
 
@@ -21,8 +23,9 @@ export async function PostsRequest(page,id=null,myRef){
 
             if((longitud-i)==5) hijoprodigo = myRef
             else hijoprodigo =null
-
+          
         posts[i] = <Post
+            identificador = {responseArray[i].publicationId}
             referencia  = {hijoprodigo}
             header = {responseArray[i].publicationTitle}
             community = {responseArray[i].community}
