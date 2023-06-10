@@ -17,7 +17,8 @@
   
   .community-info  {
     color:white;
-    
+    margin-top:20%;
+    /* background-color: red; */
     min-width: 100%;
     
   }
@@ -57,3 +58,7 @@
   
 }
  
+
+.community-body{
+  width:60%;
+}

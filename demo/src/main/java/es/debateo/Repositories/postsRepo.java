@@ -10,7 +10,7 @@ import es.debateo.Model.Posts;
 
 public interface postsRepo extends JpaRepository<Posts,Long>{
 
-	@Query("SELECT p FROM Posts p WHERE p.community IN (SELECT communityId FROM Subscriptions s WHERE s.username=:param)")
+	@Query("SELECT p FROM Posts p WHERE p.community IN (SELECT communityId FROM Subscriptions s WHERE s.username=:param AND p.publicationId NOT IN (SELECT s.publicationId FROM Seen s WHERE s.username=:param))")
     Page<Posts> getPosts(@Param("param") String username,PageRequest pageRequest);
 	
 	

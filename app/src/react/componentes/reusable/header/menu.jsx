@@ -6,7 +6,7 @@ import IconoComunidades from "../../../../assets/img/menuIcons/comunidad.png";
 import Imagen from "../img";
 import { useNavigate } from "react-router-dom";
 export const Menu = () => {
-    
+   const  $ = require('jquery');
     const navigate = useNavigate();
     let name="Programacion";
     return (
@@ -19,7 +19,10 @@ export const Menu = () => {
             <Imagen ruta={IconoPerfil}></Imagen>
             <h6>Perfil</h6>
             </div> 
-            <div onClick={() => alert("PUTO")} id='menu-3'>
+            <div onClick={() => 
+    
+    $("#mensajes").animate({height: 'toggle',width:'toggle'}, 100)
+    } id='menu-3'>
             <Imagen ruta={IconoMensajes}></Imagen>
             <h6>Mensajes</h6>
             </div> 

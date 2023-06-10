@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import es.debateo.DTO.ServiceResponse;
 import es.debateo.Model.Users;
-import es.debateo.Services.Interfaces.IUsersServices;
+import es.debateo.Services.UserServices;
 
 @RequestMapping("/users")
 @RestController
@@ -18,15 +18,15 @@ import es.debateo.Services.Interfaces.IUsersServices;
 public class UsersController {
 
 	@Autowired
-	IUsersServices servicio;
+	UserServices servicio;
 
 	@PostMapping("/login")
 	
-	public ResponseEntity<String> validarLogin(@RequestBody Users credentials) {
+	public ResponseEntity<Users> validarLogin(@RequestBody Users credentials) {
 
-		ServiceResponse<String> response = servicio.login(credentials.getUsername(), credentials.getPassword());
+		ServiceResponse<Users> response = servicio.login(credentials.getUsername(), credentials.getPassword());
 
-		return new ResponseEntity<String>(response.getObj(), response.getStatus());
+		return new ResponseEntity<Users>(response.getObj(), response.getStatus());
 	}
 	
 	@PostMapping("/signin")

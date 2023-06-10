@@ -5,24 +5,29 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { PostsRequest } from '../../../js/PostsRequest'
 import { useRef } from 'react';
+import { Mensajes } from '../reusable/mensajes/mensajes';
 const Body = () => {
     const [postsArr,setPostsArr] = useState([]);
     const [page,setPage] = useState(0);
+    const [isLast,setIslast] = useState(false);
     const myRef = useRef();
 
  
  
-    const observer = new IntersectionObserver(entry => {
-     if(entry[0].isIntersecting){
-      setPage(page+1);  
-      PostsRequest(page,null,myRef).then(response=> {
-        setPostsArr(postsArr.concat(response));
-      })
-      observer.unobserve(myRef.current);
-     } else {
+    const handleIntersection = (entries) => {
+      if (entries[0].isIntersecting && !isLast) {
+        observer.disconnect();
+        setPage((prevPage) => prevPage + 1);
+        PostsRequest(page, null, myRef,setIslast)
+          .then((response) => {
+            setPostsArr((prevPosts) => prevPosts.concat(response));
 
-     }
-    })
+          })  
+          
+      } 
+    };
+  
+    const observer = new IntersectionObserver(handleIntersection);
 
     
 
@@ -61,6 +66,7 @@ if(myRef.current!=null){
     <div style={{color:'white'}} id='body-feed'>
  
         {postsArr}
+        <Mensajes/>
        
 <div id='tupu'>a</div>
     </div>

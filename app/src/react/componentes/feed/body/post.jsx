@@ -5,12 +5,15 @@ import { PostBody } from './post-body/post-body';
 import { formatImage } from '../../../../js/imageFormatting';
 const Post = (props) => {
 
-
+let vigilado;
 
     return (
         <>
        <div className='body-post'>
         <div ref={props.referencia} className='post'>
+        {vigilado = props.referencia!=null ? <h3>VIGILADO</h3>: "" }
+        
+            {vigilado}
             <PostHeader identificador={props.identificador} header = {props.header} community = {props.community}/>
             <PostBody body = {props.body} image = {props.image}/>
             <PostFooter footer = {props.footer}/>

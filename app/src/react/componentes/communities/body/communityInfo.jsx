@@ -4,7 +4,7 @@ import { formatImage } from '../../../../js/imageFormatting';
 
 export const CommunityInfo = (props) => {
 
-    console.log(props.info.communityBackgroundImage);
+
     
 
 

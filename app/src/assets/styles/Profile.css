@@ -1,0 +1,29 @@
+#profile{
+    display: flex;
+    justify-content: center;
+    /* background-color: yellow; */
+    min-height: 100vh;
+}
+
+#profile-body {
+    margin-top:10%;
+   
+    width: 100%;
+    min-height:50vh;
+    display: flex;
+    justify-content:flex-start;    
+}
+
+#userInfo {
+background-color: blue;
+width: 25%;
+max-height:50vh;
+}
+
+#userPosts {
+    background-color: salmon;
+    width: 50%;
+    
+    min-height:30vh;
+
+}

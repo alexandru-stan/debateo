@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 import es.debateo.DTO.ServiceResponse;
 import es.debateo.Model.Users;
 import es.debateo.Repositories.usersRepo;
-import es.debateo.Services.Interfaces.IUsersServices;
+
 @Service
-public class UserServices implements IUsersServices{
+public class UserServices{
 	@Autowired
 	usersRepo repo;
 	
@@ -24,17 +24,17 @@ public class UserServices implements IUsersServices{
 
 
 
-	public ServiceResponse<String> login(String username,String password) {
+	public ServiceResponse<Users> login(String username,String password) {
 	
 		boolean exists = repo.existsByUsernameAndPassword(username, password);
 		
 		if(exists) {
 			
-			return new ServiceResponse<String>("",HttpStatus.OK);
+			return new ServiceResponse<Users>(repo.findById(username).get(),HttpStatus.OK);
 			
 		} else {
 			
-			return new ServiceResponse<String>("NOMBRE DE USUARIO O CONTRASEÑA INCORRECTOS",HttpStatus.NOT_FOUND);
+			return new ServiceResponse<Users>((Users) null,HttpStatus.NOT_FOUND);
 			
 		}
 		

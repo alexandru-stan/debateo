@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 
+import es.debateo.Model.Posts;
+
 public class ServiceResponse<T> {
 
 	HttpStatus status;
@@ -67,6 +69,9 @@ public class ServiceResponse<T> {
 	public ServiceResponse(HttpStatus status) {
 		super();
 		this.status = status;
+	}
+	public ServiceResponse(Page<Posts> posts) {
+		// TODO Auto-generated constructor stub
 	}
 
 	
