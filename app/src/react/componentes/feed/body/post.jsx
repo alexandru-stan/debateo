@@ -1,86 +1,23 @@
 import React from 'react';
 import { PostFooter } from './post-footer/post-footer';
-const Post = () => {
+import { PostHeader } from './post-header/post-header';
+import { PostBody } from './post-body/post-body';
+import { formatImage } from '../../../../js/imageFormatting';
+const Post = (props) => {
+
+let vigilado;
 
     return (
         <>
-       <div class='body-post'>
-        <div class='post'>
-            <div id='post-header'>HEADER</div>
-            <div id='post-body'>BODY</div>
-            
-            <PostFooter/>
+       <div className='body-post'>
+        <div ref={props.referencia} className='post'>
+        
+            <PostHeader identificador={props.identificador} header = {props.header} community = {props.community}/>
+            <PostBody body = {props.body} image = {props.image}/>
+            <PostFooter borrar = {props.borrar} footer = {props.footer}/>
         </div>
        </div>
-       <div class='body-post'>
-        <div class='post'>
-            <div id='post-header'>HEADER</div>
-            <div id='post-body'>BODY</div>
-            <div id='post-footer'>FOOTER</div>
-        </div>
-       </div>
-       <div class='body-post'>
-        <div class='post'>
-            <div id='post-header'>HEADER</div>
-            <div id='post-body'>BODY</div>
-            <div id='post-footer'>FOOTER</div>
-        </div>
-       </div>
-       <div class='body-post'>
-        <div class='post'>
-            <div id='post-header'>HEADER</div>
-            <div id='post-body'>BODY</div>
-            <div id='post-footer'>FOOTER</div>
-        </div>
-       </div>
-
-       <div class='body-post'>
-        <div class='post'>
-            <div id='post-header'>HEADER</div>
-            <div id='post-body'>BODY</div>
-            <div id='post-footer'>FOOTER</div>
-        </div>
-       </div>
-
-       <div class='body-post'>
-        <div class='post'>
-            <div id='post-header'>HEADER</div>
-            <div id='post-body'>BODY</div>
-            <div id='post-footer'>FOOTER</div>
-        </div>
-       </div>
-
-       <div class='body-post'>
-        <div class='post'>
-            <div id='post-header'>HEADER</div>
-            <div id='post-body'>BODY</div>
-            <div id='post-footer'>FOOTER</div>
-        </div>
-       </div>
-
-       <div class='body-post'>
-        <div class='post'>
-            <div id='post-header'>HEADER</div>
-            <div id='post-body'>BODY</div>
-            <div id='post-footer'>FOOTER</div>
-        </div>
-       </div>
-
-       <div class='body-post'>
-        <div class='post'>
-            <div id='post-header'>HEADER</div>
-            <div id='post-body'>BODY</div>
-            <div id='post-footer'>FOOTER</div>
-        </div>
-       </div>
-
-       <div class='body-post'>
-        <div class='post'>
-            <div id='post-header'>HEADER</div>
-            <div id='post-body'>BODY</div>
-            <div id='post-footer'>FOOTER</div>
-        </div>
-       </div>
+     
        </>
     )
 
