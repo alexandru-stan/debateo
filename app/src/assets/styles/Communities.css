@@ -61,4 +61,11 @@
 
 .community-body{
   width:60%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.community-body button {
+  width:30%;
 }

@@ -6,20 +6,24 @@ import { formatImage } from '../../../js/imageFormatting';
 import { PostsRequest } from '../../../js/PostsRequest';
 import { Mensajes } from '../reusable/mensajes/mensajes';
 import { useRef } from 'react';
+import Button from 'react-bootstrap/Button';
+import { useNavigate } from 'react-router-dom';
 export const Body = (props) => {
 const [state,setState] = useState(localStorage.getItem('cid'));
 const [info,setInfo] = useState({});
 const [postsArr,setPostsArr] = useState([]);
 const [page,setPage] = useState(0);
 const [isLast,setIslast] = useState(false);
-const myRef = useRef();
 
+const myRef = useRef();
+const navigate = useNavigate();
+let creador;
 const handleIntersection = (entries) => {
   if (entries[0].isIntersecting && !isLast) {
     console.log("Si");
     observer.disconnect();
     setPage((prevPage) => prevPage + 1);
-    PostsRequest(page, state, myRef,setIslast)
+    PostsRequest(page, state, myRef,setIslast,info.communityCreator,setPostsArr)
       .then((response) => {
         setPostsArr((prevPosts) => prevPosts.concat(response));
        
@@ -32,6 +36,16 @@ const handleIntersection = (entries) => {
 };
 const observer = new IntersectionObserver(handleIntersection);
 
+let boton;
+
+useEffect(()=>{
+
+}
+,[state])
+
+
+
+
 useEffect(() => {
   setState(localStorage.getItem('cid'));
   setPage(0);
@@ -42,7 +56,7 @@ useEffect(() => {
     CommunityInfoRequest(state).then(response => {
        
         let data = response.data;
-        
+        creador = data.communityCreator;
         setInfo({
             communityName: data.communityName,
             communityDescription: data.communityDescription,
@@ -57,7 +71,8 @@ useEffect(() => {
 
         
        
-        PostsRequest(page,state,myRef,setIslast).then(response =>{
+        PostsRequest(page,state,myRef,setIslast,creador,setPostsArr).then(response =>{
+         
           setPostsArr(response);
           setPage((previousPage)=> previousPage+1)
           console.log(myRef.current);
@@ -73,7 +88,9 @@ useEffect(() => {
 
 
 
-
+useEffect(() => {
+  console.log("tupu");
+},[postsArr])
  
 
 
@@ -98,6 +115,9 @@ if(myRef.current!=null && postsArr.length>0){
 
     return (<div class='community-body'>
         <CommunityInfo info={info}/>
+        <Button onClick={() => {
+         
+        }}>Crear publicación</Button>
        {postsArr}
        <Mensajes/>
         </div>

@@ -11,12 +11,10 @@ let vigilado;
         <>
        <div className='body-post'>
         <div ref={props.referencia} className='post'>
-        {vigilado = props.referencia!=null ? <h3>VIGILADO</h3>: "" }
         
-            {vigilado}
             <PostHeader identificador={props.identificador} header = {props.header} community = {props.community}/>
             <PostBody body = {props.body} image = {props.image}/>
-            <PostFooter footer = {props.footer}/>
+            <PostFooter borrar = {props.borrar} footer = {props.footer}/>
         </div>
        </div>
      

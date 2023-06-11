@@ -59,4 +59,11 @@ public class PostsServices {
 	}
 	
 	
+	
+	public boolean deletePost(long id){
+		repo.deleteById(id);
+		return true;
+	}
+	
+	
 }

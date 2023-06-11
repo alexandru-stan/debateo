@@ -1,3 +1,12 @@
+@font-face {
+    font-family: 'Comfortaa';
+    src: url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+}
+@font-face {
+    font-family: 'Roboto',sans-serif;
+   src : url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+}
+
 #profile{
     display: flex;
     justify-content: center;
@@ -15,15 +24,61 @@
 }
 
 #userInfo {
-background-color: blue;
+   border:1px solid #ff8c00;
+   padding:10px;
+   background-color: #1d1c32;
 width: 25%;
 max-height:50vh;
 }
 
 #userPosts {
-    background-color: salmon;
+  
     width: 50%;
     
     min-height:30vh;
 
+}
+
+#userPosts .body-post {
+
+    margin-top:0%;
+    margin-bottom:10%;
+}
+
+#userData * {
+    font-family: 'Comfortaa',sans-serif !important;
+    color:white;
+}
+
+#userData *     {
+   display: flex;
+   flex-direction: row;
+}
+
+#userData * div {
+    margin-bottom:10px;
+}
+
+#userData{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#userData button {
+    display: flex;
+    justify-content: center;
+    background-color: #1d1c32 !important;
+    color:#ff8c00 !important;
+    border-color:#ff8c00;
+}
+
+#userData button:hover {
+ color:white !important;
+ background-color: #ff8c00 !important;
+}
+
+#userData button {
+    display: flex;
+    justify-content: center;
 }

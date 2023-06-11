@@ -2,7 +2,7 @@ import React from "react";
 import IconoParaTi from "../../../../assets/img/menuIcons/parati.png";
 import IconoPerfil from "../../../../assets/img/menuIcons/perfil.png";
 import IconoMensajes from "../../../../assets/img/menuIcons/mensajes.png";
-import IconoComunidades from "../../../../assets/img/menuIcons/comunidad.png";
+import IconoComunidades from "../../../../assets/img/menuIcons/crear.png";
 import Imagen from "../img";
 import { useNavigate } from "react-router-dom";
 export const Menu = () => {
@@ -27,10 +27,10 @@ export const Menu = () => {
             <h6>Mensajes</h6>
             </div> 
 
-            {/* <div onClick={() => navigate("/communities/Programacion")} id='menu-4'>
+            <div  id='menu-4'>
             <Imagen ruta={IconoComunidades}></Imagen>
-            <h6>Comunidades</h6>
-            </div>  */}
+            <h6>Crear una comunidad</h6>
+            </div> 
 
 
                     </div>

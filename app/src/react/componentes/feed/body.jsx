@@ -18,7 +18,7 @@ const Body = () => {
       if (entries[0].isIntersecting && !isLast) {
         observer.disconnect();
         setPage((prevPage) => prevPage + 1);
-        PostsRequest(page, null, myRef,setIslast)
+        PostsRequest(page, null, myRef,setIslast,null)
           .then((response) => {
             setPostsArr((prevPosts) => prevPosts.concat(response));
 
