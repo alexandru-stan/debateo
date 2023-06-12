@@ -1,3 +1,12 @@
+@font-face {
+  font-family: 'Comfortaa';
+  src: url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+}
+@font-face {
+  font-family: 'Roboto',sans-serif;
+ src : url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+}
+
 #communities  {
     display: flex;
     flex-flow:column;
@@ -69,3 +78,28 @@
 .community-body button {
   width:30%;
 }
+
+#createForm {
+  /* background-color: black; */
+  width: 70%;
+  height:30vh;
+  display:flex;
+  align-items: center;
+  flex-direction: column;
+   background-color: #444073;
+   margin-top:5%;
+   color:white;
+  
+}
+
+#createForm div{
+width: 100%;
+color:white;
+font-family: 'Comfortaa',sans-serif !important;
+}
+
+#createForm button {
+  margin-top:10px;
+}
+
+
