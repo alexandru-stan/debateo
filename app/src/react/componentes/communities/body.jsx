@@ -8,6 +8,7 @@ import { Mensajes } from '../reusable/mensajes/mensajes';
 import { useRef } from 'react';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
+import { CrearPublicacion } from './body/crearPublicacion';
 export const Body = (props) => {
 const [state,setState] = useState(localStorage.getItem('cid'));
 const [info,setInfo] = useState({});
@@ -116,8 +117,11 @@ if(myRef.current!=null && postsArr.length>0){
     return (<div class='community-body'>
         <CommunityInfo info={info}/>
         <Button onClick={() => {
-         
+
         }}>Crear publicación</Button>
+
+        <CrearPublicacion/>
+
        {postsArr}
        <Mensajes/>
         </div>
