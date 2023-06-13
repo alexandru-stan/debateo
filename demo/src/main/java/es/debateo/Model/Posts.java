@@ -1,5 +1,7 @@
 package es.debateo.Model;
 
+import java.util.Arrays;
+
 import org.apache.tomcat.util.codec.binary.Base64;
 
 import jakarta.persistence.Column;
@@ -96,6 +98,12 @@ public class Posts {
 			this.publicationImage = imagenCodificada;
 			
 		
+	}
+	@Override
+	public String toString() {
+		return "Posts [publicationId=" + publicationId + ", user=" + user + ", community=" + community + ", likes="
+				+ likes + ", publicationTitle=" + publicationTitle + ", publicationBody=" + publicationBody
+				+ ", publicationImage=" + Arrays.toString(publicationImage) + "]";
 	}
 	
 	

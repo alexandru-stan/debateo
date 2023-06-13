@@ -26,6 +26,8 @@ public class PostsServices {
 	public final int size = 5;
 	
 	
+
+	
 	
 	
 	public ServiceResponse<Posts> getPosts(String username,int offset){
@@ -33,14 +35,14 @@ public class PostsServices {
 		ServiceResponse<Posts> response = new ServiceResponse<Posts>(repo.getPosts(username,PageRequest.of(offset, size)),HttpStatus.OK);
 		Seen[] seen = new Seen[size];
 		
-//		for(int i=0;i<size;i++) {
-//			
-//			seen[i]=new Seen(username,response.getPagina().getContent().get(i).getPublicationId());
-//			
-//		}
-//		
-//		seenServices.saveSeen(seen);
-//		
+		for(int i=0;i<size;i++) {
+			
+			seen[i]=new Seen(username,response.getPagina().getContent().get(i).getPublicationId());
+			
+		}
+		
+		seenServices.saveSeen(seen);
+		
 		
 	
 	

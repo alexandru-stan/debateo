@@ -2,16 +2,20 @@
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.debateo.DTO.ServiceResponse;
 import es.debateo.Model.Posts;
+import es.debateo.Repositories.postsRepo;
 import es.debateo.Services.PostsServices;
 
 @RestController
@@ -21,6 +25,9 @@ public class PostsController {
 
 	@Autowired
 	PostsServices services;
+	
+	@Autowired
+	postsRepo repo;
 	
 	@GetMapping("/{username}/{offset}")
 	public ResponseEntity<Page<Posts>> getPosts(@PathVariable String username, @PathVariable int offset){
@@ -46,10 +53,26 @@ public class PostsController {
 		
 	}
 	
+
+	
 	@DeleteMapping("/{id}")
 	public long deletePost(@PathVariable long id){
 		services.deletePost(id);
 		return id;
+		
+	}
+	
+	
+	@PostMapping()
+	public ResponseEntity<HttpStatus> uploadPost(@RequestBody Posts post){
+		
+		
+		
+		repo.save(post);
+		
+		
+		return null;
+		
 		
 	}
 	
