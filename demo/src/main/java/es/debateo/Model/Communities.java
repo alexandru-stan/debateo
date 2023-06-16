@@ -51,8 +51,7 @@ public class Communities {
 		this.communityId = communityId;
 		this.communityName = communityName;
 		this.communityDescription = communityDescription;
-		this.setCommunityImage(communityImage);
-		this.setCommunityBackgroundImage(communityBackgroundImage);
+		this.communityImage=communityImage;
 		this.communityMembers = communityMembers;
 		this.communityCreator = communityCreator;
 		this.sensitiveContent = sensitiveContent;
@@ -103,8 +102,8 @@ public class Communities {
 
 	public void setCommunityImage(byte[] communityImage) {
 		
-		byte[] imagenCodificada = Base64.encodeBase64(communityImage,false);
-		this.communityImage= imagenCodificada;
+	
+		this.communityImage= communityImage;
 		
 	}
 
@@ -113,8 +112,8 @@ public class Communities {
 	}
 
 	public void setCommunityBackgroundImage(byte[] communityBackgroundImage) {
-		byte[] imagenCodificada = Base64.encodeBase64(communityBackgroundImage,false);
-		this.communityBackgroundImage= imagenCodificada;
+		
+		this.communityBackgroundImage= communityBackgroundImage;
 	}
 
 	public int getCommunityMembers() {

@@ -9,6 +9,7 @@ import Feed from './paginas/feed';
 import {Communities} from './paginas/communities';
 import { Profile } from './paginas/profile';
 import { Create } from './paginas/create';
+import { Prueba } from './Prueba';
 
 
   function App() {
@@ -19,6 +20,7 @@ import { Create } from './paginas/create';
           <Route exact path="/feed" element={<Feed />} />
           <Route exact path = "/community/:id" element={<Communities/>}></Route>
           <Route exact path ="/profile" element={<Profile/>}></Route>
+          <Route exact path="/prueba" element={<Prueba/>}></Route>
 
         </Routes>
       </Router>

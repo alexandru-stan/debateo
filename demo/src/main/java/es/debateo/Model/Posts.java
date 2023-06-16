@@ -1,8 +1,7 @@
 package es.debateo.Model;
 
 import java.util.Arrays;
-
-import org.apache.tomcat.util.codec.binary.Base64;
+import java.util.Base64;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -81,21 +80,24 @@ public class Posts {
 		this.likes = likes;
 		this.publicationTitle = publicationTitle;
 		this.publicationBody = publicationBody;
-		this.setPublicationImage(publicationImage);
+		this.publicationImage=publicationImage;
 		
 	}
+	
+	
+
 	public Posts() {
 		super();
 	}
 	public byte[] getPublicationImage() {
 		return publicationImage;
 	}
+	
+
 	public void setPublicationImage(byte[]  publicationImage) {
 
 			
-			byte [] imagenCodificada = Base64.encodeBase64(publicationImage, false);
-			
-			this.publicationImage = imagenCodificada;
+			this.publicationImage = publicationImage;
 			
 		
 	}

@@ -12,7 +12,7 @@ export const PostFooter = (props) => {
                <span title='Me gusta'> <Imagen ruta={IconoVotar}/></span>
                <span title='Comentar'><Imagen ruta = {IconoComentar}/></span> 
                 <span title='Guardar publicación'><Imagen ruta = {IconoGuardar}/></span>
-                {props.borrar}
+               
                 {/* <span title='Denunciar publicación'> <Imagen ruta = {IconoReportar}/></span> */}
            
 

@@ -13,7 +13,7 @@ const nav = useNavigate();
         if(user==null){
             nav("/");
         } else {
-            console.log(user.name);
+            // console.log(user.name);
         }
     })
 

@@ -1,20 +1,25 @@
 	package es.debateo.Controllers;
 
+
+
+
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import es.debateo.DTO.PostDTO;
 import es.debateo.DTO.ServiceResponse;
-import es.debateo.Model.Posts;
 import es.debateo.Repositories.postsRepo;
 import es.debateo.Services.PostsServices;
 
@@ -23,6 +28,8 @@ import es.debateo.Services.PostsServices;
 @CrossOrigin(origins="*")
 public class PostsController {
 
+
+	
 	@Autowired
 	PostsServices services;
 	
@@ -30,52 +37,63 @@ public class PostsController {
 	postsRepo repo;
 	
 	@GetMapping("/{username}/{offset}")
-	public ResponseEntity<Page<Posts>> getPosts(@PathVariable String username, @PathVariable int offset){
-		System.out.println("PUTA");
+	public ResponseEntity<Page<PostDTO>> getPosts(@PathVariable String username, @PathVariable int offset){
+		
 		System.out.println("LA PAGINA ES:"+offset);
-		ServiceResponse<Posts> response = services.getPosts(username,offset);
+		ServiceResponse<PostDTO> response = services.getPosts(username,offset);
 		
 		System.out.println(response.getPagina());
 		
-		return new ResponseEntity<Page<Posts>>(response.getPagina(),response.getStatus());
+		return new ResponseEntity<Page<PostDTO>>(response.getPagina(),response.getStatus());
 		
 	}
 	
-	@GetMapping("/byCommunity/{offset}/{communityId}")
-	public ResponseEntity<Page<Posts>> getPostsByCommunity( @PathVariable int offset, @PathVariable long communityId){
-		
-		
-		ServiceResponse<Posts> response = services.getPostsByCommunity(offset,communityId);
-		
-		return new ResponseEntity<Page<Posts>>(response.getPagina(),response.getStatus());
-		
-		
-		
-	}
-	
-
-	
-	@DeleteMapping("/{id}")
-	public long deletePost(@PathVariable long id){
-		services.deletePost(id);
-		return id;
-		
-	}
-	
-	
+//	@GetMapping("/byCommunity/{offset}/{communityId}")
+//	public ResponseEntity<Page<Posts>> getPostsByCommunity( @PathVariable int offset, @PathVariable long communityId){
+//		
+//		
+//		ServiceResponse<Posts> response = services.getPostsByCommunity(offset,communityId);
+//		
+//		return new ResponseEntity<Page<Posts>>(response.getPagina(),response.getStatus());
+//		
+//		
+//		
+//	}
+//	
+//
+//	
+//	@DeleteMapping("/{id}")
+//	public long deletePost(@PathVariable long id){
+//		services.deletePost(id);
+//		return id;
+//		
+//	}
+//	
+//
 	@PostMapping()
-	public ResponseEntity<HttpStatus> uploadPost(@RequestBody Posts post){
+	public String uploadPost(@RequestParam("image") MultipartFile file) {
 		
+	
+		try {
+			services.upload(file);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		
-		repo.save(post);
-		
-		
-		return null;
-		
+		return "OK";
 		
 	}
-	
+//	
+//	
+		@GetMapping("/{id}")
+		public ResponseEntity<?> downloadPost(@PathVariable long id) {
+			
+		
+		return ResponseEntity.status(HttpStatus.OK).body(services.download(id));
+			
+		}
+		
 
 	
 	

@@ -1,12 +1,14 @@
 import React from 'react';
+import Logo from '../../../reusable/img';
 
 
 export const PostHeader = (props) => {
-    return (
+    return (<>
         <div className='post-header'>
-        <h1>{props.identificador}</h1>
-        <h6>{props.community} {props.header}</h6>
+        <h1>{props.communityName}</h1>
+      
         </div>
-        
+        <img src={props.communityImage} alt='AAAA'></img>
+        </>
     )
 }

@@ -4,14 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import es.debateo.DTO.PostDTO;
 import es.debateo.DTO.ServiceResponse;
-import es.debateo.Model.Posts;
 import es.debateo.Model.Seen;
 import es.debateo.Repositories.postsRepo;
+import jakarta.persistence.Tuple;
 
 @Service
 
@@ -26,46 +29,133 @@ public class PostsServices {
 	public final int size = 5;
 	
 	
+	
 
 	
 	
 	
-	public ServiceResponse<Posts> getPosts(String username,int offset){
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+//
+//	public void  upload(MultipartFile file) throws IOException{
+//		
+//		
+//		repo.save(new Posts(2238, "mistborn",345,0,"A","AAAAAAAAAAAA",file.getBytes()));
+//		
+//		
+//		
+//	}
+	
+//	
+//	public byte[] download(long id) {
+//		
+//	Optional<Posts> post = repo.findById(id);
+//	post.get().setPublicationImage(Base64.getEncoder().encode(post.get().getPublicationImage()));
+//
+//		return post.get().getPublicationImage();
+//	
+//	}
+//	
+	
+	public ServiceResponse<PostDTO> getPosts(String username,int offset){
 		
-		ServiceResponse<Posts> response = new ServiceResponse<Posts>(repo.getPosts(username,PageRequest.of(offset, size)),HttpStatus.OK);
-		Seen[] seen = new Seen[size];
 		
-		for(int i=0;i<size;i++) {
+//	System.err.println("USUARIO "+username+" PAGINA+ "+offset);
+		
+		
+		ServiceResponse<Tuple> queryReturn = new ServiceResponse<Tuple>(repo.getPosts(username,PageRequest.of(offset, size)),HttpStatus.OK);
+	
+		List<Tuple> a = queryReturn.getPagina().getContent();
+		boolean isLast= queryReturn.getPagina().isLast();
+		System.out.println(isLast);
+		List<PostDTO> list = new ArrayList<PostDTO>();
+		Page<PostDTO> page;
+	
+	
+		for(Tuple tuple: a){
+			int liked = repo.isItLiked(username,(int)tuple.get("publicationId"));
+			PostDTO post=new PostDTO(
+					(int)tuple.get("publicationId"),
+					(long) tuple.get("likes"),
+					(String) tuple.get("publicationTitle"),
+					(String) tuple.get("publicationBody"),
+					(byte[]) tuple.get("publicationImage"),
+					(String) tuple.get("publicationUser"),
+					(long) tuple.get("comments"),
+					(String) tuple.get("communityName"),
+					(byte[]) tuple.get("communityImage"),
+					(int) tuple.get("communityId"),
+					(String) tuple.get("subscriptionLevel"),
+					liked
+					);
 			
-			seen[i]=new Seen(username,response.getPagina().getContent().get(i).getPublicationId());
+			
+			list.add(post);
+			
+			Seen[] seen = new Seen[size];
+			
+			for(int i=0;i<size;i++) {
+				
+				seen[i]=new Seen(username,post.getPublicationId());
+				
+			}
+			
+			seenServices.saveSeen(seen);
+			
 			
 		}
 		
-		seenServices.saveSeen(seen);
+		System.out.println(a.size());
+		System.out.println(list.size());
+		page= new PageImpl<PostDTO>(list,PageRequest.of(offset, size),queryReturn.getPagina().getTotalElements());
 		
-		
+
 	
-	
-		
-		
-		
+		ServiceResponse<PostDTO> response = new ServiceResponse<PostDTO>(page,HttpStatus.OK);
 		return response;
-	
 	}
-	
-	
-	public ServiceResponse<Posts> getPostsByCommunity(int offset,long community){
+////		
+//		
+//		
+//		
+//		
+//		
 		
-		return new ServiceResponse<Posts>(repo.getPostsByCommunity(community,PageRequest.of(offset, size)),HttpStatus.OK);
-		
-	}
-	
-	
-	
-	public boolean deletePost(long id){
-		repo.deleteById(id);
-		return true;
-	}
-	
+////		
+//		
+//	
+//	
+//		
+//		
+//		
+//		return response;
+//	
+//	}
+//	
+//	
+//	public ServiceResponse<Posts> getPostsByCommunity(int offset,long community){
+//		
+//		return new ServiceResponse<Posts>(repo.getPostsByCommunity(community,PageRequest.of(offset, size)),HttpStatus.OK);
+//		
+//	}
+//	
+//	
+//	
+//	public boolean deletePost(long id){
+//		repo.deleteById(id);
+//		return true;
+//	}
+//	
 	
 }
