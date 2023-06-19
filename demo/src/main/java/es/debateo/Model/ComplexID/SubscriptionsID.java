@@ -13,11 +13,23 @@ public class SubscriptionsID implements Serializable {
 	
 	private long communityId;
 
+	
+
 	public SubscriptionsID(String username, long communityId) {
 		super();
 		this.username = username;
 		this.communityId = communityId;
 	}
+	
+	
+	
+
+	public SubscriptionsID() {
+		super();
+	}
+
+
+
 
 	public String getUsername() {
 		return username;

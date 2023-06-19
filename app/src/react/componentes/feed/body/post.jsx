@@ -5,16 +5,16 @@ import { PostBody } from './post-body/post-body';
 import { formatImage } from '../../../../js/imageFormatting';
 const Post = (props) => {
 
-let vigilado;
+console.log(props.liked);
 
     return (
         <>
        <div className='body-post'>
         <div ref={props.referencia} className='post'>
-        
-            <PostHeader referencia={props.referencia} publicationId={props.publicationId} publicationTitle = {props.publicationTitle} communityId = {props.communityId} communityName={props.communityName} communityImage = {props.communtiyImage} publicationUser={props.publicationUser}/>
+
+            <PostHeader referencia={props.referencia} publicationId={props.publicationId} publicationTitle = {props.publicationTitle} communityId = {props.communityId} communityName={props.communityName} communityImage = {props.communityImage} publicationUser={props.publicationUser}/>
             <PostBody liked={props.liked} publicationBody={props.publicationBody} publicationImage={props.publicationImage} />
-            <PostFooter delete = {props.delete} likes={props.likes} comments={props.comments}/>
+            <PostFooter publicationId={props.publicationId} liked={props.liked} delete = {props.delete} likes={props.likes} comments={props.comments}/>
         </div>
        </div>
      

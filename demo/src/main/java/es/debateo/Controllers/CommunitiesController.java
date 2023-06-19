@@ -8,9 +8,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import es.debateo.DTO.CommunityDTO;
 import es.debateo.DTO.ServiceResponse;
 import es.debateo.Model.Communities;
 import es.debateo.Services.CommunitiesServices;
@@ -32,15 +34,19 @@ public class CommunitiesController {
 	}
 	
 	
-	@GetMapping("/{id}")
-	public ResponseEntity<Communities> getCommunity(@PathVariable long id){
+	@GetMapping("/{username}/{id}")
+	public ResponseEntity<CommunityDTO> getCommunity(@PathVariable String username,@PathVariable long id){
 		
-		ServiceResponse<Communities> response = services.findCommunitiesById(id);
+		ServiceResponse<CommunityDTO> response = services.findCommunitiesById(username,id);
 		
-		return new ResponseEntity<Communities>(response.getObj(),response.getStatus());
+		return new ResponseEntity<CommunityDTO>(response.getObj(),response.getStatus());
 		
 	}
 	
+	@PostMapping("/add")
+	public void add() {
+		
+	}
 	
 	
 }

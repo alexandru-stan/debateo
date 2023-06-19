@@ -47,6 +47,31 @@ public class PostDTO {
 	
 	
 	
+
+
+
+
+
+	public PostDTO(int publicationId, long likes, String publicationTitle, String publicationBody,
+			byte[] publicationImage, String publicationUser, long comments, int liked) {
+		super();
+		this.publicationId = publicationId;
+		this.likes = likes;
+		this.publicationTitle = publicationTitle;
+		this.publicationBody = publicationBody;
+		this.publicationImage = publicationImage;
+		this.publicationUser = publicationUser;
+		this.comments = comments;
+		this.liked = liked;
+	}
+
+
+
+
+
+
+
+
 	public PostDTO() {
 		super();
 	}

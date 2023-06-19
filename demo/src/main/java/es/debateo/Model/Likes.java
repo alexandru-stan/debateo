@@ -14,26 +14,32 @@ public class Likes{
 	String username;
 	@Id
 	@Column(name="post_id")
-	String publicationId;
+	long publicationId;
+	
+	public Likes() {
+		super();
+	}
+
+	public Likes(String username, long publicationId) {
+		super();
+		this.username = username;
+		this.publicationId = publicationId;
+	}
+
 	public String getUsername() {
 		return username;
 	}
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public String getPublicationId() {
+
+	public long getPublicationId() {
 		return publicationId;
 	}
-	public void setPublicationId(String publicationId) {
+
+	public void setPublicationId(long publicationId) {
 		this.publicationId = publicationId;
-	}
-	public Likes(String username, String publicationId) {
-		super();
-		this.username = username;
-		this.publicationId = publicationId;
-	}
-	public Likes() {
-		super();
 	}
 	
 	

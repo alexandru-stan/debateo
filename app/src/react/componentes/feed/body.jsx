@@ -17,8 +17,8 @@ const Body = () => {
       page:page,
       myRef:myRef,
       setIslast:setIslast,
-      creador: JSON.parse(sessionStorage.getItem('user')).username,
-      setPostsArr:setPostsArr
+      loggedUser: JSON.parse(sessionStorage.getItem('user')).username,
+     
     }
  
  
@@ -44,7 +44,7 @@ const Body = () => {
 
    
 useEffect(  ()=> {
-  PostsRequest(request).then(response => {
+  PostsRequest(request,setPostsArr).then(response => {
    
     setPostsArr(response);
     setPage(page+1);

@@ -19,6 +19,17 @@ public class LikesID implements Serializable {
 		this.username = username;
 		this.publicationId = publicationId;
 	}
+	
+	
+	
+	
+	public LikesID() {
+		super();
+	}
+
+
+
+
 	public String getUsername() {
 		return username;
 	}

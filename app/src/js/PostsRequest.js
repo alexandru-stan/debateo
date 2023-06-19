@@ -5,13 +5,13 @@ import { Button } from 'react-bootstrap';
 import { formatImage } from './imageFormatting';
 import { deleteFunction } from './DeletePublication';
 
-export async function PostsRequest(request){
+export async function PostsRequest(request,setPostsArr){
 
  
 
 
 
-    let endpoint =  "http://localhost:8080/posts/"+request.creador+"/"+request.page;
+    let endpoint =  "http://localhost:8080/posts/"+request.loggedUser+"/"+request.page;
 
     return axios.get(endpoint).then(response=>{
       console.log(response.data);
@@ -26,24 +26,41 @@ export async function PostsRequest(request){
 
   
               posts[i] = <Post
+              likes={arr[i].likes}
+              comments={arr[i].comments}
               liked={arr[i].liked}
               communityId={arr[i].communityId}
               communityName={arr[i].communityName}
-              communityImage={(arr[i].communityImage!=null)?formatImage(arr[i].communityImage):null}
-              publicationBody={arr[i].publicatiomBody}
+              communityImage={formatImage(arr[i].communityImage)}
+              publicationBody={arr[i].publicationBody}
               publicationTitle={arr[i].publicationTitle}
               publicationId={arr[i].publicationId}
               publicationImage={(arr[i].publicationImage!=null)?formatImage(arr[i].publicationImage):null}
               publicationUser={arr[i].publicationUser}
               referencia={(posts.length-i)==1?request.myRef:null}
-              delete={arr[i].subscriptionLevel="MOD"?<Button
+              delete={arr[i].subscriptionLevel=="MOD" || arr[i].publicationUser==request.loggedUser?<Button
               onClick={() =>
                 deleteFunction(arr[i].publicationId).then((response) => {
                  
-                    request.setPostsArr((postsArr) => { 
-                   
-                    let newarr = postsArr.filter((node) => node.props.identificador !== response.data);
+                    setPostsArr((postsArr) => { 
+                   console.log(response.data);
+                    let newarr = postsArr.filter((node) => node.props.publicationId !== response.data);
                     console.log(newarr);
+                    return newarr;
+                    
+                    });
+                  
+                }) 
+              }
+            >
+              Eliminar
+    </Button>:arr[i].publicationUser==request.creador?<Button
+              onClick={() =>
+                deleteFunction(arr[i].publicationId).then((response) => {
+                 
+                   setPostsArr((postsArr) => { 
+              
+                    let newarr = postsArr.filter((node) => node.props.publicationId !== response.data);
                     return newarr;
                     
                     });

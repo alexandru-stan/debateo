@@ -17,19 +17,19 @@ public interface postsRepo extends JpaRepository<Posts,Long>{
 	
 	@Query(value = "SELECT "
 	        + "    p.publication_id AS publicationId, "
-	        + "    COUNT(l.post_id) AS likes, "
+	        + "    COUNT(  l.post_id) AS likes, "
 	        + "    p.publication_title AS publicationTitle, "
 	        + "    p.publication_body AS publicationBody, "
 	        + "    p.publication_image AS publicationImage, "
 	        + "    p.user AS publicationUser, "
-	        + "    COUNT(com.post_id) AS comments, "
+	        + "    COUNT( com.post_id) AS comments, "
 	        + "    c.community_name AS communityName, "
 	        + "    c.community_image AS communityImage, "
 	        + "    p.community AS communityId, "
 	        + "    s.subscription_level AS subscriptionLevel "
 	        + " FROM "
 	        + "    Posts p "
-	        + "INNER JOIN communities c ON p.community = c.community_id "
+	        + "LEFT JOIN communities c ON p.community = c.community_id "
 	        + "LEFT JOIN likes l ON p.publication_id = l.post_id "
 	        + " "
 	        + "LEFT JOIN comments com ON p.publication_id = com.post_id "
@@ -48,6 +48,47 @@ public interface postsRepo extends JpaRepository<Posts,Long>{
 	        + "    p.community, "
 	        + "    s.subscription_level", nativeQuery = true)
     Page<Tuple> getPosts(@Param("name")String name,PageRequest page);
+	
+	
+	
+	
+	
+	@Query(value = "SELECT "
+	        + "    p.publication_id AS publicationId, "
+	        + "    COUNT(  l.post_id) AS likes, "
+	        + "    p.publication_title AS publicationTitle, "
+	        + "    p.publication_body AS publicationBody, "
+	        + "    p.publication_image AS publicationImage, "
+	        + "    p.user AS publicationUser, "
+	        + "    COUNT(  com.post_id) AS comments "
+	        + "     "
+	        + " FROM "
+	        + "    Posts p "
+	        + "LEFT JOIN likes l ON p.publication_id = l.post_id "
+	        + "LEFT JOIN comments com ON p.publication_id = com.post_id "
+	        + ""
+	        + "WHERE "
+	        + "    p.community = :community AND "
+	        + "	p.publication_id NOT IN (SELECT sn.publication_id FROM Seen sn WHERE username=:name) "
+	        + "GROUP BY "
+	        + "    p.publication_id, "
+	        + "    p.publication_title, "
+	        + "    p.publication_body, "
+	        + "    p.publication_image, "
+	        + "    p.user;"
+	    
+	   
+	      , nativeQuery = true)
+	
+    Page<Tuple> getPostsByCommunity(@Param("community") long id, @Param("name") String username,PageRequest request);
+	
+	
+	
+	
+	
+	
+	
+	
 
 	@Query(value=""
 			+ "SELECT 		"

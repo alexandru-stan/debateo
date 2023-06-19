@@ -6,12 +6,29 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import es.debateo.DTO.CommunityDTO;
 import es.debateo.Model.Communities;
 public interface communitiesRepo extends JpaRepository<Communities,Long> {
 
 	@Query("SELECT new Communities(c.communityId, c.communityName) FROM Communities c WHERE c.communityName LIKE :param%")
     List<Communities> search(@Param("param") String cadena);
 	
-	Communities findCommunitiesByCommunityId(long communityId);
+	
+	@Query("SELECT new es.debateo.DTO.CommunityDTO("
+			+ "c.communityId,"
+			+ "c.communityName,"
+			+ "c.communityDescription,"
+			+ "c.communityImage,"
+			+ "c.communityBackgroundImage,"
+			+ "c.communityMembers,"
+			+ "c.communityCreator,"
+			+ "c.categoria) "
+			+ " FROM Communities c "
+			+ "WHERE c.communityId=:id")
+	CommunityDTO getCommunityData(@Param("id") long id);
+	
+	
+	
+	
 				
 }
