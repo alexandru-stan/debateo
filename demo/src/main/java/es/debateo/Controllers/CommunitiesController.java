@@ -1,6 +1,7 @@
 package es.debateo.Controllers;
 
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +11,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import es.debateo.DTO.CommunityDTO;
 import es.debateo.DTO.ServiceResponse;
 import es.debateo.Model.Communities;
+import es.debateo.Repositories.communitiesRepo;
 import es.debateo.Services.CommunitiesServices;
 
 @RestController
@@ -23,6 +27,9 @@ import es.debateo.Services.CommunitiesServices;
 public class CommunitiesController {
 	@Autowired
 	CommunitiesServices services;
+	
+	@Autowired
+	communitiesRepo repo;
 	
 	@GetMapping("/search/{cadena}")
 	public ResponseEntity<List<Communities>> search(@PathVariable String cadena){
@@ -44,7 +51,25 @@ public class CommunitiesController {
 	}
 	
 	@PostMapping("/add")
-	public void add() {
+	public long add(@RequestParam("image") MultipartFile file,
+					@RequestParam("name") String name,
+					@RequestParam("description") String desc,
+					@RequestParam("creator") String creator
+					
+		
+			
+			
+			) {
+		Communities response=null;
+		try {
+			 response = repo.save(new Communities(name,desc,file.getBytes(),creator));
+			return response.getCommunityId();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return response.getCommunityId();
 		
 	}
 	

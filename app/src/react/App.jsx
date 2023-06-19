@@ -11,6 +11,8 @@ import { Profile } from './paginas/profile';
 import { Create } from './paginas/create';
 import { Prueba } from './Prueba';
 import { Admin } from './paginas/admin';
+import { NewCommunity } from './paginas/newCommunity';
+import { Comments } from './paginas/comments';
 
 
 
@@ -25,6 +27,8 @@ import { Admin } from './paginas/admin';
           <Route exact path="/prueba" element={<Prueba/>}></Route>
           <Route exact path="/upload/:id" element={<Create/>}></Route>
           <Route exact path="/admin/:id" element={<Admin/>}></Route>
+          <Route exact path="/new/community" element={<NewCommunity/>}></Route>
+          <Route exact path="/:id/comments" element={<Comments/>}></Route>
 
         </Routes>
       </Router>

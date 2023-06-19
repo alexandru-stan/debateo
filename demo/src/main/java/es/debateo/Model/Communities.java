@@ -60,6 +60,17 @@ public class Communities {
 
 	
 	
+	public Communities(String communityName, String communityDescription, byte[] communityImage,
+			String communityCreator) {
+		super();
+		this.communityName = communityName;
+		this.communityDescription = communityDescription;
+		this.communityImage = communityImage;
+		this.communityCreator = communityCreator;
+	}
+
+
+
 	public Communities(long communityId, String communityName) {
 		super();
 		this.communityId = communityId;
@@ -71,6 +82,9 @@ public class Communities {
 	public Communities() {
 		super();
 	}
+
+	
+
 
 	public long getCommunityId() {
 		return communityId;

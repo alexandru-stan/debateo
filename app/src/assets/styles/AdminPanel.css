@@ -2,3 +2,54 @@
     display: flex;
     justify-content: center;
 }
+
+#mods {
+    margin-top:10%;
+    background-color: #444073;
+    padding:30px;
+    max-height:40vh;
+    min-height: 40vh;
+    color:white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    border:1px solid #ff8c00;
+}
+
+#mods h1 {
+    color:#ff8c00;
+}
+
+#mods-list{
+    overflow-y: scroll;
+    /* background-color: blue; */
+    height:50%;
+    border-bottom: 2px solid #ff8c00 ;
+}
+
+#add-mods{
+    /* background-color: red; */
+    margin-top:10px;
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+}
+
+.mod{
+    border: 1px solid #ff8c00;
+    padding:2px;
+    display: flex;
+    align-items: center;
+
+}
+
+.mod :nth-child(2){
+    margin-left:auto;
+    background-color: red;
+    width:10%;
+    text-align: center;
+    font-size:larger;
+    color:black
+}

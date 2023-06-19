@@ -26,11 +26,13 @@ console.log(creador);
 
   
               posts[i] = <Post
+              likes={arr[i].likes}
+              comments={arr[i].comments}
               liked={arr[i].liked}
               publicationBody={arr[i].publicationBody}
               publicationTitle={arr[i].publicationTitle}
               publicationId={arr[i].publicationId}
-              publicationImage={(arr[i].publicationImage!=null)?formatImage(arr[i].publicationImage):null}
+              publicationImage={(arr[i].publicationImage.length>0)?<img src={formatImage(arr[i].publicationImage)} alt='image'/>:null}
               publicationUser={arr[i].publicationUser}
               referencia={(posts.length-i)==1?request.myRef:null}
               delete={arr[i].publicationUser==loggedUser || loggedUser==creador || rol== "MOD" ?<Button

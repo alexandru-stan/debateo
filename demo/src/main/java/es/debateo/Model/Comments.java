@@ -18,7 +18,7 @@ public class Comments {
 	@Column
 	String username;
 	@Column(name="comment_date")
-	Date comment_date;
+	Date commentDate;
 	@Column(name="comment_text")
 	String commentText;
 	public long getCommentId() {
@@ -39,11 +39,11 @@ public class Comments {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public Date getComment_date() {
-		return comment_date;
+	public Date getCommentDate() {
+		return commentDate;
 	}
-	public void setComment_date(Date comment_date) {
-		this.comment_date = comment_date;
+	public void setCommenDate(Date comment_date) {
+		this.commentDate = comment_date;
 	}
 	public String getCommentText() {
 		return commentText;
@@ -51,16 +51,28 @@ public class Comments {
 	public void setCommentText(String commentText) {
 		this.commentText = commentText;
 	}
-	public Comments(long commentId, long postId, String username, Date comment_date, String commentText) {
+	public Comments(long commentId, long postId, String username, Date commentDate, String commentText) {
 		super();
 		this.commentId = commentId;
 		this.postId = postId;
 		this.username = username;
-		this.comment_date = comment_date;
+		this.commentDate = commentDate;
 		this.commentText = commentText;
 	}
 	public Comments() {
 		super();
+	}
+	public Comments(long postId, String username, Date commentDate, String commentText) {
+		super();
+		this.postId = postId;
+		this.username = username;
+		this.commentDate = commentDate;
+		this.commentText = commentText;
+	}
+	@Override
+	public String toString() {
+		return "Comments [commentId=" + commentId + ", postId=" + postId + ", username=" + username + ", comment_date="
+				+ commentDate + ", commentText=" + commentText + "]";
 	}
 	
 	

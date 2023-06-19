@@ -99,3 +99,9 @@
   background-color: turquoise !important;
   color:black !important;
 }
+
+
+#new {
+  display: flex;
+  justify-content:center;
+}

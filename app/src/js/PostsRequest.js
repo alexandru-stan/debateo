@@ -24,7 +24,7 @@ export async function PostsRequest(request,setPostsArr){
     let posts = new Array(response.data.numberOfElements);
     for(let i=0;i<posts.length;i++){
 
-  
+   
               posts[i] = <Post
               likes={arr[i].likes}
               comments={arr[i].comments}
@@ -35,7 +35,7 @@ export async function PostsRequest(request,setPostsArr){
               publicationBody={arr[i].publicationBody}
               publicationTitle={arr[i].publicationTitle}
               publicationId={arr[i].publicationId}
-              publicationImage={(arr[i].publicationImage!=null)?formatImage(arr[i].publicationImage):null}
+              publicationImage={(arr[i].publicationImage.length>0)?<img src={formatImage(arr[i].publicationImage)} alt='img'/>:null}
               publicationUser={arr[i].publicationUser}
               referencia={(posts.length-i)==1?request.myRef:null}
               delete={arr[i].subscriptionLevel=="MOD" || arr[i].publicationUser==request.loggedUser?<Button

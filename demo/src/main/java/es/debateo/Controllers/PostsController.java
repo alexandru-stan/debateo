@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -82,6 +83,13 @@ public class PostsController {
 		
 		
 	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<Posts> getPost(@PathVariable long id){
+		return new ResponseEntity<Posts>(repo.findById(id).get(),HttpStatus.OK);
+	}
+	
+	
 	
 
 	

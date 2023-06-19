@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import es.debateo.DTO.PostDTO;
 import es.debateo.DTO.ServiceResponse;
+import es.debateo.Repositories.commentsRepo;
 import es.debateo.Repositories.likesRepo;
 import es.debateo.Repositories.postsRepo;
 import jakarta.persistence.Tuple;
@@ -27,6 +28,10 @@ public class PostsServices {
 	SeenServices seenServices;
 	@Autowired
 	likesRepo likesRepo;
+	@Autowired
+	commentsRepo commentsRepo;
+	
+	
 	
 	public final int size = 5;
 	
@@ -83,17 +88,16 @@ public class PostsServices {
 		List<PostDTO> list = new ArrayList<PostDTO>();
 		Page<PostDTO> page;
 	
-	
 		for(Tuple tuple: a){
 			int liked = repo.isItLiked(username,(int)tuple.get("publicationId"));
 			PostDTO post=new PostDTO(
 					(int)tuple.get("publicationId"),
-					(long) tuple.get("likes"),
+					likesRepo.likeCount((int)tuple.get("publicationId")),
 					(String) tuple.get("publicationTitle"),
 					(String) tuple.get("publicationBody"),
 					(byte[]) tuple.get("publicationImage"),
 					(String) tuple.get("publicationUser"),
-					(long) tuple.get("comments"),
+					commentsRepo.commentsCount((int)tuple.get("publicationId")),
 					(String) tuple.get("communityName"),
 					(byte[]) tuple.get("communityImage"),
 					(int) tuple.get("communityId"),
@@ -147,7 +151,7 @@ public class PostsServices {
 //	
 	public ServiceResponse<PostDTO> getPostsByCommunity(int offset,long community,String username){
 		
-		ServiceResponse<Tuple> queryReturn = new ServiceResponse<Tuple>(repo.getPostsByCommunity(community,username,PageRequest.of(offset, size)),HttpStatus.OK);
+		ServiceResponse<Tuple> queryReturn = new ServiceResponse<Tuple>(repo.getPostsByCommunity(community,PageRequest.of(offset, size)),HttpStatus.OK);
 		
 		List<Tuple> a = queryReturn.getPagina().getContent();
 		boolean isLast= queryReturn.getPagina().isLast();
@@ -161,27 +165,19 @@ public class PostsServices {
 	
 			PostDTO post=new PostDTO(
 					(int)tuple.get("publicationId"),
-					(long) tuple.get("likes"),
+					likesRepo.likeCount((int)tuple.get("publicationId")),
 					(String) tuple.get("publicationTitle"),
 					(String) tuple.get("publicationBody"),
 					(byte[]) tuple.get("publicationImage"),
 					(String) tuple.get("publicationUser"),
-					(long) tuple.get("comments"),
+					commentsRepo.commentsCount((int)tuple.get("publicationId")),
 					liked
 					);
 			
 			System.out.println("TIENE"+tuple.get("comments")+" COMENTARIO");
 			list.add(post);
 			
-//			Seen[] seen = new Seen[size];
-//			
-//			for(int i=0;i<size;i++) {
-//				
-//				seen[i]=new Seen(username,post.getPublicationId());
-//				
-//			}
-//			
-//			seenServices.saveSeen(seen);
+		
 			
 			
 		}

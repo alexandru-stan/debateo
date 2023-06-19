@@ -17,12 +17,12 @@ public interface postsRepo extends JpaRepository<Posts,Long>{
 	
 	@Query(value = "SELECT "
 	        + "    p.publication_id AS publicationId, "
-	        + "    COUNT(  l.post_id) AS likes, "
+	        + "  "
 	        + "    p.publication_title AS publicationTitle, "
 	        + "    p.publication_body AS publicationBody, "
 	        + "    p.publication_image AS publicationImage, "
 	        + "    p.user AS publicationUser, "
-	        + "    COUNT( com.post_id) AS comments, "
+	        + "    "
 	        + "    c.community_name AS communityName, "
 	        + "    c.community_image AS communityImage, "
 	        + "    p.community AS communityId, "
@@ -30,23 +30,12 @@ public interface postsRepo extends JpaRepository<Posts,Long>{
 	        + " FROM "
 	        + "    Posts p "
 	        + "LEFT JOIN communities c ON p.community = c.community_id "
-	        + "LEFT JOIN likes l ON p.publication_id = l.post_id "
-	        + " "
-	        + "LEFT JOIN comments com ON p.publication_id = com.post_id "
+
 	        + "LEFT JOIN subscriptions s ON s.community_id = c.community_id AND s.username = :name "
 	        + "WHERE "
-	        + "    p.community IN (SELECT s.community_id FROM subscriptions s WHERE s.username = :name) AND "
+	        + "    p.community  IN (SELECT s.community_id FROM subscriptions s WHERE s.username = :name) OR p.community IN(SELECT c.community_id FROM Communities WHERE c.community_creator=:name) AND "
 	        + "	p.publication_id NOT IN (SELECT sn.publication_id FROM Seen sn WHERE username=:name ) "
-	        + "GROUP BY "
-	        + "    p.publication_id, "
-	        + "    p.publication_title, "
-	        + "    p.publication_body, "
-	        + "    p.publication_image, "
-	        + "    p.user, "
-	        + "    c.community_name, "
-	        + "    c.community_image, "
-	        + "    p.community, "
-	        + "    s.subscription_level", nativeQuery = true)
+	        	, nativeQuery = true)
     Page<Tuple> getPosts(@Param("name")String name,PageRequest page);
 	
 	
@@ -68,9 +57,9 @@ public interface postsRepo extends JpaRepository<Posts,Long>{
 	        + "LEFT JOIN comments com ON p.publication_id = com.post_id "
 	        + ""
 	        + "WHERE "
-	        + "    p.community = :community AND "
-	        + "	p.publication_id NOT IN (SELECT sn.publication_id FROM Seen sn WHERE username=:name) "
-	        + "GROUP BY "
+	        + "    p.community = :community "
+	 
+	        + " GROUP BY "
 	        + "    p.publication_id, "
 	        + "    p.publication_title, "
 	        + "    p.publication_body, "
@@ -80,7 +69,7 @@ public interface postsRepo extends JpaRepository<Posts,Long>{
 	   
 	      , nativeQuery = true)
 	
-    Page<Tuple> getPostsByCommunity(@Param("community") long id, @Param("name") String username,PageRequest request);
+    Page<Tuple> getPostsByCommunity(@Param("community") long id,PageRequest request);
 	
 	
 	
