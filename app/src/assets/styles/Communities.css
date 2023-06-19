@@ -13,13 +13,6 @@
     align-items: center;
 }
 
-.community-backgroundImage{
-    /* background-color: red; */
-    min-height: 30%;
-   
-    min-width: 100%;
-    margin-top:10px;
-}
 
 
 
@@ -51,6 +44,8 @@
     /* background-color: yellow; */
     margin-right:10px;
     /* max-width: 30%; */
+     width: 30%;
+  
 
   }
 
@@ -63,43 +58,50 @@
 
 .community-image img{
    border-radius: 50%;
-   max-height: 100%;
+   height: 70%;
+   width: 70%;
+   background-color: red;
   
 }
  
 
 .community-body{
-  width:60%;
+  width:50%;
   display: flex;
   align-items: center;
   flex-direction: column;
+  /* background-color: red; */
 }
 
 .community-body button {
   width:30%;
 }
 
-#createForm {
-  /* background-color: black; */
-  width: 70%;
-  height:30vh;
-  display:flex;
-  align-items: center;
-  flex-direction: column;
-   background-color: #444073;
-   margin-top:5%;
-   color:white;
-  
-}
 
-#createForm div{
-width: 100%;
-color:white;
-font-family: 'Comfortaa',sans-serif !important;
-}
 
-#createForm button {
+#Unsub{
+  background-color: #171626 !important;
+  color:white !important;
+  border:1px solid #ff8c00;
   margin-top:10px;
 }
 
+#Unsub :hover {
+  color: red !important;
+}
 
+#Sub{
+
+}
+
+#administrar{
+  margin-top:10px;
+  background-color: turquoise !important;
+  color:black !important;
+}
+
+
+#new {
+  display: flex;
+  justify-content:center;
+}

@@ -1,8 +1,7 @@
 package es.debateo.Model;
 
 import java.util.Arrays;
-
-import org.apache.tomcat.util.codec.binary.Base64;
+import java.util.Base64;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -24,8 +23,7 @@ public class Posts {
 	String user;
 	@Column
 	long community;
-	@Column 
-	int likes;
+	
 	@Column(name="publication_title")
 	String publicationTitle;
 	@Column(name="publication_body")
@@ -51,12 +49,8 @@ public class Posts {
 	public void setCommunity(long community) {
 		this.community = community;
 	}
-	public int getLikes() {
-		return likes;
-	}
-	public void setLikes(int likes) {
-		this.likes = likes;
-	}
+
+
 	public String getPublicationTitle() {
 		return publicationTitle;
 	}
@@ -72,17 +66,35 @@ public class Posts {
 	
 	
 	
+	public Posts(String user, long community, String publicationTitle, String publicationBody,byte[] publicationImage) {
+		super();
+		this.user = user;
+		this.community = community;
+		this.publicationTitle = publicationTitle;
+		this.publicationBody = publicationBody;
+		this.publicationImage = publicationImage;
+	}
 	public Posts(long publicationId, String user, long community, int likes, String publicationTitle,
 			String publicationBody, byte[] publicationImage ) {
 		super();
 		this.publicationId = publicationId;
 		this.user = user;
 		this.community = community;
-		this.likes = likes;
+	
 		this.publicationTitle = publicationTitle;
 		this.publicationBody = publicationBody;
-		this.setPublicationImage(publicationImage);
+		this.publicationImage=publicationImage;
 		
+	}
+	
+	
+
+	public Posts(String user, long community, int likes, String publicationBody) {
+		super();
+		this.user = user;
+		this.community = community;
+		
+		this.publicationBody = publicationBody;
 	}
 	public Posts() {
 		super();
@@ -90,19 +102,19 @@ public class Posts {
 	public byte[] getPublicationImage() {
 		return publicationImage;
 	}
+	
+
 	public void setPublicationImage(byte[]  publicationImage) {
 
 			
-			byte [] imagenCodificada = Base64.encodeBase64(publicationImage, false);
-			
-			this.publicationImage = imagenCodificada;
+			this.publicationImage = publicationImage;
 			
 		
 	}
 	@Override
 	public String toString() {
 		return "Posts [publicationId=" + publicationId + ", user=" + user + ", community=" + community + ", likes="
-				+ likes + ", publicationTitle=" + publicationTitle + ", publicationBody=" + publicationBody
+				+ ", publicationTitle=" + publicationTitle + ", publicationBody=" + publicationBody
 				+ ", publicationImage=" + Arrays.toString(publicationImage) + "]";
 	}
 	

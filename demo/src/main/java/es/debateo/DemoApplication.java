@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import es.debateo.Model.Posts;
 import es.debateo.Repositories.postsRepo;
-import es.debateo.Services.PostsServices;
+
 
 
 @SpringBootApplication

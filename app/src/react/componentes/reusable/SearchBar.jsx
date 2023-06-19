@@ -20,7 +20,7 @@ const navigate = useNavigate();
     function search(event) {
 
         $('#searchResult').show();
-        if(event.target.value!=0){
+        if(event.target.value.length!=0){
         clearTimeout(timerId);
         timerId = setTimeout(()=>{
         searchRequest(event.target.value).then(response => {

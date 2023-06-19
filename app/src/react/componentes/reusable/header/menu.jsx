@@ -27,8 +27,8 @@ export const Menu = () => {
             <h6>Mensajes</h6>
             </div> 
 
-            <div  id='menu-4'>
-            <Imagen ruta={IconoComunidades}></Imagen>
+            <div onClick={()=> navigate("/new/community")} id='menu-4'>
+            <Imagen  ruta={IconoComunidades}></Imagen>
             <h6>Crear una comunidad</h6>
             </div> 
 

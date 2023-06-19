@@ -298,7 +298,8 @@ margin-top:5%;
     /* background-color: yellow; */
     display:flex;
     justify-content: center;
-    
+    align-items: center;
+   
     width:50%;
     margin-top:5%;
     border-radius:10%;
@@ -319,7 +320,9 @@ margin-top:5%;
   margin-top:10%;
    
     background-color: #12111e;
-    width:100%;
+    max-width:100%;
+    min-width: 100%;
+ 
     display: flex;
     flex-direction: column;
    border-radius:10px;
@@ -331,12 +334,7 @@ margin-top:5%;
 
 
 
-.post {
-    
-    
 
-
-}
 
 .post .post-header{
     /* background-color: blue; */
@@ -345,11 +343,46 @@ margin-top:5%;
     color:white;
     /* border:1px solid #ff8c00; */
     border-bottom:5px solid #444073;
+    
 
 
    
 }
+.post-info {
+    /* background-color: red; */
+    display:flex;
+    align-items: center;
+    cursor: pointer;
 
+    
+   
+    
+}
+
+.post-header h4{
+    margin-top:3%;
+   
+}
+
+.sub {
+    font-size:smaller
+}
+
+.post-info :hover{
+    border-bottom: 1px solid #ff8c00;
+}
+
+.post-info h1{
+    color:#ff8c00;
+}
+
+.post-info img {
+    border-radius: 50%;
+    width:5%;
+    max-height: 10vh;
+  
+
+}
 
 .post .post-body{
     /* background-color: purple; */
@@ -358,19 +391,32 @@ margin-top:5%;
     word-break:break-all;   
     overflow-y: auto;
     /* background-color: red; */
-   max-height:80vh;
+    display:flex;
+    
+    flex-direction: column;
+   max-height:50vh;
      border-bottom:5px solid #444073;
    padding:20px;
 }
 
-.post .post-body  img{
+.post .post-body .image img{
     /* background-color: purple; */
     /* height:100%; */
     color:white;
-    width:100%;
-    height:80%;
+    width:80%;
+    max-width:500px;
+    max-height:600px;
     
    
+}
+
+.post .post-body .image {
+    display: flex;
+    justify-content: center;
+}
+
+.post .post-header img {
+    max-width:30%;
 }
 
 .post .post-footer{
@@ -432,13 +478,6 @@ html {
     align-items: center;
 }
 
-.community-backgroundImage{
-    /* background-color: red; */
-    min-height: 30%;
-   
-    min-width: 100%;
-    margin-top:10px;
-}
 
 
 
@@ -470,6 +509,8 @@ html {
     /* background-color: yellow; */
     margin-right:10px;
     /* max-width: 30%; */
+     width: 30%;
+  
 
   }
 
@@ -482,47 +523,53 @@ html {
 
 .community-image img{
    border-radius: 50%;
-   max-height: 100%;
+   height: 70%;
+   width: 70%;
+   background-color: red;
   
 }
  
 
 .community-body{
-  width:60%;
+  width:50%;
   display: flex;
   align-items: center;
   flex-direction: column;
+  /* background-color: red; */
 }
 
 .community-body button {
   width:30%;
 }
 
-#createForm {
-  /* background-color: black; */
-  width: 70%;
-  height:30vh;
-  display:flex;
-  align-items: center;
-  flex-direction: column;
-   background-color: #444073;
-   margin-top:5%;
-   color:white;
-  
-}
 
-#createForm div{
-width: 100%;
-color:white;
-font-family: 'Comfortaa',sans-serif !important;
-}
 
-#createForm button {
+#Unsub{
+  background-color: #171626 !important;
+  color:white !important;
+  border:1px solid #ff8c00;
   margin-top:10px;
 }
 
+#Unsub :hover {
+  color: red !important;
+}
+
+#Sub{
+
+}
+
+#administrar{
+  margin-top:10px;
+  background-color: turquoise !important;
+  color:black !important;
+}
 
 
+#new {
+  display: flex;
+  justify-content:center;
+}
 @font-face {
     font-family: 'Comfortaa';
     src: url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
@@ -607,5 +654,171 @@ max-height:50vh;
     display: flex;
     justify-content: center;
 }
+#createForm {
+    /* background-color: black; */
+    width: 70%;
+    /* height:30vh; */
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+     background-color: #444073;
+     box-shadow: inset;
+     color:white;
+     margin-top:10%;
+    border-radius: 10px;
+    
+  }
+
+  #createForm form *{
+    margin-top:5px;
+
+  }
+
+  #create{
+ 
+  display: flex;
+  flex-direction: column;
+ 
+  align-items: center;
+  }
+
+  
+  #createForm div{
+  width: 100%;
+  color:white;
+  font-family: 'Comfortaa',sans-serif !important;
+  }
+  
+  #createForm button {
+    /* margin-top:10px; */
+  }
+  
+
+#adminpanel{
+    display: flex;
+    justify-content: center;
+}
+
+#mods {
+    margin-top:10%;
+    background-color: #444073;
+    padding:30px;
+    max-height:40vh;
+    min-height: 40vh;
+    color:white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    border:1px solid #ff8c00;
+}
+
+#mods h1 {
+    color:#ff8c00;
+}
+
+#mods-list{
+    overflow-y: scroll;
+    /* background-color: blue; */
+    height:50%;
+    border-bottom: 2px solid #ff8c00 ;
+}
+
+#add-mods{
+    /* background-color: red; */
+    margin-top:10px;
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+}
+
+.mod{
+    border: 1px solid #ff8c00;
+    padding:2px;
+    display: flex;
+    align-items: center;
+
+}
+
+.mod :nth-child(2){
+    margin-left:auto;
+    background-color: red;
+    width:10%;
+    text-align: center;
+    font-size:larger;
+    color:black
+}
+#comments {
+    display: flex;
+    justify-content: center;
+
+    width:100%;
+  
+    /* background-color: red; */
+}
+
+#comments #comments-post {
+    /* background-color: red; */
+    margin-top:10%;
+    width: 50%;
+
+    
+}
+
+#comment-section {
+ 
+    width:70%;
+    margin: 20%;
+    color:white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.comment{
+
+    min-height: 15%;
+    padding: 10px;
+
+    color:white;
+    background-color:#444073;
+    border-radius: 10px;
+
+}
+
+.comment * {
+    display: block;
+   
+}
+.comment :first-child{
+   color:#ff8c00;
+   border-bottom: 2px solid #ff8c00;
+  
+}
+
+#comment-box {
+/* background-color: #444073; */
+border:2px solid #ff8c00;
+border-radius: 10px;
+    margin-bottom:10%;
+    width:50%;
+    display:flex;
+    flex-direction: column;
+    padding:10px;
+
+}
+
+#comments-response div {
+    margin-bottom:10%;
+    min-height:100px;
+}
+
+#comments-response{
+    min-width:70%;
+    /* background-color: red; */
+}
+
+
 
 /*# sourceMappingURL=/app.78399e21.css.map */
