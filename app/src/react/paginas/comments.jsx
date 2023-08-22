@@ -6,7 +6,7 @@ import { getPost } from '../../js/getPost';
 import { getComments } from '../../js/getComments';
 import { useEffect } from 'react';
 import Header from '../componentes/reusable/header/header';
-import "../../assets/styles/Comments.css"
+// import "../../assets/styles/Comments.css"
 import { Comment } from '../componentes/reusable/comment';
 import { TextField } from '@mui/material';
 import { Button } from 'react-bootstrap';

@@ -8,17 +8,16 @@ const Post = (props) => {
 console.log(props.liked);
 
     return (
-        <>
-       <div className='body-post'>
-        <div ref={props.referencia} className='post'>
-
+     
+       
+        <div  ref={props.referencia} className='mt-5   h-alturaPostDefault backdrop-brightness-125 post w-3/6 rounded-md border-black ' >
             <PostHeader referencia={props.referencia} publicationId={props.publicationId} publicationTitle = {props.publicationTitle} communityId = {props.communityId} communityName={props.communityName} communityImage = {props.communityImage} publicationUser={props.publicationUser}/>
             <PostBody liked={props.liked} publicationBody={props.publicationBody} publicationImage={props.publicationImage} />
             <PostFooter publicationId={props.publicationId} liked={props.liked} delete = {props.delete} likes={props.likes} comments={props.comments}/>
-        </div>
+        
        </div>
      
-       </>
+       
     )
 
 }

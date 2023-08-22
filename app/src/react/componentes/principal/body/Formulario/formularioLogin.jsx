@@ -91,12 +91,22 @@ const isInitialMount = useRef(true);
       
       <ThemeProvider theme={theme} >
       
-        <div id='form'>
+        <div className='text-white flex flex-col' id='form'>
         <h1>Bienvenido de vuelta!</h1>
           <ToggleForm fn={props.fn} hasAccount = {props.hasAccount}/>
-          <TextField color="secondary"  id="Lusername" label="Nombre de usuario" variant="filled"></TextField>
-          <TextField color="secondary" id="Lpassword" label="Contraseña" variant="filled"></TextField>
-          <Button onClick={callLogin} style={{height:'50%'}}>Iniciar Sesión</Button>
+          {/* <TextField color="secondary"  id="Lusername" label="Nombre de usuario" variant="filled"></TextField>
+          <TextField className='text-neutral-50' color="secondary" id="Lpassword" label="Contraseña" variant="filled"></TextField> */}
+          <label htmlFor='Lusername'>
+          Nombre de usuario:
+          <input className='text-black' id="Lusername" type='text'></input>
+          </label>
+          <label htmlFor='Lpassword'>
+          Contraseña
+          <input  className='text-black' id="Lpassword" type='password'></input>
+          </label>
+          <label htmlFor='Rsubmit'>
+          <button className='border-4 border-emerald-500 hover:border-naranjaMolon' onClick={callLogin}>Enviar</button>
+        </label>
           <RespuestaServidor  codigo={codigoRespuesta} texto={mensajeRespuesta}/>
           </div>
          

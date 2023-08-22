@@ -9,13 +9,14 @@ import axios from 'axios';
 
 
 
+
 const Header = () => {
 
 
     
 
     return (
-        <div id="header">
+        <div className='flex  justify-center'  id="header">
          <Logo ruta={imagen}/>
       
          

@@ -18,6 +18,7 @@ import { Comments } from './paginas/comments';
 
   function App() {
     return (
+     
       <Router>
         <Routes>
           <Route exact path="/" element={<Principal />} />
@@ -32,7 +33,7 @@ import { Comments } from './paginas/comments';
 
         </Routes>
       </Router>
-  
+      
     );
   }
   

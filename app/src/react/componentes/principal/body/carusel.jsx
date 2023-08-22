@@ -5,7 +5,7 @@ import Carusel2 from '../../../../assets/img/friends.png';
 import Carusel3 from '../../../../assets/img/actualidad.png';
 function Carusel() {
   return (
-   
+   <div className='max-w-sm max-h-sm' id="carusel">
     <Carousel id="my-carousel" controls={false} indicators={false}>
     <Carousel.Item interval={2000}>
       <img draggable='false'
@@ -38,6 +38,7 @@ function Carusel() {
       </Carousel.Caption>
     </Carousel.Item>
   </Carousel>
+  </div>
   );
 }
 

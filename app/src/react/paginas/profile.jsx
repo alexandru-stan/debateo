@@ -2,7 +2,7 @@ import React,{useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../componentes/reusable/header/header";
 import { Body } from "../componentes/profile/body";
-import "../../assets/styles/Profile.css";
+// import "../../assets/styles/Profile.css";
 export const Profile = () => {
 let user = sessionStorage.getItem('user');
 const nav = useNavigate() ;
@@ -17,7 +17,7 @@ const nav = useNavigate() ;
 
 
 return(
-    <div id='profile'>
+    <div className="h-full" id='profile'>
     <Header/>
     <Body/>
 

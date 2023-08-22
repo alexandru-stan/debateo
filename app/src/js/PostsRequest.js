@@ -35,7 +35,7 @@ export async function PostsRequest(request,setPostsArr){
               publicationBody={arr[i].publicationBody}
               publicationTitle={arr[i].publicationTitle}
               publicationId={arr[i].publicationId}
-              publicationImage={(arr[i].publicationImage.length>0)?<img src={formatImage(arr[i].publicationImage)} alt='img'/>:null}
+              publicationImage={(arr[i].publicationImage.length>0)?<img style={{height:'30%'}} src={formatImage(arr[i].publicationImage)} alt='img'/>:null}
               publicationUser={arr[i].publicationUser}
               referencia={(posts.length-i)==1?request.myRef:null}
               delete={arr[i].subscriptionLevel=="MOD" || arr[i].publicationUser==request.loggedUser?<Button

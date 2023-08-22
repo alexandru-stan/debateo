@@ -14,16 +14,12 @@ const Body = () => {
 
     return (
         
-        <div id="body">
+        <div className='  flex justify-around' id="body">
        
-        <div id="carusel">
+       
         <Carusel/>
-       
-         </div>  
-        
-        <div  id="form">
         <Formulario/>
-        </div>
+       
 
         </div>
     );

@@ -1,11 +1,8 @@
 package es.debateo;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.catalina.core.ApplicationContext;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import es.debateo.Model.Posts;
-import es.debateo.Repositories.postsRepo;
 
 
 
@@ -17,6 +14,7 @@ public class DemoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 		
+
 		
 		
 		

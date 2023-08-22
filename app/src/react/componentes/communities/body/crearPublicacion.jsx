@@ -25,7 +25,7 @@ let user = JSON.parse(sessionStorage.getItem('user')).username;
         <ThemeProvider theme= {theme}>
         <form ref={form} id="form" onSubmit={ (event) => {event.preventDefault();  subirPublicacion(form,props.communityId,user)}}>
            <div> <TextField name='titulo' style={{}}  color="secondary" id='titulo' multiline label="Titulo" variant='filled'></TextField></div>
-           <div><TextField  name='cuerpo' rows={5} color="secondary" id='cuerpo' multiline label="Cuerpo" variant="filled"></TextField></div>
+           <div><textarea name='cuerpo' rows={5} id='cuerpo'></textarea></div>
            <input name='image' type="file" id='imagen' accept="image/png, image/gif, image/jpeg" />
     {/* <img src={image} alt="aaa"></img> */}
       

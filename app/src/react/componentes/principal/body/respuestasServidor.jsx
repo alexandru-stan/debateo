@@ -18,10 +18,13 @@ const RespuestaServidor = (props) => {
     }
 
 return(
+
 <Alert  id='registerResponse' variant='filled' severity={severity}>
 <AlertTitle>{props.texto}</AlertTitle>
 
+
 </Alert>
+
 );
 
 }

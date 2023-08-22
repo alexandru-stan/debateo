@@ -12,7 +12,9 @@ import jakarta.persistence.Tuple;
 public interface postsRepo extends JpaRepository<Posts,Long>{
 
 
-	
+	// ESTAS QUERIES TIENEN QUE SER REVISADAS
+	// SI UTILIZO EL LENGUAJE JPQL NO PUEDO HACER SUBQUERIES DENTRO DEL SELECT
+	// SI UTILIZO SQL NATIVO NO PUEDO PAGINAR
 	
 	
 	@Query(value = "SELECT "

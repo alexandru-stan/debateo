@@ -71,9 +71,12 @@ if(myRef.current!=null){
 
 
     return(
-    <div style={{color:'white'}} id='body-feed'>
- 
+    <div  className=' flex flex-col  items-center   '  id='body-feed'>
+       
         {postsArr}
+       
+        
+
         <Mensajes/>
        
 

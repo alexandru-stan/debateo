@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Header from "../componentes/reusable/header/header";
 import Body from "../componentes/feed/body";
-import "../../assets/styles/Feed.css";
+// import "../../assets/styles/Feed.css";
 import { TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
@@ -19,7 +19,7 @@ const nav = useNavigate();
 
     return (
        
-        <div id='feed'>
+        <div className="h-full" id='feed'>
         <Header/>
         <Body/>
          </div>

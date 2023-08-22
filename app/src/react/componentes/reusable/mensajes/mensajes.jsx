@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "../../../../assets/styles/Reusable.css";
+// import "../../../../assets/styles/Reusable.css";
 import { Chat } from "./chat";
 import {NuevoChat} from "./nuevoChat";
 const $ = require('jquery');

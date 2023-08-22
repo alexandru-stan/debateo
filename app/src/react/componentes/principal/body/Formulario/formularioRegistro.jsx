@@ -64,7 +64,7 @@ const dispatch = useDispatch();
 
     //  }
     
-      $('#form button').fadeOut(()=>$('#registerResponse').fadeIn().delay(3000).fadeOut(() => $('#form button').fadeIn()));
+      $('#formRegister button').fadeOut(()=>$('#registerResponse').fadeIn().delay(3000).fadeOut(() => $('#formRegister button').fadeIn()));
       
 
     }
@@ -74,27 +74,52 @@ const dispatch = useDispatch();
 
 
     return (
-  
+  <div className='text-white flex flex-col' id="formRegister">
       <ThemeProvider theme={theme}>
     
       <h1>Bienvenido!</h1>
         <ToggleForm fn={props.fn}  hasAccount = {props.hasAccount}/>
-        <TextField  color="secondary"  id="Rusername" label="Nombre de usuario" variant="standard"></TextField>
+        {/* <TextField  color="secondary"  id="Rusername" label="Nombre de usuario" variant="standard"></TextField>
         <TextField type='password' color="secondary" id="Rpassword" label="Contraseña" variant="standard"></TextField>
         <TextField color="secondary"  id="Rname" label="Nombre" variant="standard"></TextField>
         <TextField color="secondary"  id="Rmail" label="Mail" variant="standard"></TextField>
+       
         <label>
         Fecha de nacimiento
         <TextField type='date' color="secondary"  id="Rbirth_date" label="" variant="filled"></TextField>
         </label>
-        <Button onClick={callRegister}   >Registarse</Button>
+        <Button onClick={callRegister}   >Registarse</Button> */}
+        
+        <label  htmlFor='Rusername'>
+          Nombre de usuario: 
+          <input className='text-black' type='text' id='Rusername' ></input>
+        </label>
+        <label htmlFor='Rpassword'>
+          Contraseña
+          <input className='text-black' type='password' id='Rpassword'></input>
+        </label>
+        <label htmlFor='Rname'>
+        Nombre:
+          <input className='text-black' type="text" id="Rname"></input>
+        </label>
+        <label htmlFor='Rmail'>
+          Correo electrónico
+            <input className='text-black' type="text" id="Rmail"/>
+        </label>
+        <label htmlFor='Rbirth_date'>
+        Fecha de nacimiento
+            <input className='text-black' type="date" id="Rbirth_date"/>
+        </label>
+        <label htmlFor='Rsubmit'>
+          <button className='border-4 border-emerald-500 hover:border-naranjaMolon' onClick={callRegister}>Enviar</button>
+        </label>
         
         <RespuestaServidor  codigo={codigoRespuesta} texto={mensajeRespuesta}/>
      
 
       
       </ThemeProvider>
-     
+      </div>
     );
   
     }

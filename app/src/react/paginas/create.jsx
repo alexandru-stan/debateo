@@ -2,7 +2,7 @@ import React from "react";
 import { TextField } from "@mui/material";
 import { CrearPublicacion } from "../componentes/communities/body/crearPublicacion";
 import Header from "../componentes/reusable/header/header";
-import "../../assets/styles/Create.css"
+// import "../../assets/styles/Create.css"
 import { Body } from "../componentes/create/body";
 import { useParams } from "react-router-dom";
 export const Create = (props) => {
@@ -12,7 +12,7 @@ export const Create = (props) => {
 
   
 
-        <div id='create'>
+        <div className="bg-emerald-500" id='create'>
             <Header/>
             <CrearPublicacion communityId={community}/>
 

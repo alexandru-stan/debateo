@@ -4,7 +4,7 @@ import React from 'react';
 
 const Logo = (props) => {
     return (
-        <img draggable='false' src={props.ruta}  alt='ok'/>
+        <img className={props.clase} draggable='false' src={props.ruta}  alt='ok'/>
     )
 }
 

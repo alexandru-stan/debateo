@@ -39,12 +39,16 @@ const navigate = useNavigate();
 
 
     return(
-        <div id='search-bar'>
-        <TextField onChange={search} type="search" variant="outlined" placeholder=" &#x1F50D;  ¿Qué estás buscando?"/>
-        <div  id='searchResult'>
+        <div className=" w-2/6 flex flex-col justify-center  " id='search-bar'>
+        <div className=" w-full h-full flex relative  justify-center items-center">
+        
+        <input className="w-5/6  bg-naranjaMolon placeholder-black h-1/5 rounded-md p-5 text-2xl" onChange={search} type="search" placeholder="¿Que estás buscando?"></input>
+        <div className=" absolute top-tumadre rounded-md  w-5/6 bg-sky-500" id='searchResult'>
             
             {resultados.map((resultado) => (
-          <div onClick={() => {
+          <div 
+            className="cursor-pointer hover:bg-naranjaMolon text-2xl bg-moradoLight text-white p-2" 
+            onClick={() => {
             dispatch(changeId(resultado.communityId));
             localStorage.setItem('cid',resultado.communityId);
             navigate('/community/'+resultado.communityId)
@@ -54,6 +58,8 @@ const navigate = useNavigate();
         ))}
 
         </div>
+        </div>
+        
         </div>
         
     )

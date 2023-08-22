@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../componentes/reusable/header/header'
 import { Body } from '../componentes/communities/body';
-import '../../assets/styles/Communities.css'
+// import '../../assets/styles/Communities.css'
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -20,7 +20,7 @@ export const Communities = () => {
         })
    
     return (
-        <div id='communities'>
+        <div className="h-full" id='communities'>
         <Header/>
         <Body id={id}/>
        

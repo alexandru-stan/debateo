@@ -29,25 +29,23 @@ let loggedUser = JSON.parse(sessionStorage.getItem('user')).username
     
 
 
-    return (<>
-        <div className='post-footer'>
+    return (
+        <div className='post-footer  mt-2 flex h-postFooterHeight text-white '>
             
-               <span onClick={() => {
+               <span className="  w-1/6 " onClick={() => {
                 
                 changeLikeStatus();
-                }} title='Me gusta'> <Imagen ruta={like?IconoVotado:IconoVotar}/> <span style={{fontSize:'smaller'}}>{likesCount}</span></span>
+                }} title='Me gusta'> <Imagen clase={"w-1/4"} ruta={like?IconoVotado:IconoVotar}/> <span style={{fontSize:'smaller'}}>{likesCount}</span></span>
                
-               <span onClick={()=>{
+               <span  className=" w-1/6 " onClick={()=>{
                 nav("/"+props.publicationId+"/comments");
-               }} title='Comentar'><Imagen ruta = {IconoComentar}/> <span style={{fontSize:'smaller'}}>{props.comments}</span></span> 
-                {/* <span title='Guardar publicación'><Imagen ruta = {IconoGuardar}/></span> */}
+               }} title='Comentar'><Imagen  clase={" w-1/4"}  ruta = {IconoComentar}/> <span style={{fontSize:'smaller'}}>{props.comments}</span></span> 
+                
                {props.delete}
-                {/* <span title='Denunciar publicación'> <Imagen ruta = {IconoReportar}/></span> */}
+                
         </div>
 
-            <div>
-               
-            </div>
-</>
+           
+
     )
 }
