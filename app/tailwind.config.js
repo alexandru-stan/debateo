@@ -28,7 +28,9 @@ module.exports = {
       'postHeaderHeight':'15%',
       'postBodyHeight':'70%',
       'postFooterHeight':'10%',
-      'postMT':'10%'
+      'postMT':'10%',
+      'half':'50%',
+      'comInfo':'30vh'
      
     
     },

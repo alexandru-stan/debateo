@@ -157,7 +157,7 @@ if(myRef.current!=null && postsArr.length>0){
 
 
 
-    return (<div class='mt-5 community-body'>
+    return (<div class='mt-postMT flex flex-col items-center community-body'>
         <CommunityInfo info={info}/>
         <Button onClick={() => {
           navigate("/upload/"+state);

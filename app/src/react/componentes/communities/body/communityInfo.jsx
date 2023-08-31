@@ -10,9 +10,9 @@ export const CommunityInfo = (props) => {
 
 
     return (
-        <div className='community-info'>
-  <div class='community-image'><Image ruta={props.info.communityImage}/></div>
-    <div className='info'>
+        <div className='community-info flex w-3/6  justify-center '>
+  <div class='community-image flex justify-end w-1/4  '><Image clase={" w-full "}  ruta={props.info.communityImage}/></div>
+    <div className='info  w-3/4'>
     <div className='admin'>{props.info.admin}</div>
             <div className='community-name'><h1>{props.info.communityName}</h1></div>
         {/* <div className='community-creator'>{props.info.communityCreator}</div> */}
