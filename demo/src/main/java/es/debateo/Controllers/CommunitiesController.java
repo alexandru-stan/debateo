@@ -22,7 +22,7 @@ import es.debateo.Repositories.communitiesRepo;
 import es.debateo.Services.CommunitiesServices;
 
 @RestController
-@CrossOrigin(origins="*")
+
 @RequestMapping("/communities")
 public class CommunitiesController {
 	@Autowired

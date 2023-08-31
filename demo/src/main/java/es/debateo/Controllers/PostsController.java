@@ -27,7 +27,7 @@ import es.debateo.Services.PostsServices;
 
 @RestController
 @RequestMapping("/posts")
-@CrossOrigin(origins="*")
+
 public class PostsController {
 
 

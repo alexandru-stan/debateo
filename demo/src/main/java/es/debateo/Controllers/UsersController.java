@@ -17,7 +17,6 @@ import es.debateo.Services.UserServices;
 
 @RequestMapping("/users")
 @RestController
-@CrossOrigin(origins="*")
 public class UsersController {
 
 	@Autowired
@@ -27,7 +26,7 @@ public class UsersController {
 	usersRepo repo;
 
 	@PostMapping("/login")
-	
+
 	public ResponseEntity<Users> validarLogin(@RequestBody Users credentials) {
 
 		ServiceResponse<Users> response = servicio.login(credentials.getUsername(), credentials.getPassword());

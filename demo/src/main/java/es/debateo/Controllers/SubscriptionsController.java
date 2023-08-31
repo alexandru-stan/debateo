@@ -21,7 +21,7 @@ import es.debateo.Repositories.subsRepo;
 
 @RestController
 @RequestMapping("/subscriptions")
-@CrossOrigin(origins="*")
+
 public class SubscriptionsController {
 	public enum subscriptionType{
 		MEMBER,

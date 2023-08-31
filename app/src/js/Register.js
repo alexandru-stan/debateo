@@ -10,7 +10,7 @@ const $ = require('jquery');
         birth_date: $('#Rbirth_date').val()
     }
 
-   return  axios.post("http://localhost:8080/users/signin",user   );
+   return  axios.post("http://192.168.1.131:8080/users/signin",user   );
      
 
 }

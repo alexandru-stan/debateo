@@ -71,7 +71,7 @@ if(myRef.current!=null){
 
 
     return(
-    <div  className=' flex flex-col  items-center   '  id='body-feed'>
+    <div  className=' flex flex-col  items-center  mt-postMT '  id='body-feed'>
        
         {postsArr}
        

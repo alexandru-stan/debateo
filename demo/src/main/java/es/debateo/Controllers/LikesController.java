@@ -13,7 +13,7 @@ import es.debateo.Repositories.likesRepo;
 
 @RestController
 @RequestMapping("/likes")
-@CrossOrigin(origins="*")
+
 public class LikesController {
 
 	@Autowired

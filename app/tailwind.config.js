@@ -24,10 +24,11 @@ module.exports = {
     spacing: {
       'tumadre':'80%',
       'marginLigero':'10px',
-      'alturaPostDefault':'60vh',
+      'alturaPostDefault':'600px',
       'postHeaderHeight':'15%',
       'postBodyHeight':'70%',
-      'postFooterHeight':'10%'
+      'postFooterHeight':'10%',
+      'postMT':'10%'
      
     
     },

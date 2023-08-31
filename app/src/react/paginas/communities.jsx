@@ -20,7 +20,7 @@ export const Communities = () => {
         })
    
     return (
-        <div className="h-full" id='communities'>
+        <div className=" p-1  h-full" id='communities'>
         <Header/>
         <Body id={id}/>
        

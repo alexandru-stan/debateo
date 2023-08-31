@@ -19,7 +19,7 @@ const nav = useNavigate();
 
     return (
        
-        <div className="h-full" id='feed'>
+        <div className="h-full pt-1" id='feed'>
         <Header/>
         <Body/>
          </div>

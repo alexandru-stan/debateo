@@ -522,6 +522,10 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+.fixed {
+  position: fixed;
+}
+
 .absolute {
   position: absolute;
 }
@@ -534,8 +538,20 @@ video {
   top: 80%;
 }
 
+.z-30 {
+  z-index: 30;
+}
+
+.z-40 {
+  z-index: 40;
+}
+
 .ml-marginLigero {
   margin-left: 10px;
+}
+
+.mt-postMT {
+  margin-top: 10%;
 }
 
 .flex {
@@ -563,7 +579,7 @@ video {
 }
 
 .h-alturaPostDefault {
-  height: 60vh;
+  height: 600px;
 }
 
 .h-full {
@@ -708,6 +724,11 @@ video {
 .bg-orange-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(234 88 12 / var(--tw-bg-opacity));
+}
+
+.bg-red-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(239 68 68 / var(--tw-bg-opacity));
 }
 
 .bg-sky-500 {
