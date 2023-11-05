@@ -10,7 +10,7 @@ const navigate = useNavigate();
         <div className=' h-1/4 flex  post-info'>
         <img  style={{borderRadius:'50%', width:'2%',   }} src={props.communityImage} ></img>
         <h6 
-            className='text-white ml-marginLigero '
+            className='text-white cursor-pointer  hover:underline ml-marginLigero '
             onClick={() => { 
             localStorage.setItem('cid',props.communityId);
             navigate('/community/'+props.communityId)}}>{props.communityName}</h6>

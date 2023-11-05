@@ -21,11 +21,11 @@ let user = JSON.parse(sessionStorage.getItem('user')).username;
 
     return(
         
-        <div id="createForm">
+        <div className="mt-postMT flex justify-center " id="createForm">
         <ThemeProvider theme= {theme}>
-        <form ref={form} id="form" onSubmit={ (event) => {event.preventDefault();  subirPublicacion(form,props.communityId,user)}}>
-           <div> <TextField name='titulo' style={{}}  color="secondary" id='titulo' multiline label="Titulo" variant='filled'></TextField></div>
-           <div><textarea name='cuerpo' rows={5} id='cuerpo'></textarea></div>
+        <form className="flex flex-col items-center w-full m-2 text-white" ref={form} id="form" onSubmit={ (event) => {event.preventDefault();  subirPublicacion(form,props.communityId,user)}}>
+           <input  className=" font-bold m-2 bg-naranjaMolon w-1/4 h-2/6" placeholder="Título" type="text" name='titulo' id='titulo'></input>
+           <textarea className=" font-bold m-2 bg-naranjaMolon w-1/4 h-2/6" placeholder="Cuerpo" name='cuerpo' rows={5} id='cuerpo'></textarea>
            <input name='image' type="file" id='imagen' accept="image/png, image/gif, image/jpeg" />
     {/* <img src={image} alt="aaa"></img> */}
       

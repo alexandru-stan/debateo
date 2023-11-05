@@ -74,62 +74,74 @@ public class PostsServices {
 //	}
 //	
 	
+	
+	
 	public ServiceResponse<PostDTO> getPosts(String username,int offset){
 		
 		
-//	System.err.println("USUARIO "+username+" PAGINA+ "+offset);
+		
+		return new ServiceResponse<PostDTO>(repo.getPosts(username,PageRequest.of(offset, 15)),HttpStatus.OK);
 		
 		
-		ServiceResponse<Tuple> queryReturn = new ServiceResponse<Tuple>(repo.getPosts(username,PageRequest.of(offset, size)),HttpStatus.OK);
-	
-		List<Tuple> a = queryReturn.getPagina().getContent();
-		boolean isLast= queryReturn.getPagina().isLast();
-		System.out.println(isLast);
-		List<PostDTO> list = new ArrayList<PostDTO>();
-		Page<PostDTO> page;
-	
-		for(Tuple tuple: a){
-			int liked = repo.isItLiked(username,(int)tuple.get("publicationId"));
-			PostDTO post=new PostDTO(
-					(int)tuple.get("publicationId"),
-					likesRepo.likeCount((int)tuple.get("publicationId")),
-					(String) tuple.get("publicationTitle"),
-					(String) tuple.get("publicationBody"),
-					(byte[]) tuple.get("publicationImage"),
-					(String) tuple.get("publicationUser"),
-					commentsRepo.commentsCount((int)tuple.get("publicationId")),
-					(String) tuple.get("communityName"),
-					(byte[]) tuple.get("communityImage"),
-					(int) tuple.get("communityId"),
-					(String) tuple.get("subscriptionLevel"),
-					liked
-					);
-			
-			
-			list.add(post);
-			
-//			Seen[] seen = new Seen[size];
-//			
-//			for(int i=0;i<size;i++) {
-//				
-//				seen[i]=new Seen(username,post.getPublicationId());
-//				
-//			}
-//			
-//			seenServices.saveSeen(seen);
-			
-			
-		}
-		
-		System.out.println(a.size());
-		System.out.println(list.size());
-		page= new PageImpl<PostDTO>(list,PageRequest.of(offset, size),queryReturn.getPagina().getTotalElements());
-		
-
-	
-		ServiceResponse<PostDTO> response = new ServiceResponse<PostDTO>(page,HttpStatus.OK);
-		return response;
 	}
+	
+	
+//	public ServiceResponse<PostDTO> getPosts(String username,int offset){
+//		
+//		
+////	System.err.println("USUARIO "+username+" PAGINA+ "+offset);
+//		
+//		
+//		ServiceResponse<Tuple> queryReturn = new ServiceResponse<Tuple>(repo.getPosts(username,PageRequest.of(offset, size)),HttpStatus.OK);
+//	
+//		List<Tuple> a = queryReturn.getPagina().getContent();
+//		boolean isLast= queryReturn.getPagina().isLast();
+//		System.out.println(isLast);
+//		List<PostDTO> list = new ArrayList<PostDTO>();
+//		Page<PostDTO> page;
+//	
+//		for(Tuple tuple: a){
+//			int liked = repo.isItLiked(username,(int)tuple.get("publicationId"));
+//			PostDTO post=new PostDTO(
+//					(int)tuple.get("publicationId"),
+//					likesRepo.likeCount((int)tuple.get("publicationId")),
+//					(String) tuple.get("publicationTitle"),
+//					(String) tuple.get("publicationBody"),
+//					(byte[]) tuple.get("publicationImage"),
+//					(String) tuple.get("publicationUser"),
+//					commentsRepo.commentsCount((int)tuple.get("publicationId")),
+//					(String) tuple.get("communityName"),
+//					(byte[]) tuple.get("communityImage"),
+//					(int) tuple.get("communityId"),
+//					(String) tuple.get("subscriptionLevel"),
+//					liked
+//					);
+//			
+//			
+//			list.add(post);
+//			
+////			Seen[] seen = new Seen[size];
+////			
+////			for(int i=0;i<size;i++) {
+////				
+////				seen[i]=new Seen(username,post.getPublicationId());
+////				
+////			}
+////			
+////			seenServices.saveSeen(seen);
+//			
+//			
+//		}
+//		
+//		System.out.println(a.size());
+//		System.out.println(list.size());
+//		page= new PageImpl<PostDTO>(list,PageRequest.of(offset, size),queryReturn.getPagina().getTotalElements());
+//		
+//
+//	
+//		ServiceResponse<PostDTO> response = new ServiceResponse<PostDTO>(page,HttpStatus.OK);
+//		return response;
+//	}
 ////		
 //		
 //		
@@ -149,49 +161,49 @@ public class PostsServices {
 //	}
 //	
 //	
-	public ServiceResponse<PostDTO> getPostsByCommunity(int offset,long community,String username){
-		
-		ServiceResponse<Tuple> queryReturn = new ServiceResponse<Tuple>(repo.getPostsByCommunity(community,PageRequest.of(offset, size)),HttpStatus.OK);
-		
-		List<Tuple> a = queryReturn.getPagina().getContent();
-		boolean isLast= queryReturn.getPagina().isLast();
-		System.out.println(isLast);
-		List<PostDTO> list = new ArrayList<PostDTO>();
-		Page<PostDTO> page;
-	
-	
-		for(Tuple tuple: a){
-			int liked = repo.isItLiked(username,(int)tuple.get("publicationId"));
-	
-			PostDTO post=new PostDTO(
-					(int)tuple.get("publicationId"),
-					likesRepo.likeCount((int)tuple.get("publicationId")),
-					(String) tuple.get("publicationTitle"),
-					(String) tuple.get("publicationBody"),
-					(byte[]) tuple.get("publicationImage"),
-					(String) tuple.get("publicationUser"),
-					commentsRepo.commentsCount((int)tuple.get("publicationId")),
-					liked
-					);
-			
-			System.out.println("TIENE"+tuple.get("comments")+" COMENTARIO");
-			list.add(post);
-			
-		
-			
-			
-		}
-		
-		System.out.println(a.size());
-		System.out.println(list.size());
-		page= new PageImpl<PostDTO>(list,PageRequest.of(offset, size),queryReturn.getPagina().getTotalElements());
-		
-
-	
-		ServiceResponse<PostDTO> response = new ServiceResponse<PostDTO>(page,HttpStatus.OK);
-		return response;
-		
-	}
+//	public ServiceResponse<PostDTO> getPostsByCommunity(int offset,long community,String username){
+//		
+//		ServiceResponse<Tuple> queryReturn = new ServiceResponse<Tuple>(repo.getPostsByCommunity(community,PageRequest.of(offset, size)),HttpStatus.OK);
+//		
+//		List<Tuple> a = queryReturn.getPagina().getContent();
+//		boolean isLast= queryReturn.getPagina().isLast();
+//		System.out.println(isLast);
+//		List<PostDTO> list = new ArrayList<PostDTO>();
+//		Page<PostDTO> page;
+//	
+//	
+//		for(Tuple tuple: a){
+//			int liked = repo.isItLiked(username,(int)tuple.get("publicationId"));
+//	
+//			PostDTO post=new PostDTO(
+//					(int)tuple.get("publicationId"),
+//					likesRepo.likeCount((int)tuple.get("publicationId")),
+//					(String) tuple.get("publicationTitle"),
+//					(String) tuple.get("publicationBody"),
+//					(byte[]) tuple.get("publicationImage"),
+//					(String) tuple.get("publicationUser"),
+//					commentsRepo.commentsCount((int)tuple.get("publicationId")),
+//					liked
+//					);
+//			
+//			System.out.println("TIENE"+tuple.get("comments")+" COMENTARIO");
+//			list.add(post);
+//			
+//		
+//			
+//			
+//		}
+//		
+//		System.out.println(a.size());
+//		System.out.println(list.size());
+//		page= new PageImpl<PostDTO>(list,PageRequest.of(offset, size),queryReturn.getPagina().getTotalElements());
+//		
+//
+//	
+//		ServiceResponse<PostDTO> response = new ServiceResponse<PostDTO>(page,HttpStatus.OK);
+//		return response;
+//		
+//	}
 //	
 //	
 //	

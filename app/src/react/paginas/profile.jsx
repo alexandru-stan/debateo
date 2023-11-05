@@ -17,7 +17,7 @@ const nav = useNavigate() ;
 
 
 return(
-    <div className="h-full" id='profile'>
+    <div className="h-full overflow-y-hidden" id='profile'>
     <Header/>
     <Body/>
 

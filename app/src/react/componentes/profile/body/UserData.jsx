@@ -21,24 +21,29 @@ let disabled='disabled';
     let user = JSON.parse(sessionStorage.getItem('user'));
 console.log(user);
     return (
-        <ThemeProvider  theme={theme}>
         <div id='userData'>
-        
-        
-        <h4>Bienvenido a tu perfil, {user.name}.</h4>
-       <div>
-           <TextField {...disabled} className="input" color='secondary' label="Nombre de usuario" value={user.username}/>
-           <TextField  className="input"  color='secondary' label="Nombre" variant='standard'   value={user.username}/>
-           </div>
+  <div className="input flex">
+    <p className="">Nombre de usuario: </p>
+    <p>{user.username}</p>
+  </div>
+  
+  <div className="input flex">
+    <p>Nombre:</p>
+    <p className="">{user.username}</p>
+  </div>
 
-           <div>
-            <TextField className="input"   label="Correo" color="secondary" variant="outlined" value={user.mail}/>
-           <TextField  className="input"  label="Fecha de nacimiento" color="secondary" variant="outlined" value={user.birth_date}/>
-           </div>
-          {/* <Button onClick={ModifyUserData}>Realizar modificaciones</Button> */}
-      
-        </div>
-        </ThemeProvider>
+  <div className="input flex">
+    <p>Correo:</p>
+    <p className="">{user.mail}</p>
+  </div>
+
+  <div className="input flex">
+    <p>Fecha de nacimiento:</p>
+    <p className="">{user.birth_date}</p>
+  </div>
+  
+  {/* <Button onClick={ModifyUserData}>Realizar modificaciones</Button> */}
+</div>
     )
 
 

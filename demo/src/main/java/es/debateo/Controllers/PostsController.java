@@ -71,18 +71,18 @@ public class PostsController {
 	
 	
 	
-	
-	@GetMapping("/byCommunity/{offset}/{communityId}/{username}")
-	public ResponseEntity<Page<PostDTO>> getPostsByCommunity( @PathVariable int offset, @PathVariable long communityId,@PathVariable String username){
-		
-		
-		ServiceResponse<PostDTO> response = services.getPostsByCommunity(offset,communityId,username);
-		
-		return new ResponseEntity<Page<PostDTO>>(response.getPagina(),response.getStatus());
-		
-		
-		
-	}
+//	
+//	@GetMapping("/byCommunity/{offset}/{communityId}/{username}")
+//	public ResponseEntity<Page<PostDTO>> getPostsByCommunity( @PathVariable int offset, @PathVariable long communityId,@PathVariable String username){
+//		
+//		
+//		ServiceResponse<PostDTO> response = services.getPostsByCommunity(offset,communityId,username);
+//		
+//		return new ResponseEntity<Page<PostDTO>>(response.getPagina(),response.getStatus());
+//		
+//		
+//		
+//	}
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Posts> getPost(@PathVariable long id){

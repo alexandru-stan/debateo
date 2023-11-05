@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import es.debateo.DTO.PostDTO;
 import es.debateo.Model.Posts;
 import jakarta.persistence.Tuple;
 
@@ -14,31 +15,42 @@ public interface postsRepo extends JpaRepository<Posts,Long>{
 
 	// ESTAS QUERIES TIENEN QUE SER REVISADAS
 	// SI UTILIZO EL LENGUAJE JPQL NO PUEDO HACER SUBQUERIES DENTRO DEL SELECT
-	// SI UTILIZO SQL NATIVO NO PUEDO PAGINAR
-	
-	
-	@Query(value = "SELECT "
-	        + "    p.publication_id AS publicationId, "
-	        + "  "
-	        + "    p.publication_title AS publicationTitle, "
-	        + "    p.publication_body AS publicationBody, "
-	        + "    p.publication_image AS publicationImage, "
-	        + "    p.user AS publicationUser, "
-	        + "    "
-	        + "    c.community_name AS communityName, "
-	        + "    c.community_image AS communityImage, "
-	        + "    p.community AS communityId, "
-	        + "    s.subscription_level AS subscriptionLevel "
-	        + " FROM "
-	        + "    Posts p "
-	        + "LEFT JOIN communities c ON p.community = c.community_id "
+	// SI UTILIZO SQL NATIVO NO PUEDO PAGINAR.
 
-	        + "LEFT JOIN subscriptions s ON s.community_id = c.community_id AND s.username = :name "
-	        + "WHERE "
-	        + "    p.community  IN (SELECT s.community_id FROM subscriptions s WHERE s.username = :name) OR p.community IN(SELECT c.community_id FROM Communities WHERE c.community_creator=:name) AND "
-	        + "	p.publication_id NOT IN (SELECT sn.publication_id FROM Seen sn WHERE username=:name ) "
-	        	, nativeQuery = true)
-    Page<Tuple> getPosts(@Param("name")String name,PageRequest page);
+	
+	
+	
+	@Query("SELECT new es.debateo.DTO.PostDTO(p, c, s, 0, 0, 0) FROM Posts p " +
+		       "JOIN Communities c ON p.community = c.communityId " +
+		       "JOIN Subscriptions s ON p.community = s.communityId " +
+		       "WHERE s.username = :name OR c.communityCreator = :name")
+		Page<PostDTO> getPosts(@Param("name") String name, PageRequest page);
+	
+	
+	
+//	
+//	@Query(value = "SELECT "	
+//	        + "    p.publication_id AS publicationId, "
+//	        + "  "
+//	        + "    p.publication_title AS publicationTitle, "
+//	        + "    p.publication_body AS publicationBody, "
+//	        + "    p.publication_image AS publicationImage, "
+//	        + "    p.user AS publicationUser, "
+//	        + "    "
+//	        + "    c.community_name AS communityName, "
+//	        + "    c.community_image AS communityImage, "
+//	        + "    p.community AS communityId, "
+//	        + "    s.subscription_level AS subscriptionLevel "
+//	        + " FROM "
+//	        + "    Posts p "
+//	        + "LEFT JOIN communities c ON p.community = c.community_id "
+//
+//	        + "LEFT JOIN subscriptions s ON s.community_id = c.community_id AND s.username = :name "
+//	        + "WHERE "
+//	        + "    p.community  IN (SELECT s.community_id FROM subscriptions s WHERE s.username = :name) OR p.community IN(SELECT c.community_id FROM Communities WHERE c.community_creator=:name) AND "
+//	        + "	p.publication_id NOT IN (SELECT sn.publication_id FROM Seen sn WHERE username=:name ) "
+//	        	, nativeQuery = true)
+//    Page<Tuple> getPosts(@Param("name")String name,PageRequest page);
 	
 	
 	

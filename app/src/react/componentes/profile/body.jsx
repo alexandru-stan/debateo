@@ -77,7 +77,7 @@ if(myRef.current!=null){
 
 
     return (
-        <div className="bg-orange-600 h-5/6" id='profile-body'>
+        <div className="text-white h-5/6 mt-postMT" id='profile-body'>
        <div id='userInfo'><UserData/></div>
        <div id='userPosts'>{postsArr} </div>
        

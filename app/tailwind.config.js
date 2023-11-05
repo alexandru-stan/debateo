@@ -30,7 +30,7 @@ module.exports = {
       'postFooterHeight':'10%',
       'postMT':'10%',
       'half':'50%',
-      'comInfo':'30vh'
+      'comInfo':'20vh'
      
     
     },

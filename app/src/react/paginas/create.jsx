@@ -12,7 +12,7 @@ export const Create = (props) => {
 
   
 
-        <div className="bg-emerald-500" id='create'>
+        <div className="" id='create'>
             <Header/>
             <CrearPublicacion communityId={community}/>
 
