@@ -14,13 +14,16 @@ public class PostDTO {
 	Posts post;
 	Communities community;
 	Subscriptions subscription;
+
 	public PostDTO( Posts post, Communities community ,Subscriptions subscription,int likes, int comments, int liked) {
 		super();
 		this.likes = likes;
 		this.comments = comments;
 		this.liked = liked;
 		this.post = post;
-		this.community = community;
+		this.community=community;
+		this.subscription=subscription;
+		
 	}
 	public int getLikes() {
 		return likes;
@@ -51,6 +54,12 @@ public class PostDTO {
 	}
 	public void setCommunity(Communities community) {
 		this.community = community;
+	}
+	public Subscriptions getSubscription() {
+		return subscription;
+	}
+	public void setSubscription(Subscriptions subscription) {
+		this.subscription = subscription;
 	}
 	
 	

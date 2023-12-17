@@ -78,9 +78,11 @@ public class PostsServices {
 	
 	public ServiceResponse<PostDTO> getPosts(String username,int offset){
 		
+		ServiceResponse<PostDTO> respuesta = new ServiceResponse<PostDTO>(repo.getPosts(username,PageRequest.of(offset, 15)),HttpStatus.OK);
 		
 		
-		return new ServiceResponse<PostDTO>(repo.getPosts(username,PageRequest.of(offset, 15)),HttpStatus.OK);
+		
+		return respuesta;
 		
 		
 	}

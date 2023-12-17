@@ -29,18 +29,18 @@ export async function PostsRequest(request,setPostsArr){
               likes={arr[i].likes}
               comments={arr[i].comments}
               liked={arr[i].liked}
-              communityId={arr[i].communityId}
-              communityName={arr[i].communityName}
-              communityImage={formatImage(arr[i].communityImage)}
-              publicationBody={arr[i].publicationBody}
-              publicationTitle={arr[i].publicationTitle}
-              publicationId={arr[i].publicationId}
-              publicationImage={(arr[i].publicationImage.length>0)?<img style={{height:'100%'}} src={formatImage(arr[i].publicationImage)} alt='img'/>:null}
-              publicationUser={arr[i].publicationUser}
+              communityId={arr[i].community.communityId}
+              communityName={arr[i].community.communityName}
+              communityImage={formatImage(arr[i].community.communityImage)}
+              publicationBody={arr[i].post.publicationBody}
+              publicationTitle={arr[i].post.publicationTitle}
+              publicationId={arr[i].post.publicationId}
+              publicationImage={(arr[i].post.publicationImage.length>0)?<img style={{height:'100%'}} src={formatImage(arr[i].post.publicationImage)} alt='img'/>:null}
+              publicationUser={arr[i].post.user}
               referencia={(posts.length-i)==1?request.myRef:null}
-              delete={arr[i].subscriptionLevel=="MOD" || arr[i].publicationUser==request.loggedUser?<Button
+              delete={arr[i].subscription?.subscriptionLevel=="MOD" || arr[i].post.user==request.loggedUser?<Button
               onClick={() =>
-                deleteFunction(arr[i].publicationId).then((response) => {
+                deleteFunction(arr[i].post.publicationId).then((response) => {
                  
                     setPostsArr((postsArr) => { 
                    console.log(response.data);
@@ -54,9 +54,9 @@ export async function PostsRequest(request,setPostsArr){
               }
             >
               Eliminar
-    </Button>:arr[i].publicationUser==request.creador?<Button
+    </Button>:arr[i].post.user==request.creador?<Button
               onClick={() =>
-                deleteFunction(arr[i].publicationId).then((response) => {
+                deleteFunction(arr[i].post.publicationId).then((response) => {
                  
                    setPostsArr((postsArr) => { 
               

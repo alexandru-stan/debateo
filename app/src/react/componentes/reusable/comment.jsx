@@ -3,9 +3,9 @@ import React from 'react';
 export const Comment = (props)=> {
 
 return (
-    <div class='comment'>
+    <div className='comment'>
       <h2>{props.username}</h2>
-        <span class='comment-text'>{props.commentText}</span>
+        <span className='comment-text'>{props.commentText}</span>
     </div>
 );
 

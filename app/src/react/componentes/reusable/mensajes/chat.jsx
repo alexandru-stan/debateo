@@ -3,9 +3,9 @@ import React from "react";
 export const Chat = (props) => {
 
     return(
-    <div class='chat'>
-        <div class='imagenPerfil'>ImagenPerfil</div>
-        <div class='nombreUsuario'>NombreUsuario</div>
+    <div className='chat'>
+        <div className='imagenPerfil'>ImagenPerfil</div>
+        <div className='nombreUsuario'>NombreUsuario</div>
     </div>
     );
 }
