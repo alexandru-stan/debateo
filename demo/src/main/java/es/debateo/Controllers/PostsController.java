@@ -71,7 +71,7 @@ public class PostsController {
 	
 	
 	
-//	
+	
 //	@GetMapping("/byCommunity/{offset}/{communityId}/{username}")
 //	public ResponseEntity<Page<PostDTO>> getPostsByCommunity( @PathVariable int offset, @PathVariable long communityId,@PathVariable String username){
 //		

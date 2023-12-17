@@ -78,7 +78,14 @@ public class PostsServices {
 	
 	public ServiceResponse<PostDTO> getPosts(String username,int offset){
 		
-		ServiceResponse<PostDTO> respuesta = new ServiceResponse<PostDTO>(repo.getPosts(username,PageRequest.of(offset, 15)),HttpStatus.OK);
+		
+		Page<PostDTO> posts = repo.getPosts(username,PageRequest.of(offset, 15));
+		posts.forEach(post->{
+			post.setLiked(repo.isItLiked(username, post.getPost().getPublicationId()));
+			post.setLikes(likesRepo.likeCount(post.getPost().getPublicationId()));
+		});
+		
+		ServiceResponse<PostDTO> respuesta = new ServiceResponse<PostDTO>(posts,HttpStatus.OK);
 		
 		
 		

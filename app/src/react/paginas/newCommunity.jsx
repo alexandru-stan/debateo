@@ -15,7 +15,7 @@ export const NewCommunity = () => {
 
     return ( <div id='new'>
             <Header/>
-            <div id="createForm">
+            <div style={{marginTop:"10%"}} id="createForm">
   
         <form ref={form} id="form" onSubmit={ (event) => {event.preventDefault(); createCommunity(form).then((response)=> {localStorage.setItem('cid',response); nav("/feed")}); }}>
            <div> <TextField required name='name' style={{}}  color="secondary" id='titulo' multiline label="Nombre" variant='filled'></TextField></div>

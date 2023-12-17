@@ -17,12 +17,13 @@ public interface postsRepo extends JpaRepository<Posts,Long>{
 	// SI UTILIZO EL LENGUAJE JPQL NO PUEDO HACER SUBQUERIES DENTRO DEL SELECT
 	// SI UTILIZO SQL NATIVO NO PUEDO PAGINAR.
 
+	//LO QUE VOY A HACER SERÁ DEJAR EL NÚMERO DE LIKES, COMENTARIOS E ISLIKED EN 0, PARA POSTERIORMENTE AÑADIR LOS VALORES.
 	
 	
 	
 	@Query("SELECT new es.debateo.DTO.PostDTO(p, c, s, 0 , 0, 0) FROM Posts p " +
 		       " JOIN Communities c ON p.community = c.communityId " +
-		       " LEFT JOIN Subscriptions s ON p.community = s.communityId "
+		       " LEFT JOIN Subscriptions s ON p.community = s.communityId AND s.username=:name "
 		       + " WHERE s.username=:name OR c.communityCreator=:name " +
 		       "")
 		Page<PostDTO> getPosts(@Param("name") String name, PageRequest page);
@@ -98,7 +99,7 @@ public interface postsRepo extends JpaRepository<Posts,Long>{
 			+ "SELECT 		"
 			+ "EXISTS(SELECT l.username FROM likes l WHERE l.username=:name AND l.post_id=:post );"
 			+ "",nativeQuery=true)
-		int isItLiked(@Param("name")String name,@Param("post")int publicationId);
+		int isItLiked(@Param("name")String name,@Param("post")long publicationId);
 
 	
 	

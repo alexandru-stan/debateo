@@ -1,6 +1,8 @@
 package es.debateo.DTO;
 
+import es.debateo.Model.Comments;
 import es.debateo.Model.Communities;
+import es.debateo.Model.Likes;
 import es.debateo.Model.Posts;
 import es.debateo.Model.Subscriptions;
 
@@ -8,14 +10,14 @@ import es.debateo.Model.Subscriptions;
 public class PostDTO {
 	
 	
-	int likes;
-	int comments;
-	int liked;
+	long likes;
+	long comments;
+	long liked;
 	Posts post;
 	Communities community;
 	Subscriptions subscription;
 
-	public PostDTO( Posts post, Communities community ,Subscriptions subscription,int likes, int comments, int liked) {
+	public PostDTO( Posts post, Communities community ,Subscriptions subscription,long likes, long comments, long liked) {
 		super();
 		this.likes = likes;
 		this.comments = comments;
@@ -25,22 +27,22 @@ public class PostDTO {
 		this.subscription=subscription;
 		
 	}
-	public int getLikes() {
+	public long getLikes() {
 		return likes;
 	}
-	public void setLikes(int likes) {
+	public void setLikes(long likes) {
 		this.likes = likes;
 	}
-	public int getComments() {
+	public long getComments() {
 		return comments;
 	}
-	public void setComments(int comments) {
+	public void setComments(long comments) {
 		this.comments = comments;
 	}
-	public int getLiked() {
+	public long getLiked() {
 		return liked;
 	}
-	public void setLiked(int liked) {
+	public void setLiked(long liked) {
 		this.liked = liked;
 	}
 	public Posts getPost() {
@@ -70,7 +72,7 @@ public class PostDTO {
 	
 	
 	
-//	int publicationId;
+//	long publicationId;
 //	long likes;
 //	String publicationTitle;
 //	String publicationBody;
@@ -79,16 +81,16 @@ public class PostDTO {
 //	long comments;
 //	String communityName;
 //	byte[] communityImage;
-//	int communityId;
+//	long communityId;
 //	String subscriptionLevel;
-//	int liked;
+//	long liked;
 //
 //
 //	
 //	
-//	public PostDTO(int publicationId, long likes, String publicationTitle, String publicationBody,
+//	public PostDTO(long publicationId, long likes, String publicationTitle, String publicationBody,
 //			byte[] publicationImage, String publicationUser, long comments, String communityName, byte[] communityImage,
-//			int communityId, String subscriptionLevel ,int liked) {
+//			long communityId, String subscriptionLevel ,long liked) {
 //		super();
 //		this.publicationId = publicationId;
 //		this.likes = likes;
@@ -111,8 +113,8 @@ public class PostDTO {
 //
 //
 //
-//	public PostDTO(int publicationId, long likes, String publicationTitle, String publicationBody,
-//			byte[] publicationImage, String publicationUser, long comments, int liked) {
+//	public PostDTO(long publicationId, long likes, String publicationTitle, String publicationBody,
+//			byte[] publicationImage, String publicationUser, long comments, long liked) {
 //		super();
 //		this.publicationId = publicationId;
 //		this.likes = likes;
@@ -140,25 +142,25 @@ public class PostDTO {
 //	
 //
 //
-//	public int getLiked() {
+//	public long getLiked() {
 //		return liked;
 //	}
 //
 //
 //
-//	public void setLiked(int liked) {
+//	public void setLiked(long liked) {
 //		this.liked = liked;
 //	}
 //
 //
 //
-//	public int getPublicationId() {
+//	public long getPublicationId() {
 //		return publicationId;
 //	}
 //
 //
 //
-//	public void setPublicationId(int publicationId) {
+//	public void setPublicationId(long publicationId) {
 //		this.publicationId = publicationId;
 //	}
 //
@@ -262,13 +264,13 @@ public class PostDTO {
 //
 //
 //
-//	public int getCommunityId() {
+//	public long getCommunityId() {
 //		return communityId;
 //	}
 //
 //
 //
-//	public void setCommunityId(int communityId) {
+//	public void setCommunityId(long communityId) {
 //		this.communityId = communityId;
 //	}
 //

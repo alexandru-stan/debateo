@@ -1,4 +1,5 @@
 import axios from "axios";
+import {SERV_DIR,SERV_PORT} from "../utilities";
 const $ = require('jquery');
  function Register(){
 
