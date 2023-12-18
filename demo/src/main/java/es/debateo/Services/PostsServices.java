@@ -95,6 +95,28 @@ public class PostsServices {
 	}
 	
 	
+	public ServiceResponse<PostDTO> getPostsByCommunity(String user,long id,int offset){
+		System.out.println("Controlador OK");
+		
+		Page<PostDTO> posts = repo.getPostsByCommunity(id,PageRequest.of(offset, 15));
+		posts.forEach(post->{
+			post.setLiked(repo.isItLiked(user, post.getPost().getPublicationId()));
+			post.setLikes(likesRepo.likeCount(post.getPost().getPublicationId()));
+		});
+		System.out.println("REPO OK");
+		ServiceResponse<PostDTO> respuesta = new ServiceResponse<PostDTO>(posts,HttpStatus.OK);
+		
+		
+		
+		return respuesta;
+		
+		
+	}
+	
+	
+	
+	
+	
 //	public ServiceResponse<PostDTO> getPosts(String username,int offset){
 //		
 //		

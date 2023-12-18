@@ -56,36 +56,42 @@ public interface postsRepo extends JpaRepository<Posts,Long>{
 	
 	
 	
+	@Query("SELECT new es.debateo.DTO.PostDTO(p, 0 , 0, 0) FROM Posts p "
+		   + " WHERE p.community = :community "
+		       )
+		Page<PostDTO> getPostsByCommunity(@Param("community") long id, PageRequest request );
 	
 	
-	@Query(value = "SELECT "
-	        + "    p.publication_id AS publicationId, "
-	        + "    COUNT(  l.post_id) AS likes, "
-	        + "    p.publication_title AS publicationTitle, "
-	        + "    p.publication_body AS publicationBody, "
-	        + "    p.publication_image AS publicationImage, "
-	        + "    p.user AS publicationUser, "
-	        + "    COUNT(  com.post_id) AS comments "
-	        + "     "
-	        + " FROM "
-	        + "    Posts p "
-	        + "LEFT JOIN likes l ON p.publication_id = l.post_id "
-	        + "LEFT JOIN comments com ON p.publication_id = com.post_id "
-	        + ""
-	        + "WHERE "
-	        + "    p.community = :community "
-	 
-	        + " GROUP BY "
-	        + "    p.publication_id, "
-	        + "    p.publication_title, "
-	        + "    p.publication_body, "
-	        + "    p.publication_image, "
-	        + "    p.user;"
-	    
-	   
-	      , nativeQuery = true)
 	
-    Page<Tuple> getPostsByCommunity(@Param("community") long id,PageRequest request);
+//	
+//	@Query(value = "SELECT "
+//	        + "    p.publication_id AS publicationId, "
+//	        + "    COUNT(  l.post_id) AS likes, "
+//	        + "    p.publication_title AS publicationTitle, "
+//	        + "    p.publication_body AS publicationBody, "
+//	        + "    p.publication_image AS publicationImage, "
+//	        + "    p.user AS publicationUser, "
+//	        + "    COUNT(  com.post_id) AS comments "
+//	        + "     "
+//	        + " FROM "
+//	        + "    Posts p "
+//	        + "LEFT JOIN likes l ON p.publication_id = l.post_id "
+//	        + "LEFT JOIN comments com ON p.publication_id = com.post_id "
+//	        + ""
+//	        + "WHERE "
+//	        + "    p.community = :community "
+//	 
+//	        + " GROUP BY "
+//	        + "    p.publication_id, "
+//	        + "    p.publication_title, "
+//	        + "    p.publication_body, "
+//	        + "    p.publication_image, "
+//	        + "    p.user;"
+//	    
+//	   
+//	      , nativeQuery = true)
+//	
+//    Page<Tuple> getPostsByCommunity(@Param("community") long id,PageRequest request);
 	
 	
 	

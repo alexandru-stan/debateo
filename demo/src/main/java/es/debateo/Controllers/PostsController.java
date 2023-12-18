@@ -50,6 +50,18 @@ public class PostsController {
 		
 	}
 	
+	@GetMapping("/byCommunity/{offset}/{communityId}/{username}")
+	public ResponseEntity<Page<PostDTO>> getPostsByCommunity(@PathVariable String username, @PathVariable int offset, @PathVariable long communityId){
+		
+		System.out.println("LA PAGINA ES:"+offset);
+		ServiceResponse<PostDTO> response = services.getPostsByCommunity(username,communityId,offset);
+		
+		System.out.println(response.getPagina());
+		
+		return new ResponseEntity<Page<PostDTO>>(response.getPagina(),response.getStatus());
+		
+	}
+	
 	
 	@PostMapping("/new")
 	public ResponseEntity<Boolean> addPost( @RequestParam("image")  MultipartFile file,

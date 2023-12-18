@@ -27,6 +27,21 @@ public class PostDTO {
 		this.subscription=subscription;
 		
 	}
+	
+	public PostDTO( Posts post,long likes, long comments, long liked) {
+		super();
+		this.likes = likes;
+		this.comments = comments;
+		this.liked = liked;
+		this.post = post;
+		
+		
+	}
+	
+
+	
+	
+	
 	public long getLikes() {
 		return likes;
 	}

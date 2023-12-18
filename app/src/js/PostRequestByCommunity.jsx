@@ -12,6 +12,7 @@ let loggedUser = JSON.parse(sessionStorage.getItem('user')).username
 console.log(creador);
 
     let endpoint =  "http://localhost:8080/posts/byCommunity/"+request.page+"/"+request.state+"/"+loggedUser;
+    console.log(request.page+"/////////////"+request.state+"////////////"+loggedUser);
 
     return axios.get(endpoint).then(response=>{
       console.log(response.data);
@@ -22,22 +23,24 @@ console.log(creador);
     }
 
     let posts = new Array(response.data.numberOfElements);
-    for(let i=0;i<posts.length;i++){
+   console.log(posts)
+    for(let i=0;i<response.data.numberOfElements;i++){
 
+          console.log(arr[i]);
   
               posts[i] = <Post
               likes={arr[i].likes}
               comments={arr[i].comments}
               liked={arr[i].liked}
-              publicationBody={arr[i].publicationBody}
-              publicationTitle={arr[i].publicationTitle}
-              publicationId={arr[i].publicationId}
-              publicationImage={(arr[i].publicationImage.length>0)?<img src={formatImage(arr[i].publicationImage)} alt='image'/>:null}
-              publicationUser={arr[i].publicationUser}
+              publicationBody={arr[i].post.publicationBody}
+              publicationTitle={arr[i].post.publicationTitle}
+              publicationId={arr[i].post.publicationId}
+              publicationImage={(arr[i].post.publicationImage.length>0)?<img src={formatImage(arr[i].post.publicationImage)} alt='image'/>:null}
+              publicationUser={arr[i].post.user}
               referencia={(posts.length-i)==1?request.myRef:null}
-              delete={arr[i].publicationUser==loggedUser || loggedUser==creador || rol== "MOD" ?<Button
+              delete={arr[i].post.user==loggedUser || loggedUser==creador || rol== "MOD" ?<Button
               onClick={() =>
-                deleteFunction(arr[i].publicationId).then((response) => {
+                deleteFunction(arr[i].post.publicationId).then((response) => {
                  
                     request.setPostsArr((postsArr) => { 
                    console.log(response.data);
