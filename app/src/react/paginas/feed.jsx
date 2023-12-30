@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 const Feed = () => {
 let user = JSON.parse(sessionStorage.getItem('user'));
 const nav = useNavigate();
+
     useEffect(()=> {
         
         if(user==null){
@@ -19,8 +20,8 @@ const nav = useNavigate();
 
     return (
        
-        <div className="h-full pt-1" id='feed'>
-        <Header/>
+        <div className=" pt-1 moradoOscuro" id='feed'>
+       <Header/>
         <Body/>
          </div>
         

@@ -18,6 +18,7 @@ public interface subsRepo extends JpaRepository<Subscriptions,SubscriptionsID> {
 			+ " AND s.communityId=:id")
 	public List<String> getMods(@Param("id") long id);
 	
+	public int countByUsername(String username);
 	
 
 	

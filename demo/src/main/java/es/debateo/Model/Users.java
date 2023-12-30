@@ -2,9 +2,14 @@ package es.debateo.Model;
 
 import java.sql.Date;
 
+
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
+
+
 
 
 
@@ -21,8 +26,18 @@ public class Users {
 	private String mail;
 	@Column
 	private Date birth_date;
+	@Transient
+	private int subsCount;
 
 	
+	public int getSubsCount() {
+		return subsCount;
+	}
+
+	public void setSubsCount(int subsCount) {
+		this.subsCount = subsCount;
+	}
+
 	public String getUsername() {
 		return username;
 	}
@@ -38,6 +53,8 @@ public class Users {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+
 
 	public String getName() {
 		return name;
@@ -70,6 +87,7 @@ public class Users {
 		this.name = name;
 		this.mail = mail;
 		this.birth_date = birth_date;
+		
 	}
 
 	public Users(String username,String password) {

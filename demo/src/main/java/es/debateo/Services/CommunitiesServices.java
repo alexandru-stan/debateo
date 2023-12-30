@@ -53,6 +53,13 @@ public class CommunitiesServices {
 	
 	
 	
+	public ServiceResponse<Communities> recommend(){
+		List<Communities> com = repo.recommend();
+		return new ServiceResponse<Communities>(com,HttpStatus.OK);
+	}
+	
+	
+	
 	
 	
 	

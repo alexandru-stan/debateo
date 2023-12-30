@@ -44,7 +44,7 @@ const [comments,setComments] = useState();
 
     return(
     
-        <div id='comments'>
+        <div style={{marginTop:"10%"}} id='comments'>
         <Header/>
           
         <div id='comment-section'>

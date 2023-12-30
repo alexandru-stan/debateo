@@ -6,9 +6,13 @@ import { useEffect } from 'react';
 import { PostsRequest } from '../../../js/PostsRequest'
 import { useRef } from 'react';
 import { Mensajes } from '../reusable/mensajes/mensajes';
+import Recommendations from './body/recommendations/recommendations';
 // import { requestFeed } from '../../../js/PostRequestParameter';
 const Body = () => {
-
+  console.log(sessionStorage.getItem("user"));
+  if(JSON.parse(sessionStorage.getItem("user")).subsCount>0){
+  
+    console.log(JSON.parse(sessionStorage.getItem("user")).subsCount);
     const [postsArr,setPostsArr] = useState([]);
     const [page,setPage] = useState(0);
     const [isLast,setIslast] = useState(false);
@@ -71,7 +75,7 @@ if(myRef.current!=null){
 
 
     return(
-    <div  className=' flex flex-col  items-center  mt-postMT '  id='body-feed'>
+    <div  className=' flex flex-col  bg-moradoOscuro                             items-center    '  id='body-feed'>
        
         {postsArr}
        
@@ -82,6 +86,20 @@ if(myRef.current!=null){
 
     </div>
     );
+
+
+    } else {
+      console.log("AAAAAAAAAAAAAAA");
+      return (
+        <Recommendations/>
+        
+
+    
+      )
+    }
+
+
+
 }
 
 export default Body;

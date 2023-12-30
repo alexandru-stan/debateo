@@ -31,8 +31,7 @@ public class ServiceResponse<T> {
 	}
 	
 	
-	
-	
+
 	public T getObj() {
 		return obj;
 	}

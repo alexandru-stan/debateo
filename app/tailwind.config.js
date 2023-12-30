@@ -15,13 +15,16 @@ module.exports = {
       ...require('tailwindcss/colors'),
       moradoLight: '#444073',
       moradoOscuro:'#171626',
+      
       fondoPublicaciones:'#201D54',
       naranjaMolon:'#ff8c00',
+      rojo:'#04ff00',
       naranjaSeleccionado:'#E2FF00'
  
     },
 
     spacing: {
+      'cabecera':'20%',
       'tumadre':'80%',
       'marginLigero':'10px',
       'alturaPostDefault':'600px',

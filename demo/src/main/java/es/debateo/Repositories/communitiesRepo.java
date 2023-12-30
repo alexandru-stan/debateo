@@ -27,7 +27,13 @@ public interface communitiesRepo extends JpaRepository<Communities,Long> {
 			+ "WHERE c.communityId=:id")
 	CommunityDTO getCommunityData(@Param("id") long id);
 	
+	int countByCommunityCreator(String communityCreator);
 	
+	
+	@Query("SELECT c FROM Communities c "
+			+ "ORDER BY (SELECT COUNT(s) FROM Subscriptions s WHERE s.communityId = c.communityId) DESC "
+			+ "LIMIT 3")
+	List<Communities> recommend();
 	
 	
 				

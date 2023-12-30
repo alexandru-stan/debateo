@@ -6,12 +6,18 @@ import org.springframework.stereotype.Service;
 
 import es.debateo.DTO.ServiceResponse;
 import es.debateo.Model.Users;
+import es.debateo.Repositories.communitiesRepo;
+import es.debateo.Repositories.subsRepo;
 import es.debateo.Repositories.usersRepo;
 
 @Service
 public class UserServices{
 	@Autowired
 	usersRepo repo;
+	@Autowired
+	subsRepo subsRepo;
+	@Autowired 
+	communitiesRepo communitiesRepo;
 	
 	
 	
@@ -29,6 +35,10 @@ public class UserServices{
 		boolean exists = repo.existsByUsernameAndPassword(username, password);
 		
 		if(exists) {
+			
+			Users userData = repo.findById(username).get();
+			userData.setSubsCount((subsRepo.countByUsername(userData.getUsername()) + communitiesRepo.countByCommunityCreator(userData.getUsername())));
+			
 			
 			return new ServiceResponse<Users>(repo.findById(username).get(),HttpStatus.OK);
 			

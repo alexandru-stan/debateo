@@ -59,14 +59,18 @@ const observer = new IntersectionObserver(handleIntersection);
 
 
 function changeSub(subscription){
-
+let userData = JSON.parse(sessionStorage.getItem("user"))
   if(subscription==null) {
     console.log(subscription);
     axios.post("http://localhost:8080/subscriptions/sub/"+loggedUser+"/"+state);
+   userData.subsCount++;
+  sessionStorage.setItem('user',JSON.stringify(userData))
     setSubscription("MEMBER");
   }
   else {
     axios.delete("http://localhost:8080/subscriptions/unsub/"+loggedUser+"/"+state);
+    userData.subsCount--;
+    sessionStorage.setItem('user',JSON.stringify(userData));
     setSubscription(null);
   }
 

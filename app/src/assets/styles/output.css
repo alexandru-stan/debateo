@@ -522,16 +522,16 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.fixed {
-  position: fixed;
-}
-
 .absolute {
   position: absolute;
 }
 
 .relative {
   position: relative;
+}
+
+.sticky {
+  position: sticky;
 }
 
 .top-tumadre {
@@ -566,10 +566,6 @@ video {
   height: 20%;
 }
 
-.h-1\/6 {
-  height: 16.666667%;
-}
-
 .h-2\/6 {
   height: 33.333333%;
 }
@@ -584,6 +580,10 @@ video {
 
 .h-alturaPostDefault {
   height: 600px;
+}
+
+.h-cabecera {
+  height: 20%;
 }
 
 .h-comInfo {
@@ -690,6 +690,10 @@ video {
   border-width: 1px;
 }
 
+.border-2 {
+  border-width: 2px;
+}
+
 .border-4 {
   border-width: 4px;
 }
@@ -706,6 +710,10 @@ video {
   border-bottom-width: 4px;
 }
 
+.border-solid {
+  border-style: solid;
+}
+
 .border-black {
   --tw-border-opacity: 1;
   border-color: rgb(0 0 0 / var(--tw-border-opacity));
@@ -719,6 +727,11 @@ video {
 .border-naranjaMolon {
   --tw-border-opacity: 1;
   border-color: rgb(255 140 0 / var(--tw-border-opacity));
+}
+
+.border-b-naranjaMolon {
+  --tw-border-opacity: 1;
+  border-bottom-color: rgb(255 140 0 / var(--tw-border-opacity));
 }
 
 .bg-moradoLight {
