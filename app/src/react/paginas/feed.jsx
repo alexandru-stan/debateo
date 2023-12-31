@@ -20,7 +20,7 @@ const nav = useNavigate();
 
     return (
        
-        <div className=" pt-1 moradoOscuro" id='feed'>
+        <div className=" pt-1 h-full overflow-y-auto moradoOscuro" id='feed'>
        <Header/>
         <Body/>
          </div>

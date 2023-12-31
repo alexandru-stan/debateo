@@ -1,4 +1,4 @@
-export function formatImage(base64encodedImage){
+export  function formatImage(base64encodedImage){
   let byteCharacters = atob(base64encodedImage);
 
         let byteNumbers = new Array(byteCharacters.length);
