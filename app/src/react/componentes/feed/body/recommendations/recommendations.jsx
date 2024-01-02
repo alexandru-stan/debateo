@@ -7,7 +7,7 @@ import { formatImage } from '../../../../../js/imageFormatting';
 
 const  Recommendations =   () => {
 const [state,setState] = useState();
-
+const username = JSON.parse(sessionStorage.getItem("user")).username;
 
 useEffect(() => {
 
@@ -21,7 +21,7 @@ useEffect(() => {
         for(let i=0;i<response.length;i++){
             communityArr.push(
                 
-                <CommunityCard communityName={response[i].communityName} communityImage={response[i].communityImage.length>0?formatImage(response[i].communityImage):null} />
+                <CommunityCard communityId = {response[i].communityId} communityName={response[i].communityName} communityImage={response[i].communityImage.length>0?formatImage(response[i].communityImage):null} />
 
                     
                 
@@ -47,8 +47,8 @@ useEffect(() => {
     return (<div className=" ">
     <div className='flex justify-center'>
     <div className='backdrop-brightness-125 p-5 m-3 bg-visiniu w-5/6 rounded-lg border-solid border-2 border-naranjaMolon '>
-        <h1 className=' text-center'>¡No estás suscrito a ninguna comunidad!</h1>
-        <h2 className=' text-naranjaMolon text-center'>Aquí abajo te dejamos las 3 comunidades más populares </h2>
+        <h1 className=' text-center'>¡Bienvenido, {username}! </h1>
+        <h2 className=' text-naranjaMolon text-center'>¡Aquí abajo te dejamos 3 comunidades que podrían interesarte!</h2>
     </div>
     </div>
         <div className="  flex justify-center">
