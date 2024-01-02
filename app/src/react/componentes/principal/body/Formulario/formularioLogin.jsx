@@ -91,7 +91,7 @@ const isInitialMount = useRef(true);
       
       <ThemeProvider theme={theme} >
       
-        <div className='text-white flex flex-col' id='form'>
+        <div  className=' backdrop-brightness-125 border-naranjaMolon border-2 rounded-lg p-3 text-white flex flex-col' id='form'>
         <h1>Bienvenido de vuelta!</h1>
           <ToggleForm fn={props.fn} hasAccount = {props.hasAccount}/>
           {/* <TextField color="secondary"  id="Lusername" label="Nombre de usuario" variant="filled"></TextField>

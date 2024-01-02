@@ -83,6 +83,7 @@ public class PostsServices {
 		posts.forEach(post->{
 			post.setLiked(repo.isItLiked(username, post.getPost().getPublicationId()));
 			post.setLikes(likesRepo.likeCount(post.getPost().getPublicationId()));
+			post.setComments(commentsRepo.countByPostId(post.getPost().getPublicationId()));
 		});
 		
 		ServiceResponse<PostDTO> respuesta = new ServiceResponse<PostDTO>(posts,HttpStatus.OK);
@@ -102,6 +103,7 @@ public class PostsServices {
 		posts.forEach(post->{
 			post.setLiked(repo.isItLiked(user, post.getPost().getPublicationId()));
 			post.setLikes(likesRepo.likeCount(post.getPost().getPublicationId()));
+			post.setComments(commentsRepo.countByPostId(post.getPost().getPublicationId()));
 		});
 		System.out.println("REPO OK");
 		ServiceResponse<PostDTO> respuesta = new ServiceResponse<PostDTO>(posts,HttpStatus.OK);

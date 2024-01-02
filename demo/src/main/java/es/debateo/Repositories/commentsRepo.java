@@ -16,8 +16,6 @@ public interface commentsRepo extends JpaRepository<Comments,Long> {
 			+ " WHERE c.postId=:id ")
 	public List<Comments> getComments(@Param("id") long id);
 	
-	@Query(value=""
-			+ "SELECT COUNT(*) FROM COMMENTS WHERE post_id=:id "
-			+ "",nativeQuery=true)
-	public int commentsCount(@Param("id") long id);
+	
+	public int countByPostId(@Param("id") long id);
 }

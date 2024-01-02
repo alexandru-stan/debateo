@@ -74,7 +74,7 @@ const dispatch = useDispatch();
 
 
     return (
-  <div className='text-white flex flex-col' id="formRegister">
+  <div className='backdrop-brightness-125 border-naranjaMolon border-2 rounded-lg p-3 text-white flex flex-col' id="formRegister">
       <ThemeProvider theme={theme}>
     
       <h1>Bienvenido!</h1>
