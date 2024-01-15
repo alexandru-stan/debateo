@@ -18,6 +18,7 @@ import { useDispatch } from 'react-redux';
 import RespuestaServidor from '../respuestasServidor';
 import { useRef } from 'react';
 import { useEffect } from 'react';
+import { Input } from './inputComponent';
 let codigoRespuesta;
 let mensajeRespuesta;
 
@@ -92,13 +93,23 @@ const isInitialMount = useRef(true);
       <ThemeProvider theme={theme} >
       
         <div  className=' backdrop-brightness-125 border-naranjaMolon border-2 rounded-lg p-3 text-white flex flex-col' id='form'>
-        <h1>Bienvenido de vuelta!</h1>
+        <h1 className='text-center'>Bienvenido de vuelta!</h1>
           <ToggleForm fn={props.fn} hasAccount = {props.hasAccount}/>
           {/* <TextField color="secondary"  id="Lusername" label="Nombre de usuario" variant="filled"></TextField>
           <TextField className='text-neutral-50' color="secondary" id="Lpassword" label="Contraseña" variant="filled"></TextField> */}
-          <label htmlFor='Lusername'>
+          <div className='m-5 flex justify-around'>
+        <Input id='Lusername' placeholder="Nombre de usuario" for="Lusername"/>
+        <Input id='Lpassword'  placeholder="Contraseña" for="Lpassword" />
+        </div>
+        <div >
+        <label className='w-full' htmlFor='Rsubmit'>
+          <button className='w-full bg-moradoLight hover:bg-naranjaMolon text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:border-blue-300' onClick={callLogin}>Enviar</button>
+        </label>
+        </div>
+          
+          {/* <label htmlFor='Lusername'>
           Nombre de usuario:
-          <input className='text-black' id="Lusername" type='text'></input>
+          <input className='text-black bg-transparent border-b-2 border-gray-300 focus:outline-none focus:border-blue-500 text-gray-700 py-2 pl-2 pr-8 transition-all duration-300' id="Lusername" type='text'></input>
           </label>
           <label htmlFor='Lpassword'>
           Contraseña
@@ -106,7 +117,7 @@ const isInitialMount = useRef(true);
           </label>
           <label htmlFor='Rsubmit'>
           <button className='border-4 border-emerald-500 hover:border-naranjaMolon' onClick={callLogin}>Enviar</button>
-        </label>
+        </label> */}
           <RespuestaServidor  codigo={codigoRespuesta} texto={mensajeRespuesta}/>
           </div>
          

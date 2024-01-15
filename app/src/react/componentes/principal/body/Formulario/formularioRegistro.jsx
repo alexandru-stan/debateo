@@ -12,6 +12,7 @@ import ToggleForm from '../toggleForm';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { change, changeStatus } from '../../../../../redux-store/slices/StatusSlice';
+import { Input } from './inputComponent';
 
 const $ = require('jquery');
 let codigoRespuesta;
@@ -77,7 +78,7 @@ const dispatch = useDispatch();
   <div className='backdrop-brightness-125 border-naranjaMolon border-2 rounded-lg p-3 text-white flex flex-col' id="formRegister">
       <ThemeProvider theme={theme}>
     
-      <h1>Bienvenido!</h1>
+      <h1 className='text-center'>Bienvenido!</h1>
         <ToggleForm fn={props.fn}  hasAccount = {props.hasAccount}/>
         {/* <TextField  color="secondary"  id="Rusername" label="Nombre de usuario" variant="standard"></TextField>
         <TextField type='password' color="secondary" id="Rpassword" label="Contraseña" variant="standard"></TextField>
@@ -89,10 +90,31 @@ const dispatch = useDispatch();
         <TextField type='date' color="secondary"  id="Rbirth_date" label="" variant="filled"></TextField>
         </label>
         <Button onClick={callRegister}   >Registarse</Button> */}
+        <div className='m-3 flex justify-around'>
+        <Input id='Rusername' placeholder="Nombre de usuario" for="Rusername"/>
+        <Input id='Rpassword'  placeholder="Contraseña" for="Rpassword" />
+        </div>
+
+        <div className='m-3 flex justify-around'>
+        <Input id="Rname" placeholder="Nombre" for="Rname"/>
+        <Input id="Rmail" placeholder="Correo electrónico" for="Rmail" />
+        </div>
+
+        <div className='m-3 flex justify-around'>
+        <label htmlFor="Rbirth_date">
+        <input id="Rbirth_date" onFocus={(e)=> e.target.type="date" } style={{colorScheme:"dark"}} placeholder='Fecha de nacimiento' type="text" className=" rounded-md py-2 px-4 text-gray-700 border-b-2 text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon"/>
+        </label>
+        </div>
         
-        <label  htmlFor='Rusername'>
+        <div >
+        <label className='w-full' htmlFor='Rsubmit'>
+          <button className='w-full bg-moradoLight hover:bg-naranjaMolon text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:border-blue-300' onClick={callRegister}>Enviar</button>
+        </label>
+        </div>
+
+        {/* <label  htmlFor='Rusername'>
           Nombre de usuario: 
-          <input className='text-black' type='text' id='Rusername' ></input>
+          <input className='text-black bg-transparent border-b-2 border-gray-300 focus:outline-none focus:border-naranjaMolon text-gray-700 py-2 pl-2 pr-8 transition-all duration-300' type='text' id='Rusername' ></input>
         </label>
         <label htmlFor='Rpassword'>
           Contraseña
@@ -112,7 +134,7 @@ const dispatch = useDispatch();
         </label>
         <label htmlFor='Rsubmit'>
           <button className='border-4 border-emerald-500 hover:border-naranjaMolon' onClick={callRegister}>Enviar</button>
-        </label>
+        </label> */}
         
         <RespuestaServidor  codigo={codigoRespuesta} texto={mensajeRespuesta}/>
      

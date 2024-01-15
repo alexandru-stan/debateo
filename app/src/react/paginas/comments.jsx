@@ -11,12 +11,16 @@ import { Comment } from '../componentes/reusable/comment';
 import { TextField } from '@mui/material';
 import { Button } from 'react-bootstrap';
 import { subirComentario } from '../../js/subirComentario';
+import { useSelector } from 'react-redux';
+import { formatImage } from '../../js/imageFormatting';
 export const Comments = () => {
 const [post,setPost] = useState();
 const [comments,setComments] = useState();
   const $ = require('jquery');
     let params = useParams();
-
+    let commentPost = JSON.parse(useSelector(state=>state.commentPost.value));
+    console.log("FOTOOOOOOOOOOOOOOOOOOOO"+commentPost.publicationImage.props.src);
+    console.log("PATAS DIOSSSS"+JSON.stringify(commentPost));
 
     useEffect(()=> {
       
@@ -44,12 +48,33 @@ const [comments,setComments] = useState();
 
     return(
     
-        <div style={{marginTop:"10%"}} id='comments'>
+        <div  id='comments' className="flex flex-col items-center">
         <Header/>
           
-        <div id='comment-section'>
+
+
+      <Post
+
+
+              likes={commentPost.likes}
+              comments={commentPost.comments}
+              liked={commentPost.liked}
+              communityId={commentPost.communityId}
+              communityName={commentPost.communityName}
+              communityImage={commentPost.communityImage}
+              publicationBody={commentPost.publicationBody}
+              publicationTitle={commentPost.publicationTitle}
+              publicationId={commentPost.publicationId}
+              publicationImage=<img src={commentPost.publicationImage.props.src}/>
+              publicationUser={commentPost.user}
+              
+
+        />
+
+        <div id='comment-section' className="mt-5">
         <div id='comment-box'>
-          <TextField id='text' label='Comentario' variant='filled'></TextField>
+        
+          <input type="text" id="text"/>
           <Button onClick={()=>{
 
           let comment = subirComentario($('#text').val(),params.id);

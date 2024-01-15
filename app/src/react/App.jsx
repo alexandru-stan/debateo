@@ -29,7 +29,7 @@ import { Comments } from './paginas/comments';
           <Route exact path="/upload/:id" element={<Create/>}></Route>
           <Route exact path="/admin/:id" element={<Admin/>}></Route>
           <Route exact path="/new/community" element={<NewCommunity/>}></Route>
-          <Route exact path="/:id/comments" element={<Comments/>}></Route>
+          <Route exact path="/:id/:postInfo/comments" element={<Comments/>}></Route>
 
         </Routes>
       </Router>

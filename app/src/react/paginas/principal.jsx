@@ -9,6 +9,7 @@ function Principal(){
     useEffect(()=> {
         
         sessionStorage.removeItem('user');
+        console.log("user limpiado");
     })
 
     return (

@@ -6,19 +6,23 @@ import { TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const Feed = () => {
-let user = JSON.parse(sessionStorage.getItem('user'));
+    let user = JSON.parse(sessionStorage.getItem('user'));
 const nav = useNavigate();
 
     useEffect(()=> {
-        
+      
+        console.log(user);
         if(user==null){
             nav("/");
         } else {
-            // console.log(user.name);
+            console.log(user);
         }
+       
     })
 
-    return (
+    
+
+    return user ? (
        
         <div className=" pt-1   moradoOscuro" id='feed'>
        <Header/>
@@ -27,10 +31,10 @@ const nav = useNavigate();
         
     
     
-    )
+    ) : null;
     
     
-    ;
+    
 
 
 }

@@ -9,17 +9,24 @@ import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { assign } from "../../../../../redux-store/slices/CommentPost";
 export const PostFooter = (props) => {
     const nav = useNavigate();
-    console.log(props.like);
-    const [like,setLike] = useState(props.liked==1?true:false);
-    const [likesCount,setLikesCount] = useState(props.likes);
-    console.log("LIKES"+likesCount);
+    let postInfo = props.postInfo;
+    console.log("REFE"+ postInfo.referencia);
+   
+    const commentPost = useSelector((state)=> state.commentPost.value);
+    const commentPostDispatch = useDispatch();
+    const [like,setLike] = useState(postInfo.liked==1?true:false);
+    const [likesCount,setLikesCount] = useState(postInfo.likes);
+
+
 let loggedUser = JSON.parse(sessionStorage.getItem('user')).username
     function changeLikeStatus(){
         
-        if(!like) axios.post("http://localhost:8080/likes/"+loggedUser+"/"+props.publicationId).then(()=>setLikesCount(likesCount+1));
-        else axios.delete("http://localhost:8080/likes/"+loggedUser+"/"+props.publicationId).then(()=>setLikesCount(likesCount-1));
+        if(!like) axios.post("http://localhost:8080/likes/"+loggedUser+"/"+postInfo.publicationId).then(()=>setLikesCount(likesCount+1));
+        else axios.delete("http://localhost:8080/likes/"+loggedUser+"/"+postInfo.publicationId).then(()=>setLikesCount(likesCount-1));
         setLike(!like);
 
     }
@@ -38,10 +45,15 @@ let loggedUser = JSON.parse(sessionStorage.getItem('user')).username
                 }} title='Me gusta'> <Imagen clase={"w-1/4"} ruta={like?IconoVotado:IconoVotar}/> <span style={{fontSize:'smaller'}}>{likesCount}</span></span>
                
                <span  className=" w-1/6 " onClick={()=>{
-                nav("/"+props.publicationId+"/comments");
+              
+               let commentPostSerializable = JSON.stringify(postInfo);
+                commentPostDispatch(assign(commentPostSerializable));
+                nav("/"+postInfo.publicationId+"/"+postInfo+"/comments");
+               
+               
                }} title='Comentar'><Imagen  clase={" w-1/4"}  ruta = {IconoComentar}/> <span style={{fontSize:'smaller'}}>{props.comments}</span></span> 
                 
-               {props.delete}
+               {postInfo.delete}
                 
         </div>
 

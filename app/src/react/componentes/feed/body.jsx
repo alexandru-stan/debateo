@@ -9,9 +9,8 @@ import { Mensajes } from '../reusable/mensajes/mensajes';
 import Recommendations from './body/recommendations/recommendations';
 // import { requestFeed } from '../../../js/PostRequestParameter';
 const Body = () => {
-  console.log(sessionStorage.getItem("user"));
-  if(JSON.parse(sessionStorage.getItem("user")).subsCount>0){
   
+  if(JSON.parse(sessionStorage.getItem("user"))?.subsCount>0){
     console.log(JSON.parse(sessionStorage.getItem("user")).subsCount);
     const [postsArr,setPostsArr] = useState([]);
     const [page,setPage] = useState(0);
@@ -24,6 +23,8 @@ const Body = () => {
       loggedUser: JSON.parse(sessionStorage.getItem('user')).username,
      
     }
+
+
  
  
     const handleIntersection = (entries) => {

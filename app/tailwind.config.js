@@ -23,6 +23,10 @@ module.exports = {
  
     },
 
+    fontFamily:{
+      
+    },
+
     spacing: {
       'cabecera':'20%',
       'tumadre':'80%',
