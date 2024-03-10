@@ -13,7 +13,8 @@ public interface commentsRepo extends JpaRepository<Comments,Long> {
 	
 	@Query("SELECT c "
 			+ " FROM Comments c "
-			+ " WHERE c.postId=:id ")
+			+ " WHERE c.postId=:id "
+			+ "	ORDER BY c.commentDate DESC")
 	public List<Comments> getComments(@Param("id") long id);
 	
 	

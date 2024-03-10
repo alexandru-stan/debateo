@@ -96,9 +96,12 @@ public class PostsController {
 //		
 //	}
 	
-	@GetMapping("/{id}")
-	public ResponseEntity<Posts> getPost(@PathVariable long id){
-		return new ResponseEntity<Posts>(repo.findById(id).get(),HttpStatus.OK);
+	@GetMapping("/getPost/{username}/{id}")
+	public ResponseEntity<PostDTO> getPost(@PathVariable String username,@PathVariable long id){
+		
+		ServiceResponse<PostDTO> response = services.getPost(username, id);
+		
+		return new ResponseEntity<PostDTO>(response.getObj(),response.getStatus());
 	}
 	
 	

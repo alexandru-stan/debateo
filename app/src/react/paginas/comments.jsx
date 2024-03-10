@@ -13,24 +13,52 @@ import { Button } from 'react-bootstrap';
 import { subirComentario } from '../../js/subirComentario';
 import { useSelector } from 'react-redux';
 import { formatImage } from '../../js/imageFormatting';
+import { Input } from '../componentes/principal/body/Formulario/inputComponent';
 export const Comments = () => {
+const [numeroComentarios, setNumeroComentarios] = useState(null);
 const [post,setPost] = useState();
 const [comments,setComments] = useState();
+const [selectedPost, setSelectedPost] = useState();
   const $ = require('jquery');
     let params = useParams();
-    let commentPost = JSON.parse(useSelector(state=>state.commentPost.value));
-    console.log("FOTOOOOOOOOOOOOOOOOOOOO"+commentPost.publicationImage.props.src);
-    console.log("PATAS DIOSSSS"+JSON.stringify(commentPost));
+    let user = JSON.parse(sessionStorage.getItem('user'));
+    console.log(numeroComentarios);
+
+  
 
     useEffect(()=> {
-      
-   
+      console.log(numeroComentarios);
+     getPost(user.username,params.id).then(response =>{ 
+      let data = response.data;
+      setNumeroComentarios(data.comments)
+      setSelectedPost(
+        <Post
+          likes = {data.likes}
+          comments = {data.comments}
+          liked={data.liked}
+          communityId={data.community.communityId}
+          communityName={data.community.communityName}
+          communityImage={formatImage(data.community.communityImage)}
+          publicationBody={data.post.publicationBody}
+          publicationTitle={data.post.publicationTitle}
+          publicationId={data.post.publicationId}
+          publicationImage={(data.post.publicationImage.length>0)?<img style={{height:'100%'}} src={formatImage(data.post.publicationImage)} alt='img'/>:null}
+          publicationUser={data.post.user}    
+
+
+
+
+        />
+      )
+
+     
+     })
 
       getComments(params.id).then(response => {
         console.log(response);
-        let arr=[];
+        let arr=[]
        response.data.forEach(e =>
-        arr.push(<Comment username={e.username} commentText = {e.commentText}/>))
+        arr.push(<Comment commentDate = {e.commentDate} username={e.username} commentText = {e.commentText}/>))
         setComments(arr);
 
       });
@@ -48,44 +76,29 @@ const [comments,setComments] = useState();
 
     return(
     
-        <div  id='comments' className="flex flex-col items-center">
+        <div  id='comments' className="   flex flex-col items-center">
         <Header/>
           
+          {selectedPost}
 
-
-      <Post
-
-
-              likes={commentPost.likes}
-              comments={commentPost.comments}
-              liked={commentPost.liked}
-              communityId={commentPost.communityId}
-              communityName={commentPost.communityName}
-              communityImage={commentPost.communityImage}
-              publicationBody={commentPost.publicationBody}
-              publicationTitle={commentPost.publicationTitle}
-              publicationId={commentPost.publicationId}
-              publicationImage=<img src={commentPost.publicationImage.props.src}/>
-              publicationUser={commentPost.user}
-              
-
-        />
-
-        <div id='comment-section' className="mt-5">
-        <div id='comment-box'>
+        <div  id='comment-section' className=" w-full flex flex-col items-center mt-5">
+        <div className=" bg-moradoOscuro w-2/4 flex flex-row justify-center items-center" id='comment-box'>
         
-          <input type="text" id="text"/>
+        <div class="w-full bg-moradoOscuro">
+  <textarea id="text" style={{filter:"brightness(125%)"}}class="  w-full rounded-md text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro border-b-2 border-gray-300 focus:outline-none focus:border-naranjaMolon text-gray-700 py-2 pl-2 pr-8 transition-all duration-300" placeholder="Escribe tu comentario..."/>
+          </div>
+          
           <Button onClick={()=>{
 
           let comment = subirComentario($('#text').val(),params.id);
           
-          setComments(comments => ([<Comment username={comment.username} commentText = {comment.commentText}></Comment>]).concat(comments));
+          setComments(comments => ([<Comment  username={comment.username} commentDate={0}  commentText = {comment.commentText}></Comment>]).concat(comments));
 
           }}>Enviar</Button>
           </div>
-          <div id='comments-response'>
+          
         {comments}
-        </div>
+       
         </div>
         </div>
     

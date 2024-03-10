@@ -20,7 +20,7 @@ long communityId;
 	byte[] communityBackgroundImage;
 	
 
-	int communityMembers;
+	long communityMembers;
 	
 
 	String communityCreator;
@@ -73,11 +73,11 @@ long communityId;
 		this.communityBackgroundImage = communityBackgroundImage;
 	}
 
-	public int getCommunityMembers() {
+	public long getCommunityMembers() {
 		return communityMembers;
 	}
 
-	public void setCommunityMembers(int communityMembers) {
+	public void setCommunityMembers(long communityMembers) {
 		this.communityMembers = communityMembers;
 	}
 
@@ -114,7 +114,7 @@ long communityId;
 	}
 
 	public CommunityDTO(long communityId, String communityName, String communityDescription, byte[] communityImage,
-			byte[] communityBackgroundImage, int communityMembers, String communityCreator, 
+			byte[] communityBackgroundImage, long communityMembers, String communityCreator, 
 			long categoria) {
 		super();
 		this.communityId = communityId;

@@ -44,6 +44,8 @@ public class CommunitiesServices {
 			community.setSubscription(null);
 		}
 		
+		community.setCommunityMembers(subsRepo.numeroDeMiembros(community.getCommunityId())+1);
+		
 		
 		
 		

@@ -116,6 +116,17 @@ public class PostsServices {
 	}
 	
 	
+	public ServiceResponse<PostDTO> getPost(String username,long id){
+		
+		PostDTO post = repo.getPost(id);
+		post.setLiked(repo.isItLiked(username, id));
+		post.setLikes(likesRepo.likeCount(post.getPost().getPublicationId()));
+		post.setComments(commentsRepo.countByPostId(id));
+		return new ServiceResponse<PostDTO>(post,HttpStatus.OK);
+		
+		
+		
+	}
 	
 	
 	

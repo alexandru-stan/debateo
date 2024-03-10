@@ -20,6 +20,8 @@ public interface subsRepo extends JpaRepository<Subscriptions,SubscriptionsID> {
 	
 	public int countByUsername(String username);
 	
+	
+
 
 	
 }

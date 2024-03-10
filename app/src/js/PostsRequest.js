@@ -24,7 +24,7 @@ export async function PostsRequest(request,setPostsArr){
     let posts = new Array(response.data.numberOfElements);
     for(let i=0;i<posts.length;i++){
 
-   
+          console.log(i+" PROPS COMMENTS EN POST ES ESTO " + arr[i].comments);
               posts[i] = <Post
               likes={arr[i].likes}
               comments={arr[i].comments}

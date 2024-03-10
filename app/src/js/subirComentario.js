@@ -1,7 +1,8 @@
 import axios from "axios";
 
 export function subirComentario(comentario,post){
-    const currentDate = new Date();
+    let currentDate = new Date();
+  
   
 
     let comment = {

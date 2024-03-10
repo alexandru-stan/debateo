@@ -42,6 +42,19 @@ public class PostDTO {
 	
 	
 	
+	public PostDTO( Posts post, Communities community ,long likes, long comments, long liked) {
+		super();
+		this.likes = likes;
+		this.comments = comments;
+		this.liked = liked;
+		this.post = post;
+		this.community = community;
+	}
+
+	public PostDTO() {
+		super();
+	}
+
 	public long getLikes() {
 		return likes;
 	}

@@ -15,9 +15,6 @@ export const PostFooter = (props) => {
     const nav = useNavigate();
     let postInfo = props.postInfo;
     console.log("REFE"+ postInfo.referencia);
-   
-    const commentPost = useSelector((state)=> state.commentPost.value);
-    const commentPostDispatch = useDispatch();
     const [like,setLike] = useState(postInfo.liked==1?true:false);
     const [likesCount,setLikesCount] = useState(postInfo.likes);
 
@@ -25,8 +22,19 @@ export const PostFooter = (props) => {
 let loggedUser = JSON.parse(sessionStorage.getItem('user')).username
     function changeLikeStatus(){
         
-        if(!like) axios.post("http://localhost:8080/likes/"+loggedUser+"/"+postInfo.publicationId).then(()=>setLikesCount(likesCount+1));
-        else axios.delete("http://localhost:8080/likes/"+loggedUser+"/"+postInfo.publicationId).then(()=>setLikesCount(likesCount-1));
+        if(!like) axios.post("http://localhost:8080/likes/"+loggedUser+"/"+postInfo.publicationId).then(()=>{
+        
+        setLikesCount(likesCount+1)
+        postInfo.liked=1;
+    }
+        );
+        else axios.delete("http://localhost:8080/likes/"+loggedUser+"/"+postInfo.publicationId).then(()=>{
+          
+        setLikesCount(likesCount-1)
+        postInfo.liked=0;
+
+}
+        );
         setLike(!like);
 
     }
@@ -46,12 +54,11 @@ let loggedUser = JSON.parse(sessionStorage.getItem('user')).username
                
                <span  className=" w-1/6 " onClick={()=>{
               
-               let commentPostSerializable = JSON.stringify(postInfo);
-                commentPostDispatch(assign(commentPostSerializable));
-                nav("/"+postInfo.publicationId+"/"+postInfo+"/comments");
+               
+                nav("/"+postInfo.publicationId+"/comments");
                
                
-               }} title='Comentar'><Imagen  clase={" w-1/4"}  ruta = {IconoComentar}/> <span style={{fontSize:'smaller'}}>{props.comments}</span></span> 
+               }} title='Comentar'><Imagen  clase={" w-1/4"}  ruta = {IconoComentar}/> <span style={{fontSize:'smaller'}}>{postInfo.comments}</span></span> 
                 
                {postInfo.delete}
                 
