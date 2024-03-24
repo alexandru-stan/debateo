@@ -1,0 +1,86 @@
+
+  @media  (max-width: 900px){
+    /* CSS styles to apply when the viewport width is between 600px and 900px */
+        #carusel{
+            display:none;
+        }
+  }
+
+  @media  (max-width: 433px){
+    /* CSS styles to apply when the viewport width is between 600px and 900px */
+        .campoFormularioPrincipal{
+            flex-direction: column !important;
+            align-items: center;
+        }
+  }
+  
+
+  @media(max-width:1000px){
+    body{
+    
+      padding:5% !important; 
+      
+    }
+    .publicacion{
+     
+      width:100%;
+    }
+
+    #feed{
+      
+      display:flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    #menu {
+      display:none;
+    }
+
+   
+
+   #header-logo{
+    display: none;
+   }
+
+    #search-bar{
+   
+      width: 100%;
+ 
+     
+    }
+    #searchBarInput{
+      width: 100% !important;
+      height:5vh !important;
+      padding:2%;
+      border: none !important;
+    }
+
+    .community-info {
+      width: 100% ;
+      flex-direction: column;  
+      align-items: center;
+    }
+
+    .community-image{
+      /* background-color: red; */
+      width:60%; 
+    }
+
+    .community-body{
+      /* background-color:red; */
+      
+    }
+    #communityButtons{
+      /* background-color: red; */
+      width: 100%;
+    }
+
+    .info{
+    
+      width: 100%;
+    }
+
+
+  }
+

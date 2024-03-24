@@ -4,6 +4,7 @@ import Post from '../react/componentes/feed/body/post';
 import { Button } from 'react-bootstrap';
 import { formatImage } from './imageFormatting';
 import { deleteFunction } from './DeletePublication';
+import { SERV_DIR,SERV_PORT } from '../utilities';
 
 export async function PostsRequest(request,setPostsArr){
 
@@ -11,7 +12,7 @@ export async function PostsRequest(request,setPostsArr){
 
 
 
-    let endpoint =  "http://localhost:8080/posts/"+request.loggedUser+"/"+request.page;
+    let endpoint =  "http://"+SERV_DIR+":"+SERV_PORT+"/posts/"+request.loggedUser+"/"+request.page;
 
     return axios.get(endpoint).then(response=>{
       console.log(response.data);

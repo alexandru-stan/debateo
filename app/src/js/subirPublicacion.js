@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import {SERV_DIR,SERV_PORT} from "../utilities";
 import { formatImage } from "./imageFormatting";
     export function subirPublicacion(form,community,user){
 
@@ -13,7 +14,7 @@ import { formatImage } from "./imageFormatting";
         
       
 
- return axios.post("http://localhost:8080/posts/new",formData);
+ return axios.post("http://"+SERV_DIR+":"+SERV_PORT+"/posts/new",formData);
 
 
         

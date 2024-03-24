@@ -163,7 +163,7 @@ if(myRef.current!=null && postsArr.length>0){
 
     return (<div className='mt-postMT flex flex-col items-center community-body'>
         <CommunityInfo info={info}/>
-        <div className=' p-3 flex flex-row justify-evenly w-1/4'>
+        <div id='communityButtons' className=' flex flex-row justify-evenly w-1/4'>
         <Button onClick={() => {
           navigate("/upload/"+state);
         }}>Crear publicación</Button>

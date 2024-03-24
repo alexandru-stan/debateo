@@ -42,7 +42,7 @@ const navigate = useNavigate();
         <div className=" w-2/6 flex flex-col justify-center  " id='search-bar'>
         <div className="relative  w-full h-full flex flex-col justify-center items-center">
         
-        <input className="w-5/6  bg-naranjaMolon placeholder-black h-1/5 rounded-md p-5 text-2xl" onChange={search} type="search" placeholder="¿Que estás buscando?"></input>
+        <input id='searchBarInput' className="w-5/6 p-2  bg-naranjaMolon placeholder-black rounded-md h-barraBusqueda text-sm" onChange={search} type="search" placeholder="¿Que estás buscando?"></input>
         <div className=" z-40 absolute top-tumadre  rounded-md  w-5/6" id='searchResult'>
             
             {resultados.map((resultado) => (

@@ -21,6 +21,9 @@ module.exports = {
       rojo:'#04ff00',
       naranjaSeleccionado:'#E2FF00'
  
+    
+
+
     },
 
     fontFamily:{
@@ -37,14 +40,21 @@ module.exports = {
       'postFooterHeight':'10%',
       'postMT':'10%',
       'half':'50%',
-      'comInfo':'20vh'
+      'comInfo':'20vh',
+      'barraBusqueda':'5vh'
      
     
+    },
+
+    screens:{
+     
     },
     
     extend: {},
   },
   plugins: [],
+
+  
 }
 
 // PARA ARRANCAR TAILWIND SE UTILIZA EL SIGUIENTE COMANDO: npx tailwindcss -i [ruta/input.css] -o [ruta/output.css] --watch

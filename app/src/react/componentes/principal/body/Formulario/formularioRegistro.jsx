@@ -90,17 +90,17 @@ const dispatch = useDispatch();
         <TextField type='date' color="secondary"  id="Rbirth_date" label="" variant="filled"></TextField>
         </label>
         <Button onClick={callRegister}   >Registarse</Button> */}
-        <div className='m-3 flex justify-around'>
+        <div className='campoFormularioPrincipal m-3 flex  justify-around'>
         <Input id='Rusername' placeholder="Nombre de usuario" for="Rusername"/>
         <Input id='Rpassword'  placeholder="Contraseña" for="Rpassword" />
         </div>
 
-        <div className='m-3 flex justify-around'>
+        <div className='campoFormularioPrincipal m-3 flex justify-around'>
         <Input id="Rname" placeholder="Nombre" for="Rname"/>
         <Input id="Rmail" placeholder="Correo electrónico" for="Rmail" />
         </div>
 
-        <div className='m-3 flex justify-around'>
+        <div className='campoFormularioPrincipal m-3 flex justify-around'>
         <label htmlFor="Rbirth_date">
         <input id="Rbirth_date" onFocus={(e)=> e.target.type="date" } style={{colorScheme:"dark"}} placeholder='Fecha de nacimiento' type="text" className=" rounded-md py-2 px-4 text-gray-700 border-b-2 text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon"/>
         </label>

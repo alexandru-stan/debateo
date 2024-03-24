@@ -29,6 +29,8 @@ public class UsersController {
 
 	public ResponseEntity<Users> validarLogin(@RequestBody Users credentials) {
 
+		System.out.println("logeao");
+		
 		ServiceResponse<Users> response = servicio.login(credentials.getUsername(), credentials.getPassword());
 
 		return new ResponseEntity<Users>(response.getObj(), response.getStatus());

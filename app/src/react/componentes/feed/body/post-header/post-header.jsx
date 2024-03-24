@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 export const PostHeader = (props) => {
 const navigate = useNavigate();
     return (
-        <div className='post-header h-postHeaderHeight border-b-2 mt-2  border-naranjaMolon  text-white '>
+        <div className='post-header h-postHeaderHeight border-b-2 mt-2 bg-emerald-950  border-naranjaMolon  text-white '>
         <div className=' h-1/4 flex  post-info'>
         <img  style={{borderRadius:'50%', width:'2%',   }} src={props.communityImage} ></img>
         <h6 

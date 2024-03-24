@@ -97,7 +97,7 @@ const isInitialMount = useRef(true);
           <ToggleForm fn={props.fn} hasAccount = {props.hasAccount}/>
           {/* <TextField color="secondary"  id="Lusername" label="Nombre de usuario" variant="filled"></TextField>
           <TextField className='text-neutral-50' color="secondary" id="Lpassword" label="Contraseña" variant="filled"></TextField> */}
-          <div className='m-5 flex justify-around'>
+          <div className='m-5 campoFormularioPrincipal flex justify-around'>
         <Input id='Lusername' placeholder="Nombre de usuario" for="Lusername"/>
         <Input id='Lpassword'  placeholder="Contraseña" for="Lpassword" />
         </div>

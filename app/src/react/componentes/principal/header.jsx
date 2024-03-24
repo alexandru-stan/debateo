@@ -16,7 +16,7 @@ const Header = () => {
     
 
     return (
-        <div className='flex  justify-center border-naranjaMolon border-b-2'  id="header">
+        <div className='flex   justify-center border-naranjaMolon border-b-2'  id="header">
          <Logo ruta={imagen}/>
       
          
