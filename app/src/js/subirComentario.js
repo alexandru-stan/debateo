@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import {SERV_DIR,SERV_PORT} from "../utilities";
 export function subirComentario(comentario,post){
     let currentDate = new Date();
   
@@ -13,7 +13,7 @@ export function subirComentario(comentario,post){
 
     }
 
-    axios.post("http://localhost:8080/comments",comment)
+    axios.post("http://"+SERV_DIR+":"+SERV_PORT+"/comments",comment)
 
     return comment;
 

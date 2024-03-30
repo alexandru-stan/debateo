@@ -10,7 +10,7 @@ export const CommunityInfo = (props) => {
 
 
     return (
-        <div className='community-info flex w-3/6  justify-center '>
+        <div className='community-info bg-emerald-950 flex w-3/6  justify-center '>
   <div className='community-image flex justify-end w-1/4 h-comInfo  '><img src={props.info.communityImage} className='w-full' style={{borderRadius:'50%'}}/></div>
     <div className='info  p-3 w-3/4'>
     <div className='admin'>{props.info.admin}</div>

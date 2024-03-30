@@ -4,6 +4,7 @@ import Post from '../react/componentes/feed/body/post';
 import { Button } from 'react-bootstrap';
 import { formatImage } from './imageFormatting';
 import { deleteFunction } from './DeletePublication';
+import {SERV_DIR,SERV_PORT} from "../utilities";
 
 export async function PostsRequestByCommunity(request,creador,rol){
 
@@ -11,7 +12,7 @@ export async function PostsRequestByCommunity(request,creador,rol){
 let loggedUser = JSON.parse(sessionStorage.getItem('user')).username
 console.log(creador);
 
-    let endpoint =  "http://localhost:8080/posts/byCommunity/"+request.page+"/"+request.state+"/"+loggedUser;
+    let endpoint =  "http://"+SERV_DIR+":"+SERV_PORT+"/posts/byCommunity/"+request.page+"/"+request.state+"/"+loggedUser;
     console.log(request.page+"/////////////"+request.state+"////////////"+loggedUser);
 
     return axios.get(endpoint).then(response=>{

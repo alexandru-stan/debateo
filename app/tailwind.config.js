@@ -15,6 +15,7 @@ module.exports = {
       ...require('tailwindcss/colors'),
       moradoLight: '#444073',
       moradoOscuro:'#171626',
+      moradoFondo:'#1f1e33',
       
       fondoPublicaciones:'#201D54',
       naranjaMolon:'#ff8c00',
@@ -32,11 +33,11 @@ module.exports = {
 
     spacing: {
       'cabecera':'20%',
-      'tumadre':'80%',
+      'topSearchResults':'100%',
       'marginLigero':'10px',
       'alturaPostDefault':'600px',
       'postHeaderHeight':'15%',
-      'postBodyHeight':'70%',
+      'postBodyHeight':'75%',
       'postFooterHeight':'10%',
       'postMT':'10%',
       'half':'50%',

@@ -11,6 +11,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { assign } from "../../../../../redux-store/slices/CommentPost";
+import {SERV_DIR,SERV_PORT} from "../../../../../utilities";
 export const PostFooter = (props) => {
     const nav = useNavigate();
     let postInfo = props.postInfo;
@@ -22,16 +23,16 @@ export const PostFooter = (props) => {
 let loggedUser = JSON.parse(sessionStorage.getItem('user')).username
     function changeLikeStatus(){
         
-        if(!like) axios.post("http://localhost:8080/likes/"+loggedUser+"/"+postInfo.publicationId).then(()=>{
+        if(!like) axios.post("http://"+SERV_DIR+":"+SERV_PORT+"/likes/"+loggedUser+"/"+postInfo.publicationId).then(()=>{
         
         setLikesCount(likesCount+1)
-        postInfo.liked=1;
+        // postInfo.liked=1;
     }
         );
-        else axios.delete("http://localhost:8080/likes/"+loggedUser+"/"+postInfo.publicationId).then(()=>{
+        else axios.delete("http://"+SERV_DIR+":"+SERV_PORT+"/likes/"+loggedUser+"/"+postInfo.publicationId).then(()=>{
           
         setLikesCount(likesCount-1)
-        postInfo.liked=0;
+        // postInfo.liked=0;
 
 }
         );
@@ -45,20 +46,20 @@ let loggedUser = JSON.parse(sessionStorage.getItem('user')).username
 
 
     return (
-        <div className='post-footer  mt-2 flex h-postFooterHeight text-white '>
+        <div style={{}} className='post-footer   flex p-1 text-white '>
             
-               <span className="  w-1/6 " onClick={() => {
+               <span  style={{width:'15%'}} className="  flex items-center  m-1 " onClick={() => {
                 
                 changeLikeStatus();
-                }} title='Me gusta'> <Imagen clase={"w-1/4"} ruta={like?IconoVotado:IconoVotar}/> <span style={{fontSize:'smaller'}}>{likesCount}</span></span>
+                }} title='Me gusta'> <Imagen clase={"w-1/4 "} ruta={like?IconoVotado:IconoVotar}/> <span  style={{ marginLeft:'10%',fontSize:'smaller'}}>{likesCount}</span></span>
                
-               <span  className=" w-1/6 " onClick={()=>{
+               <span style={{width:'15%'}} className=" flex items-center  m-1  " onClick={()=>{
               
                
                 nav("/"+postInfo.publicationId+"/comments");
                
                
-               }} title='Comentar'><Imagen  clase={" w-1/4"}  ruta = {IconoComentar}/> <span style={{fontSize:'smaller'}}>{postInfo.comments}</span></span> 
+               }} title='Comentar'><Imagen  clase={"  w-1/4"}  ruta = {IconoComentar}/> <span style={{marginLeft:'10%',fontSize:'smaller'}}>{postInfo.comments}</span></span> 
                 
                {postInfo.delete}
                 

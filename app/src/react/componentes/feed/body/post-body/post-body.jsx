@@ -5,12 +5,12 @@ export const PostBody = (props) => {
 console.log("PUBLICATIOPN IMAGEEEEEEEEEEEEEEEEEEEEEEEE"+props.publicationImage);
 
     return (
-        <div style={{whiteSpace:'pre-wrap', wordBreak:'break-word'}} className='  h-postBodyHeight  border-b mt-2  border-naranjaMolon  overflow-y-auto text-white whitespace-pre-wrap break-all   post-body'>
-        <p>{props.publicationBody}</p>
-        <div  className='image w-full flex justify-center h-5/6 '>
+        <div style={{overflowWrap:'break-word',maxHeight:'75%', overflow:'auto' }} className=' p-1  border-b   border-naranjaMolon   text-white   post-body'>
+        <div style={{}} className='  p-2 '>{props.publicationBody}</div>
+        {props.publicationImage!=null?<div style={{maxHeight:'23em'}}  className='  p-2 flex  justify-center  '>
         {/* {props.publicationImage} */}
         {props.publicationImage}
-        </div>
+        </div>:null}
         </div>
     )
 }

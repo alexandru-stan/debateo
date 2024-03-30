@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { TextField } from "@mui/material";
 import { Button } from "react-bootstrap";
+import {SERV_DIR,SERV_PORT} from "../../../utilities";
 const $ = require('jquery');
 export const Mods = (props) => {
 
@@ -16,14 +17,14 @@ function deleteMod(event){
     let mod = event.target.id;
     console.log(mod);
 
-   axios.put("http://localhost:8080/subscriptions/mods/downgrade/"+ mod+"/"+props.id);
+   axios.put("http://"+SERV_DIR+":"+SERV_PORT+"/subscriptions/mods/downgrade/"+ mod+"/"+props.id);
    setA(!a);
 }
 
 
 function addMod(){
 console.log("A");
-    axios.post("http://localhost:8080/subscriptions/mods/add/"+ $('#user').val()+"/"+props.id).then(response => {
+    axios.post("http://"+SERV_DIR+":"+SERV_PORT+"/subscriptions/mods/add/"+ $('#user').val()+"/"+props.id).then(response => {
    console.log(response.data.username);
         setMods((mods) => mods.concat(
         <div className='mod'>
@@ -44,7 +45,7 @@ console.log("A");
         if(event.target.value.length!=0){
             clearTimeout(timerId);
             timerId = setTimeout(()=>{
-            axios.get("http://localhost:8080/users/search/"+$('#user').val()).then(response=>{
+            axios.get("http://"+SERV_DIR+":"+SERV_PORT+"/users/search/"+$('#user').val()).then(response=>{
          
                 if(response.data)   $("#submit").prop("disabled",false)
             })
@@ -57,7 +58,7 @@ console.log("A");
 ;
 useEffect(()=> {
     $("#submit").prop("disabled",true)
-axios.get("http://localhost:8080/subscriptions/mods/"+props.id).then((response)=>{
+axios.get("http://"+SERV_DIR+":"+SERV_PORT+"/subscriptions/mods/"+props.id).then((response)=>{
     console.log(response);
 
     if(response.data.length==0){

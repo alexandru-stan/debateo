@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRef } from "react";
 import { PostsRequest } from '../../../js/PostsRequest';
 import { UserData } from "./body/UserData";
+import { Mensajes } from '../reusable/mensajes/mensajes';
 export const Body = () => {
     
 
@@ -77,10 +78,10 @@ if(myRef.current!=null){
 
 
     return (
-        <div className="text-white h-5/6 mt-postMT" id='profile-body'>
-       <div id='userInfo'><UserData/></div>
-       <div id='userPosts'>{postsArr} </div>
-       
+        <div className="text-white flex justify-center w-2/4 p-5 mt-postMT bg-emerald-950" id='profile-body'>
+       <UserData/>
+       {/* <div id='userPosts ' className="bg-yellow-950">{postsArr} </div> */}
+       <Mensajes/>
         </div>
     )
 }

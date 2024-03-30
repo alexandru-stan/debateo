@@ -12,6 +12,7 @@ import { CrearPublicacion } from './body/crearPublicacion';
 import admin from '../../../assets/img/admin.png';
 import crown from '../../../assets/img/crown.png';
 import axios from 'axios';
+import {SERV_DIR,SERV_PORT} from "../../../utilities";
 export const Body = (props) => {
 const [state,setState] = useState(localStorage.getItem('cid'));
 const [info,setInfo] = useState({});
@@ -62,13 +63,13 @@ function changeSub(subscription){
 let userData = JSON.parse(sessionStorage.getItem("user"))
   if(subscription==null) {
     console.log(subscription);
-    axios.post("http://localhost:8080/subscriptions/sub/"+loggedUser+"/"+state);
+    axios.post("http://"+SERV_DIR+":"+SERV_PORT+"/subscriptions/sub/"+loggedUser+"/"+state);
    userData.subsCount++;
   sessionStorage.setItem('user',JSON.stringify(userData))
     setSubscription("MEMBER");
   }
   else {
-    axios.delete("http://localhost:8080/subscriptions/unsub/"+loggedUser+"/"+state);
+    axios.delete("http://"+SERV_DIR+":"+SERV_PORT+"/subscriptions/unsub/"+loggedUser+"/"+state);
     userData.subsCount--;
     sessionStorage.setItem('user',JSON.stringify(userData));
     setSubscription(null);

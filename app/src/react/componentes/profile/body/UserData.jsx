@@ -21,27 +21,29 @@ let disabled='disabled';
     let user = JSON.parse(sessionStorage.getItem('user'));
 console.log(user);
     return (
-        <div id='userData'>
-  <div className="input flex">
-    <p className="">Nombre de usuario: </p>
+        <div id='userData' className='bg-zinc-950 p-2  w-full'>
+    <div className='flex bg-red-950 justify-center '>
+  <div className="input border w-2/4 flex justify-center">
+    <p className="text-naranjaMolon">Nombre de usuario: </p>
     <p>{user.username}</p>
   </div>
   
-  <div className="input flex">
-    <p>Nombre:</p>
-    <p className="">{user.username}</p>
+  <div className="input w-2/4 border w-2/4 flex justify-center">
+    <p  className="text-naranjaMolon">Nombre:</p>
+    <p className="">{user.name}</p>
   </div>
-
-  <div className="input flex">
-    <p>Correo:</p>
+</div>
+<div className='flex justify-around'>
+  <div className="input flex border w-2/4 flex justify-center">
+    <p  className="text-naranjaMolon">Correo:</p>
     <p className="">{user.mail}</p>
   </div>
 
-  <div className="input flex">
-    <p>Fecha de nacimiento:</p>
+  <div className="input flex border w-2/4 flex justify-center">
+    <p  className="text-naranjaMolon">Fecha de nacimiento:</p>
     <p className="">{user.birth_date}</p>
   </div>
-  
+  </div>
   {/* <Button onClick={ModifyUserData}>Realizar modificaciones</Button> */}
 </div>
     )

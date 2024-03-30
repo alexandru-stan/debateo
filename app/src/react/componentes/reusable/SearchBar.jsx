@@ -39,15 +39,15 @@ const navigate = useNavigate();
 
 
     return(
-        <div className=" w-2/6 flex flex-col justify-center  " id='search-bar'>
-        <div className="relative  w-full h-full flex flex-col justify-center items-center">
+        <div style={{}} className="relative w-2/6    flex flex-col justify-center items-center  flex flex-col  justify-center  " id='search-bar'>
         
-        <input id='searchBarInput' className="w-5/6 p-2  bg-naranjaMolon placeholder-black rounded-md h-barraBusqueda text-sm" onChange={search} type="search" placeholder="¿Que estás buscando?"></input>
-        <div className=" z-40 absolute top-tumadre  rounded-md  w-5/6" id='searchResult'>
+        
+        <input style={{ outline:'none', backgroundColor:'#1f1e33',border:'1px solid #ff8c00' }} id='searchBarInput' className="w-full p-2   text-white placeholder-white   bg-moradoOscuro rounded-md  text-sm" onChange={search} type="search" placeholder="¿Que estás buscando?"></input>
+        <div className=" z-40 absolute top-topSearchResults  rounded-md  w-full" id='searchResult'>
             
             {resultados.map((resultado) => (
           <div 
-            className="cursor-pointer hover:bg-naranjaMolon text-2xl bg-moradoLight text-white p-2" 
+            className="cursor-pointer   hover:bg-naranjaMolon text-2xl bg-moradoFondo text-white p-2" 
             onClick={() => {
             dispatch(changeId(resultado.communityId));
             localStorage.setItem('cid',resultado.communityId);
@@ -57,7 +57,7 @@ const navigate = useNavigate();
             }} key={resultado.communityId}>{resultado.communityName}</div>
         ))}
 
-        </div>
+        
         </div>
         
         </div>

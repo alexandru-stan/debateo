@@ -81,8 +81,8 @@ const [selectedPost, setSelectedPost] = useState();
           
           {selectedPost}
 
-        <div  id='comment-section' className=" w-full flex flex-col items-center mt-5">
-        <div className=" bg-moradoOscuro w-2/4 flex flex-row justify-center items-center" id='comment-box'>
+        <div  id='comment-section' className=" w-2/4 flex flex-col items-center mt-5">
+        <div className=" bg-moradoOscuro w-full flex flex-row justify-center items-center" id='comment-box'>
         
         <div class="w-full bg-moradoOscuro">
   <textarea id="text" style={{filter:"brightness(125%)"}}class="  w-full rounded-md text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro border-b-2 border-gray-300 focus:outline-none focus:border-naranjaMolon text-gray-700 py-2 pl-2 pr-8 transition-all duration-300" placeholder="Escribe tu comentario..."/>

@@ -6,24 +6,23 @@ const RespuestaServidor = (props) => {
     let severity;
     switch(true){
         case props.codigo>=200 && props.codigo<=299:
-            severity = "success";
+            severity = "#265500";
             break;
 
         case props.codigo>=400 && props.codigo <=499:
-            severity = "error";
+            severity = "#C82E13";
             break;
         default:
-            severity = "info";
+            severity = "yellow";
             break;
     }
 
 return(
 
-<Alert  id='registerResponse' variant='filled' severity={severity}>
-<AlertTitle>{props.texto}</AlertTitle>
 
 
-</Alert>
+<div style={{backgroundColor:severity}} className="w-full text-center text-white font-bold py-2 px-3 rounded" id='registerResponse'>{props.texto}</div>
+
 
 );
 

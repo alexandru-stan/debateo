@@ -42,7 +42,7 @@ export const Comment = (props)=> {
 
 
 return (
-    <div className='comment backdrop-brightness-125 w-2/4 mt-2 rounded-md p-2'>
+    <div style={{overflowWrap:'break-word'}} className='comment backdrop-brightness-125  w-full mt-2 rounded-md p-2'>
     <div className="flex flex-row justify-between">
       <h5 className="text-naranjaMolon">{props.username}</h5>
       <h5>{fechaFinal}</h5>

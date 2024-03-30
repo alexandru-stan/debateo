@@ -90,16 +90,16 @@ const isInitialMount = useRef(true);
     return (
 
       
-      <ThemeProvider theme={theme} >
+     
       
         <div  className=' backdrop-brightness-125 border-naranjaMolon border-2 rounded-lg p-3 text-white flex flex-col' id='form'>
-        <h1 className='text-center'>Bienvenido de vuelta!</h1>
+        <p style={{fontSize:'1.5em'}} className='text-center bienvenida'>Bienvenido</p>
           <ToggleForm fn={props.fn} hasAccount = {props.hasAccount}/>
           {/* <TextField color="secondary"  id="Lusername" label="Nombre de usuario" variant="filled"></TextField>
           <TextField className='text-neutral-50' color="secondary" id="Lpassword" label="Contraseña" variant="filled"></TextField> */}
-          <div className='m-5 campoFormularioPrincipal flex justify-around'>
-        <Input id='Lusername' placeholder="Nombre de usuario" for="Lusername"/>
-        <Input id='Lpassword'  placeholder="Contraseña" for="Lpassword" />
+          <div className='m-3 campoFormularioPrincipal flex justify-around'>
+        <input className=" rounded-md py-2 px-4 text-gray-700 border-b-2 text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon" id='Lusername' placeholder="Nombre de usuario" for="Lusername"/>
+        <input className=" rounded-md py-2 px-4 text-gray-700 border-b-2 text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon" id='Lpassword'  placeholder="Contraseña" for="Lpassword" />
         </div>
         <div >
         <label className='w-full' htmlFor='Rsubmit'>
@@ -107,21 +107,11 @@ const isInitialMount = useRef(true);
         </label>
         </div>
           
-          {/* <label htmlFor='Lusername'>
-          Nombre de usuario:
-          <input className='text-black bg-transparent border-b-2 border-gray-300 focus:outline-none focus:border-blue-500 text-gray-700 py-2 pl-2 pr-8 transition-all duration-300' id="Lusername" type='text'></input>
-          </label>
-          <label htmlFor='Lpassword'>
-          Contraseña
-          <input  className='text-black' id="Lpassword" type='password'></input>
-          </label>
-          <label htmlFor='Rsubmit'>
-          <button className='border-4 border-emerald-500 hover:border-naranjaMolon' onClick={callLogin}>Enviar</button>
-        </label> */}
+        
           <RespuestaServidor  codigo={codigoRespuesta} texto={mensajeRespuesta}/>
           </div>
          
-        </ThemeProvider>
+      
    
       
     )

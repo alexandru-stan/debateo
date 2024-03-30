@@ -1,4 +1,21 @@
 
+@media(max-width:1200px){
+  .publicacion,#comment-section{
+    width: 60%;
+  }
+}
+
+@media(max-width:1000px){
+ 
+ 
+}
+
+
+.placeholder-center::-webkit-input-placeholder {
+  text-align: center;
+}
+
+  
   @media  (max-width: 900px){
     /* CSS styles to apply when the viewport width is between 600px and 900px */
         #carusel{
@@ -6,24 +23,20 @@
         }
   }
 
-  @media  (max-width: 433px){
-    /* CSS styles to apply when the viewport width is between 600px and 900px */
-        .campoFormularioPrincipal{
-            flex-direction: column !important;
-            align-items: center;
-        }
-  }
-  
+  @media(max-width:800px){
 
-  @media(max-width:1000px){
+    .publicacion,#comment-section{
+      width: 80%;
+    }
+
     body{
     
       padding:5% !important; 
       
     }
-    .publicacion{
-     
-      width:100%;
+
+    #menuMovil{
+      display:block;
     }
 
     #feed{
@@ -33,14 +46,16 @@
       justify-content: center;
     }
 
-    #menu {
-      display:none;
-    }
 
    
 
+   #header-feed{
+    flex-direction: column;
+   
+   }
    #header-logo{
-    display: none;
+    width:100%;
+    padding-bottom:10px;
    }
 
     #search-bar{
@@ -49,12 +64,7 @@
  
      
     }
-    #searchBarInput{
-      width: 100% !important;
-      height:5vh !important;
-      padding:2%;
-      border: none !important;
-    }
+  
 
     .community-info {
       width: 100% ;
@@ -63,16 +73,13 @@
     }
 
     .community-image{
-      /* background-color: red; */
+     
       width:60%; 
     }
 
-    .community-body{
-      /* background-color:red; */
-      
-    }
+   
     #communityButtons{
-      /* background-color: red; */
+    
       width: 100%;
     }
 
@@ -81,6 +88,79 @@
       width: 100%;
     }
 
+   .Reco-Imagen {
+    width:100%;
+   }
+  
+    .post-footer span img{
 
+     
+     width: 50%;
+
+    }
+    #menu {
+      display:none;
+    }
+
+    .letraObjetoMenu{
+
+      font-size:0.8rem !important;
+
+    }
+  
+
+   
   }
 
+
+  
+@media  (max-width: 500px){
+  /* CSS styles to apply when the viewport width is between 600px and 900px */
+  .publicacion,#comment-section{
+    color:'red' !important;
+    width:100%;
+  }
+
+
+  .bienvenida,.mensajePrincipal{
+  
+    font-size:1em !important;
+  }
+  
+
+  .campoFormularioPrincipal{
+          flex-direction: column !important;
+          align-items: center;
+        
+      }
+
+      #Recommendations{
+        width: 100%;
+        
+        
+      
+      }
+      #recommendationText * {
+        font-size: 100%;
+       
+      }
+
+      #recommendationText {
+        padding:2px !important;
+      }
+  
+      .reco-cards{
+        flex-direction: column;
+        width: 100%;
+        
+  
+      }
+  
+   
+  
+      #individualReco   {
+       width: 100%;
+        
+      }
+
+}

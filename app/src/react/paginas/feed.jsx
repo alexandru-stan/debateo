@@ -24,7 +24,7 @@ const nav = useNavigate();
 
     return user ? (
        
-        <div className=" pt-1   moradoOscuro" id='feed'>
+        <div style={{ height:'100%'}} className=" pt-1   " id='feed'>
        <Header/>
         <Body/>
          </div>

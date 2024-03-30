@@ -22,16 +22,16 @@ let user = JSON.parse(sessionStorage.getItem('user')).username;
     return(
         
         <div className="mt-postMT flex justify-center " id="createForm">
-        <ThemeProvider theme= {theme}>
+        
         <form className="flex flex-col items-center w-full m-2 text-white" ref={form} id="form" onSubmit={ (event) => {event.preventDefault();  subirPublicacion(form,props.communityId,user)}}>
-           <input  className=" font-bold m-2 bg-naranjaMolon w-1/4 h-2/6" placeholder="Título" type="text" name='titulo' id='titulo'></input>
-           <textarea className=" font-bold m-2 bg-naranjaMolon w-1/4 h-2/6" placeholder="Cuerpo" name='cuerpo' rows={5} id='cuerpo'></textarea>
+           <input  className="bg-moradoLight text-white px-4 py-2 rounded-lg  placeholder-white  focus:outline-none focus:ring-2 focus:ring-naranjaMolon" placeholder="Título" type="text" name='titulo' id='titulo'></input>
+           <textarea className=" placeholder-center bg-moradoLight text-white px-4 py-2 rounded-lg  placeholder-white  focus:outline-none focus:ring-2 focus:ring-naranjaMolon" placeholder="Cuerpo" name='cuerpo' rows={5} id='cuerpo'></textarea>
            <input name='image' type="file" id='imagen' accept="image/png, image/gif, image/jpeg" />
     {/* <img src={image} alt="aaa"></img> */}
       
-           <Button type="submit">Enviar</Button>
+          <input type='submit'></input>
         </form>
-           </ThemeProvider>
+          
         </div>
 
 
