@@ -131,9 +131,9 @@ console.log("CREADOR ES"+ creador);
 console.log("SUSCRIPCION ES"+subscription);
 
 
-  if(creadorState==loggedUser) setSubButton(<Button onClick={()=> navigate("/admin/"+state)} id='administrar'>Administrar</Button>)
-  else if ( subscription!=null) setSubButton(<Button onClick={()=> {changeSub(subscription)}} id='Unsub'>Desuscribirse</Button>)
-  else setSubButton(<Button onClick={()=> {changeSub(subscription)}} id='Sub'>Suscribirse</Button>)
+  if(creadorState==loggedUser) setSubButton(<button className=" hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-naranjaMolon text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon" onClick={()=> navigate("/admin/"+state)} id='administrar'>Administrar</button>)
+  else if ( subscription!=null) setSubButton(<button className="hover:bg-moradoLight rounded-md p-2  text-gray-700 border-2 border-naranjaMolon text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none   focus:border-naranjaMolon" onClick={()=> {changeSub(subscription)}} id='Unsub'>Desuscribirse</button>)
+  else setSubButton(<button className="hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-naranjaMolon text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon" onClick={()=> {changeSub(subscription)}} id='Sub'>Suscribirse</button>)
 
 },[subscription,creadorState])
 
@@ -163,13 +163,8 @@ if(myRef.current!=null && postsArr.length>0){
 
 
     return (<div className='mt-postMT flex flex-col items-center community-body'>
-        <CommunityInfo info={info}/>
-        <div id='communityButtons' className=' flex flex-row justify-evenly w-1/4'>
-        <Button onClick={() => {
-          navigate("/upload/"+state);
-        }}>Crear publicación</Button>
-    {SubButton}
-    </div>
+        <CommunityInfo subButton ={SubButton} state={state} info={info}/>
+       
     {postsArr}
        
 

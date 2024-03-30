@@ -27,9 +27,7 @@ module.exports = {
 
     },
 
-    fontFamily:{
-      
-    },
+    
 
     spacing: {
       'cabecera':'20%',

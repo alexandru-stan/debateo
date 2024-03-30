@@ -14,7 +14,7 @@ function Principal(){
 
     return (
 
-        <div className="  flex flex-col">
+        <div className="  font-sans flex flex-col">
             <Header/>
             <Body/>
 
