@@ -3,7 +3,8 @@ import IconoParaTi from "../../../../assets/img/menuIcons/parati.png";
 import IconoPerfil from "../../../../assets/img/menuIcons/perfil.png";
 import IconoMensajes from "../../../../assets/img/menuIcons/mensajes.png";
 import IconoComunidades from "../../../../assets/img/menuIcons/crear.png";
-import IconoMenuMovil from "../../../../assets/img/menuIcons/menuMovil.png"
+import IconoMenuMovil from "../../../../assets/img/menuIcons/menuMovil.png";
+import RetrieveMessages from "../../../../js/RetrieveMessages";
 import Imagen from "../img";
 import { useNavigate } from "react-router-dom";
 export const Menu = () => {
@@ -25,10 +26,10 @@ export const Menu = () => {
 
 
             
-            <div  style={{width:'20%'}} className="  hover:border hover:rounded-lg border-naranjaMolon p-1  m-1   cursor-pointer hover:bg-moradoLight    h-2/4 flex flex-col justify-center items-center" onClick={() => 
-    
-    $("#mensajes").animate({height: 'toggle',width:'toggle'}, 100)
-    } id='menu-3'>
+            <div   style={{width:'20%'}} className="  hover:border hover:rounded-lg border-naranjaMolon p-1  m-1   cursor-pointer hover:bg-moradoLight    h-2/4 flex flex-col justify-center items-center" onClick={() => {
+                 
+                 $("#mensajes").animate({height: 'toggle',width:'toggle'}, 100)
+             } } id='menu-3'>
             <Imagen style={{maxWidth:'50%', height:'2rem'}}  ruta={IconoMensajes}></Imagen>
             <div className="letraObjetoMenu"  style={{fontSize:'0.8rem'}}>Mensajes</div>
             </div> 

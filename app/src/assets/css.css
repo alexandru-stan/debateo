@@ -3,6 +3,9 @@
 *{
  
   font-family: 'Lato';
+  ::placeholder {
+    text-align: center;
+  }
   
 }
 

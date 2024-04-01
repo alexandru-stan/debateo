@@ -1,10 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 // import "../../../../assets/styles/Reusable.css";
-import { Chat } from "./chat";
-import {NuevoChat} from "./nuevoChat";
+import { Chat } from "./children/chat";
+import {NuevoChat} from "./children/nuevoChat";
+import RetrieveMessages from "../../../../js/RetrieveMessages";
+
 const $ = require('jquery');
 export const Mensajes = (props) => {
-
+const [arrMensajes,setArrMensajes] = useState(null);
+  $('#menu-3').on("click",() => $('#mensajes').is(':hidden') ?
+  
+  RetrieveMessages().then(response => console.log(response.data))
+  
+  : null);
 
     useEffect(()=>{
 
@@ -18,24 +25,7 @@ export const Mensajes = (props) => {
 
         <div style={{direction:"rtl"}} className="bg-zinc-950 overflow-auto p-3 w-2/6" id='chatList'>
         <NuevoChat/>  
-           <Chat/>
-           <Chat/>
-           <Chat/>
-           <Chat/>
-           <Chat/>
-           <Chat/>
-           <Chat/>
-           <Chat/>
-           <Chat/>
-           <Chat/>
-           <Chat/>
-           <Chat/>
-           <Chat/>
-           <Chat/>
-           <Chat/>
-           <Chat/>
-           <Chat/>
-           <div className="bg-emerald-300">aaa</div>
+    
         
            
 

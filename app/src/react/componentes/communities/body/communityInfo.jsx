@@ -16,7 +16,7 @@ export const CommunityInfo = (props) => {
     <div className='  communityImageAndInfo flex flex-col '>
    
     <div className='flex items-center'>
-    <div className='community-image  flex justify-center items-center  h-comInfo  w-1/6 '><img src={props.info.communityImage} className='imagenComunidad border-2 border-naranjaMolon' style={{borderRadius:'50%'}}/></div>
+    <div className='community-image  flex justify-center items-center  h-comInfo  w-1/6 '><img src={props.info.communityImage} className='imagenComunidad ' style={{borderRadius:'50%',height:'5rem'}}/></div>
 
     
             <div className=' community-name p-3  w-5/6 '>

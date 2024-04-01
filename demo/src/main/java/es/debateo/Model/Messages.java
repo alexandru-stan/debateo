@@ -1,0 +1,72 @@
+package es.debateo.Model;
+
+import java.util.Date;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
+public class Messages {
+
+	@Id
+	int messageId;
+	@Column
+	String messageBody;
+	@Column
+	String messageSender;
+	@Column
+	String messageReciever;
+	@Column
+	Date messageDate;
+	
+	
+	
+	
+	
+	public Messages() {
+		super();
+	}
+	public Messages(int messageId, String messageBody, String messageSender, String messageReciever, Date messageDate) {
+		super();
+		this.messageId = messageId;
+		this.messageBody = messageBody;
+		this.messageSender = messageSender;
+		this.messageReciever = messageReciever;
+		this.messageDate = messageDate;
+	}
+	public int getMessageId() {
+		return messageId;
+	}
+	public void setMessageId(int messageId) {
+		this.messageId = messageId;
+	}
+	public String getMessageBody() {
+		return messageBody;
+	}
+	public void setMessageBody(String messageBody) {
+		this.messageBody = messageBody;
+	}
+	public String getMessageSender() {
+		return messageSender;
+	}
+	public void setMessageSender(String messageSender) {
+		this.messageSender = messageSender;
+	}
+	public String getMessageReciever() {
+		return messageReciever;
+	}
+	public void setMessageReciever(String messageReciever) {
+		this.messageReciever = messageReciever;
+	}
+	public Date getMessageDate() {
+		return messageDate;
+	}
+	public void setMessageDate(Date messageDate) {
+		this.messageDate = messageDate;
+	}
+
+	
+	
+	
+}
