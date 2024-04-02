@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 // import "../../../../assets/styles/Reusable.css";
 import { Chat } from "./children/chat";
 import {NuevoChat} from "./children/nuevoChat";
-import RetrieveMessages from "../../../../js/RetrieveMessages";
+import RetrieveChats from "../../../../js/RetrieveChats.js"
 
 const $ = require('jquery');
 export const Mensajes = (props) => {
-const [arrMensajes,setArrMensajes] = useState(null);
+const [arrChats,setArrChats] = useState(null);
   $('#menu-3').on("click",() => $('#mensajes').is(':hidden') ?
   
-  RetrieveMessages().then(response => console.log(response.data))
+ RetrieveChats()
   
   : null);
 
