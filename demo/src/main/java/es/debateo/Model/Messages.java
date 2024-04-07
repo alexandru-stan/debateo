@@ -16,23 +16,19 @@ public class Messages {
 	@Column
 	String messageSender;
 	@Column
-	String messageReciever;
+	String messageReceiver;
 	@Column
 	Date messageDate;
 	
 	
 	
 	
-	
-	public Messages() {
-		super();
-	}
-	public Messages(int messageId, String messageBody, String messageSender, String messageReciever, Date messageDate) {
+	public Messages(int messageId, String messageBody, String messageSender, String messageReceiver, Date messageDate) {
 		super();
 		this.messageId = messageId;
 		this.messageBody = messageBody;
 		this.messageSender = messageSender;
-		this.messageReciever = messageReciever;
+		this.messageReceiver = messageReceiver;
 		this.messageDate = messageDate;
 	}
 	public int getMessageId() {
@@ -53,11 +49,11 @@ public class Messages {
 	public void setMessageSender(String messageSender) {
 		this.messageSender = messageSender;
 	}
-	public String getMessageReciever() {
-		return messageReciever;
+	public String getMessageReceiver() {
+		return messageReceiver;
 	}
-	public void setMessageReciever(String messageReciever) {
-		this.messageReciever = messageReciever;
+	public void setMessageReceiver(String messageReceiver) {
+		this.messageReceiver = messageReceiver;
 	}
 	public Date getMessageDate() {
 		return messageDate;
@@ -65,8 +61,15 @@ public class Messages {
 	public void setMessageDate(Date messageDate) {
 		this.messageDate = messageDate;
 	}
-
 	
 	
 	
 }
+	
+	
+	
+	
+	
+	
+	
+	

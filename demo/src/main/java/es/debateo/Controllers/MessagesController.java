@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.debateo.DTO.ServiceResponse;
-import es.debateo.Model.Messages;
 import es.debateo.Services.MessagesServices;
+import jakarta.persistence.Tuple;
 
 @RestController
 @RequestMapping("/messages")
@@ -22,13 +22,18 @@ public class MessagesController {
 	
 	
 	@GetMapping("/RetrieveChats/{username}")
-	public ResponseEntity<List<String>> RetrieveChats(@PathVariable String username) {
+	public ResponseEntity<List<Object>> RetrieveChats(@PathVariable String username) {
 	
-		ServiceResponse<String> respuesta = services.RetrieveChats(username);
+		ServiceResponse<Object> respuesta = services.RetrieveChats(username);
 		
-		return new ResponseEntity<List<String>>(respuesta.getLista(),respuesta.getStatus());
+		return new ResponseEntity<List<Object>>(respuesta.getLista(),respuesta.getStatus());
 		
 	}
+	
+	
+
+	
+	
 	
 	
 }

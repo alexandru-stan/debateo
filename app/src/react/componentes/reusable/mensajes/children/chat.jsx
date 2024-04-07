@@ -3,9 +3,14 @@ import React from "react";
 export const Chat = (props) => {
 
     return(
-    <div className='chat bg-moradoLight border '>
-        <div className='imagenPerfil'>ImagenPerfil</div>
-        <div className='nombreUsuario'>NombreUsuario</div>
+    <div style={{height:'5rem', direction:'ltr'}} className='chat  bg-moradoFondo hover:cursor-pointer  flex-col flex m-2 justify-between rounded-lg  hover:bg-moradoLight hover:cursor '>
+        <div id='chatInfo' className='flex justify-between ' >
+        <div className='nombreUsuario p-2 text-naranjaMolon '>{props.interactuer}</div>
+        <div className='p-2 text-naranjaMolon'>{props.lastInteraction}</div>
+        
+       
+        </div>
+        <div className=' text-left p-2'>{props.lastMessage}</div>
     </div>
     );
 }

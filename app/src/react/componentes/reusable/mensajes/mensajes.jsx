@@ -2,30 +2,45 @@ import React, { useEffect, useState } from "react";
 // import "../../../../assets/styles/Reusable.css";
 import { Chat } from "./children/chat";
 import {NuevoChat} from "./children/nuevoChat";
-import RetrieveChats from "../../../../js/RetrieveChats.js"
+import RetrieveChats from "../../../../js/RetrieveChats";
+import { ChatActual } from "./children/chatActual";
 
 const $ = require('jquery');
 export const Mensajes = (props) => {
-const [arrChats,setArrChats] = useState(null);
+const [arrChats,setArrChats] = useState([]);
   $('#menu-3').on("click",() => $('#mensajes').is(':hidden') ?
   
- RetrieveChats()
-  
+RetrieveChats().then( r => {
+let tempArr = [];
+  r.data.forEach(e=>{
+
+    tempArr.push(<Chat interactuer={e[0]} lastInteraction={e[1]} lastMessage={e[3]}/>);
+
+
+})
+setArrChats(tempArr);
+}
+
+
+
+)
+
   : null);
 
     useEffect(()=>{
 
-      $('#mensajes').hide();
+    $("#mensajes").hide();
         
 
-    })
+    },[]);
 
     return( 
-     <div style={{height:'30rem', fontSize:'1rem', position:'fixed', top:'50%', left:'50%' }} className="bg-emerald-950 flex w-2/4" id='mensajes'>
+     <div style={{border:'1px solid #ff8c00',height:'30rem', fontSize:'1rem', position:'fixed', top:'50%', left:'50%' }} className="flex w-2/4 bg-moradoOscuro rounded-lg " id='mensajes'>
 
-        <div style={{direction:"rtl"}} className="bg-zinc-950 overflow-auto p-3 w-2/6" id='chatList'>
+        <div style={{direction:"rtl"}} className=" overflow-auto p-3 w-2/6" id='chatList'>
         <NuevoChat/>  
-    
+        {arrChats}
+       
         
            
 
@@ -33,8 +48,8 @@ const [arrChats,setArrChats] = useState(null);
           
            
         </div>
-        <div id='chatActual' className=" bg-red-950 w-4/6 p-3">
-            <div>CHAT ACTUAL</div>
+        <div  className=" bg-moradoFondo w-4/6">
+           <ChatActual/>
         </div>
 
 
