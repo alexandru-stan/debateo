@@ -15,7 +15,7 @@ useEffect(() => {
         
         let response = (await getRecommendations()).data;
        
-        console.log(response);
+        
         let communityArr=[];
         
         for(let i=0;i<response.length;i++){
@@ -40,7 +40,7 @@ useEffect(() => {
 
 },[])
     
-    console.log(state);
+    
     
     
    

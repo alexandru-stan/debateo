@@ -15,7 +15,7 @@ import {SERV_DIR,SERV_PORT} from "../../../../../utilities";
 export const PostFooter = (props) => {
     const nav = useNavigate();
     let postInfo = props.postInfo;
-    console.log("REFE"+ postInfo.referencia);
+    
     const [like,setLike] = useState(postInfo.liked==1?true:false);
     const [likesCount,setLikesCount] = useState(postInfo.likes);
 

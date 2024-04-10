@@ -589,14 +589,6 @@ video {
   height: 100%;
 }
 
-.h-3\/6 {
-  height: 50%;
-}
-
-.h-5\/6 {
-  height: 83.333333%;
-}
-
 .w-1\/4 {
   width: 25%;
 }
@@ -716,11 +708,6 @@ video {
   border-color: rgb(255 140 0 / var(--tw-border-opacity));
 }
 
-.border-red-950 {
-  --tw-border-opacity: 1;
-  border-color: rgb(69 10 10 / var(--tw-border-opacity));
-}
-
 .border-b-naranjaMolon {
   --tw-border-opacity: 1;
   border-bottom-color: rgb(255 140 0 / var(--tw-border-opacity));
@@ -759,11 +746,6 @@ video {
 .bg-zinc-950 {
   --tw-bg-opacity: 1;
   background-color: rgb(9 9 11 / var(--tw-bg-opacity));
-}
-
-.bg-red-50 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(254 242 242 / var(--tw-bg-opacity));
 }
 
 .text-left {
@@ -927,6 +909,44 @@ video {
   }
   
 }
+#conversacion{
+  display: flex;
+  flex-direction: column-reverse; /* 'column' for start, 'column-reverse' for end */
+  overflow-y: auto; 
+}
+.incomingMessageBubble {
+  
+  border-radius:0 15px 15px 15px; /* top-left, top-right, bottom-right, bottom-left */
+  padding: 10px 15px;
+  max-width: 70%; /* Adjust according to your layout */
+  margin: 10px; /* Adjust as needed */
+}
+
+.outgoingMessageBubble{
+  border-radius:15px 15px 0px 15px; /* top-left, top-right, bottom-right, bottom-left */
+  padding: 10px 15px;
+  max-width: 70%; /* Adjust according to your layout */
+  margin: 10px; /* Adjust as needed */
+  align-self: flex-end;
+}
+
+
+#chatBox {
+  
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  outline: none;
+
+}
+
+#chatBox:focus {
+  border-color: #ff8c00; /* Change focus color as needed */
+}
+
+
+
+
 
 
 @media(max-width:1200px){

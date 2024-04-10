@@ -3,7 +3,7 @@ import {SERV_DIR,SERV_PORT} from "../utilities";
 export function createCommunity(form){
 
 let formData = new FormData(form.current);
-console.log(formData);
+
 formData.append('creator',JSON.parse(sessionStorage.getItem('user')).username);
 
 

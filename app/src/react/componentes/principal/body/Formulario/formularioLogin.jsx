@@ -32,7 +32,7 @@ const navigate = useNavigate();
  function callLogin(){
 
   Login().then(response => {
-    console.log(response);
+    
 
     sessionStorage.setItem('user',JSON.stringify(response.data));
 

@@ -39,5 +39,12 @@ public interface messagesRepo extends JpaRepository<Messages,Integer> {
             "    interactuer IS NOT NULL"
             + " ORDER BY m1.last_interaction DESC",nativeQuery=true)
 	List<Object> RetrieveChats(@Param("username") String username);
+	
+	
+	@Query(value=""
+			+ "SELECT new es.debateo.Model.Messages(m.messageId,m.messageBody,m.messageSender,m.messageReceiver,m.messageDate) FROM Messages m "
+			+ " WHERE m.messageSender = :username AND m.messageReceiver = :interactuer	OR m.messageSender = :interactuer AND m.messageReceiver = :username "
+			+ " ORDER BY m.messageDate DESC ")
+	List<Messages> getMessages(@Param("username") String username, @Param("interactuer") String interactuer);
 
 }

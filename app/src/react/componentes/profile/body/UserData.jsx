@@ -19,7 +19,7 @@ let disabled='disabled';
  
 
     let user = JSON.parse(sessionStorage.getItem('user'));
-console.log(user);
+
     return (
         <div id='userData' className='bg-zinc-950 p-2  w-full'>
     <div className='flex bg-red-950 justify-center '>

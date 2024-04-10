@@ -15,7 +15,7 @@ export async function PostsRequest(request,setPostsArr){
     let endpoint =  "http://"+SERV_DIR+":"+SERV_PORT+"/posts/"+request.loggedUser+"/"+request.page;
 
     return axios.get(endpoint).then(response=>{
-      console.log(response.data);
+      
     let arr = response.data.content;
  
    if(response.data.last){
@@ -25,7 +25,7 @@ export async function PostsRequest(request,setPostsArr){
     let posts = new Array(response.data.numberOfElements);
     for(let i=0;i<posts.length;i++){
 
-          console.log(i+" PROPS COMMENTS EN POST ES ESTO " + arr[i].comments);
+          
               posts[i] = <Post
               likes={arr[i].likes}
               comments={arr[i].comments}
@@ -44,9 +44,9 @@ export async function PostsRequest(request,setPostsArr){
                 deleteFunction(arr[i].post.publicationId).then((response) => {
                  
                     setPostsArr((postsArr) => { 
-                   console.log(response.data);
+                   
                     let newarr = postsArr.filter((node) => node.props.publicationId !== response.data);
-                    console.log(newarr);
+                    
                     return newarr;
                     
                     });

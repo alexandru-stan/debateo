@@ -10,13 +10,13 @@ export async function PostsRequestByCommunity(request,creador,rol){
 
  
 let loggedUser = JSON.parse(sessionStorage.getItem('user')).username
-console.log(creador);
+
 
     let endpoint =  "http://"+SERV_DIR+":"+SERV_PORT+"/posts/byCommunity/"+request.page+"/"+request.state+"/"+loggedUser;
-    console.log(request.page+"/////////////"+request.state+"////////////"+loggedUser);
+    
 
     return axios.get(endpoint).then(response=>{
-      console.log(response.data);
+      
     let arr = response.data.content;
  
    if(response.data.last){
@@ -27,7 +27,7 @@ console.log(creador);
    console.log(posts)
     for(let i=0;i<response.data.numberOfElements;i++){
 
-          console.log(arr[i]);
+          
   
               posts[i] = <Post
               likes={arr[i].likes}
@@ -44,9 +44,9 @@ console.log(creador);
                 deleteFunction(arr[i].post.publicationId).then((response) => {
                  
                     request.setPostsArr((postsArr) => { 
-                   console.log(response.data);
+                   
                     let newarr = postsArr.filter((node) => node.props.publicationId !== response.data);
-                    console.log(newarr);
+                    
                     return newarr;
                     
                     });

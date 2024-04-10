@@ -8,6 +8,44 @@
   }
   
 }
+#conversacion{
+  display: flex;
+  flex-direction: column-reverse; /* 'column' for start, 'column-reverse' for end */
+  overflow-y: auto; 
+}
+.incomingMessageBubble {
+  
+  border-radius:0 15px 15px 15px; /* top-left, top-right, bottom-right, bottom-left */
+  padding: 10px 15px;
+  max-width: 70%; /* Adjust according to your layout */
+  margin: 10px; /* Adjust as needed */
+}
+
+.outgoingMessageBubble{
+  border-radius:15px 15px 0px 15px; /* top-left, top-right, bottom-right, bottom-left */
+  padding: 10px 15px;
+  max-width: 70%; /* Adjust according to your layout */
+  margin: 10px; /* Adjust as needed */
+  align-self: flex-end;
+}
+
+
+#chatBox {
+  
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  outline: none;
+
+}
+
+#chatBox:focus {
+  border-color: #ff8c00; /* Change focus color as needed */
+}
+
+
+
+
 
 
 @media(max-width:1200px){

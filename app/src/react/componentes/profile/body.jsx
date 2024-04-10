@@ -60,7 +60,7 @@ useEffect(  ()=> {
 useEffect(()=> {
 
 
-console.log(myRef.current);
+
 if(myRef.current!=null){
   observer.observe(myRef.current);
   

@@ -11,7 +11,7 @@ import Recommendations from './body/recommendations/recommendations';
 const Body = () => {
   
   if(JSON.parse(sessionStorage.getItem("user"))?.subsCount>0){
-    console.log(JSON.parse(sessionStorage.getItem("user")).subsCount);
+    
     const [postsArr,setPostsArr] = useState([]);
     const [page,setPage] = useState(0);
     const [isLast,setIslast] = useState(false);
@@ -65,7 +65,7 @@ useEffect(  ()=> {
 useEffect(()=> {
 
 
-console.log(myRef.current);
+
 if(myRef.current!=null){
   observer.observe(myRef.current);
   
@@ -90,7 +90,7 @@ if(myRef.current!=null){
 
 
     } else {
-      console.log("AAAAAAAAAAAAAAA");
+      
       return (
         <Recommendations/>
         

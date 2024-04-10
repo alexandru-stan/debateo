@@ -8,7 +8,7 @@ import { formatImage } from "./imageFormatting";
         formData.append('community',community.id);
         formData.append('user' ,    user);
  
-        console.log(community.id);
+        
       
 
         

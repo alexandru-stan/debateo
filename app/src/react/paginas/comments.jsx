@@ -22,12 +22,12 @@ const [selectedPost, setSelectedPost] = useState();
   const $ = require('jquery');
     let params = useParams();
     let user = JSON.parse(sessionStorage.getItem('user'));
-    console.log(numeroComentarios);
+    
 
   
 
     useEffect(()=> {
-      console.log(numeroComentarios);
+      
      getPost(user.username,params.id).then(response =>{ 
       let data = response.data;
       setNumeroComentarios(data.comments)
@@ -55,7 +55,7 @@ const [selectedPost, setSelectedPost] = useState();
      })
 
       getComments(params.id).then(response => {
-        console.log(response);
+        
         let arr=[]
        response.data.forEach(e =>
         arr.push(<Comment commentDate = {e.commentDate} username={e.username} commentText = {e.commentText}/>))

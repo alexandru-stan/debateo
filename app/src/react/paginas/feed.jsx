@@ -11,11 +11,11 @@ const nav = useNavigate();
 
     useEffect(()=> {
       
-        console.log(user);
+        
         if(user==null){
             nav("/");
         } else {
-            console.log(user);
+            
         }
        
     })

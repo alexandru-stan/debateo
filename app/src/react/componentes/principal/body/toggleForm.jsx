@@ -3,7 +3,7 @@ import React from 'react';
 const ToggleForm = (props) => {
 
     function tumadre(){
-        console.log("Ok");
+        
     }
 let mensaje;
     if(props.hasAccount){

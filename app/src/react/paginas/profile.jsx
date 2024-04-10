@@ -11,7 +11,7 @@ const nav = useNavigate() ;
         if(user==null){
             nav("/");
         } else {
-            console.log(user.name);
+            
         }
     })
 

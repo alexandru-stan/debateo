@@ -5,7 +5,7 @@ import { PostBody } from './post-body/post-body';
 import { formatImage } from '../../../../js/imageFormatting';
 const Post = (props) => {
 
-console.log(props.liked);
+
 
   
 

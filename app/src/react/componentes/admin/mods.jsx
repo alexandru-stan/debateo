@@ -15,7 +15,7 @@ let timerId;
 
 function deleteMod(event){
     let mod = event.target.id;
-    console.log(mod);
+    
 
    axios.put("http://"+SERV_DIR+":"+SERV_PORT+"/subscriptions/mods/downgrade/"+ mod+"/"+props.id);
    setA(!a);
@@ -23,9 +23,9 @@ function deleteMod(event){
 
 
 function addMod(){
-console.log("A");
+
     axios.post("http://"+SERV_DIR+":"+SERV_PORT+"/subscriptions/mods/add/"+ $('#user').val()+"/"+props.id).then(response => {
-   console.log(response.data.username);
+   
         setMods((mods) => mods.concat(
         <div className='mod'>
         <p>{response.data.username}</p>
@@ -59,7 +59,7 @@ console.log("A");
 useEffect(()=> {
     $("#submit").prop("disabled",true)
 axios.get("http://"+SERV_DIR+":"+SERV_PORT+"/subscriptions/mods/"+props.id).then((response)=>{
-    console.log(response);
+    
 
     if(response.data.length==0){
     
@@ -76,7 +76,7 @@ axios.get("http://"+SERV_DIR+":"+SERV_PORT+"/subscriptions/mods/"+props.id).then
        
 
         setMods(arr);
-        console.log(mods);
+        
 
     }
 

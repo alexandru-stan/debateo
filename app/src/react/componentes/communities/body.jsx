@@ -38,7 +38,7 @@ let request =  {
 }
 const handleIntersection = (entries) => {
   if (entries[0].isIntersecting && !isLast) {
-    console.log("Si");
+    
     observer.disconnect();
     setPage((prevPage) => prevPage + 1);
     PostsRequestByCommunity(request,creador)
@@ -62,7 +62,7 @@ const observer = new IntersectionObserver(handleIntersection);
 function changeSub(subscription){
 let userData = JSON.parse(sessionStorage.getItem("user"))
   if(subscription==null) {
-    console.log(subscription);
+    
     axios.post("http://"+SERV_DIR+":"+SERV_PORT+"/subscriptions/sub/"+loggedUser+"/"+state);
    userData.subsCount++;
   sessionStorage.setItem('user',JSON.stringify(userData))
@@ -89,11 +89,11 @@ useEffect(() => {
     CommunityInfoRequest(state).then(response => {
        
         let data = response.data;
-        console.log(response.data);
+        
         creador = data.communityCreator;
         setCS(data.communityCreator);
         setSubscription(data.subscription);
-      console.log("CREADOR"+creador+"USER"+loggedUser);
+      
       if(creadorState==loggedUser) setSubButton(<Button id='administrar'>Administrar</Button>)
   else if ( data.subscription!=null) setSubButton(<Button onClick={()=> {changeSub(data.subscription)}} id='Unsub'>Desuscribirse</Button>)
   else setSubButton(<Button onClick={()=> {changeSub(data.subscription)}} id='Sub'>Suscribirse</Button>)
@@ -127,8 +127,8 @@ useEffect(() => {
 
 
 useEffect(()=> {
-console.log("CREADOR ES"+ creador);
-console.log("SUSCRIPCION ES"+subscription);
+
+
 
 
   if(creadorState==loggedUser) setSubButton(<button className=" hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-naranjaMolon text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon" onClick={()=> navigate("/admin/"+state)} id='administrar'>Administrar</button>)
@@ -138,7 +138,7 @@ console.log("SUSCRIPCION ES"+subscription);
 },[subscription,creadorState])
 
 useEffect(() => {
-  console.log("tupu");
+  
 },[postsArr])
  
 
