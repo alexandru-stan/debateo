@@ -8,7 +8,7 @@ export const MessageBubble = (props) => {
     return (
             
         
-        <div className={clase} >{props.body}</div>
+        <div className={clase}> {props.body}</div>
 
     )
 

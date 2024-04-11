@@ -8,10 +8,12 @@ import { RetrieveMessages } from "../../../../../js/RetrieveMessages";
 import { useEffect } from "react";
 import { useState } from "react";
 import { MessageBubble } from "./IncomingMessageBubble";
+import jQuery from "jquery";
 export const ChatActual = () => {
+    const $ = require('jquery');
     const selectedChat = useSelector(state => state.selectedChat.value);
     const dispatch = useDispatch();
-    const [messages,setMessages] = useState("ALA BALA PORTOCALA");
+    const [messages,setMessages] = useState();
     const username = JSON.parse(sessionStorage.getItem("user")).username
     useEffect(()=>{
 
@@ -45,7 +47,16 @@ export const ChatActual = () => {
     
         },[selectedChat]);
     
+
+        function sendMessage(element){
+
+            setMessages([<MessageBubble loggedUser={username} sender={username} body={element} />,...messages]);
+           
+            
+
+        }
     
+
     return (
         <>
         <div id='conversacion' style={{height:'90%'}} className=" flex bg-moradoOscuro ">
@@ -57,13 +68,13 @@ export const ChatActual = () => {
            } */}
            
            {messages}
-           {/* <IncomingMessageBubble body={"hola co"}/> */}
+         
 
         </div>
 
-        <div className="flex bg-moradoOscuro  " style={{height:'10%'}} id='bandejaMensajes'>
+        <div className="flex bg-moradoOscuro items-center  " style={{height:'10%'}} id='bandejaMensajes'>
             <input id='chatBox' placeholder="Escribe un mensaje" className="bg-moradoOscuro w-5/6"></input>
-            <Logo style={{marginLeft:'5%'}} clase="hover:cursor-pointer" ruta={enviarMensaje}/>
+            <img onClick={() => sendMessage($("#chatBox").val())} style={{marginLeft:'5%', height:'2rem' }} className="hover:cursor-pointer" src={enviarMensaje}/>
         </div>
         </>
 

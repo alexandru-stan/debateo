@@ -11,7 +11,7 @@ import { change } from "../../../../redux-store/slices/SelectedChatSlice";
 
 const $ = require('jquery');
 export const Mensajes = (props) => {
-
+const [prueba,setPrueba] = useState();
 const selectedChat = useSelector(state => state.selectedChat.value);
 const dispatch = useDispatch();
 const [arrChats,setArrChats] = useState([]);
@@ -39,7 +39,7 @@ setArrChats(tempArr);
 
     useEffect(()=>{
 
-    // $("#mensajes").hide();
+    $("#mensajes").hide();
      
 
     },[]);
