@@ -28,5 +28,9 @@ public class MessagesServices {
 		
 	}
 	
+	public void sendMessage(Messages message) {
+		repo.save(message);
+	}
+	
 	
 }

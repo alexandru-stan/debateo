@@ -19,7 +19,8 @@ public class Messages {
 	String messageReceiver;
 	@Column
 	Date messageDate;
-	
+	@Column
+	boolean read;
 	
 	
 	
@@ -60,6 +61,11 @@ public class Messages {
 	}
 	public void setMessageDate(Date messageDate) {
 		this.messageDate = messageDate;
+	}
+	@Override
+	public String toString() {
+		return "Messages [messageId=" + messageId + ", messageBody=" + messageBody + ", messageSender=" + messageSender
+				+ ", messageReceiver=" + messageReceiver + ", messageDate=" + messageDate + "]";
 	}
 	
 	

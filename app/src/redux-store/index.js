@@ -3,12 +3,14 @@ import StatusReducer from './slices/StatusSlice';
 import CommunityIdReducer from "./slices/CommunityIdSlice";
 import CommentPost from "./slices/CommentPost";
 import SelectedChat from "./slices/SelectedChatSlice";
+import IncomingMessage from "./slices/IncomingMessage";
 export default configureStore({
     reducer: {
         status : StatusReducer,
         cid : CommunityIdReducer,
         commentPost: CommentPost,
-        selectedChat: SelectedChat
+        selectedChat: SelectedChat,
+        incomingMessage: IncomingMessage
     }
 })
 

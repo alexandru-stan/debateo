@@ -1,9 +1,10 @@
 package es.debateo.Controllers;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,8 @@ public class MessagesController {
 	@Autowired
 	MessagesServices services;
 	
+	@Autowired
+	SimpMessagingTemplate simpMessagingTemplate;
 	
 	@GetMapping("/RetrieveChats/{username}")
 	public ResponseEntity<List<Object>> RetrieveChats(@PathVariable String username) {
@@ -37,8 +40,19 @@ public class MessagesController {
 	}
 	
 	
+	@MessageMapping("/send")
+	public void sendMessage( Messages message) {
+		
+		
+		
+		services.sendMessage(message);
+		
+		System.out.println(message.toString());
+		
+		simpMessagingTemplate.convertAndSend("/"+message.getMessageReceiver(), message);
+	}
 
-	
+
 	
 	
 	

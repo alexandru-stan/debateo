@@ -8,22 +8,58 @@ import { RetrieveMessages } from "../../../../../js/RetrieveMessages";
 import { useEffect } from "react";
 import { useState } from "react";
 import { MessageBubble } from "./IncomingMessageBubble";
+import { update } from "../../../../../redux-store/slices/IncomingMessage";
 import jQuery from "jquery";
-export const ChatActual = () => {
+import { stompClient } from "../../../../../webSocketTesting/webSocket";
+
+
+export const ChatActual = (props) => {
     const $ = require('jquery');
     const selectedChat = useSelector(state => state.selectedChat.value);
+    const incomingMessage = useSelector(state => state.incomingMessage.value);
     const dispatch = useDispatch();
     const [messages,setMessages] = useState();
     const username = JSON.parse(sessionStorage.getItem("user")).username
-    useEffect(()=>{
+   
+  
 
+    useEffect(()=> {
+        console.log("SE HA CAMBIADFOOOOOOOOOOOOOOO");
+       incomingMessage!=null ? 
+   
+       selectedChat==incomingMessage.messageSender  ? 
+      
+       (function() {
+       
+        setMessages([<MessageBubble loggedUser = {username} sender = {incomingMessage.messageSender} body = {incomingMessage.messageBody} />,...messages]);
+
+        props.cambiarUltimoMensajeDelChat(incomingMessage.messageBody,selectedChat);
+        
+        })()
+
+        
+
+       : null
+
+       :
+
+       null
+
+
+  
+
+    }, [incomingMessage]);
+
+
+    useEffect(()=>{
+        
         selectedChat!=null ? RetrieveMessages(username,selectedChat).then(r => {
             
            let temp=[];
             
             r.data.forEach(element => {
                 temp.push(<MessageBubble loggedUser = {username} sender = {element.messageSender}  body={element.messageBody}/>)
-                console.log(element.messageBody);
+                
             });
 
             setMessages(temp);
@@ -51,34 +87,53 @@ export const ChatActual = () => {
         function sendMessage(element){
 
             setMessages([<MessageBubble loggedUser={username} sender={username} body={element} />,...messages]);
-           
+          
+             props.cambiarUltimoMensajeDelChat(element,selectedChat);
+        
+            
+
+                stompClient.publish({
+                destination: "/app/send",
+                body: JSON.stringify({
+                    messageId: null,
+                    messageBody: element,
+                    messageSender: username,
+                    messageReceiver: selectedChat,
+                    messageDate: new Date().toISOString()
+                })
+                
+            });
             
 
         }
     
 
     return (
-        <>
+        
+
+selectedChat==null ? 
+
+
+<div className="flex h-full bg-moradoOscuro flex justify-center items-center">
+<Logo ruta={selectedChatPng} clase="w-1/6 h-1/6"/>
+</div>
+
+
+: 
+<>
         <div id='conversacion' style={{height:'90%'}} className=" flex bg-moradoOscuro ">
-
-           {/* {selectedChat==null?<Logo ruta={selectedChatPng} clase="w-1/6"/>:
-           
-            selectedChat
-           
-           } */}
-           
            {messages}
-         
-
         </div>
 
         <div className="flex bg-moradoOscuro items-center  " style={{height:'10%'}} id='bandejaMensajes'>
             <input id='chatBox' placeholder="Escribe un mensaje" className="bg-moradoOscuro w-5/6"></input>
             <img onClick={() => sendMessage($("#chatBox").val())} style={{marginLeft:'5%', height:'2rem' }} className="hover:cursor-pointer" src={enviarMensaje}/>
         </div>
-        </>
-
-
+    </>
+  
+        
+ 
+    
     )
 
 }
