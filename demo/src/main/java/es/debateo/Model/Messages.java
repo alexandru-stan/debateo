@@ -19,8 +19,7 @@ public class Messages {
 	String messageReceiver;
 	@Column
 	Date messageDate;
-	@Column
-	boolean read;
+	
 	
 	
 	

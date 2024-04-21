@@ -9,26 +9,26 @@ export const Body = () => {
     
 
 
-    const [postsArr,setPostsArr] = useState([]);
-    const [page,setPage] = useState(0);
-    const [isLast,setIslast] = useState(false);
-    const myRef = useRef();
+    // const [postsArr,setPostsArr] = useState([]);
+    // const [page,setPage] = useState(0);
+    // const [isLast,setIslast] = useState(false);
+    // const myRef = useRef();
 
   
-    const handleIntersection = (entries) => {
-      if (entries[0].isIntersecting && !isLast) {
-        observer.disconnect();
-        setPage((prevPage) => prevPage + 1);
-        PostsRequest(page, null, myRef,setIslast)
-          .then((response) => {
-            setPostsArr((prevPosts) => prevPosts.concat(response));
+    // const handleIntersection = (entries) => {
+    //   if (entries[0].isIntersecting && !isLast) {
+    //     observer.disconnect();
+    //     setPage((prevPage) => prevPage + 1);
+    //     PostsRequest(page, null, myRef,setIslast)
+    //       .then((response) => {
+    //         setPostsArr((prevPosts) => prevPosts.concat(response));
 
-          })  
+    //       })  
           
-      } 
-    };
+    //   } 
+    // };
   
-    const observer = new IntersectionObserver(handleIntersection);
+    // const observer = new IntersectionObserver(handleIntersection);
 
     
  
@@ -36,36 +36,36 @@ export const Body = () => {
 
 
    
-useEffect(  ()=> {
+// useEffect(  ()=> {
 
     
 
 
-  PostsRequest(page,null,myRef).then(response => {
+//   PostsRequest(page,null,myRef).then(response => {
    
-    setPostsArr(response);
-    setPage(page+1);
+//     setPostsArr(response);
+//     setPage(page+1);
  
 
  
-  })
+//   })
  
   
-},[])
+// },[])
 
 
 
 
 
-useEffect(()=> {
+// useEffect(()=> {
 
 
 
-if(myRef.current!=null){
-  observer.observe(myRef.current);
+// if(myRef.current!=null){
+//   observer.observe(myRef.current);
   
-}
-},[postsArr]);
+// }
+// },[postsArr]);
 
 
 
@@ -78,9 +78,8 @@ if(myRef.current!=null){
 
 
     return (
-        <div className="text-white flex justify-center w-2/4 p-5 mt-postMT bg-emerald-950" id='profile-body'>
+        <div className="text-white flex justify-center w-2/4  mt-postMT bg-emerald-950" id='profile-body'>
        <UserData/>
-       {/* <div id='userPosts ' className="bg-yellow-950">{postsArr} </div> */}
        <Mensajes/>
         </div>
     )

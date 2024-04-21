@@ -77,7 +77,6 @@ if(myRef.current!=null){
 
     return(
     <div  className=' flex flex-col      height:100%                  items-center    '  id='body-feed'>
-       
         {postsArr}
        
         

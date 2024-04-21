@@ -1,23 +1,33 @@
-import React, { useState } from "react";
+import React, { useState,useEffect,useRef } from "react";
+import formatearFecha from "../../../../../js/formatearFecha";
+
 
 export const Chat = (props) => {
-  const tres =  3;
-    function hola(incomingMessageInteractuer){
-    console.log(incomingMessageInteractuer)
-   }
+  const [lastInteraction,setLastInteraction] = useState();
+  const hola = useRef();
+  const $ = require('jquery');
+  let orden;
+  const fechaMensaje = new Date(props.lastInteraction);
+  const fechaMostrada = formatearFecha(fechaMensaje);
 
-    console.log("SE HA CREADO UN CHAT CON EL INTERACTUADOR" + props.interactuer);
+
+
+ 
+   
+
+  useEffect(() => {
+  hola.current.parentElement.parentElement.style.order=1;// Now, it should log the DOM element when the component mounts
+ 
+
+  }, []); 
+
     return(
-    <div key={props.interactuer} style={{height:'5rem', direction:'ltr'}} onClick={props.onClick} className='chat  bg-moradoFondo hover:cursor-pointer  flex-col flex m-2 justify-between rounded-lg  hover:bg-moradoLight hover:cursor '>
+    <div key={props.interactuer} id={props.interactuer} style={{height:'5rem', direction:'ltr' }} onClick={props.onClick} className='chat  bg-moradoFondo hover:cursor-pointer  flex-col flex m-2 justify-between rounded-lg  hover:bg-moradoLight hover:cursor '>
         <div id='chatInfo' className='flex justify-between ' >
-        <div className='nombreUsuario p-2 text-naranjaMolon '>{props.interactuer}</div>
-        <div className='p-2 text-naranjaMolon'>{props.lastInteraction}</div>
-        <div>0</div>
-        
-      
-       
+          <div className='nombreUsuario p-2 text-naranjaMolon '>{props.interactuer}</div>
+          <div ref={hola} id="lastInteraction" className='p-2 text-naranjaMolon'>{fechaMostrada}</div>
         </div>
-        <div className=' text-left p-2'>{props.lastMessage}</div>
+        <div id="lastMessage" className=' text-left p-2'>{props.lastMessage.length > 25 ?  props.lastMessage.substring(0,25)+"..." : props.lastMessage}</div>
        
     </div>
     );

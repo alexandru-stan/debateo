@@ -24,7 +24,7 @@ export const ChatActual = (props) => {
   
 
     useEffect(()=> {
-        console.log("SE HA CAMBIADFOOOOOOOOOOOOOOO");
+       
        incomingMessage!=null ? 
    
        selectedChat==incomingMessage.messageSender  ? 
@@ -33,7 +33,7 @@ export const ChatActual = (props) => {
        
         setMessages([<MessageBubble loggedUser = {username} sender = {incomingMessage.messageSender} body = {incomingMessage.messageBody} />,...messages]);
 
-        props.cambiarUltimoMensajeDelChat(incomingMessage.messageBody,selectedChat);
+        // props.cambiarUltimoMensajeDelChat(incomingMessage.messageBody,selectedChat);
         
         })()
 
@@ -85,22 +85,24 @@ export const ChatActual = (props) => {
     
 
         function sendMessage(element){
+            
+            let message = {
+                messageId:null,
+                messageBody:element,
+                messageSender:username,
+                messageReceiver:selectedChat,
+                messageDate: new Date().toISOString()
+            }
 
             setMessages([<MessageBubble loggedUser={username} sender={username} body={element} />,...messages]);
           
-             props.cambiarUltimoMensajeDelChat(element,selectedChat);
+             props.cambiarUltimoMensajeDelChat(message);
         
             
 
                 stompClient.publish({
                 destination: "/app/send",
-                body: JSON.stringify({
-                    messageId: null,
-                    messageBody: element,
-                    messageSender: username,
-                    messageReceiver: selectedChat,
-                    messageDate: new Date().toISOString()
-                })
+                body: JSON.stringify(message)
                 
             });
             
