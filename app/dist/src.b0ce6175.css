@@ -561,6 +561,10 @@ video {
   margin-top: 10%;
 }
 
+.block {
+  display: block;
+}
+
 .flex {
   display: flex;
 }
@@ -613,6 +617,10 @@ video {
   width: 33.333333%;
 }
 
+.w-3\/6 {
+  width: 50%;
+}
+
 .w-4\/6 {
   width: 66.666667%;
 }
@@ -631,6 +639,11 @@ video {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.appearance-none {
+  -webkit-appearance: none;
+          appearance: none;
 }
 
 .grid-cols-2 {
@@ -785,6 +798,10 @@ video {
   font-weight: 600;
 }
 
+.leading-tight {
+  line-height: 1.25;
+}
+
 .text-gray-700 {
   --tw-text-opacity: 1;
   color: rgb(55 65 81 / var(--tw-text-opacity));
@@ -915,8 +932,26 @@ video {
   width: 10px; /* Width of the scrollbar */
 }
 
+input::file-selector-button{
+  background-color:#444073 ;
+  color:white;
+  height:3rem;
+  border-radius: 10%;
+
+}
+input::file-selector-button:hover{
+
+  cursor:pointer;
+
+}
+
 ::-webkit-scrollbar-track {
   background: #171626; /* Track color */
+}
+
+#deleteIcon:hover{
+
+  cursor:pointer;
 }
 
 ::-webkit-scrollbar-thumb {

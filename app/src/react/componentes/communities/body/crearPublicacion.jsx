@@ -21,11 +21,12 @@ let user = JSON.parse(sessionStorage.getItem('user')).username;
 
     return(
         
-        <div className="mt-postMT flex justify-center " id="createForm">
+        <div className=" mt-postMT flex justify-center " id="createForm">
         
-        <form className="flex flex-col items-center w-full m-2 text-white" ref={form} id="form" onSubmit={ (event) => {event.preventDefault();  subirPublicacion(form,props.communityId,user)}}>
-           <input  className="bg-moradoLight text-white px-4 py-2 rounded-lg  placeholder-white  focus:outline-none focus:ring-2 focus:ring-naranjaMolon" placeholder="Título" type="text" name='titulo' id='titulo'></input>
-           <textarea className=" placeholder-center bg-moradoLight text-white px-4 py-2 rounded-lg  placeholder-white  focus:outline-none focus:ring-2 focus:ring-naranjaMolon" placeholder="Cuerpo" name='cuerpo' rows={5} id='cuerpo'></textarea>
+        <form className="flex w-4/6  flex-col items-center  m-2 text-white" ref={form} id="form" onSubmit={ (event) => {event.preventDefault();  subirPublicacion(form,props.communityId,user)}}>
+           <input name="titulo" placeholder="Título de la publicación"  className="w-3/6 m-2 bg-moradoLight text-white px-4 py-2 rounded-lg placeholder-white focus:outline-none focus:ring-2 focus:ring-naranjaMolon"   ></input>
+           <textarea  placeholder="Descripción de la comunidad"
+        className="m-2 w-3/6 bg-moradoLight text-white px-4 py-2 rounded-lg placeholder-white focus:outline-none focus:ring-2 focus:ring-naranjaMolon" name='cuerpo' rows={5} id='cuerpo'></textarea>
            <input name='image' type="file" id='imagen' accept="image/png, image/gif, image/jpeg" />
     {/* <img src={image} alt="aaa"></img> */}
       

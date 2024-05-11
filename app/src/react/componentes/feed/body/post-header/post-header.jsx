@@ -1,8 +1,7 @@
 import React from 'react';
 import Logo from '../../../reusable/img';
 import { useNavigate } from 'react-router-dom';
-
-
+import { DeleteIcon } from '../../../../../assets/img/deleteIcon';
 export const PostHeader = (props) => {
 const navigate = useNavigate();
     return (
@@ -15,8 +14,10 @@ const navigate = useNavigate();
             localStorage.setItem('cid',props.communityId);
             navigate('/community/'+props.communityId)}}>{props.communityName}</div>
         {/* <p className='sub'>{props.publicationId}</p>  */}
-      
+                
+                <div style={{marginLeft:'auto'}}>{props.delete}</div>
         </div>
+      
         <div style={{}} className='  p-1 h-4/6 flex flex-col justify-center'>
        
         <p style={{fontSize:'1.3rem',}} className='h-2/4 m-0 '>{props.publicationTitle}</p>

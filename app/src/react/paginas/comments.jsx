@@ -14,6 +14,7 @@ import { subirComentario } from '../../js/subirComentario';
 import { useSelector } from 'react-redux';
 import { formatImage } from '../../js/imageFormatting';
 import { Input } from '../componentes/principal/body/Formulario/inputComponent';
+import { Mensajes } from '../componentes/reusable/mensajes/mensajes';
 export const Comments = () => {
 const [numeroComentarios, setNumeroComentarios] = useState(null);
 const [post,setPost] = useState();
@@ -100,8 +101,9 @@ const [selectedPost, setSelectedPost] = useState();
         {comments}
        
         </div>
+        <Mensajes/>
         </div>
-    
+   
         )
 
 

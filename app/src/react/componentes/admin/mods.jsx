@@ -45,7 +45,7 @@ function addMod(){
         if(event.target.value.length!=0){
             clearTimeout(timerId);
             timerId = setTimeout(()=>{
-            axios.get("http://"+SERV_DIR+":"+SERV_PORT+"/users/search/"+$('#user').val()).then(response=>{
+            axios.get("http://"+SERV_DIR+":"+SERV_PORT+"/users/exists/"+$('#user').val()).then(response=>{
          
                 if(response.data)   $("#submit").prop("disabled",false)
             })

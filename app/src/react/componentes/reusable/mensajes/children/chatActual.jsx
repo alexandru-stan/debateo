@@ -123,13 +123,17 @@ selectedChat==null ?
 
 : 
 <>
-        <div id='conversacion' style={{height:'90%'}} className=" flex bg-moradoOscuro ">
+        <div style={{height:'15%',fontSize:'1rem', borderBottom:'1px solid #ff8c00'}} className="flex justify-center  flex-col bg-moradoOscuro "> 
+        <div style={{fontFamily:'Comfortaa'}} className="text-naranjaMolon pb-2 text-extrabold">{selectedChat}</div>
+        <sub className="">Conectado por última vez: Unknown</sub>
+        </div>
+        <div id='conversacion' style={{height:'70%'}} className=" flex bg-moradoOscuro ">
            {messages}
         </div>
 
-        <div className="flex bg-moradoOscuro items-center  " style={{height:'10%'}} id='bandejaMensajes'>
+        <div className="flex bg-moradoOscuro items-center  " style={{height:'15%'}} id='bandejaMensajes'>
             <input id='chatBox' placeholder="Escribe un mensaje" className="bg-moradoOscuro w-5/6"></input>
-            <img onClick={() => sendMessage($("#chatBox").val())} style={{marginLeft:'5%', height:'2rem' }} className="hover:cursor-pointer" src={enviarMensaje}/>
+            <img onClick={() => sendMessage($("#chatBox").val())} style={{marginLeft:'5%', height:'2rem' }} className="hover:cursor-pointer bg-moradoOscuro" src={enviarMensaje}/>
         </div>
     </>
   

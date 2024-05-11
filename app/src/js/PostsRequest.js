@@ -5,6 +5,7 @@ import { Button } from 'react-bootstrap';
 import { formatImage } from './imageFormatting';
 import { deleteFunction } from './DeletePublication';
 import { SERV_DIR,SERV_PORT } from '../utilities';
+import { DeleteIcon } from '../assets/img/deleteIcon';
 
 export async function PostsRequest(request,setPostsArr){
 
@@ -39,7 +40,7 @@ export async function PostsRequest(request,setPostsArr){
               publicationImage={(arr[i].post.publicationImage.length>0)?<img style={{}} src={formatImage(arr[i].post.publicationImage)} alt='img'/>:null}
               publicationUser={arr[i].post.user}
               referencia={(posts.length-i)==1?request.myRef:null}
-              delete={arr[i].subscription?.subscriptionLevel=="MOD" || arr[i].post.user==request.loggedUser?<Button
+              delete={arr[i].subscription?.subscriptionLevel=="MOD" || arr[i].post.user==request.loggedUser?<DeleteIcon
               onClick={() =>
                 deleteFunction(arr[i].post.publicationId).then((response) => {
                  
@@ -55,7 +56,7 @@ export async function PostsRequest(request,setPostsArr){
               }
             >
               Eliminar
-    </Button>:arr[i].post.user==request.creador?<Button
+    </DeleteIcon>:arr[i].post.user==request.creador?<DeleteIcon
               onClick={() =>
                 deleteFunction(arr[i].post.publicationId).then((response) => {
                  
@@ -70,7 +71,7 @@ export async function PostsRequest(request,setPostsArr){
               }
             >
               Eliminar
-    </Button>:null}
+    </DeleteIcon>:null}
 
              
 

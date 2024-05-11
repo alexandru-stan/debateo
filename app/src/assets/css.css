@@ -3,8 +3,26 @@
   width: 10px; /* Width of the scrollbar */
 }
 
+input::file-selector-button{
+  background-color:#444073 ;
+  color:white;
+  height:3rem;
+  border-radius: 10%;
+
+}
+input::file-selector-button:hover{
+
+  cursor:pointer;
+
+}
+
 ::-webkit-scrollbar-track {
   background: #171626; /* Track color */
+}
+
+#deleteIcon:hover{
+
+  cursor:pointer;
 }
 
 ::-webkit-scrollbar-thumb {

@@ -554,6 +554,10 @@ video {
   margin-top: 10%;
 }
 
+.block {
+  display: block;
+}
+
 .flex {
   display: flex;
 }
@@ -606,6 +610,10 @@ video {
   width: 33.333333%;
 }
 
+.w-3\/6 {
+  width: 50%;
+}
+
 .w-4\/6 {
   width: 66.666667%;
 }
@@ -624,6 +632,11 @@ video {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.appearance-none {
+  -webkit-appearance: none;
+          appearance: none;
 }
 
 .grid-cols-2 {
@@ -776,6 +789,10 @@ video {
 
 .font-semibold {
   font-weight: 600;
+}
+
+.leading-tight {
+  line-height: 1.25;
 }
 
 .text-gray-700 {
