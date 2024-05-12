@@ -15,10 +15,13 @@ export const Mensajes = (props) => {
 const [unreadMessages, setUnreadMessages] = useState([]);
 const username = JSON.parse(sessionStorage.getItem('user')).username;
 const selectedChat = useSelector(state => state.selectedChat.value);
-
+const incomingMessage = useSelector(state => state.incomingMessage.value);
 const dispatch = useDispatch();
 const [arrChats,setArrChats] = useState([]);
 const chatsRef = useRef(null);
+
+
+
 
 stompClient.onConnect = (frame) => {
   console.log('Connected: ' + frame);
@@ -33,7 +36,15 @@ stompClient.onConnect = (frame) => {
 };
 
 
+useEffect(() => {
+  incomingMessage!=null ? (function(){
+  let chatToBeUpdated =  $("#"+incomingMessage.messageSender+" #chatLevelNotification");
+    chatToBeUpdated.text(Number.isInteger(parseInt(chatToBeUpdated.text()))? parseInt(chatToBeUpdated.text())+1 : 1); 
   
+  })()
+ : null;
+  
+  },[incomingMessage]);
 
 
     useEffect(()=>{
@@ -60,8 +71,6 @@ stompClient.onConnect = (frame) => {
     },[]);
 
 
-
-   
 
     function cambiarUltimoMensajeDelChat(mensaje){
       let chatAActualizar =(mensaje.messageSender)==(username) ? mensaje.messageReceiver:(mensaje.messageSender);

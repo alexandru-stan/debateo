@@ -1,14 +1,15 @@
 import React, { useState,useEffect,useRef } from "react";
 import formatearFecha from "../../../../../js/formatearFecha";
-
+import { useSelector } from "react-redux";
 
 export const Chat = (props) => {
-  const [lastInteraction,setLastInteraction] = useState();
+
   const hola = useRef();
   const $ = require('jquery');
-  let orden;
   const fechaMensaje = new Date(props.lastInteraction);
   const fechaMostrada = formatearFecha(fechaMensaje);
+  const incomingMessage = useSelector(state => state.incomingMessage);
+  
 
 
 
@@ -27,8 +28,10 @@ export const Chat = (props) => {
           <div className='nombreUsuario p-2 text-naranjaMolon '>{props.interactuer}</div>
           <div ref={hola} id="lastInteraction" className='p-2 text-naranjaMolon'>{fechaMostrada}</div>
         </div>
-        <div id="lastMessage" className=' text-left p-2'>{props.lastMessage.length > 25 ?  props.lastMessage.substring(0,25)+"..." : props.lastMessage}</div>
-       
+        <div className="flex flex-row items-center">
+        <div id="lastMessage" className=' w-5/6 text-left p-2'>{props.lastMessage.length > 25 ?  props.lastMessage.substring(0,25)+"..." : props.lastMessage}</div>
+        <div style= {{width:'10%'}} className="m-auto bg-moradoLight rounded-full text-center " id="chatLevelNotification"></div>
+        </div>
     </div>
     );
 }
