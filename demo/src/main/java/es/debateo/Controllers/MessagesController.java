@@ -7,6 +7,7 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +24,8 @@ public class MessagesController {
 	
 	@Autowired
 	SimpMessagingTemplate simpMessagingTemplate;
+	
+	
 	
 	@GetMapping("/RetrieveChats/{username}")
 	public ResponseEntity<List<Object>> RetrieveChats(@PathVariable String username) {
@@ -52,6 +55,14 @@ public class MessagesController {
 		simpMessagingTemplate.convertAndSend("/"+message.getMessageReceiver(), message);
 	}
 
+
+	@PostMapping("/read/{sender}/{receiver}")
+	public void readMessages(@PathVariable String sender, @PathVariable String receiver) {
+		
+		services.ReadMessages(sender, receiver);
+		
+		
+	}
 
 	
 	

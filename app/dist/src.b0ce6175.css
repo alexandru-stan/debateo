@@ -690,16 +690,16 @@ video {
   border-radius: 0.25rem;
 }
 
+.rounded-full {
+  border-radius: 9999px;
+}
+
 .rounded-lg {
   border-radius: 0.5rem;
 }
 
 .rounded-md {
   border-radius: 0.375rem;
-}
-
-.rounded-full {
-  border-radius: 9999px;
 }
 
 .rounded-t-lg {
@@ -769,11 +769,6 @@ video {
 .bg-moradoOscuro {
   --tw-bg-opacity: 1;
   background-color: rgb(23 22 38 / var(--tw-bg-opacity));
-}
-
-.bg-naranjaMolon {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 140 0 / var(--tw-bg-opacity));
 }
 
 .text-left {

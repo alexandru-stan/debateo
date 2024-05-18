@@ -2,7 +2,6 @@ package es.debateo.Controllers;
 
 import java.util.List;
 
-import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import es.debateo.DTO.ServiceResponse;
-import es.debateo.Model.Communities;
 import es.debateo.Model.Users;
 import es.debateo.Repositories.usersRepo;
 import es.debateo.Services.UserServices;
@@ -22,6 +21,7 @@ import es.debateo.Services.UserServices;
 @RestController
 public class UsersController {
 
+	
 	@Autowired
 	UserServices servicio;
 	
@@ -65,6 +65,7 @@ public class UsersController {
 		
 	}
 	
+
 	
 	
 	

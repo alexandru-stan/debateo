@@ -10,6 +10,8 @@ import { update } from "../../../../redux-store/slices/IncomingMessage";
 import formatearFecha from "../../../../js/formatearFecha";
 import { useCallback } from "react";
 import { useRef } from "react";
+import newMessage from "../../../../assets/audio/newMessage.mp3";
+import { ReadMessages } from "../../../../js/ReadMessages";
 const $ = require('jquery');
 export const Mensajes = (props) => {
 const [unreadMessages, setUnreadMessages] = useState([]);
@@ -19,7 +21,7 @@ const incomingMessage = useSelector(state => state.incomingMessage.value);
 const dispatch = useDispatch();
 const [arrChats,setArrChats] = useState([]);
 const chatsRef = useRef(null);
-
+let audio = new Audio(newMessage);
 
 
 
@@ -27,7 +29,7 @@ stompClient.onConnect = (frame) => {
   console.log('Connected: ' + frame);
   stompClient.subscribe('/'+username,(message) => {
       let mensaje = JSON.parse(message.body);
-      console.log(mensaje);
+      audio.play();
       cambiarUltimoMensajeDelChat(mensaje);
   });
 
@@ -57,8 +59,13 @@ useEffect(() => {
       r.data.forEach(e=>{
         
     
+        console.log(e[4]);
     
-        tempArr.push(<Chat unreadMessages={0}   onClick={() => dispatch(change(e[0]))} interactuer={e[0]} lastInteraction={e[1]} lastMessage={e[3]}/>);
+        tempArr.push(<Chat unreadMessages={e[4]}   onClick={() => {
+          dispatch(change(e[0]))
+          $("#"+e[0]+" #chatLevelNotification").text("");
+          ReadMessages(e[0],username);
+          }} interactuer={e[0]} lastInteraction={e[1]}  lastMessage={e[3]}/>);
     
     
     });
@@ -89,8 +96,9 @@ useEffect(() => {
 
         setArrChats(actualState => [
           <Chat
-            unreadMessages={0}
-            onClick={() => dispatch(change(mensaje.messageSender == username ? mensaje.messageReceiver : mensaje.messageSender))}
+            unreadMessages={null}
+            onClick={() => {
+               dispatch(change(mensaje.messageSender == username ? mensaje.messageReceiver : mensaje.messageSender))}}
             interactuer={mensaje.messageSender == username ? mensaje.messageReceiver : mensaje.messageSender}
             lastInteraction={mensaje.messageDate}
             lastMessage={mensaje.messageBody}
@@ -111,14 +119,14 @@ useEffect(() => {
   
      <div style={{border:'1px solid #ff8c00',height:'30rem', fontSize:'1rem', position:'fixed', top:'45%', left:'50%' }} className="flex w-2/4 bg-moradoOscuro rounded-lg " id='mensajes'>
      
-        <div style={{direction:"rtl"}} className=" flex flex-col  overflow-auto p-3 w-2/6" id='chatList'>
+        <div style={{direction:"rtl",borderRight:'1px solid #ff8c00'}} className=" flex flex-col  overflow-auto p-3 w-2/6" id='chatList'>
         <NuevoChat chatsRef={chatsRef} />  
         <div  key="tupu" id="chats" className="flex flex-col">
         {arrChats}  
         
         </div>   
         </div>
-        <div  className=" bg-moradoFondo w-4/6">
+        <div  className=" p-2 bg-moradoOscuro w-4/6">
            <ChatActual stompClient={stompClient}  cambiarUltimoMensajeDelChat={cambiarUltimoMensajeDelChat}/>
         </div>
 

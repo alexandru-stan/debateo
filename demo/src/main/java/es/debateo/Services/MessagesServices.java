@@ -33,4 +33,8 @@ public class MessagesServices {
 	}
 	
 	
+	public void ReadMessages(String sender,String receiver) {
+		repo.ReadMessages(sender, receiver);
+	}
+	
 }

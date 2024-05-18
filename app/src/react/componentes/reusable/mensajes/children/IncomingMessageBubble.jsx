@@ -9,6 +9,7 @@ export const MessageBubble = (props) => {
             
         
         <div className={clase}> {props.body}</div>
+      
 
     )
 

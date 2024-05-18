@@ -19,18 +19,30 @@ public class Messages {
 	String messageReceiver;
 	@Column
 	Date messageDate;
+	@Column
+	boolean isRead;
 	
 	
 	
 	
-	public Messages(int messageId, String messageBody, String messageSender, String messageReceiver, Date messageDate) {
+	public Messages(int messageId, String messageBody, String messageSender, String messageReceiver, Date messageDate,boolean isRead) {
 		super();
 		this.messageId = messageId;
 		this.messageBody = messageBody;
 		this.messageSender = messageSender;
 		this.messageReceiver = messageReceiver;
 		this.messageDate = messageDate;
+		this.isRead = isRead;
 	}
+	
+	public boolean isRead() {
+		return isRead;
+	}
+
+	public void setRead(boolean isRead) {
+		this.isRead = isRead;
+	}
+
 	public int getMessageId() {
 		return messageId;
 	}
