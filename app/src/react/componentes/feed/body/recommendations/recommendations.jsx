@@ -21,7 +21,7 @@ useEffect(() => {
         for(let i=0;i<response.length;i++){
             communityArr.push(
                 
-                <CommunityCard communityId = {response[i].communityId} communityName={response[i].communityName} communityImage={response[i].communityImage.length>0?formatImage(response[i].communityImage):null} />
+                <CommunityCard communityMembers= {response[i].communityMembers} communityId = {response[i].communityId} communityName={response[i].communityName} communityImage={response[i].communityImage.length>0?formatImage(response[i].communityImage):null} />
 
                     
                 
@@ -46,9 +46,9 @@ useEffect(() => {
    
     return (<div id="Recommendations" className=" ">
     <div className='flex justify-center '>
-    <div id='recommendationText' className='backdrop-brightness-125 p-5 m-3 bg-visiniu w-6/6 rounded-lg border-solid border-2 border-naranjaMolon '>
-        <h1 className=' text-center'>¡Bienvenido, {username}! </h1>
-        <h2  className=' text-naranjaMolon text-center'>¡Aquí abajo te dejamos 3 comunidades que podrían interesarte!</h2>
+    <div id='recommendationText' className='backdrop-brightness-125 p-5 m-3  w-6/6 rounded-lg border-solid border-2 border-naranjaMolon '>
+        <p className=' text-lg  text-center'>¡Bienvenido, {username}! </p>
+        <p  className='  text-naranjaMolon text-center'>Todavía no estás suscrito a ninguna comunidad, Aquí tienes las 3 comunidades que más lo están petando👀 </p>
     </div>
     </div>
         <div className=" reco-cards  flex justify-center">

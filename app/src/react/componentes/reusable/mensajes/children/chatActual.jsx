@@ -11,7 +11,8 @@ import { MessageBubble } from "./IncomingMessageBubble";
 import { update } from "../../../../../redux-store/slices/IncomingMessage";
 import jQuery from "jquery";
 import { stompClient } from "../../../../../webSocketTesting/webSocket";
-
+import Image from "../../img";
+import backIcon from "../../../../../assets/img/backIcon.png";
 
 export const ChatActual = (props) => {
     const $ = require('jquery');
@@ -118,16 +119,24 @@ export const ChatActual = (props) => {
 selectedChat==null ? 
 
 
-<div  className="flex h-full bg-moradoOscuro flex justify-center items-center">
+<div  className="flex h-full  flex justify-center items-center">
 <Logo ruta={selectedChatPng} clase="w-1/6 h-1/6"/>
 </div>
 
 
 : 
         <>
-        <div style={{height:'15%',fontSize:'1rem', borderBottom:'1px solid #ff8c00'}} className="p-1 flex justify-center  flex-col bg-moradoOscuro "> 
-        <div style={{fontFamily:'Comfortaa'}} className="text-naranjaMolon pb-2 text-extrabold">{selectedChat}</div>
+        
+        <div style={{height:'15%',fontSize:'1rem',  borderBottom:'1px solid #ff8c00'}} className="p-1 flex items-center flex-row  "> 
+        <Image clase="mr-5 backIcon" onclick={()=> {
+            
+        $("#chatActual").css("display","none")
+        $("#chatList").css("display","block")}
+        } style={{width:'10%',display:'none'}} ruta = {backIcon}/>
+        <div  style={{ height:'3rem', marginLeft:'2rem'}} className=" flex  flex-col">
+        <div style={{}} className="text-naranjaMolon   h-3/4 pl-2 text-extrabold">{selectedChat}</div>
         <sub className="">Conectado por última vez: Unknown</sub>
+        </div>
         </div>
         <div id='conversacion' style={{height:'70%'}} className=" p-1 flex bg-moradoOscuro ">
            {messages}

@@ -7,9 +7,15 @@ import { PostsRequest } from '../../../js/PostsRequest'
 import { useRef } from 'react';
 import { Mensajes } from '../reusable/mensajes/mensajes';
 import Recommendations from './body/recommendations/recommendations';
+import SpinnerLoader from '../reusable/SpinnerLoader';
+
+
+const $ = require('jquery');
+
 // import { requestFeed } from '../../../js/PostRequestParameter';
 const Body = () => {
   
+   
   if(JSON.parse(sessionStorage.getItem("user"))?.subsCount>0){
     
     const [postsArr,setPostsArr] = useState([]);
@@ -34,6 +40,7 @@ const Body = () => {
         PostsRequest(request,setPostsArr)
           .then((response) => {
             setPostsArr((prevPosts) => prevPosts.concat(response));
+            $("#feedSpinner").css("display","none");
 
           })  
           
@@ -49,14 +56,17 @@ const Body = () => {
 
    
 useEffect(  ()=> {
+
   PostsRequest(request,setPostsArr).then(response => {
    
+    $("#feedSpinner").css("display","none");
     setPostsArr(response);
     setPage(page+1);
  
 
  
   })
+ 
  
   
 },[])
@@ -75,10 +85,17 @@ if(myRef.current!=null){
 
 
 
+
     return(
     <div  className=' flex flex-col      height:100%                  items-center    '  id='body-feed'>
+        
+
+     
+        
+    
+   
         {postsArr}
-       
+        <SpinnerLoader id="feedSpinner"/>
         
 
         <Mensajes/>

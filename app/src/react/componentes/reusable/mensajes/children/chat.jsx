@@ -29,7 +29,7 @@ export const Chat = (props) => {
           <div ref={hola} id="lastInteraction" className='p-2 text-naranjaMolon'>{fechaMostrada}</div>
         </div>
         <div className="flex flex-row items-center">
-        <div id="lastMessage" className=' w-5/6 text-left p-2'>{props.lastMessage.length > 25 ?  props.lastMessage.substring(0,25)+"..." : props.lastMessage}</div>
+        <div id="lastMessage" style={{textOverflow:'ellipsis',whiteSpace:'nowrap',overflow:'hidden'}} className=' w-5/6 text-left p-2'> {props.lastMessage}</div>
         <div style= {{width:'10%'}} className="m-auto bg-moradoLight rounded-full text-center " id="chatLevelNotification">{props.unreadMessages>0?props.unreadMessages:null}</div>
         </div>
     </div>

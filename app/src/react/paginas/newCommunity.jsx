@@ -14,16 +14,18 @@ export const NewCommunity = () => {
     
       
     
-    <div id='new'>
+    <div id='new' className="w-full flex flex-col items-center">
       <Mensajes/>
             <Header/>
-            <div className="flex justify-center " style={{marginTop:"10%"}} id="createForm">
+
+          
+            <div className="w-full  flex justify-center " style={{marginTop:"10%"}} id="createForm">
   
-        <form className=" w-4/6 flex items-center flex-col" ref={form} id="form" onSubmit={ (event) => {event.preventDefault(); createCommunity(form).then((response)=> {localStorage.setItem('cid',response); nav("/feed")}); }}>
+        <form className=" w-3/6   flex items-center justify-center flex-col" ref={form} id="formCrearComunidad" onSubmit={ (event) => {event.preventDefault(); createCommunity(form).then((response)=> {localStorage.setItem('cid',response); nav("/feed")}); }}>
        
     <input
         placeholder="Nombre de la comunidad"
-        className="w-3/6 m-2 bg-moradoLight text-white px-4 py-2 rounded-lg placeholder-white focus:outline-none focus:ring-2 focus:ring-naranjaMolon"
+        className=" w-full m-2 bg-moradoLight text-white px-4 py-2 rounded-lg placeholder-white focus:outline-none focus:ring-2 focus:ring-naranjaMolon"
         type="text"
         required
         name='name'
@@ -33,7 +35,7 @@ export const NewCommunity = () => {
 
     <textarea
         placeholder="Descripción de la comunidad"
-        className="m-2 w-3/6 bg-moradoLight text-white px-4 py-2 rounded-lg placeholder-white focus:outline-none focus:ring-2 focus:ring-naranjaMolon"
+        className="m-2 w-full bg-moradoLight text-white px-4 py-2 rounded-lg placeholder-white focus:outline-none focus:ring-2 focus:ring-naranjaMolon"
         required
         name='description'
         id='cuerpo'
@@ -50,12 +52,12 @@ export const NewCommunity = () => {
 
 
 
-           <button className=" w-1/4 hover:bg-moradoLight  rounded-md p-2  border-2 border-naranjaMolon bg-moradoFondo placeholder-gray-400  placeholder-gray-400 ">Crear</button>
+           <button className=" w-2/4 hover:bg-moradoLight  rounded-md p-2  border-2 border-naranjaMolon bg-moradoFondo placeholder-gray-400  placeholder-gray-400 ">Crear</button>
       
           
         </form>
-    
         </div>
-            </div>
+        </div>
+            
     )
 }

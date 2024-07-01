@@ -107,7 +107,7 @@ useEffect(() => {
             sensitiveContent: data.sensitiveContent,
             communityId:data.communityId,
             categoria: data.categoria,
-            admin: data.communityCreator==loggedUser ? <img title= "MASTER!!!!" src={crown} /> : data.subscription=="MOD"?<img title= "ERES MODERADOR! :)" src={admin} />:null
+            admin: data.communityCreator==loggedUser ? <img src={crown} /> : data.subscription=="MOD"?<img  src={admin} />:null
         })
 
        

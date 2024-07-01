@@ -1,5 +1,6 @@
 package es.debateo.Controllers;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ public class CommentsController {
 	
 	@PostMapping()
 	public void postComment(@RequestBody Comments comment) {
-		System.out.println(comment.toString());
+		comment.setCommenDate(new Date());
 		repo.save(comment);
 	}
 	

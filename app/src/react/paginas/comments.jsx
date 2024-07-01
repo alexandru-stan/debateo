@@ -43,7 +43,7 @@ const [selectedPost, setSelectedPost] = useState();
           publicationBody={data.post.publicationBody}
           publicationTitle={data.post.publicationTitle}
           publicationId={data.post.publicationId}
-          publicationImage={(data.post.publicationImage.length>0)?<img style={{height:'100%'}} src={formatImage(data.post.publicationImage)} alt='img'/>:null}
+          publicationImage={(data.post.publicationImage.length>0)?<img  src={formatImage(data.post.publicationImage)} alt='img'/>:null}
           publicationUser={data.post.user}    
 
 

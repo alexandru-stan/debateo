@@ -8,7 +8,7 @@ const Logo = (props) => {
 
 
     return (
-        <img style={props.style} id={props.id} className={props.clase} draggable='false' src={props.ruta}  alt='ok'/>
+        <img onClick={props.onclick} style={props.style} id={props.id} className={props.clase} draggable='false' src={props.ruta}  alt='ok'/>
     )
 }
 

@@ -78,7 +78,7 @@ export const Body = () => {
 
 
     return (
-        <div className="text-white flex justify-center w-2/4  mt-postMT bg-emerald-950" id='profile-body'>
+        <div className="text-white flex justify-center w-3/4  mt-postMT bg-emerald-950" id='profile-body'>
        <UserData/>
        <Mensajes/>
         </div>

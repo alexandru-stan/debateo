@@ -9,7 +9,7 @@ export const NuevoChat = (props) => {
     const selectedChat = useSelector(state => state.selectedChat.value);
     const dispatch = useDispatch();
     let timerId;
-   
+    const $ = require('jquery');
 
     function search(event) {
  
@@ -30,16 +30,21 @@ export const NuevoChat = (props) => {
 
     return(
    
-    <div className=" m-2 relative" style={{height:'3rem', padding:'3px', direction:'ltr'}} id='nuevoChat'>
+    <div className=" w-4/5  m-2 relative" style={{height:'3rem', padding:'3px', direction:'ltr'}} id='nuevoChat'>
    
-        <input onChange={search} placeholder="Buscar usuario" className="rounded-md py-2 px-4 text-gray-700  text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoFondo placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon"></input>
+        <input onChange={search} placeholder="Buscar usuario" className="  rounded-md py-2 px-4 text-gray-700  text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoFondo placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon"></input>
         {resultados.length>0 ? 
-        <div style={{border:'1px solid #ff8c00' }} className="   bg-moradoFondo  absolute  rounded-md  w-full" id='chatSearchResult'>
+        <div style={{border:'1px solid #ff8c00' }} className="   bg-moradoFondo  absolute  rounded-md  " id='chatSearchResult'>
        
         {resultados.map((resultado) => (
           <div 
             className="cursor-pointer   hover:bg-naranjaMolon text-2xl bg-moradoFondo text-white p-2" 
             onClick={() => {
+
+            
+            $("#chatList").css("display","none");
+            $("#chatActual").css("display","block");
+           
             dispatch(change(resultado));
             setResultados([]);
             

@@ -6,13 +6,13 @@ import { formatImage } from './imageFormatting';
 import { deleteFunction } from './DeletePublication';
 import { SERV_DIR,SERV_PORT } from '../utilities';
 import { DeleteIcon } from '../assets/img/deleteIcon';
-
+const $ = require("jquery");
 export async function PostsRequest(request,setPostsArr){
 
  
 
 
-
+    $("#feedSpinner").css("display","block");
     let endpoint =  "http://"+SERV_DIR+":"+SERV_PORT+"/posts/"+request.loggedUser+"/"+request.page;
 
     return axios.get(endpoint).then(response=>{
@@ -26,6 +26,7 @@ export async function PostsRequest(request,setPostsArr){
     let posts = new Array(response.data.numberOfElements);
     for(let i=0;i<posts.length;i++){
 
+   
           
               posts[i] = <Post
               likes={arr[i].likes}
