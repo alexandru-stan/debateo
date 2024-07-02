@@ -76,10 +76,18 @@ public class PostsServices {
 	
 	
 	
-	public ServiceResponse<PostDTO> getPosts(String username,int offset){
+	public ServiceResponse<PostDTO> getPosts(String username,int offset,boolean fyp){
 		
 		
-		Page<PostDTO> posts = repo.getPosts(username,PageRequest.of(offset, 15));
+		Page<PostDTO> posts = fyp ? repo.getPostsFyp(PageRequest.of(offset, 15)) :  repo.getPostsBySubscription(username,PageRequest.of(offset, 15));
+		
+//		Page<PostDTO> posts = repo.getPostsBySubscription(username,PageRequest.of(offset, 15));
+		
+		
+		
+		posts.getTotalElements();
+		
+		
 		posts.forEach(post->{
 			post.setLiked(repo.isItLiked(username, post.getPost().getPublicationId()));
 			post.setLikes(likesRepo.likeCount(post.getPost().getPublicationId()));

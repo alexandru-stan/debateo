@@ -14,7 +14,7 @@ const Body = () => {
 
     return (
         
-        <div className=' mt-5 flex justify-around' id="body">
+        <div className=' mt-5  w-full flex justify-around items-center' id="body">
        
        
         <Carusel/>

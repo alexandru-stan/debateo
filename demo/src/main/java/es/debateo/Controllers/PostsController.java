@@ -7,9 +7,7 @@ import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,11 +36,11 @@ public class PostsController {
 	@Autowired
 	postsRepo repo;
 	
-	@GetMapping("/{username}/{offset}")
-	public ResponseEntity<Page<PostDTO>> getPosts(@PathVariable String username, @PathVariable int offset){
+	@GetMapping("/{username}/{offset}/{fyp}")
+	public ResponseEntity<Page<PostDTO>> getPosts(@PathVariable String username, @PathVariable int offset, @PathVariable boolean fyp){
 		
 		System.out.println("LA PAGINA ES:"+offset);
-		ServiceResponse<PostDTO> response = services.getPosts(username,offset);
+		ServiceResponse<PostDTO> response = services.getPosts(username,offset,fyp);
 		
 		System.out.println(response.getPagina());
 		

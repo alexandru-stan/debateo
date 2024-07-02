@@ -8,6 +8,9 @@ import { useRef } from 'react';
 import { Mensajes } from '../reusable/mensajes/mensajes';
 import Recommendations from './body/recommendations/recommendations';
 import SpinnerLoader from '../reusable/SpinnerLoader';
+import Image from '../reusable/img';
+import noSubscriptions from "../../../assets/img/noSubscriptions.png"
+
 
 
 const $ = require('jquery');
@@ -16,11 +19,15 @@ const $ = require('jquery');
 const Body = () => {
   
    
-  if(JSON.parse(sessionStorage.getItem("user"))?.subsCount>0){
-    
+ 
+    let noSubscriptionsElement =   <div id="noSubscriptions" className='w-full  flex flex-col items-center text-naranjaMolon font-bold mt-5 text-center '>
+     <p>Vaya... parece ser que no estás suscrito a ninguna comunidad...</p>
+     <div><Image ruta={noSubscriptions}/></div>
+     </div>
     const [postsArr,setPostsArr] = useState([]);
     const [page,setPage] = useState(0);
     const [isLast,setIslast] = useState(false);
+    const [fyp,setFyp] = useState(true);
     const myRef = useRef();
     let request = {
       page:page,
@@ -37,7 +44,7 @@ const Body = () => {
       if (entries[0].isIntersecting && !isLast) {
         observer.disconnect();
         setPage((prevPage) => prevPage + 1);
-        PostsRequest(request,setPostsArr)
+        PostsRequest(request,setPostsArr,fyp)
           .then((response) => {
             setPostsArr((prevPosts) => prevPosts.concat(response));
             $("#feedSpinner").css("display","none");
@@ -50,14 +57,13 @@ const Body = () => {
     const observer = new IntersectionObserver(handleIntersection);
 
     
-
-
+console.log(JSON.parse(sessionStorage.getItem("user"))?.subsCount);
 
 
    
 useEffect(  ()=> {
 
-  PostsRequest(request,setPostsArr).then(response => {
+  PostsRequest(request,setPostsArr,fyp).then(response => {
    
     $("#feedSpinner").css("display","none");
     setPostsArr(response);
@@ -69,7 +75,7 @@ useEffect(  ()=> {
  
  
   
-},[])
+},[fyp])
 
 
 useEffect(()=> {
@@ -93,27 +99,50 @@ if(myRef.current!=null){
      
         
     
-   
+      <div id="fyp" className='mt-4 flex flex-row bg-moradoFondo w-2/6 justify-center' >
+        <div onClick={(()=>{ 
+        fyp? 
+        null:
+        (function(){
+          setPostsArr([]);
+          setFyp(true);
+          setPage(0);
+          setIslast(false)
+        })()
+        
+        }
+        )} className={fyp? ' selectedPage pageSelector': 'pageSelector'}>Para tí</div>
+
+
+
+        <div onClick={(()=> {
+          fyp?(function(){
+            setPostsArr([]);
+          setFyp(false);
+          setPage(0);
+          setIslast(false)
+          
+        })() : 
+          null
+          
+        } )} className={fyp?'pageSelector':'selectedPage pageSelector'}>Siguiendo</div>
+      </div>
         {postsArr}
         <SpinnerLoader id="feedSpinner"/>
         
 
         <Mensajes/>
        
+       {JSON.parse(sessionStorage.getItem("user"))?.subsCount==0 && !fyp && postsArr.length==0 ? noSubscriptionsElement : null }
 
     </div>
     );
 
 
-    } else {
-      
-      return (
-        <Recommendations/>
+  
         
-
+       
     
-      )
-    }
 
 
 

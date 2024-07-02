@@ -1,11 +1,43 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
+#carusel img {
+  width:100%;
+  
+}
+
 ::-webkit-scrollbar {
   width: 10px; /* Width of the scrollbar */
 }
 
 
+.selectedPage {
+  background-color: #444073;
+  color: #ff8c00;
+}
+
+#formRegister div input, #form div input{
+
+ 
+  margin:5px;
+
+}
+
+.pageSelector {
+  /* ' cursor-pointer items-center  p-2 w-2/4 flex justify-center '
+   */
+
+   cursor:pointer;
+   display:flex;
+   justify-content: center;
+   align-items: center;
+   width:50%;
+   padding:2px;
+   font-size: 1.1rem;
+   font-weight: bold;
+
+
+}
 
 @media(max-width:450px){
   #communityButtons {
@@ -320,7 +352,9 @@ input::file-selector-button:hover{
     }
     
 
-    
+    #fyp{
+      width:70%;
+    }
 
     
 

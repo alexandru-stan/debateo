@@ -68,7 +68,7 @@ const dispatch = useDispatch();
 
 
     return (
-  <div  className=' backdrop-brightness-125 border-naranjaMolon border-2 rounded-lg p-3 text-white flex flex-col' id="formRegister">
+  <div  className='  backdrop-brightness-125 border-naranjaMolon border-2 rounded-lg p-3 text-white flex flex-col' id="formRegister">
       
     
       <p  style={{fontSize:'1.5em'}} className='text-center bienvenida'>Bienvenido!</p>

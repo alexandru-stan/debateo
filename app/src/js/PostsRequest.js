@@ -7,13 +7,13 @@ import { deleteFunction } from './DeletePublication';
 import { SERV_DIR,SERV_PORT } from '../utilities';
 import { DeleteIcon } from '../assets/img/deleteIcon';
 const $ = require("jquery");
-export async function PostsRequest(request,setPostsArr){
+export async function PostsRequest(request,setPostsArr,fyp){
 
  
 
 
     $("#feedSpinner").css("display","block");
-    let endpoint =  "http://"+SERV_DIR+":"+SERV_PORT+"/posts/"+request.loggedUser+"/"+request.page;
+    let endpoint =  "http://"+SERV_DIR+":"+SERV_PORT+"/posts/"+request.loggedUser+"/"+request.page+"/"+fyp;
 
     return axios.get(endpoint).then(response=>{
       
