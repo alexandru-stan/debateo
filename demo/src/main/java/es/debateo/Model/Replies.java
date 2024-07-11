@@ -62,6 +62,14 @@ public class Replies {
 	public Replies() {
 		super();
 	}
+	public Replies(String username, long commentId, String replyText) {
+		super();
+		this.username = username;
+		this.commentId = commentId;
+		this.replyText = replyText;
+	}
+	
+	
 	
 	
 	

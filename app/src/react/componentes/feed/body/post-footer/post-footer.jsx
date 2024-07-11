@@ -46,12 +46,12 @@ let loggedUser = JSON.parse(sessionStorage.getItem('user')).username
 
 
     return (
-        <div style={{}} className='post-footer   flex p-1 text-white '>
+        <div style={{}} className='post-footer  items-center  flex p-1 text-white '>
             
-               <span  style={{width:'15%'}} className="    flex items-center  m-1 " onClick={() => {
+               <span  style={{width:'15%'}} className="  items-center   flex items-center  m-1 " onClick={() => {
                 
                 changeLikeStatus();
-                }} title='Me gusta'> <Imagen clase={"w-1/4 hover:cursor-pointer "} ruta={like?IconoVotado:IconoVotar}/> <span  style={{ marginLeft:'10%',fontSize:'smaller'}}>{likesCount}</span></span>
+                }} title='Me gusta'> <Imagen clase={"w-1/4 hover:cursor-pointer "} ruta={like?IconoVotado:IconoVotar}/> <span className="Kanit" style={{ marginLeft:'10%',fontSize:'smaller'}}>{likesCount}</span></span>
                
                <span style={{width:'15%'}} className="  flex items-center  m-1  " onClick={()=>{
               
@@ -59,7 +59,7 @@ let loggedUser = JSON.parse(sessionStorage.getItem('user')).username
                 nav("/"+postInfo.publicationId+"/comments");
                
                
-               }} title='Comentar'><Imagen  clase={" hover:cursor-pointer w-1/4"}  ruta = {IconoComentar}/> <span style={{marginLeft:'10%',fontSize:'smaller'}}>{postInfo.comments}</span></span> 
+               }} title='Comentar'><Imagen  clase={" hover:cursor-pointer w-1/4 "}  ruta = {IconoComentar}/> <span className="Kanit " style={{marginLeft:'10%',fontSize:'smaller'}}>{postInfo.comments}</span></span> 
                 
              
                 

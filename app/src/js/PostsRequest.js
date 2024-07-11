@@ -30,6 +30,7 @@ export async function PostsRequest(request,setPostsArr,fyp){
           
               posts[i] = <Post
               likes={arr[i].likes}
+              visibleCommunityInfo = {true}
               comments={arr[i].comments}
               liked={arr[i].liked}
               communityId={arr[i].community.communityId}

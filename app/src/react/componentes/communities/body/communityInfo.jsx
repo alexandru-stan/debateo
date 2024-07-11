@@ -10,7 +10,7 @@ export const CommunityInfo = (props) => {
 
 
     return (
-        <div style={{}} className='community-info p-2  flex flex-col items-center bg-moradoFondo w-2/6  rounded-lg '>
+        <div style={{}} className='community-info p-2 Kanit  flex flex-col items-center bg-moradoFondo w-2/6  rounded-lg '>
     <div className='info      w-5/6'>
    
     <div className='  communityImageAndInfo flex flex-col '>
@@ -20,9 +20,9 @@ export const CommunityInfo = (props) => {
 
         
             <div style={{width:'80%'}} className=' community-name p-3    '>
-                <p style={{fontSize:'2rem'}} className=''>{props.info.communityName}</p>
-                <p className="text-naranjaMolon ">{props.info.communityMembers} miembros</p>
-                <p className='community-creator '>Creada por <span className='text-naranjaMolon'>{props.info.communityCreator}</span></p>
+                <p style={{fontSize:'2rem'}} className='Kanit'>{props.info.communityName}</p>
+                <p className="text-naranjaMolon Kanit">{props.info.communityMembers} miembros</p>
+                <p className='community-creator Kanit '>Creada por <span className='text-naranjaMolon font-bold'>{props.info.communityCreator}</span></p>
                 
             </div>
             {/* <div  className=' bg-emerald-950 admin '>{props.info.admin}</div> */}

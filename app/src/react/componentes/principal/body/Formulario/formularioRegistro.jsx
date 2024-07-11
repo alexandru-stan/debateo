@@ -13,6 +13,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { change, changeStatus } from '../../../../../redux-store/slices/StatusSlice';
 import { Input } from './inputComponent';
+import { validarRegister } from '../../../../../js/validarRegister';
 
 const $ = require('jquery');
 let codigoRespuesta;
@@ -24,8 +25,23 @@ const status = useSelector((state) => state.status.value);
 const dispatch = useDispatch();
 
      function callRegister(){
+      $(".mensajeError").html("");
+      let user = {
+        name: $('#Rname').val(),
+        username: $('#Rusername').val(),
+        password: $('#Rpassword').val(),
+        mail: $('#Rmail').val(),
+        birth_date: $('#Rbirth_date').val()
+    }
 
-    Register().then(response => {
+    let resultado = validarRegister(user);
+
+
+
+    resultado ? 
+
+
+      Register(user).then(response => {
       codigoRespuesta = response.status;
       mensajeRespuesta = response.data;
       dispatch(changeStatus(!status))
@@ -38,9 +54,13 @@ const dispatch = useDispatch();
       mensajeRespuesta = error.response.data;
        dispatch(changeStatus(!status))
       
-    });
+    })
 
-    
+    : 
+
+    null
+
+
 
   }
 
@@ -68,35 +88,45 @@ const dispatch = useDispatch();
 
 
     return (
-  <div  className='  backdrop-brightness-125 border-naranjaMolon border-2 rounded-lg p-3 text-white flex flex-col' id="formRegister">
+  <div  className='  backdrop-brightness-125 w-2/6 border-naranjaMolon border-2 rounded-lg p-3 text-white flex flex-col' id="formRegister">
       
     
-      <p  style={{fontSize:'1.5em'}} className='text-center bienvenida'>Bienvenido!</p>
+      <p  style={{fontSize:'1.5em'}} className='Kanit text-center bienvenida'>Bienvenido!</p>
         <ToggleForm fn={props.fn}  hasAccount = {props.hasAccount}/>
     
-        <div className='campoFormularioPrincipal m-3 flex  justify-around'>
+        <div className=' flex flex-col  items-center '>
+
+        <div style={{marginTop:'10px'}}  className=' w-3/4 flex flex-col items-center'>
         <input id='Rusername' className=" rounded-md py-2 px-4 text-gray-700 border-b-2 text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon"  placeholder="Nombre de usuario" for="Rusername"/>
+        <p className="mensajeError Kanit text-red-400 font-bold"></p>
+        </div>
+
+        <div style={{marginTop:'10px'}} className='w-3/4'>
         <input id='Rpassword' className=" rounded-md py-2 px-4 text-gray-700 border-b-2 text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon"  placeholder="Contraseña" for="Rpassword" />
-        </div>
-
-        <div className='campoFormularioPrincipal m-3 flex justify-around'>
-        <input id="Rname" className=" rounded-md py-2 px-4 text-gray-700 border-b-2 text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon" placeholder="Nombre" for="Rname"/>
-        <input id="Rmail" className=" rounded-md py-2 px-4 text-gray-700 border-b-2 text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon" placeholder="Correo electrónico" for="Rmail" />
-        </div>
-
-        <div className='campoFormularioPrincipal m-3 flex justify-around'>
-        <label htmlFor="Rbirth_date">
-        <input id="Rbirth_date" onFocus={(e)=> e.target.type="date" } style={{colorScheme:"dark"}} placeholder='Fecha de nacimiento' type="text" className=" rounded-md py-2 px-4 text-gray-700 border-b-2 text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon"/>
-        </label>
+        <p  className="mensajeError Kanit text-red-400 font-bold"></p>
         </div>
         
-        <div >
-        <label className='w-full ' htmlFor='Rsubmit'>
-          <button className='w-full bg-moradoLight hover:bg-naranjaMolon text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:border-blue-300' onClick={callRegister}>Enviar</button>
-          <RespuestaServidor  codigo={codigoRespuesta} texto={mensajeRespuesta}/>
-        </label>
+
+        <div style={{marginTop:'10px'}} className='w-3/4'>
+        <input id="Rname" className=" rounded-md py-2 px-4 text-gray-700 border-b-2 text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon" placeholder="Nombre" for="Rname"/>
+        <p className="mensajeError Kanit text-red-400 font-bold"></p>
+        </div>
+        <div style={{marginTop:'10px'}} className='w-3/4'>
+        <input id="Rmail" className=" rounded-md py-2 px-4 text-gray-700 border-b-2 text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon" placeholder="Correo electrónico" for="Rmail" />
+        <p className="mensajeError Kanit text-red-400 font-bold"></p>
         </div>
 
+        <div style={{marginTop:'10px'}} className='w-3/4'>
+        <input id="Rbirth_date" onFocus={(e)=> e.target.type="date" } style={{colorScheme:"dark"}} placeholder='Fecha de nacimiento' type="text" className=" rounded-md py-2 px-4 text-gray-700 border-b-2 text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon"/>
+        <p className="mensajeError Kanit text-red-400 font-bold"></p>
+        </div>
+        
+        
+        <div style={{marginTop:'10px'}} className='w-3/4' >
+          <button className='w-full bg-moradoLight hover:bg-naranjaMolon text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:border-blue-300' onClick={callRegister}>Enviar</button>
+          <RespuestaServidor  codigo={codigoRespuesta} texto={mensajeRespuesta}/>  
+        </div>
+</div>
      
         
         

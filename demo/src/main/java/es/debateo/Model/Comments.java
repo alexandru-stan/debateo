@@ -21,6 +21,8 @@ public class Comments {
 	Date commentDate;
 	@Column(name="comment_text")
 	String commentText;
+	
+	
 	public long getCommentId() {
 		return commentId;
 	}

@@ -78,9 +78,17 @@ export const Body = () => {
 
 
     return (
-        <div className="text-white flex justify-center w-3/4  mt-postMT bg-emerald-950" id='profile-body'>
+        <div className="text-white flex items-center flex-col w-3/4  mt-postMT " id='profile-body'>
        <UserData/>
        <Mensajes/>
+
+
+    <div id="profileUploads" className='mt-4 flex flex-row bg-moradoFondo rounded-lg w-3/6 justify-center' >
+        <div className="pageSelector">Tus publicaciones</div>
+        <div  className="pageSelector">Tus comentarios</div>
+    </div>
+
+
         </div>
     )
 }

@@ -57,7 +57,7 @@ const Body = () => {
     const observer = new IntersectionObserver(handleIntersection);
 
     
-console.log(JSON.parse(sessionStorage.getItem("user"))?.subsCount);
+console.log("SUBS COUNT "+JSON.parse(sessionStorage.getItem("user"))?.subsCount);
 
 
    
@@ -99,7 +99,7 @@ if(myRef.current!=null){
      
         
     
-      <div id="fyp" className='mt-4 flex flex-row bg-moradoFondo w-2/6 justify-center' >
+      <div id="fyp" className='mt-4 flex flex-row bg-moradoFondo rounded-lg w-2/6 justify-center' >
         <div onClick={(()=>{ 
         fyp? 
         null:
@@ -111,7 +111,7 @@ if(myRef.current!=null){
         })()
         
         }
-        )} className={fyp? ' selectedPage pageSelector': 'pageSelector'}>Para tí</div>
+        )} className={ fyp? ' rounded-lg  selectedPage  pageSelector': ' rounded-lg pageSelector' }>Para tí</div>
 
 
 
@@ -125,7 +125,7 @@ if(myRef.current!=null){
         })() : 
           null
           
-        } )} className={fyp?'pageSelector':'selectedPage pageSelector'}>Siguiendo</div>
+        } )} className={  fyp? 'rounded-lg pageSelector':' rounded-lg selectedPage pageSelector'}>Siguiendo</div>
       </div>
         {postsArr}
         <SpinnerLoader id="feedSpinner"/>
@@ -133,7 +133,7 @@ if(myRef.current!=null){
 
         <Mensajes/>
        
-       {JSON.parse(sessionStorage.getItem("user"))?.subsCount==0 && !fyp && postsArr.length==0 ? noSubscriptionsElement : null }
+       {!fyp && postsArr.length==0 ? noSubscriptionsElement : null }
 
     </div>
     );

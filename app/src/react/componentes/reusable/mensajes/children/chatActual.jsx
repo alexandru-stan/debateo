@@ -1,6 +1,6 @@
 import React from "react";
 import Logo from "../../img";
-import enviarMensaje from "../../../../../assets/img/enviarMensaje.png";
+import enviarMensaje from "../../../../../assets/img/enviar.png";
 import selectedChatPng from "../../../../../assets/img/selectedChat.png";
 import {useSelector, useDispatch} from "react-redux";
 import { change } from "../../../../../redux-store/slices/SelectedChatSlice";

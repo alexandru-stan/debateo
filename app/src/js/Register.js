@@ -1,17 +1,11 @@
 import axios from "axios";
 import {SERV_DIR,SERV_PORT} from "../utilities";
 const $ = require('jquery');
- function Register(){
+ function Register(user){
 
-    let user = {
-        name: $('#Rname').val(),
-        username: $('#Rusername').val(),
-        password: $('#Rpassword').val(),
-        mail: $('#Rmail').val(),
-        birth_date: $('#Rbirth_date').val()
-    }
+ 
 
-   return  axios.post('http://'+SERV_DIR+":"+SERV_PORT+"/users/signin",user   );
+   return  axios.post('http://'+SERV_DIR+":"+SERV_PORT+"/users/signin",user );
      
 
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import es.debateo.DTO.CommentsDTO;
 import es.debateo.Model.Comments;
 import es.debateo.Repositories.commentsRepo;
 
@@ -24,9 +25,15 @@ public class CommentsController {
 	commentsRepo repo;
 	
 	@GetMapping("/{postid}")
-	public List<Comments> getComments(@PathVariable long postid) {
+	public List<CommentsDTO> getComments(@PathVariable long postid) {
+		List<CommentsDTO> comentarios = repo.getComments(postid);
+		comentarios.forEach(e ->{
 		
-		return repo.getComments(postid);
+			e.setReplies(repo.getRepliesByCommentId(e.getCommentId()));
+			System.out.println(e.toString());
+		}
+		);
+		return comentarios;
 		
 		
 	}

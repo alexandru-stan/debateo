@@ -14,15 +14,18 @@ function Principal(){
     })
 
     return (
-
-        <div className="  font-sans flex flex-col">
+<>
+        <div className="  flex flex-col">
             <Header/>
             <Body/>
+            
 
            
             
         </div>
-    
+        
+   
+        </>
 
     );
 

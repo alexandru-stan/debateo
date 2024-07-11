@@ -30,6 +30,7 @@ public class ServiceResponse<T> {
 		this.pagina = pagina;
 	}
 	
+
 	
 
 	public T getObj() {

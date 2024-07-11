@@ -565,16 +565,16 @@ video {
   margin-top: 10%;
 }
 
+.mt-auto {
+  margin-top: auto;
+}
+
 .block {
   display: block;
 }
 
 .flex {
   display: flex;
-}
-
-.grid {
-  display: grid;
 }
 
 .hidden {
@@ -658,10 +658,6 @@ video {
           appearance: none;
 }
 
-.grid-cols-2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
 .flex-row {
   flex-direction: row;
 }
@@ -672,6 +668,10 @@ video {
 
 .items-center {
   align-items: center;
+}
+
+.justify-end {
+  justify-content: flex-end;
 }
 
 .justify-center {
@@ -696,6 +696,10 @@ video {
 
 .rounded {
   border-radius: 0.25rem;
+}
+
+.rounded-3xl {
+  border-radius: 1.5rem;
 }
 
 .rounded-full {
@@ -754,6 +758,11 @@ video {
   border-color: rgb(255 140 0 / var(--tw-border-opacity));
 }
 
+.border-slate-50 {
+  --tw-border-opacity: 1;
+  border-color: rgb(248 250 252 / var(--tw-border-opacity));
+}
+
 .border-b-naranjaMolon {
   --tw-border-opacity: 1;
   border-bottom-color: rgb(255 140 0 / var(--tw-border-opacity));
@@ -779,16 +788,21 @@ video {
   background-color: rgb(23 22 38 / var(--tw-bg-opacity));
 }
 
+.bg-transparent {
+  background-color: transparent;
+}
+
+.bg-zinc-950 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(9 9 11 / var(--tw-bg-opacity));
+}
+
 .text-left {
   text-align: left;
 }
 
 .text-center {
   text-align: center;
-}
-
-.font-sans {
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 .text-2xl {
@@ -833,9 +847,18 @@ video {
   color: rgb(250 250 250 / var(--tw-text-opacity));
 }
 
+.text-red-400 {
+  --tw-text-opacity: 1;
+  color: rgb(248 113 113 / var(--tw-text-opacity));
+}
+
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.underline {
+  text-decoration-line: underline;
 }
 
 .placeholder-gray-400::placeholder {
@@ -944,8 +967,60 @@ video {
   --tw-ring-color: rgb(255 140 0 / var(--tw-ring-opacity));
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
+@font-face {
+  font-family: 'Kanit';
+  src: url('/Kanit-Regular.027b27e4.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+  @font-face {
+    font-family: 'Nunito';
+    src: url('/Nunito-Regular.78f8dccf.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Ubuntu';
+    src: url('/Ubuntu-Regular.2ec61b23.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Playwrite';
+    src: url('/PlaywriteGBS-VariableFont_wght.d068bf0f.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Lato';
+    src: url('/Lato-Regular.4bbb16d5.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+
+* {
+  font-family:'Nunito'
+}
+
+.Kanit {
+  font-family: 'Kanit' !important;
+}
+
+
+#header-feed{
+  /* background-color: red; */
+  z-index:3;
+}
+
+#mensajes {
+  z-index:4;
+}
 #carusel img {
   width:100%;
   
@@ -1058,6 +1133,14 @@ input::file-selector-button:hover{
 }
 
 
+#replyBox input:focus{
+      
+ border-color:#444073;
+  outline:none;
+ 
+
+}
+
 #chatBox {
   
   padding: 10px;
@@ -1092,7 +1175,72 @@ input::file-selector-button:hover{
     width: 80% !important;
    
   }
+
+  #menu-1,#menu-2,#menu-3,#menu-4 {
+    width:15% !important;
+    /* background-color: red; */
+
+  }
+
+  #userData {
+    width:70%
+  }
+
+  #header-feed{
+    flex-direction: column;
+   
+   }
+   #header-logo{
+    width:100%;
+    padding-bottom:10px;
+   }
+
+    #search-bar{
+   
+      width: 100%;
  
+     
+    }
+ 
+    #menu {
+      /* background-color: red !important; */
+      width: 100%;
+    }
+  
+    /* #menu *   {
+      
+      width:80%;
+      display:flex;
+      flex-direction: column;
+      background-color: #171626;
+      
+     
+    
+
+    } */
+
+    #menu * img {
+     
+      height:2rem !important;
+      width:100% !important;
+      
+    }
+
+    .letraObjetoMenu{
+      
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      height:100% !important;
+      
+      
+      
+    }
+
+    #header-feed img {
+      margin-left:0 !important;
+    }
+  
 }
 
 
@@ -1106,10 +1254,18 @@ input::file-selector-button:hover{
         #carusel{
             display:none;
         }
+
+        #formRegister {
+          width:70%;
+        }
+
   }
 
 
   @media(max-width:700px){
+    #userData {
+      width: 100%;
+    }
 
     .community-image {
       width:30% !important;
@@ -1139,21 +1295,19 @@ input::file-selector-button:hover{
       width: 90% !important;
      
     }
+
+    #menu-1,#menu-2,#menu-3,#menu-4 {
+      width:20% !important;
+      /* background-color: red; */
+  
+    }
+  
   
     #profile-body{
       width: 100%;
     }
 
-    #userData{
-      
-      display:flex;
-      flex-direction:column;
-    }
 
-    #userData * {
-      display:flex;
-      flex-direction: column;
-    }
 
 
     .imagenComunidad {
@@ -1180,21 +1334,7 @@ input::file-selector-button:hover{
 
    
 
-   #header-feed{
-    flex-direction: column;
-   
-   }
-   #header-logo{
-    width:100%;
-    padding-bottom:10px;
-   }
 
-    #search-bar{
-   
-      width: 100%;
- 
-     
-    }
   
 
    
@@ -1223,28 +1363,7 @@ input::file-selector-button:hover{
     }
    
 
-    #menu {
-      /* background-color: red !important; */
-      width: 100%;
-    }
-  
-    #menu *   {
-      
-      width:80%;
-      display:flex;
-      flex-direction: column;
-      
-     
-    
-
-    }
-
-    #menu * img {
-     
-      height:2rem !important;
-      width:100% !important;
-      
-    }
+   
 
 
     .backIcon {
@@ -1269,7 +1388,7 @@ input::file-selector-button:hover{
     #chatList{
       
       width:100%;
-      z-index:1;
+      /* z-index:3; */
       
     }
 
@@ -1280,21 +1399,15 @@ input::file-selector-button:hover{
      
     }
 
-    #header-feed{
-      /* background-color: red; */
-      z-index:0;
+    
+
+    #formRegister {
+      width: 70%;
     }
 
-    .letraObjetoMenu{
-      
-      display:flex;
-      justify-content: center;
-      align-items: center;
-      height:100% !important;
-      
-      
-      
-    }
+   
+
+    
     
 
     #fyp{
@@ -1314,7 +1427,9 @@ input::file-selector-button:hover{
   
     width:100% !important;
   }
-
+#formRegister{
+  width: 100%;
+}
 
   .bienvenida,.mensajePrincipal{
   
@@ -1366,5 +1481,11 @@ input::file-selector-button:hover{
   }
 }
 
+#formRegister div input::placeholder {
+
+  font-family: 'Kanit';
+
+
+}
 
 /*# sourceMappingURL=/src.b0ce6175.css.map */

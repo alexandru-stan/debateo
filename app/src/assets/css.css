@@ -1,6 +1,56 @@
+@font-face {
+  font-family: 'Kanit';
+  src: url('./fonts/Kanit/Kanit-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
 
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
+  @font-face {
+    font-family: 'Nunito';
+    src: url('./fonts/Nunito/static/Nunito-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Ubuntu';
+    src: url('./fonts/Ubuntu/Ubuntu-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Playwrite';
+    src: url('./fonts/Playwrite_GB_S/PlaywriteGBS-VariableFont_wght.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Lato';
+    src: url('./fonts/Lato/Lato-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+
+* {
+  font-family:'Nunito'
+}
+
+.Kanit {
+  font-family: 'Kanit' !important;
+}
+
+
+#header-feed{
+  /* background-color: red; */
+  z-index:3;
+}
+
+#mensajes {
+  z-index:4;
+}
 #carusel img {
   width:100%;
   
@@ -113,6 +163,14 @@ input::file-selector-button:hover{
 }
 
 
+#replyBox input:focus{
+      
+ border-color:#444073;
+  outline:none;
+ 
+
+}
+
 #chatBox {
   
   padding: 10px;
@@ -147,7 +205,72 @@ input::file-selector-button:hover{
     width: 80% !important;
    
   }
+
+  #menu-1,#menu-2,#menu-3,#menu-4 {
+    width:15% !important;
+    /* background-color: red; */
+
+  }
+
+  #userData {
+    width:70%
+  }
+
+  #header-feed{
+    flex-direction: column;
+   
+   }
+   #header-logo{
+    width:100%;
+    padding-bottom:10px;
+   }
+
+    #search-bar{
+   
+      width: 100%;
  
+     
+    }
+ 
+    #menu {
+      /* background-color: red !important; */
+      width: 100%;
+    }
+  
+    /* #menu *   {
+      
+      width:80%;
+      display:flex;
+      flex-direction: column;
+      background-color: #171626;
+      
+     
+    
+
+    } */
+
+    #menu * img {
+     
+      height:2rem !important;
+      width:100% !important;
+      
+    }
+
+    .letraObjetoMenu{
+      
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      height:100% !important;
+      
+      
+      
+    }
+
+    #header-feed img {
+      margin-left:0 !important;
+    }
+  
 }
 
 
@@ -161,10 +284,18 @@ input::file-selector-button:hover{
         #carusel{
             display:none;
         }
+
+        #formRegister {
+          width:70%;
+        }
+
   }
 
 
   @media(max-width:700px){
+    #userData {
+      width: 100%;
+    }
 
     .community-image {
       width:30% !important;
@@ -194,21 +325,19 @@ input::file-selector-button:hover{
       width: 90% !important;
      
     }
+
+    #menu-1,#menu-2,#menu-3,#menu-4 {
+      width:20% !important;
+      /* background-color: red; */
+  
+    }
+  
   
     #profile-body{
       width: 100%;
     }
 
-    #userData{
-      
-      display:flex;
-      flex-direction:column;
-    }
 
-    #userData * {
-      display:flex;
-      flex-direction: column;
-    }
 
 
     .imagenComunidad {
@@ -235,21 +364,7 @@ input::file-selector-button:hover{
 
    
 
-   #header-feed{
-    flex-direction: column;
-   
-   }
-   #header-logo{
-    width:100%;
-    padding-bottom:10px;
-   }
 
-    #search-bar{
-   
-      width: 100%;
- 
-     
-    }
   
 
    
@@ -278,28 +393,7 @@ input::file-selector-button:hover{
     }
    
 
-    #menu {
-      /* background-color: red !important; */
-      width: 100%;
-    }
-  
-    #menu *   {
-      
-      width:80%;
-      display:flex;
-      flex-direction: column;
-      
-     
-    
-
-    }
-
-    #menu * img {
-     
-      height:2rem !important;
-      width:100% !important;
-      
-    }
+   
 
 
     .backIcon {
@@ -324,7 +418,7 @@ input::file-selector-button:hover{
     #chatList{
       
       width:100%;
-      z-index:1;
+      /* z-index:3; */
       
     }
 
@@ -335,21 +429,15 @@ input::file-selector-button:hover{
      
     }
 
-    #header-feed{
-      /* background-color: red; */
-      z-index:0;
+    
+
+    #formRegister {
+      width: 70%;
     }
 
-    .letraObjetoMenu{
-      
-      display:flex;
-      justify-content: center;
-      align-items: center;
-      height:100% !important;
-      
-      
-      
-    }
+   
+
+    
     
 
     #fyp{
@@ -369,7 +457,9 @@ input::file-selector-button:hover{
   
     width:100% !important;
   }
-
+#formRegister{
+  width: 100%;
+}
 
   .bienvenida,.mensajePrincipal{
   
@@ -419,4 +509,11 @@ input::file-selector-button:hover{
   .community-name{
     width:60% !important;
   }
+}
+
+#formRegister div input::placeholder {
+
+  font-family: 'Kanit';
+
+
 }

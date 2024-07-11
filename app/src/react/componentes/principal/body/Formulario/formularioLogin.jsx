@@ -19,6 +19,7 @@ import RespuestaServidor from '../respuestasServidor';
 import { useRef } from 'react';
 import { useEffect } from 'react';
 import { Input } from './inputComponent';
+import { timestampToDate } from '../../../../../js/timestampToDate';
 let codigoRespuesta;
 let mensajeRespuesta;
 
@@ -33,7 +34,7 @@ const navigate = useNavigate();
 
   Login().then(response => {
     
-
+    response.data.birth_date = timestampToDate(response.data.birth_date);
     sessionStorage.setItem('user',JSON.stringify(response.data));
 
       navigate("/feed");

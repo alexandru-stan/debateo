@@ -32,6 +32,7 @@ let loggedUser = JSON.parse(sessionStorage.getItem('user')).username
               posts[i] = <Post
               likes={arr[i].likes}
               comments={arr[i].comments}
+              visibleCommunityInfo = {false}
               liked={arr[i].liked}
               publicationBody={arr[i].post.publicationBody}
               publicationTitle={arr[i].post.publicationTitle}
