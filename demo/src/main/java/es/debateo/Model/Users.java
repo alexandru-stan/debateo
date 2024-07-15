@@ -98,6 +98,12 @@ public class Users {
 	public Users() {
 		
 	}
+
+	@Override
+	public String toString() {
+		return "Users [username=" + username + ", password=" + password + ", name=" + name + ", mail=" + mail
+				+ ", birth_date=" + birth_date + ", subsCount=" + subsCount + "]";
+	}
 	
 	
 }

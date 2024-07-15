@@ -84,4 +84,14 @@ public class UserServices{
 		return new ServiceResponse<String>(a,HttpStatus.OK);
 		
 	}
+	
+	
+	public void userUpdate(Users user, String originalUsername) {
+		
+		repo.updateUser(user.getUsername(),user.getName(),user.getMail(),user.getBirth_date(),originalUsername);
+		
+	}
+	
+	
+	
 }
