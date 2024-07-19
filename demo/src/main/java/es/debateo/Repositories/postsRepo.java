@@ -24,13 +24,15 @@ public interface postsRepo extends JpaRepository<Posts,Long>{
 	@Query("SELECT new es.debateo.DTO.PostDTO(p, c, s, 0 , 0, 0) FROM Posts p " +
 		       " JOIN Communities c ON p.community = c.communityId " +
 		       " LEFT JOIN Subscriptions s ON p.community = s.communityId AND s.username=:name "
-		       + " WHERE s.username=:name OR c.communityCreator=:name " +
+		       + " WHERE s.username=:name OR c.communityCreator=:name"
+		       + " ORDER BY p.publicationId DESC " +
 		       "")
 		Page<PostDTO> getPostsBySubscription(@Param("name") String name, PageRequest page);
 	
 
 	@Query("SELECT new es.debateo.DTO.PostDTO(p, c, 0 , 0, 0) FROM Posts p " +
-		       " JOIN Communities c ON p.community = c.communityId ")
+		       " JOIN Communities c ON p.community = c.communityId "
+		       + " ORDER BY p.publicationId DESC ")
 	Page<PostDTO> getPostsFyp(PageRequest page);
 	
 //	
@@ -62,6 +64,7 @@ public interface postsRepo extends JpaRepository<Posts,Long>{
 	@Query("SELECT new es.debateo.DTO.PostDTO(p, 0 , 0, 0) FROM Posts p"
 			+ "  "
 		   + " WHERE p.community = :community "
+		   + " ORDER BY p.publicationId DESC"
 		       )
 		Page<PostDTO> getPostsByCommunity(@Param("community") long id, PageRequest request );
 	

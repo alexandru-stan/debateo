@@ -9,7 +9,7 @@ const Post = (props) => {
 
   
 
-    console.log(props.referencia);
+    
 
     return (
      

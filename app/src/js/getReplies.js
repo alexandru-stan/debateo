@@ -9,7 +9,7 @@ export async function getReplies(commentId){
     let replies = []
 
 
-    console.log("SE HA EHCO UNA PETICIOPN");
+    
 
 const e = await axios.get("http://"+SERV_DIR+":"+SERV_PORT+"/replies/"+commentId);
 

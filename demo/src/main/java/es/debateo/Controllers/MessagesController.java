@@ -8,6 +8,7 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -48,11 +49,16 @@ public class MessagesController {
 		
 		
 		
-		services.sendMessage(message);
 		
-		System.out.println(message.toString());
-		
-		simpMessagingTemplate.convertAndSend("/"+message.getMessageReceiver(), message);
+		Messages savedMessage = services.sendMessage(message);
+
+		// Check if the message was saved successfully
+		if (savedMessage != null) {
+		    System.out.println("EL MENSAJE ID"+ savedMessage.getMessageId());
+		    simpMessagingTemplate.convertAndSend("/" + savedMessage.getMessageReceiver(), savedMessage);
+		} else {
+		    // Handle the case where saving failed, if needed
+		}
 	}
 
 
@@ -64,6 +70,17 @@ public class MessagesController {
 		
 	}
 
+	@PutMapping("/read/{id}")
+	public void readMessage(@PathVariable int id) {
+		
+		services.ReadMessage(id);
+		
+	}
+	
+	@GetMapping("/unread/{messageReceiver}")
+	public int getUnreadMessages(@PathVariable String messageReceiver) {
+		return services.getUnreadMessages(messageReceiver);
+	}
 	
 	
 	

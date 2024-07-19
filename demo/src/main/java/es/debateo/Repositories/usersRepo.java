@@ -17,8 +17,8 @@ public interface  usersRepo extends JpaRepository<Users,String>{
 	public boolean existsByUsernameAndPassword(String username, String password);
 	
 
-	@Query("SELECT e.username FROM Users e WHERE e.username LIKE %:param%")
-    List<String> search(@Param("param") String cadena, Pageable page);
+	@Query("SELECT e.username FROM Users e WHERE e.username LIKE %:param% AND e.username <> :requestUser ")
+    List<String> search(@Param("param") String cadena, Pageable page, @Param("requestUser") String requestUser);
 	
 	@Modifying
 	@Transactional

@@ -237,7 +237,7 @@ if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
       };
     }
     if (data.type === 'error-resolved') {
-      console.log('[parcel] ✨ Error resolved');
+      
       removeErrorOverlay();
     }
     if (data.type === 'error') {

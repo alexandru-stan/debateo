@@ -61,4 +61,13 @@ public interface messagesRepo extends JpaRepository<Messages,Integer> {
 			+ " WHERE m.messageSender = :sender AND m.messageReceiver = :receiver")
 	void ReadMessages(@Param("sender") String sender, @Param("receiver") String receiver);
 
+	
+	@Modifying
+	@Transactional
+	@Query(value="UPDATE Messages m "
+			+ " SET m.is_read = TRUE "
+			+ " WHERE m.message_id = :id ",nativeQuery=true)
+	void ReadMessage(@Param("id") int id);
+	
+	int countByIsReadFalseAndMessageReceiver(String messageReceiver);
 }

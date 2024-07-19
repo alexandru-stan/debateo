@@ -14,6 +14,7 @@ import newMessage from "../../../../assets/audio/newMessage.mp3";
 import { ReadMessages } from "../../../../js/ReadMessages";
 import backIcon from "../../../../assets/img/backIcon.png";
 import Imagen from "../img";
+import { leerMensaje } from "../../../../js/leerMensaje";
 const $ = require('jquery');
 export const Mensajes = (props) => {
 const [unreadMessages, setUnreadMessages] = useState([]);
@@ -28,9 +29,10 @@ let audio = new Audio(newMessage);
 
 
 stompClient.onConnect = (frame) => {
-  console.log('Connected: ' + frame);
+  
   stompClient.subscribe('/'+username,(message) => {
       let mensaje = JSON.parse(message.body);
+      
       audio.play();
      
       cambiarUltimoMensajeDelChat(mensaje);
@@ -42,12 +44,15 @@ stompClient.onConnect = (frame) => {
 
 
 useEffect(() => {
-  incomingMessage!=null ? (function(){
-  let chatToBeUpdated =  $("#"+incomingMessage.messageSender+" #chatLevelNotification");
+  incomingMessage!=null  && incomingMessage.messageSender!= selectedChat? (function(){
+    let chatToBeUpdated =  $("#"+incomingMessage.messageSender+" #chatLevelNotification");
     chatToBeUpdated.text(Number.isInteger(parseInt(chatToBeUpdated.text()))? parseInt(chatToBeUpdated.text())+1 : 1); 
   
+    console.log(incomingMessage);
+
   })()
- : null;
+  
+   : incomingMessage!=null && incomingMessage.messageSender == selectedChat ? leerMensaje(incomingMessage.messageId) : null ;
   
   },[incomingMessage]);
 
@@ -57,12 +62,12 @@ useEffect(() => {
     $("#mensajes").hide();
     stompClient.activate();
     RetrieveChats().then( r => {
-      console.log("A");
+      
     let tempArr = [];
       r.data.forEach(e=>{
         
     
-        console.log(e[4]);
+        
     
         tempArr.push(<Chat unreadMessages={e[4]}   onClick={() => {
 
@@ -94,17 +99,17 @@ useEffect(() => {
     function cambiarUltimoMensajeDelChat(mensaje){
       
       let chatAActualizar =(mensaje.messageSender)==(username) ? mensaje.messageReceiver:(mensaje.messageSender);
-      console.log(arrChats);
+      
       dispatch(update(mensaje));  
       if(($("#"+chatAActualizar).html()!=undefined)){
       $("#"+chatAActualizar+" #lastMessage").html(() => mensaje.messageBody.length > 25 ? mensaje.messageBody.substring(0,25) +"...": mensaje.messageBody);
       $("#"+chatAActualizar+" #lastInteraction").text(formatearFecha(new Date(mensaje.messageDate)));
       $("#"+chatAActualizar).css("order", parseInt($('#chats :first-child').css("order"))-1);
     
-      console.log("holaaa");
+      
 
       } else {
-        console.log(arrChats);
+        
         
 
         setArrChats(actualState => [
@@ -144,32 +149,39 @@ useEffect(() => {
 
     return( 
   
-     <div style={{border:'1px solid #ff8c00',height:'30rem', fontSize:'1rem', position:'fixed', top:'45%', left:'50%' }} className="flex w-2/4 bg-moradoOscuro rounded-lg " id='mensajes'>
-        
-        <div style={{direction:"rtl",borderRight:'1px solid #ff8c00'}} className="  flex flex-col items-center  overflow-auto p-3 w-2/6 " id='chatList'>
-        <div className=" flex flex-row items-center justify-center w-full ">
-       
-        <NuevoChat chatsRef={chatsRef} />  
-        <Imagen onclick={() => {
-          
-          $("#mensajes").css("display","none");
-          
-        
-
-        
-        }} style={{width:'10%', height:'2rem',display:'none'}} clase="backIcon" ruta={backIcon}/>
+      <div 
+      style={{ border: '1px solid #ff8c00', height: '30rem', fontSize: '1rem', position:'fixed', bottom:'0', right:'0' }} 
+      className=" flex w-2/4 bg-moradoOscuro rounded-lg" 
+      id='mensajes'
+    >
+      <div 
+        style={{ direction: "rtl", borderRight: '1px solid #ff8c00' }} 
+        className="flex flex-col items-center overflow-auto p-3 w-2/6" 
+        id='chatList'
+      >
+        <div className="flex flex-row items-center justify-center w-full">
+          <NuevoChat chatsRef={chatsRef} />  
+          <Imagen 
+            onclick={() => {
+              $("#mensajes").css("display", "none");
+            }} 
+            style={{ width: '10%', height: '2rem', display: 'none' }} 
+            clase="backIcon" 
+            ruta={backIcon}
+          />
         </div>
-        <div  key="tupu" id="chats" className="flex w-full flex-col">
-        {arrChats}  
-        
+        <div key="tupu" id="chats" className="flex w-full flex-col">
+          {arrChats}  
         </div>   
-        </div>
-        <div id="chatActual" className=" p-2 bg-moradoOscuro w-4/6">
-           <ChatActual stompClient={stompClient}  cambiarUltimoMensajeDelChat={cambiarUltimoMensajeDelChat}/>
-        </div>
-
-
-     </div>
+      </div>
+      <div id="chatActual" className="p-2 bg-moradoOscuro w-4/6">
+        <ChatActual 
+          stompClient={stompClient}  
+          cambiarUltimoMensajeDelChat={cambiarUltimoMensajeDelChat}
+        />
+      </div>
+    </div>
+    
      
     );
 

@@ -102,7 +102,7 @@ const dispatch = useDispatch();
         </div>
 
         <div style={{marginTop:'10px'}} className='w-3/4'>
-        <input id='Rpassword' className=" rounded-md py-2 px-4 text-gray-700 border-b-2 text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon"  placeholder="Contraseña" for="Rpassword" />
+        <input type="password" id='Rpassword' className=" rounded-md py-2 px-4 text-gray-700 border-b-2 text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon"  placeholder="Contraseña" for="Rpassword" />
         <p  className="mensajeError Kanit text-red-400 font-bold"></p>
         </div>
         

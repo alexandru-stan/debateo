@@ -206,6 +206,10 @@ input::file-selector-button:hover{
    
   }
 
+  #mensajes {
+    width:80% !important;
+  }
+
   #menu-1,#menu-2,#menu-3,#menu-4 {
     width:15% !important;
     /* background-color: red; */

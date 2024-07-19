@@ -29,7 +29,7 @@ stompClient.onStompError = (frame) => {
 // function disconnect() {
 //     stompClient.deactivate();
 //     setConnected(false);
-//     console.log("Disconnected");
+//     
 // }
 
 // function sendName() {

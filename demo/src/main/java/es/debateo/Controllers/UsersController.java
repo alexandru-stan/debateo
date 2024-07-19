@@ -56,11 +56,11 @@ public class UsersController {
 		
 	}
 	
-	@GetMapping("/search/{username}")
-	public ResponseEntity<List<String>> searchUsers(@PathVariable String username){
+	@GetMapping("/search/{username}/{requestUser}")
+	public ResponseEntity<List<String>> searchUsers(@PathVariable String username, @PathVariable String requestUser){
 		
 		
-		ServiceResponse<String> response = servicio.search(username);
+		ServiceResponse<String> response = servicio.search(username,requestUser);
 		return new ResponseEntity<List<String>>(response.getLista(),response.getStatus());
 		
 	}

@@ -75,11 +75,11 @@ public class UserServices{
 	
 	}
 	
-	public ServiceResponse<String> search(String cadena){
+	public ServiceResponse<String> search(String cadena,String requestUser){
 		
 		Pageable page = PageRequest.of(0, 5);
 		
-		List<String> a = repo.search(cadena,page);
+		List<String> a = repo.search(cadena,page,requestUser);
 		System.out.println(a);
 		return new ServiceResponse<String>(a,HttpStatus.OK);
 		

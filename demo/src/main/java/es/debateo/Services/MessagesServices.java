@@ -28,13 +28,28 @@ public class MessagesServices {
 		
 	}
 	
-	public void sendMessage(Messages message) {
-		repo.save(message);
+	public Messages sendMessage(Messages message) {
+		
+		Messages savedMessage = repo.saveAndFlush(message);
+		
+		System.out.println("SERVICE "+ savedMessage.getMessageId());
+		return savedMessage;
+	
 	}
 	
 	
 	public void ReadMessages(String sender,String receiver) {
 		repo.ReadMessages(sender, receiver);
 	}
+	
+	public void ReadMessage(int id) {
+		 repo.ReadMessage(id);
+	} 
+	
+	public int getUnreadMessages(String messageReceiver) {
+		
+		return repo.countByIsReadFalseAndMessageReceiver(messageReceiver);
+	}
+	
 	
 }

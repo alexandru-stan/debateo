@@ -57,7 +57,7 @@ const Body = () => {
     const observer = new IntersectionObserver(handleIntersection);
 
     
-console.log("SUBS COUNT "+JSON.parse(sessionStorage.getItem("user"))?.subsCount);
+
 
 
    

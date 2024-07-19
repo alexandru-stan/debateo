@@ -4,7 +4,7 @@ const $ = require("jquery")
 export function validarRegister(user){
 
 
-console.log(user.birth_date);
+
 
 let valid = true;
 

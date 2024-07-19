@@ -100,7 +100,7 @@ const isInitialMount = useRef(true);
           <TextField className='text-neutral-50' color="secondary" id="Lpassword" label="Contraseña" variant="filled"></TextField> */}
           <div className='m-3 campoFormularioPrincipal flex justify-around'>
         <input className=" rounded-md py-2 px-4 text-gray-700 border-b-2 text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon" id='Lusername' placeholder="Nombre de usuario" for="Lusername"/>
-        <input className=" rounded-md py-2 px-4 text-gray-700 border-b-2 text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon" id='Lpassword'  placeholder="Contraseña" for="Lpassword" />
+        <input type="password" className=" rounded-md py-2 px-4 text-gray-700 border-b-2 text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon" id='Lpassword'  placeholder="Contraseña" for="Lpassword" />
         </div>
         <div >
         <label className='w-full' htmlFor='Rsubmit'>

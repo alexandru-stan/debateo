@@ -6,7 +6,7 @@ import { Mods } from "../componentes/admin/mods";
 export const Admin = () => {
 
 let params = useParams();
-console.log();
+
 return(
     <div  id='adminpanel'>
     <Header/>
