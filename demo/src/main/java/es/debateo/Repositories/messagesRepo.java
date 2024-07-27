@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import es.debateo.DTO.ChatAndUnreadMessagesDTO;
 import es.debateo.Model.Messages;
 
 public interface messagesRepo extends JpaRepository<Messages,Integer> {
@@ -70,4 +71,11 @@ public interface messagesRepo extends JpaRepository<Messages,Integer> {
 	void ReadMessage(@Param("id") int id);
 	
 	int countByIsReadFalseAndMessageReceiver(String messageReceiver);
+	
+	@Query("SELECT new es.debateo.DTO.ChatAndUnreadMessagesDTO(m.messageSender, COUNT(m)) " +
+		       "FROM Messages m " +
+		       "WHERE m.messageReceiver = :username AND m.isRead = false " +
+		       "GROUP BY m.messageSender")
+		List<ChatAndUnreadMessagesDTO> getUnreadMessagesbyChat(@Param("username") String username);
+
 }

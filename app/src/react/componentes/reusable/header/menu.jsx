@@ -20,7 +20,7 @@ export const Menu = () => {
     useEffect(()=>{
 
         getUnreadMessages(JSON.parse(sessionStorage.getItem('user')).username).then(response =>  setMensajesSinLeer(response.data));
-    
+        console.log("unread messages fetched from database");
     },[])
 
     return (
@@ -40,7 +40,7 @@ export const Menu = () => {
             
             <div   style={{width:'20%'}} className=" relative hover:border hover:rounded-lg border-naranjaMolon p-1   m-1   cursor-pointer hover:bg-moradoLight    h-2/4 flex flex-col justify-center items-center" onClick={() => {
                  
-                 $("#mensajes").animate({height: 'toggle',width:'toggle'}, 100)
+                 $("#mensajes").animate({height: 'toggle',width:'toggle'}, 100) 
              } } id='menu-3'>
             <Imagen style={{maxWidth:'50%', height:'2rem'}}  ruta={IconoMensajes}></Imagen>
             <span style={{top:'25%',left:'55%', width:'20px', fontSize:'0.7rem'}}  className="m-auto absolute  bg-moradoLight rounded-full text-center " id="menuLevelNotification">{mensajesSinLeer}</span>

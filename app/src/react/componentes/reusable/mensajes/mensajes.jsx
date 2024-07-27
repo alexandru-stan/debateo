@@ -15,15 +15,23 @@ import { ReadMessages } from "../../../../js/ReadMessages";
 import backIcon from "../../../../assets/img/backIcon.png";
 import Imagen from "../img";
 import { leerMensaje } from "../../../../js/leerMensaje";
+import { getUnreadMessagesByChat } from "../../../../js/getUnreadMessagesByChat";
+import { updateUnreadMessages } from "../../../../redux-store/slices/UnreadMessages";
 const $ = require('jquery');
 export const Mensajes = (props) => {
-const [unreadMessages, setUnreadMessages] = useState([]);
 const username = JSON.parse(sessionStorage.getItem('user')).username;
 const selectedChat = useSelector(state => state.selectedChat.value);
-const incomingMessage = useSelector(state => state.incomingMessage.value);
+const unreadMessages = useSelector(state => state.unreadMessages.value);
 const dispatch = useDispatch();
 const [arrChats,setArrChats] = useState([]);
 const chatsRef = useRef(null);
+
+useEffect(()=> {
+console.log(unreadMessages);
+},[unreadMessages])
+
+
+
 let audio = new Audio(newMessage);
 
 
@@ -34,31 +42,26 @@ stompClient.onConnect = (frame) => {
       let mensaje = JSON.parse(message.body);
       
       audio.play();
-     
+      dispatch(update(mensaje))
+      console.log(unreadMessages)
+      
+
       cambiarUltimoMensajeDelChat(mensaje);
   });
 
-  console.log("subscribed to "+username)
+
 
 };
 
 
-useEffect(() => {
-  incomingMessage!=null  && incomingMessage.messageSender!= selectedChat? (function(){
-    let chatToBeUpdated =  $("#"+incomingMessage.messageSender+" #chatLevelNotification");
-    chatToBeUpdated.text(Number.isInteger(parseInt(chatToBeUpdated.text()))? parseInt(chatToBeUpdated.text())+1 : 1); 
-  
-    console.log(incomingMessage);
-
-  })()
-  
-   : incomingMessage!=null && incomingMessage.messageSender == selectedChat ? leerMensaje(incomingMessage.messageId) : null ;
-  
-  },[incomingMessage]);
-
-
     useEffect(()=>{
-    
+      
+      getUnreadMessagesByChat(username).then(response=> {
+        let obj = {};
+         response.data.forEach(e => obj[e.interactuer] = e.unreadMessages)
+         dispatch(updateUnreadMessages(obj));
+        });
+
     $("#mensajes").hide();
     stompClient.activate();
     RetrieveChats().then( r => {
@@ -80,7 +83,6 @@ useEffect(() => {
 
 
           dispatch(change(e[0]))
-          $("#"+e[0]+" #chatLevelNotification").text("");
           ReadMessages(e[0],username);
           }} interactuer={e[0]} lastInteraction={e[1]}  lastMessage={e[3]}/>);
     
@@ -89,18 +91,21 @@ useEffect(() => {
     
     
     setArrChats(tempArr);
+
+
+
     });
      
+
 
     },[]);
 
 
+   
 
     function cambiarUltimoMensajeDelChat(mensaje){
       
       let chatAActualizar =(mensaje.messageSender)==(username) ? mensaje.messageReceiver:(mensaje.messageSender);
-      
-      dispatch(update(mensaje));  
       if(($("#"+chatAActualizar).html()!=undefined)){
       $("#"+chatAActualizar+" #lastMessage").html(() => mensaje.messageBody.length > 25 ? mensaje.messageBody.substring(0,25) +"...": mensaje.messageBody);
       $("#"+chatAActualizar+" #lastInteraction").text(formatearFecha(new Date(mensaje.messageDate)));
@@ -117,7 +122,7 @@ useEffect(() => {
 
 
           <Chat
-            unreadMessages={null}
+            unreadMessages={unread}
             onClick={() => {
 
               if($("#chatActual").css("display")=="none"){
@@ -142,6 +147,8 @@ useEffect(() => {
 
 
       }
+      
+      // chatAActualizar!=username && chatAActualizar!=selectedChat ? dispatch(updateUnreadMessages({...unreadMessages, [chatAActualizar]: 23})) : null;
 
     }
 

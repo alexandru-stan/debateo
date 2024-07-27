@@ -2,18 +2,38 @@ import React, { useState,useEffect,useRef } from "react";
 import formatearFecha from "../../../../../js/formatearFecha";
 import { useSelector } from "react-redux";
 
+
+
 export const Chat = (props) => {
 
+  const unreadMessages = useSelector( state => state.unreadMessages.value);
   const hola = useRef();
   const $ = require('jquery');
   const fechaMensaje = new Date(props.lastInteraction);
   const fechaMostrada = formatearFecha(fechaMensaje);
-  const incomingMessage = useSelector(state => state.incomingMessage);
+  const incomingMessage = useSelector(state => state.incomingMessage.value);
+  const selectedChat = useSelector( state => state.selectedChat.value)
+const [unread,setUnread] = useState(0);
+
+  useEffect(()=>{
   
+    incomingMessage!=null ? 
+    incomingMessage.messageSender==props.interactuer && incomingMessage.messageSender != selectedChat ?
+      setUnread(() => unread+1)
+      :null
+    :null
+  
+  },[incomingMessage])
 
 
+  useEffect(() =>  {
 
- 
+    unreadMessages!=null ?
+      setUnread(unreadMessages[props.interactuer])
+    :null
+
+  },unreadMessages);
+
    
 
   useEffect(() => {
@@ -32,7 +52,8 @@ export const Chat = (props) => {
         </div>
         <div className="flex flex-row items-center">
         <div id="lastMessage" style={{textOverflow:'ellipsis',whiteSpace:'nowrap',overflow:'hidden'}} className=' w-5/6 text-left p-2'> {props.lastMessage}</div>
-        <div style= {{width:'10%'}} className="m-auto bg-moradoLight rounded-full text-center " id="chatLevelNotification">{props.unreadMessages>0?props.unreadMessages:null}</div>
+        {/* <div style= {{width:'10%'}} className="m-auto bg-moradoLight rounded-full text-center " id="chatLevelNotification">{props.unreadMessages>0?props.unreadMessages:null}</div> */}
+        <div style= {{width:'10%'}} className="m-auto bg-moradoLight rounded-full text-center " id="">{unread!=0?unread:null}</div> 
         </div>
     </div>
     );

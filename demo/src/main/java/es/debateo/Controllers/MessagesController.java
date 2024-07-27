@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import es.debateo.DTO.ChatAndUnreadMessagesDTO;
 import es.debateo.DTO.ServiceResponse;
 import es.debateo.Model.Messages;
+import es.debateo.Repositories.messagesRepo;
 import es.debateo.Services.MessagesServices;
 
 @RestController
@@ -25,6 +27,9 @@ public class MessagesController {
 	
 	@Autowired
 	SimpMessagingTemplate simpMessagingTemplate;
+	
+	@Autowired 
+	messagesRepo repo;
 	
 	
 	
@@ -72,7 +77,7 @@ public class MessagesController {
 
 	@PutMapping("/read/{id}")
 	public void readMessage(@PathVariable int id) {
-		
+		System.out.println(id);
 		services.ReadMessage(id);
 		
 	}
@@ -82,6 +87,11 @@ public class MessagesController {
 		return services.getUnreadMessages(messageReceiver);
 	}
 	
+	@GetMapping("/unreadByChat/{messageReceiver}")
+	public List<ChatAndUnreadMessagesDTO> getUnreadMessagesByChat(@PathVariable String messageReceiver){
+		
+		return repo.getUnreadMessagesbyChat(messageReceiver);
+	}
 	
 	
 }
