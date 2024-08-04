@@ -30,7 +30,7 @@ export const UserData = () => {
         
       </div>
      
-        <div className=" p-2 border-b-2 border-naranjaMolon  rounded-lg">
+        <div className=" p-2 border-b-2 border-moradoLight  rounded-lg">
           <p style={{fontSize:'0.8rem'}} className="text-naranjaMolon Kanit p-1  font-semibold ">Nombre de usuario:</p>
           <div className=" flex items-center">
           {edit.username ? 
@@ -50,7 +50,7 @@ export const UserData = () => {
           }
           </div>
         </div>
-        <div className=" p-2 border-b-2 border-naranjaMolon p-2 rounded-lg">
+        <div className=" p-2 border-b-2 border-moradoLight p-2 rounded-lg">
           <p style={{fontSize:'0.8rem'}} className="text-naranjaMolon p-1 Kanit font-semibold ">Nombre:</p>
           <div className=" flex items-center">
           {edit.name?
@@ -72,7 +72,7 @@ export const UserData = () => {
         </div>
    
       
-        <div className=" p-2 border-b-2 border-naranjaMolon rounded-lg">
+        <div className=" p-2 border-b-2 border-moradoLight rounded-lg">
           <p style={{fontSize:'0.8rem'}} className="text-naranjaMolon Kanit p-1 font-semibold ">Correo:</p>
           <div className=" flex items-center">
           {edit.mail?
@@ -90,7 +90,7 @@ export const UserData = () => {
           </div>
           
         </div>
-        <div className=" p-2 border-b-2 border-naranjaMolon rounded-lg">
+        <div className=" p-2 border-b-2 border-moradoLight rounded-lg">
           <p style={{fontSize:'0.8rem'}} className="text-naranjaMolon Kanit p-1  font-semibold ">Fecha de nacimiento:</p>
           <div className=" flex items-center">
           {edit.birthDate?
@@ -138,7 +138,7 @@ export const UserData = () => {
         }, user.username);
 
 
-  }} className=" w-2/6 hover:bg-moradoLight Kanit rounded-md p-2  border-2 border-naranjaMolon bg-moradoFondo placeholder-gray-400  placeholder-gray-400 ">Confirmar</button>  
+  }} className=" w-2/6 hover:bg-moradoLight Kanit rounded-md p-2  border-2 border-moradoLight bg-moradoFondo placeholder-gray-400  placeholder-gray-400 ">Confirmar</button>  
   
   <button onClick={()=> {
     for(let e in edit){
@@ -148,7 +148,7 @@ export const UserData = () => {
 
      }
     }
-  }} className=" w-2/6 hover:bg-moradoLight Kanit rounded-md p-2  border-2 border-naranjaMolon bg-moradoFondo placeholder-gray-400  placeholder-gray-400 ">Cancelar</button>
+  }} className=" w-2/6 hover:bg-moradoLight Kanit rounded-md p-2  border-2 border-moradoLight bg-moradoFondo placeholder-gray-400  placeholder-gray-400 ">Cancelar</button>
   </div>
    : null}
 

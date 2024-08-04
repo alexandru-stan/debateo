@@ -5,6 +5,7 @@ import CommentPost from "./slices/CommentPost";
 import SelectedChat from "./slices/SelectedChatSlice";
 import IncomingMessage from "./slices/IncomingMessage";
 import UnreadMessages from "./slices/UnreadMessages";
+import LateralMenuVisibility from "./slices/LateralMenuVisibility";
 export default configureStore({
     reducer: {
         status : StatusReducer,
@@ -12,7 +13,8 @@ export default configureStore({
         commentPost: CommentPost,
         selectedChat: SelectedChat,
         incomingMessage: IncomingMessage,
-        unreadMessages: UnreadMessages
+        unreadMessages: UnreadMessages,
+        lateralMenuVisibilty: LateralMenuVisibility
     }
 })
 

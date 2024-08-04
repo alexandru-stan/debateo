@@ -33,6 +33,7 @@
     font-style: normal;
   }
 
+ 
 
 * {
   font-family:'Nunito'
@@ -57,7 +58,7 @@
 }
 
 ::-webkit-scrollbar {
-  width: 10px; /* Width of the scrollbar */
+  width: 5px; /* Width of the scrollbar */
 }
 
 
@@ -105,6 +106,7 @@
 
 }
 
+
 @media(min-width:801px){
 
   #chatActual,#chatList{
@@ -137,7 +139,7 @@ input::file-selector-button:hover{
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #ff8c00; /* Thumb color */
+  background: #444073; /* Thumb color */
   border-radius: 5px; /* Rounded corners */
 }
 
@@ -192,6 +194,7 @@ input::file-selector-button:hover{
 @media(max-width:1200px){
   .publicacion,#comment-section,.community-info{
     width: 60%;
+    
   }
  
 
@@ -199,8 +202,30 @@ input::file-selector-button:hover{
 
 }
 
-@media(max-width:1000px){
+
+
+
+@media(max-width:1100px){
+ #lateralMenu {
  
+  width:20% !important;
+}
+
+ 
+
+#burger-menu {
+  display:block
+}
+
+  #options{
+
+    width:33% !important
+
+  }
+  #mods,#banned{
+    width:30%;
+  }
+
   #formCrearComunidad,#createForm {
     width: 80% !important;
    
@@ -210,28 +235,21 @@ input::file-selector-button:hover{
     width:80% !important;
   }
 
-  #menu-1,#menu-2,#menu-3,#menu-4 {
-    width:15% !important;
-    /* background-color: red; */
-
-  }
+  
 
   #userData {
     width:70%
   }
 
-  #header-feed{
-    flex-direction: column;
-   
-   }
+ 
    #header-logo{
     width:100%;
     padding-bottom:10px;
    }
 
     #search-bar{
-   
-      width: 100%;
+      
+      width: 80%;
  
      
     }
@@ -253,12 +271,7 @@ input::file-selector-button:hover{
 
     } */
 
-    #menu * img {
-     
-      height:2rem !important;
-      width:100% !important;
-      
-    }
+    
 
     .letraObjetoMenu{
       
@@ -273,6 +286,11 @@ input::file-selector-button:hover{
 
     #header-feed img {
       margin-left:0 !important;
+      
+    }
+
+    #logoDebateo {
+      width:10% !important;
     }
   
 }
@@ -321,7 +339,18 @@ input::file-selector-button:hover{
       width:70% !important;
     } */
 
+    #options,#mods,#banned{
 
+      width:90% !important;
+      margin-bottom: 5%;
+  
+    }
+
+    #adminpanel-sections {
+      display: flex;
+      flex-direction: column;
+    }
+  
     .publicacion,#comment-section,.community-info{
       width: 80% !important;
     }
@@ -330,11 +359,7 @@ input::file-selector-button:hover{
      
     }
 
-    #menu-1,#menu-2,#menu-3,#menu-4 {
-      width:20% !important;
-      /* background-color: red; */
   
-    }
   
   
     #profile-body{
@@ -343,18 +368,12 @@ input::file-selector-button:hover{
 
 
 
+#lateralMenu {
+  width:40% !important;
+  top:7% !important;
+}
 
-    .imagenComunidad {
-      
     
-
-    }
-
-    body{
-    
-      padding:5% !important; 
-      
-    }
 
    
 
@@ -419,6 +438,12 @@ input::file-selector-button:hover{
       
     }
 
+    .postMenuButtons{
+      left:50%
+    }
+
+
+
     #chatList{
       
       width:100%;
@@ -453,7 +478,13 @@ input::file-selector-button:hover{
    
   }
 
-
+@media (max-width: 650px){
+  
+#lateralMenu {
+  
+  top:5% !important;
+}
+}
   
 @media  (max-width: 500px){
   /* CSS styles to apply when the viewport width is between 600px and 900px */
@@ -464,6 +495,12 @@ input::file-selector-button:hover{
 #formRegister{
   width: 100%;
 }
+
+
+#lateralMenu {
+  width:50% !important;
+}
+
 
   .bienvenida,.mensajePrincipal{
   
@@ -510,6 +547,11 @@ input::file-selector-button:hover{
     width:40% !important;
   }
 
+  #lateralMenu {
+    width:70% !important;
+  }
+  
+
   .community-name{
     width:60% !important;
   }
@@ -521,3 +563,74 @@ input::file-selector-button:hover{
 
 
 }
+
+#searchBarInput{
+ background-image:url('./img/search.png');
+ background-repeat: no-repeat;
+ background-position:3%;
+ background-size:30px;
+ padding-left:12%  !important;
+}
+
+/* Hide the default checkbox */
+.custom-checkbox input[type="checkbox"] {
+  display: none;
+}
+
+/* Create a custom checkbox */
+.custom-checkbox {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+
+  font-size: 16px;
+}
+
+.custom-checkbox .checkmark {
+  width: 20px;
+  height: 20px;
+  background-color: #444073 ;
+  border-radius: 4px;
+  position: relative;
+  margin-right: 10px;
+  transition: background-color 0.2s;
+}
+
+/* On hover, change background color of the checkbox */
+.custom-checkbox:hover .checkmark {
+  background-color: #bbb;
+}
+
+/* Create the checkmark (hidden by default) */
+.custom-checkbox .checkmark::after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* When the checkbox is checked, change background color and show the checkmark */
+.custom-checkbox input[type="checkbox"]:checked + .checkmark {
+  background-color: #ff8c00 ;
+}
+
+.custom-checkbox input[type="checkbox"]:checked + .checkmark::after {
+  display: block;
+}
+
+@media(min-width:1101px){
+  #burger-menu{
+    display:none
+  }
+
+ 
+ 
+}
+

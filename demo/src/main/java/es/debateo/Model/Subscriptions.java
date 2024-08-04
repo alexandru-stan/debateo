@@ -16,7 +16,8 @@ public class Subscriptions {
 
 	public enum subscriptionType{
 		MEMBER,
-		MOD
+		MOD,
+		BANNED
 	}
 	
 	

@@ -6,10 +6,12 @@ import Button from 'react-bootstrap/Button';
 import { subirPublicacion } from "../../../../js/subirPublicacion";
 import { useState } from "react";
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 export const CrearPublicacion = (props) => {
     const [image,setImage ] = useState(null);
 let form = useRef();    
 const $ = require('jquery');
+const nav = useNavigate();
 
 let user = JSON.parse(sessionStorage.getItem('user')).username;
 
@@ -24,7 +26,7 @@ let user = JSON.parse(sessionStorage.getItem('user')).username;
         <div className="w-full justify-center flex"> 
         <div className=" w-3/6 mt-postMT flex justify-center  " id="createForm">
         
-        <form className="flex w-full  flex-col items-center  m-2 text-white" ref={form} id="form">
+        <form onSubmit={event => event.preventDefault()} className="flex w-full  flex-col items-center  m-2 text-white" ref={form} id="form">
            <input name="titulo" placeholder="Título de la publicación"  className="w-full m-2 bg-moradoLight text-white px-4 py-2 rounded-lg placeholder-white focus:outline-none focus:ring-2 focus:ring-naranjaMolon"   ></input>
            <textarea  placeholder="Cuerpo de la publicación"
         className="m-2 w-full bg-moradoLight text-white px-4 py-2 rounded-lg placeholder-white focus:outline-none focus:ring-2 focus:ring-naranjaMolon" name='cuerpo' rows={5} id='cuerpo'></textarea>
@@ -34,7 +36,7 @@ let user = JSON.parse(sessionStorage.getItem('user')).username;
            </label>
     {/* <img src={image} alt="aaa"></img> */}
       
-    <button onClick={(()=>subirPublicacion(form,props.communityId,user) ) }className=" w-2/4 hover:bg-moradoLight  rounded-md p-2  border-2 border-naranjaMolon bg-moradoFondo placeholder-gray-400  placeholder-gray-400 ">Crear</button>
+    <button onClick={(()=>subirPublicacion(form,props.communityId,user).then(r => nav("/"+r.data+"/comments")))}className=" w-2/4 hover:bg-moradoLight  rounded-md p-2  border-2 border-naranjaMolon bg-moradoFondo placeholder-gray-400  placeholder-gray-400 ">Crear</button>
         </form>
           
         </div>

@@ -1,5 +1,6 @@
 package es.debateo.Controllers;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.debateo.DTO.ServiceResponse;
+import es.debateo.Model.Messages;
 import es.debateo.Model.Users;
 import es.debateo.Repositories.usersRepo;
+import es.debateo.Services.MessagesServices;
 import es.debateo.Services.UserServices;
 
 @RequestMapping("/users")
@@ -24,6 +27,8 @@ public class UsersController {
 	
 	@Autowired
 	UserServices servicio;
+	@Autowired
+	MessagesServices servicioMensajes;
 	
 	@Autowired
 	usersRepo repo;
@@ -43,6 +48,7 @@ public class UsersController {
 	public ResponseEntity<String> registrarUsuario(@RequestBody Users user) {
 		
 		ServiceResponse<String> response = servicio.signin(user);
+		servicioMensajes.sendMessage(new Messages("Hola "+user.getUsername()+", bienvenido a Debateo. \n Estamos aquí para cualquier cosa que necesites :) ","debateosoporte",user.getUsername(),new Date(),false));
 		
 		return new ResponseEntity<String>(response.getObj(),response.getStatus());
 	

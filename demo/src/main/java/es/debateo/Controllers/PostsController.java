@@ -62,21 +62,21 @@ public class PostsController {
 	
 	
 	@PostMapping("/new")
-	public ResponseEntity<Boolean> addPost( @RequestParam("image")  MultipartFile file,
+	public int  addPost( @RequestParam("image")  MultipartFile file,
 			@RequestParam("titulo") String titulo,
 			@RequestParam("cuerpo") String cuerpo,
 			@RequestParam("user") String user,
 			@RequestParam("community") String community){
-		
+		Posts savedPost = null;
 		try {
 			Posts post = new Posts(user,Long.valueOf(community),titulo,cuerpo,file.getBytes());
-			repo.save(post);
+			 savedPost= repo.save(post);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-	return null;
+	return (int) savedPost.getPublicationId();
 	}
 	
 	

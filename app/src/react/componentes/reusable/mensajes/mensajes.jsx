@@ -25,7 +25,7 @@ const unreadMessages = useSelector(state => state.unreadMessages.value);
 const dispatch = useDispatch();
 const [arrChats,setArrChats] = useState([]);
 const chatsRef = useRef(null);
-
+stompClient.activate();
 useEffect(()=> {
 console.log(unreadMessages);
 },[unreadMessages])
@@ -43,10 +43,9 @@ stompClient.onConnect = (frame) => {
       
       audio.play();
       dispatch(update(mensaje))
-      console.log(unreadMessages)
-      
-
       cambiarUltimoMensajeDelChat(mensaje);
+
+    
   });
 
 
@@ -55,22 +54,21 @@ stompClient.onConnect = (frame) => {
 
 
     useEffect(()=>{
-      
       getUnreadMessagesByChat(username).then(response=> {
         let obj = {};
          response.data.forEach(e => obj[e.interactuer] = e.unreadMessages)
          dispatch(updateUnreadMessages(obj));
         });
-
+  
     $("#mensajes").hide();
-    stompClient.activate();
+ 
     RetrieveChats().then( r => {
       
     let tempArr = [];
       r.data.forEach(e=>{
         
-    
         
+          
     
         tempArr.push(<Chat unreadMessages={e[4]}   onClick={() => {
 
@@ -84,13 +82,15 @@ stompClient.onConnect = (frame) => {
 
           dispatch(change(e[0]))
           ReadMessages(e[0],username);
-          }} interactuer={e[0]} lastInteraction={e[1]}  lastMessage={e[3]}/>);
+          }} interactuer={e[0]} lastInteraction={e[1]} newChat={"ALUPIGUS"} key={e[2]}  lastMessage={e[3]}/>);
     
     
     });
     
     
-    setArrChats(tempArr);
+    setArrChats(() => {
+      console.log("i should fire once");
+      return tempArr});
 
 
 
@@ -115,14 +115,11 @@ stompClient.onConnect = (frame) => {
 
       } else {
         
+       
         
-
         setArrChats(actualState => [
-
-
-
           <Chat
-            unreadMessages={unread}
+            
             onClick={() => {
 
               if($("#chatActual").css("display")=="none"){
@@ -139,6 +136,9 @@ stompClient.onConnect = (frame) => {
             interactuer={mensaje.messageSender == username ? mensaje.messageReceiver : mensaje.messageSender}
             lastInteraction={mensaje.messageDate}
             lastMessage={mensaje.messageBody}
+            newChat = {mensaje.messageSender!=username?true:false}
+            key = {mensaje.messageId}
+           
           />,
           ...actualState
         ]);
@@ -157,12 +157,12 @@ stompClient.onConnect = (frame) => {
     return( 
   
       <div 
-      style={{ border: '1px solid #ff8c00', height: '30rem', fontSize: '1rem', position:'fixed', bottom:'0', right:'0' }} 
+      style={{ border: '1px solid #444073', height: '30rem', fontSize: '1rem', position:'fixed', bottom:'0', right:'0' }} 
       className=" flex w-2/4 bg-moradoOscuro rounded-lg" 
       id='mensajes'
     >
       <div 
-        style={{ direction: "rtl", borderRight: '1px solid #ff8c00' }} 
+        style={{ direction: "rtl", borderRight: '1px solid #444073' }} 
         className="flex flex-col items-center overflow-auto p-3 w-2/6" 
         id='chatList'
       >

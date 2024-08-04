@@ -21,7 +21,7 @@ export const NewCommunity = () => {
           
             <div className="w-full  flex justify-center " style={{marginTop:"10%"}} id="createForm">
   
-        <form className=" w-3/6   flex items-center justify-center flex-col" ref={form} id="formCrearComunidad" onSubmit={ (event) => {event.preventDefault(); createCommunity(form).then((response)=> {localStorage.setItem('cid',response); nav("/feed")}); }}>
+        <form className=" w-3/6   flex items-center justify-center flex-col" ref={form} id="formCrearComunidad" onSubmit={ (event) => {event.preventDefault(); createCommunity(form).then((response)=> { localStorage.setItem('cid',response.data); nav("/community/"+response.data)}); }}>
        
     <input
         placeholder="Nombre de la comunidad"

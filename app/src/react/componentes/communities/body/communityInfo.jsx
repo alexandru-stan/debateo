@@ -30,7 +30,7 @@ export const CommunityInfo = (props) => {
     </div>
         <div  className=' p-2 description'>{props.info.communityDescription}
         <div className='flex p-2 justify-center' style={{marginTop:'2%'}} id='communityButtons'>
-        <button style={{ marginRight:'2%'}}  className=" hover:bg-moradoLight  rounded-md p-2  border-2 border-naranjaMolon bg-moradoFondo placeholder-gray-400  placeholder-gray-400 " onClick={() => {
+        <button style={{ marginRight:'2%'}}  className=" hover:bg-moradoLight  rounded-md p-2  border-2 border-moradoLight bg-moradoFondo placeholder-gray-400  placeholder-gray-400 " onClick={() => {
           navigate("/upload/"+props.state);
         }}>Crear publicación</button>
         {props.subButton}

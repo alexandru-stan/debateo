@@ -8,7 +8,7 @@ export const MessageBubble = (props) => {
     return (
             
         
-        <div style={{overflowWrap:'break-word', width:"50%"}} className={clase}> {props.body}</div>
+        <div style={{overflowWrap:'break-word'}} className={clase}> {props.body}</div>
       
 
     )

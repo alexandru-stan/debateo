@@ -16,7 +16,7 @@ const Header = () => {
     
 
     return (
-        <div className='flex pt-5 pb-3 items-center flex-col justify-center border-naranjaMolon border-b-2'  id="header">
+        <div className='flex pt-5 pb-3 items-center flex-col justify-center border-moradoLight border-b-2'  id="header">
          <Logo  style={{width:'5rem'}} clase={""} ruta={imagen}/>
          <p style={{fontSize:'2rem'}} className='Kanit'>Debateo</p>
          <sub className="font-bold text-naranjaMolon text-center">by Alexandru Stan</sub>

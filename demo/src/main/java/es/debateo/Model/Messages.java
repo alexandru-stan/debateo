@@ -28,15 +28,30 @@ public class Messages {
 	
 	
 	
+	public Messages() {
+		super();
+	}
+
 	public Messages(int messageId, String messageBody, String messageSender, String messageReceiver, Date messageDate,boolean isRead) {
 		super();
 		this.messageId = messageId;
+		this.messageBody = messageBody;	
+		this.messageSender = messageSender;
+		this.messageReceiver = messageReceiver;
+		this.messageDate = messageDate;
+		this.isRead = isRead;
+	}
+	
+	public Messages(String messageBody, String messageSender, String messageReceiver, Date messageDate,boolean isRead) {
+		super();
+		
 		this.messageBody = messageBody;
 		this.messageSender = messageSender;
 		this.messageReceiver = messageReceiver;
 		this.messageDate = messageDate;
 		this.isRead = isRead;
 	}
+	
 	
 	public boolean isRead() {
 		return isRead;

@@ -1,13 +1,24 @@
-import React from 'react';
-import Logo from '../../../reusable/img';
+import React, { useEffect, useRef, useState } from 'react';
+import Image from '../../../reusable/img';
 import { useNavigate } from 'react-router-dom';
-import { DeleteIcon } from '../../../../../assets/img/deleteIcon';
+import dotsmenu from "../../../../../assets/img/dotsmenu.png";
+
 export const PostHeader = (props) => {
 const navigate = useNavigate();
+const username = JSON.parse(sessionStorage.getItem('user')).username;
+const [dotsMenuVisibility, setDotsMenuVisibility] = useState("none");
+const myRef = useRef(null)
+
+useEffect(()=> {
+    myRef.current.addEventListener('focusout',() =>  setDotsMenuVisibility("none"));
+},[])
+
     return (
-        <div style={{ overflowWrap:'break-word', height:'15%'}} className='post-header  p-1 border-b-2   border-naranjaMolon  text-white '>
-       {props.visibleCommunityInfo ?  <div className=' h-2/6 flex items-center  post-info'>
-         <div style={{width:'2rem' ,  height:'2rem'}}>
+        <div style={{ overflowWrap:'break-word', height:'15%'}} className='post-header  p-1 border-b-2   border-moradoLight  text-white '>
+       {props.visibleCommunityInfo ? 
+       
+        <div className=' h-2/6 flex items-center  post-info'>
+        <div style={{width:'2rem' ,  height:'2rem'}}>
         <img  style={{borderRadius:'50%', width:'100%' ,height:'100%',  border:'none'}} src={props.communityImage} />
         </div>
         <div 
@@ -17,13 +28,41 @@ const navigate = useNavigate();
             navigate('/community/'+props.communityId)}}>{props.communityName}</div> 
 
         
-        
+        <div ref={myRef} tabIndex="0" id='postMenu' className='ml-auto'>
+                    <Image clase={'hover:cursor-pointer'} style={{width:'1.5rem'}} onclick={() => dotsMenuVisibility=='none' ? setDotsMenuVisibility('block') : setDotsMenuVisibility('none') } ruta={dotsmenu}/>
+                        <div  className=' postMenuButtons  bg-moradoFondo p-2 border-2 border-moradoLight  rounded-lg' id={"a"} style={{ position:'absolute', display:dotsMenuVisibility}}>
+                            <p className=' rounded-lg p-1 hover:brightness-150 bg-moradoFondo hover:cursor-pointer '>Denunciar publicación </p>
+                            <p className=' rounded-lg p-1 hover:brightness-150 bg-moradoFondo hover:cursor-pointer '>Guardar </p>
+                            <p className=' rounded-lg  p-1 hover:brightness-150 bg-moradoFondo hover:cursor-pointer' >No me interesa <span className='text-naranjaMolon'>{props.communityName}</span></p>
+                            
+                        </div>
+                </div>
 
-        {/* <p className='sub'>{props.publicationId}</p>  */}
+       
                 
-                <div style={{marginLeft:'auto'}}>{props.delete}</div>
-        </div>: null
+              
+        
+        </div>
+        
+        :  
+        <div className='flex '>
+        
+        <div ref={myRef} tabIndex="0" id='postMenu' style={{marginLeft:'auto'}} className=' ml-auto'>
+        
+        <Image clase={'hover:cursor-pointer'} style={{width:'1.5rem'}} onclick={() => dotsMenuVisibility=='none' ? setDotsMenuVisibility('block') : setDotsMenuVisibility('none') } ruta={dotsmenu}/>
+                        <div  className=' postMenuButtons  bg-moradoFondo p-2 border-2 border-moradoLight  rounded-lg' id={"a"} style={{ position:'absolute', display:dotsMenuVisibility}}>
+                            <p className=' rounded-lg p-1 hover:brightness-150 bg-moradoFondo hover:cursor-pointer '>Denunciar publicación </p>
+                            <p className=' rounded-lg p-1 hover:brightness-150 bg-moradoFondo hover:cursor-pointer '>Guardar </p>
+                        </div>
+        </div>
+</div>
     }
+
+
+   
+
+
+
         <div style={{}} className='  p-1 h-4/6 flex flex-col justify-center'>
        
         <p style={{fontSize:'1.3rem',}} className='h-2/4 m-0 '>{props.publicationTitle}</p>

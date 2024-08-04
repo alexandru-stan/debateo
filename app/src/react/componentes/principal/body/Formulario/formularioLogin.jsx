@@ -93,7 +93,7 @@ const isInitialMount = useRef(true);
       
      
       
-        <div  className='  backdrop-brightness-125 border-naranjaMolon border-2 rounded-lg p-3 text-white flex flex-col' id='form'>
+        <div  className='  backdrop-brightness-125 border-moradoLight border-2 rounded-lg p-3 text-white flex flex-col' id='form'>
         <p style={{fontSize:'1.5em'}} className='text-center bienvenida'>Bienvenido</p>
           <ToggleForm fn={props.fn} hasAccount = {props.hasAccount}/>
           {/* <TextField color="secondary"  id="Lusername" label="Nombre de usuario" variant="filled"></TextField>

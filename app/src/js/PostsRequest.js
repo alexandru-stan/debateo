@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap';
 import { formatImage } from './imageFormatting';
 import { deleteFunction } from './DeletePublication';
 import { SERV_DIR,SERV_PORT } from '../utilities';
-import { DeleteIcon } from '../assets/img/deleteIcon';
+
 const $ = require("jquery");
 export async function PostsRequest(request,setPostsArr,fyp){
 
@@ -26,10 +26,12 @@ export async function PostsRequest(request,setPostsArr,fyp){
     let posts = new Array(response.data.numberOfElements);
     for(let i=0;i<posts.length;i++){
 
-   
+   console.log(arr);
           
               posts[i] = <Post
+            
               likes={arr[i].likes}
+              fyp = {fyp}
               visibleCommunityInfo = {true}
               comments={arr[i].comments}
               liked={arr[i].liked}
@@ -42,38 +44,34 @@ export async function PostsRequest(request,setPostsArr,fyp){
               publicationImage={(arr[i].post.publicationImage.length>0)?<img style={{}} src={formatImage(arr[i].post.publicationImage)} alt='img'/>:null}
               publicationUser={arr[i].post.user}
               referencia={(posts.length-i)==1?request.myRef:null}
-              delete={arr[i].subscription?.subscriptionLevel=="MOD" || arr[i].post.user==request.loggedUser?<DeleteIcon
-              onClick={() =>
-                deleteFunction(arr[i].post.publicationId).then((response) => {
+            //   delete={arr[i].subscription?.subscriptionLevel=="MOD" || arr[i].post.user==request.loggedUser || arr[i].post.user == arr[i].post.user==request.creador ?
+    //          <div id='postMenu'>
+            
+    //          <Image style={{width:'1.5rem'}} onclick={() => $('#postMenuOptions'+arr[i].post.publicationId).css('display','block')} clase={'hover:cursor-pointer'} ruta={dotsmenu}/>
+    //          <div className='bg-moradoLight p-2' id={'postMenuOptions'+arr[i].post.publicationId} style={{position:'absolute', display:'none'}}>
+    //          <p
+    //         //   onClick={() =>
+    //         //     deleteFunction(arr[i].post.publicationId).then((response) => {
                  
-                    setPostsArr((postsArr) => { 
+    //         //         setPostsArr((postsArr) => { 
                    
-                    let newarr = postsArr.filter((node) => node.props.publicationId !== response.data);
+    //         //         let newarr = postsArr.filter((node) => node.props.publicationId !== response.data);
                     
-                    return newarr;
+    //         //         return newarr;
                     
-                    });
+    //         //         });
                   
-                }) 
-              }
-            >
-              Eliminar
-    </DeleteIcon>:arr[i].post.user==request.creador?<DeleteIcon
-              onClick={() =>
-                deleteFunction(arr[i].post.publicationId).then((response) => {
-                 
-                   setPostsArr((postsArr) => { 
-              
-                    let newarr = postsArr.filter((node) => node.props.publicationId !== response.data);
-                    return newarr;
-                    
-                    });
-                  
-                }) 
-              }
-            >
-              Eliminar
-    </DeleteIcon>:null}
+    //         //     }) 
+    //         //   }
+    //         >Eliminar publicación
+
+
+    // </p>
+    // </div>
+    // </div>
+    
+
+    // :null}
 
              
 

@@ -88,7 +88,7 @@ const dispatch = useDispatch();
 
 
     return (
-  <div  className='  backdrop-brightness-125 w-2/6 border-naranjaMolon border-2 rounded-lg p-3 text-white flex flex-col' id="formRegister">
+  <div  className='  backdrop-brightness-125 w-2/6 border-moradoLight border-2 rounded-lg p-3 text-white flex flex-col' id="formRegister">
       
     
       <p  style={{fontSize:'1.5em'}} className='Kanit text-center bienvenida'>Bienvenido!</p>
