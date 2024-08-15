@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -79,11 +80,25 @@ public class CommunitiesController {
 		return  new ResponseEntity<List<Communities>>(response.getLista(),response.getStatus());
 	}
 	
+	@GetMapping("/hot")
+	public ResponseEntity<List<Communities>> getHotCommunities(){
+		
+		List<Communities> response = repo.getHotCommunities();
+		return new ResponseEntity<List<Communities>>(response,HttpStatus.OK);
+	}
 	
 	
 	
 	
-	
+	@GetMapping("/{username}")
+	public ResponseEntity<List<Communities>> getSubscribedCommunities(@PathVariable String username) {
+	System.out.println(username);
+	List<Communities> result = repo.getSubscribedCommunities(username);
+		
+	return new ResponseEntity<List<Communities>>(result, HttpStatus.OK);
+		
+		
+	}
 	
 	
 	

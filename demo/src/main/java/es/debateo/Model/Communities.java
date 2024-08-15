@@ -76,6 +76,17 @@ public class Communities {
 		this.communityId = communityId;
 		this.communityName = communityName;
 	}
+	
+	
+
+
+
+	public Communities(long communityId, String communityName, byte[] communityImage) {
+		super();
+		this.communityId = communityId;
+		this.communityName = communityName;
+		this.communityImage = communityImage;
+	}
 
 
 

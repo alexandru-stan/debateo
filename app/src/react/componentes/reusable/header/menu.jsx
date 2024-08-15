@@ -22,7 +22,7 @@ export const Menu = () => {
     useEffect(()=>{
 
         getUnreadMessages(JSON.parse(sessionStorage.getItem('user')).username).then(response => { 
-            console.log("unread messages fetched from database"+response.data);
+            
             setMensajesSinLeer(response.data)});
         
     },[])
@@ -36,7 +36,7 @@ export const Menu = () => {
 
     return (
         <>
-        <div id='menu' className="     text-white flex flex-col   w-full  " >
+        <div id='menu' className="  p-2 border-b-2 border-moradoLight     text-white flex flex-col   w-full  " >
             <div className="cursor-pointer  hover:brightness-125 w-full  bg-moradoOscuro  p-1  m-1  flex items-center    border-naranjaMolon  flex  " onClick={() => navigate("/feed")} id='menu-1' >
             <Imagen style={{maxWidth:'50%', height:'2rem'}}   ruta={IconoParaTi}></Imagen>
             <div className="letraObjetoMenu Kanit  p-2 "  style={{}}>Para ti</div>

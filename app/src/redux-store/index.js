@@ -6,6 +6,7 @@ import SelectedChat from "./slices/SelectedChatSlice";
 import IncomingMessage from "./slices/IncomingMessage";
 import UnreadMessages from "./slices/UnreadMessages";
 import LateralMenuVisibility from "./slices/LateralMenuVisibility";
+import RecentCommunityTrigger from "./slices/RecentCommunityTrigger";
 export default configureStore({
     reducer: {
         status : StatusReducer,
@@ -14,7 +15,8 @@ export default configureStore({
         selectedChat: SelectedChat,
         incomingMessage: IncomingMessage,
         unreadMessages: UnreadMessages,
-        lateralMenuVisibilty: LateralMenuVisibility
+        lateralMenuVisibilty: LateralMenuVisibility,
+        recentCommunityTrigger: RecentCommunityTrigger
     }
 })
 

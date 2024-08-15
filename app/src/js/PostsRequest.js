@@ -26,7 +26,7 @@ export async function PostsRequest(request,setPostsArr,fyp){
     let posts = new Array(response.data.numberOfElements);
     for(let i=0;i<posts.length;i++){
 
-   console.log(arr);
+   
           
               posts[i] = <Post
             

@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { createCommunity } from "../../js/createCommunity";
 import { useNavigate } from "react-router-dom";
 import {Mensajes} from "../componentes/reusable/mensajes/mensajes";
+import { LateralMenu } from "../componentes/reusable/lateralmenu/LateralMenu";
 
 export const NewCommunity = () => {
     const nav = useNavigate();    
@@ -16,11 +17,12 @@ export const NewCommunity = () => {
     
     <div id='new' className="w-full flex flex-col items-center">
       <Mensajes/>
+      <LateralMenu/>
             <Header/>
 
           
-            <div className="w-full  flex justify-center " style={{marginTop:"10%"}} id="createForm">
-  
+            <div className="w-full  flex flex-col items-center " style={{marginTop:"10%"}} id="createForm">
+            <p className=" w-3/6 mb-5 text-3xl text-naranjaMolon Kanit ">Crear comunidad</p>
         <form className=" w-3/6   flex items-center justify-center flex-col" ref={form} id="formCrearComunidad" onSubmit={ (event) => {event.preventDefault(); createCommunity(form).then((response)=> { localStorage.setItem('cid',response.data); nav("/community/"+response.data)}); }}>
        
     <input

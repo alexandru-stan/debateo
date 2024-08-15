@@ -27,4 +27,5 @@ public interface  usersRepo extends JpaRepository<Users,String>{
 			+ "WHERE username = :originalUsername   ", nativeQuery=true)
 	void updateUser(@Param("username") String username, @Param("name") String name, @Param("mail") String mail, @Param("birthDate") Date birthDate, @Param("originalUsername") String originalUsername);
 	
+
 }

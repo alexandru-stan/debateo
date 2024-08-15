@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import store from './redux-store/index';
 import "../src/assets/styles/output.css";
 import "../src/assets/css.css";
+// import { IncomingMessageNotification } from './react/componentes/reusable/mensajes/incomingMessageNotification';
 
 // ReactDOM.render(<App/>, document.getElementById('root'));
 
@@ -15,6 +16,7 @@ const root = createRoot(document.getElementById('root'));
 root.render(
 <Provider store={store}>
     <App/>
+   {/* <IncomingMessageNotification/> */}
 </Provider>
 
 )

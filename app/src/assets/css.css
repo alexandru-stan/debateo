@@ -159,9 +159,10 @@ input::file-selector-button:hover{
 .outgoingMessageBubble{
   border-radius:15px 15px 0px 15px; /* top-left, top-right, bottom-right, bottom-left */
   padding: 10px 15px;
-  max-width: 70%; /* Adjust according to your layout */
+  width: 70%;
   margin: 10px; /* Adjust as needed */
   align-self: flex-end;
+   /* Prevent word breaks within words */
 }
 
 
@@ -208,13 +209,14 @@ input::file-selector-button:hover{
 @media(max-width:1100px){
  #lateralMenu {
  
-  width:20% !important;
+  width:40% !important;
 }
 
  
 
 #burger-menu {
-  display:block
+  display:block;
+
 }
 
   #options{
@@ -250,7 +252,7 @@ input::file-selector-button:hover{
     #search-bar{
       
       width: 80%;
- 
+      margin-right:10%
      
     }
  
@@ -271,7 +273,9 @@ input::file-selector-button:hover{
 
     } */
 
-    
+    #incomingMessagePopUp{
+      width:60% !important
+    }
 
     .letraObjetoMenu{
       
@@ -369,7 +373,7 @@ input::file-selector-button:hover{
 
 
 #lateralMenu {
-  width:40% !important;
+  width:60% !important;
   top:7% !important;
 }
 
@@ -488,6 +492,19 @@ input::file-selector-button:hover{
   
 @media  (max-width: 500px){
   /* CSS styles to apply when the viewport width is between 600px and 900px */
+  #burger-menu{
+
+    width:10% !important
+  }
+
+  #logoDebateo{
+   
+    width:15% !important
+
+  }
+
+
+ 
   .publicacion,#comment-section,.community-info{
   
     width:100% !important;
@@ -498,9 +515,12 @@ input::file-selector-button:hover{
 
 
 #lateralMenu {
-  width:50% !important;
+  width:70% !important;
 }
 
+#incomingMessagePopUp{
+  width:90% !important
+}
 
   .bienvenida,.mensajePrincipal{
   
@@ -634,3 +654,47 @@ input::file-selector-button:hover{
  
 }
 
+@keyframes fadeInUp {
+  0% {
+      opacity: 0;
+      
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+
+  40%{
+    opacity: 1;
+  }
+
+  60%{
+    opacity: 1;
+  }
+
+
+
+95%{
+  opacity:1;
+}
+  
+  100%{
+    opacity:0
+  }
+
+
+
+}
+
+.animate-notification {
+  animation: fadeInUp 4s ease-out forwards;
+}
+
+#incomingMessagePopUp{
+border-radius:30px 30px 0 30px !important; /* top-left, top-right, bottom-right, bottom-left */
+}

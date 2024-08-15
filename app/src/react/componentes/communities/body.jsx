@@ -13,6 +13,9 @@ import admin from '../../../assets/img/admin.png';
 import crown from '../../../assets/img/crown.png';
 import axios from 'axios';
 import {SERV_DIR,SERV_PORT} from "../../../utilities";
+import { update } from '../../../redux-store/slices/RecentCommunityTrigger';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 export const Body = (props) => {
 const [state,setState] = useState(localStorage.getItem('cid'));
 const [info,setInfo] = useState({});
@@ -22,9 +25,11 @@ const [isLast,setIslast] = useState(false);
 const[subscription,setSubscription] = useState(null);
 const [SubButton,setSubButton] = useState(null);
 const [creadorState, setCS] = useState(null);
-
+const rctTrigger = useSelector(state => state.recentCommunityTrigger.value);
 const myRef = useRef();
+let comunidadesRecientes = JSON.parse(localStorage.getItem("comunidadesRecientes"));
 const navigate = useNavigate();
+const dispatch = useDispatch();
 let creador;
 let loggedUser = JSON.parse(sessionStorage.getItem('user')).username;
 let request =  {
@@ -55,7 +60,25 @@ const handleIntersection = (entries) => {
 const observer = new IntersectionObserver(handleIntersection);
 
 
+// useEffect(()=>{
+// if(info.communityId!=undefined){
 
+
+//   let index = comunidadesRecientes.findIndex(obj => obj == info.communityId) 
+
+//  index == -1 ?
+//  (function() {comunidadesRecientes.push(info.communityId);
+//   localStorage.setItem("comunidadesRecientes", JSON.stringify(comunidadesRecientes))
+//   dispatch(update(!rctTrigger))})
+//   :
+
+//   comunidadesRecientes.splice(index,1);
+//   comunidadesRecientes.unshift(info.communityId);
+//   localStorage.setItem("comunidadesRecientes",JSON.stringify(comunidadesRecientes))
+//   dispatch(update(!rctTrigger))
+
+// }
+// },[info])
 
 
 

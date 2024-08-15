@@ -60,8 +60,10 @@ public class CommunitiesServices {
 		return new ServiceResponse<Communities>(com,HttpStatus.OK);
 	}
 	
-	
-	
+//	public ServiceResponse<List<Communities>> getHotCommunities(){
+////		return repo.getHotCommunities();
+//	}
+//	
 	
 	
 	

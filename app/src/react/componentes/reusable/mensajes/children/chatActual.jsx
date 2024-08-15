@@ -31,7 +31,7 @@ export const ChatActual = (props) => {
        selectedChat==incomingMessage.messageSender  ? 
      
        (function() {
-        console.log("AAAAAAAAAAA");
+        
         setMessages([<MessageBubble loggedUser = {username} sender = {incomingMessage.messageSender} body = {incomingMessage.messageBody} />,...messages]);
 
         // props.cambiarUltimoMensajeDelChat(incomingMessage.messageBody,selectedChat);

@@ -6,6 +6,7 @@ import { LateralMenu } from "../componentes/reusable/lateralmenu/LateralMenu";
 // import "../../assets/styles/Profile.css";
 export const Profile = () => {
 let user = sessionStorage.getItem('user');
+
 const nav = useNavigate() ;
     useEffect(()=> {
         

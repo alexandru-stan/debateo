@@ -27,7 +27,7 @@ const [arrChats,setArrChats] = useState([]);
 const chatsRef = useRef(null);
 stompClient.activate();
 useEffect(()=> {
-console.log(unreadMessages);
+
 },[unreadMessages])
 
 
@@ -89,7 +89,7 @@ stompClient.onConnect = (frame) => {
     
     
     setArrChats(() => {
-      console.log("i should fire once");
+      
       return tempArr});
 
 

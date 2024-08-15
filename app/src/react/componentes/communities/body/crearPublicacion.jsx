@@ -25,8 +25,9 @@ let user = JSON.parse(sessionStorage.getItem('user')).username;
         
         <div className="w-full justify-center flex"> 
         <div className=" w-3/6 mt-postMT flex justify-center  " id="createForm">
-        
+       
         <form onSubmit={event => event.preventDefault()} className="flex w-full  flex-col items-center  m-2 text-white" ref={form} id="form">
+        <p className=" text-left  w-full mb-5 text-3xl text-naranjaMolon Kanit ">Crear publicación</p>
            <input name="titulo" placeholder="Título de la publicación"  className="w-full m-2 bg-moradoLight text-white px-4 py-2 rounded-lg placeholder-white focus:outline-none focus:ring-2 focus:ring-naranjaMolon"   ></input>
            <textarea  placeholder="Cuerpo de la publicación"
         className="m-2 w-full bg-moradoLight text-white px-4 py-2 rounded-lg placeholder-white focus:outline-none focus:ring-2 focus:ring-naranjaMolon" name='cuerpo' rows={5} id='cuerpo'></textarea>

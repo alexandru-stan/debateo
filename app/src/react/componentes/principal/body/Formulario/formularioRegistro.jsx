@@ -97,30 +97,34 @@ const dispatch = useDispatch();
         <div className=' flex flex-col  items-center '>
 
         <div style={{marginTop:'10px'}}  className=' w-3/4 flex flex-col items-center'>
-        <input id='Rusername' className=" rounded-md py-2 px-4 text-gray-700 border-b-2 text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon"  placeholder="Nombre de usuario" for="Rusername"/>
+        <input id='Rusername' className=" rounded-md py-2 px-4 text-gray-700 border-b-2 border-moradoLight text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon"  placeholder="Nombre de usuario" for="Rusername"/>
         <p className="mensajeError Kanit text-red-400 font-bold"></p>
         </div>
 
         <div style={{marginTop:'10px'}} className='w-3/4'>
-        <input type="password" id='Rpassword' className=" rounded-md py-2 px-4 text-gray-700 border-b-2 text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon"  placeholder="Contraseña" for="Rpassword" />
+        <input type="password" id='Rpassword' className=" rounded-md py-2 px-4 text-gray-700 border-b-2 border-moradoLight text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon"  placeholder="Contraseña" for="Rpassword" />
         <p  className="mensajeError Kanit text-red-400 font-bold"></p>
         </div>
         
 
         <div style={{marginTop:'10px'}} className='w-3/4'>
-        <input id="Rname" className=" rounded-md py-2 px-4 text-gray-700 border-b-2 text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon" placeholder="Nombre" for="Rname"/>
+        <input id="Rname" className=" rounded-md py-2 px-4 text-gray-700 border-b-2 border-moradoLight text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon" placeholder="Nombre" for="Rname"/>
         <p className="mensajeError Kanit text-red-400 font-bold"></p>
         </div>
         <div style={{marginTop:'10px'}} className='w-3/4'>
-        <input id="Rmail" className=" rounded-md py-2 px-4 text-gray-700 border-b-2 text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon" placeholder="Correo electrónico" for="Rmail" />
+        <input id="Rmail" className=" rounded-md py-2 px-4 text-gray-700 border-b-2 border-moradoLight text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon" placeholder="Correo electrónico" for="Rmail" />
         <p className="mensajeError Kanit text-red-400 font-bold"></p>
         </div>
 
         <div style={{marginTop:'10px'}} className='w-3/4'>
-        <input id="Rbirth_date" onFocus={(e)=> e.target.type="date" } style={{colorScheme:"dark"}} placeholder='Fecha de nacimiento' type="text" className=" rounded-md py-2 px-4 text-gray-700 border-b-2 text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon"/>
+        <input id="Rbirth_date" onFocus={(e)=> e.target.type="date" } style={{colorScheme:"dark"}} placeholder='Fecha de nacimiento' type="text" className=" rounded-md py-2 px-4 text-gray-700 border-b-2 text-white border-moradoLight backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon"/>
         <p className="mensajeError Kanit text-red-400 font-bold"></p>
         </div>
         
+        <div style={{marginTop:'10px'}} className='w-3/4'>
+        <input type="file" id='Rprofileimg' accept="image/*" className=" rounded-md py-2 px-4 text-gray-700 border-b-2 border-moradoLight text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon"  placeholder="Contraseña" for="Rpassword" />
+        <p  className="mensajeError Kanit text-red-400 font-bold"></p>
+        </div>
         
         <div style={{marginTop:'10px'}} className='w-3/4' >
           <button className='w-full bg-moradoLight hover:bg-naranjaMolon text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:border-blue-300' onClick={callRegister}>Enviar</button>

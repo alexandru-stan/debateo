@@ -15,6 +15,9 @@ import { useSelector } from 'react-redux';
 import { formatImage } from '../../js/imageFormatting';
 import { Input } from '../componentes/principal/body/Formulario/inputComponent';
 import { Mensajes } from '../componentes/reusable/mensajes/mensajes';
+
+import { LateralMenu } from "../componentes/reusable/lateralmenu/LateralMenu";
+
 export const Comments = () => {
 const [numeroComentarios, setNumeroComentarios] = useState(null);
 const [post,setPost] = useState();
@@ -79,7 +82,7 @@ const [selectedPost, setSelectedPost] = useState();
     
         <div  id='comments' className="  flex flex-col items-center">
         <Header/>
-          
+        <LateralMenu/>
           {selectedPost}
 
         <div  id='comment-section' className=" w-2/4 bg-moradoOscuro

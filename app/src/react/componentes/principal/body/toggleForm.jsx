@@ -16,7 +16,7 @@ let mensaje;
 
     return (
         
-      <span className='border-b-4'>{mensaje}</span> 
+      <span className='border-b-4 border-moradoLight'>{mensaje}</span> 
 
     );
 }

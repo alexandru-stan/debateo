@@ -35,6 +35,20 @@ public interface communitiesRepo extends JpaRepository<Communities,Long> {
 			+ "LIMIT 3")
 	List<Communities> recommend();
 	
-	
-				
+	@Query("SELECT new es.debateo.Model.Communities(c.communityId, c.communityName, c.communityImage) " 
+		       + "FROM Communities c "
+		       + "WHERE (EXISTS (SELECT s FROM Subscriptions s WHERE s.communityId = c.communityId " 
+		       + "AND s.username = :username AND s.subscriptionLevel <> 'BANNED' )) OR c.communityCreator = :username ")
+		List<Communities> getSubscribedCommunities(@Param("username") String username);
+
+	@Query("SELECT new es.debateo.Model.Communities(c.communityId, c.communityName, c.communityImage), COUNT(DISTINCT p.publicationId) as score "
+			+ " FROM Communities  c"
+			+ " LEFT JOIN Posts p "
+			+ "	ON p.community = c.communityId"
+			+ " GROUP BY c.communityId"
+			+ " ORDER BY score DESC "
+			+ "  "
+			)
+	List<Communities> getHotCommunities();
+			
 }

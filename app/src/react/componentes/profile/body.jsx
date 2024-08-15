@@ -3,10 +3,12 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useRef } from "react";
 import { PostsRequest } from '../../../js/PostsRequest';
-import { UserData } from "./body/UserData";
+import { EditProfile } from "./body/EditProfile";
 import { Mensajes } from '../reusable/mensajes/mensajes';
+import { UserData } from "./body/UserData";
 export const Body = () => {
-    
+
+    const [selected,setSelected] = useState("Publicaciones");
 
 
     // const [postsArr,setPostsArr] = useState([]);
@@ -78,14 +80,17 @@ export const Body = () => {
 
 
     return (
-        <div className="text-white flex items-center flex-col w-3/4  mt-postMT " id='profile-body'>
+        <div className="text-white flex items-center flex-col w-2/4  mt-5 " id='profile-body'>
+       {/* <EditProfile/> */}
        <UserData/>
        <Mensajes/>
 
 
-    <div id="profileUploads" className='mt-4 flex flex-row bg-moradoFondo rounded-lg w-3/6 justify-center' >
-        <div className="pageSelector">Tus publicaciones</div>
-        <div  className="pageSelector">Tus comentarios</div>
+    <div id="profileUploads" className='mt-4 flex flex-row bg-moradoFondo rounded-lg w-full justify-center' >
+        <div onClick={()=>setSelected("Publicaciones")} className= {selected=="Publicaciones" ? " rounded-lg selectedPage pageSelector" :" pageSelector"}>Publicaciones</div>
+        <div onClick={()=>setSelected("Comentarios")} className= {selected=="Comentarios" ? " rounded-lg selectedPage pageSelector" :" pageSelector"}>Comentarios</div>
+        <div onClick={()=>setSelected("MeGusta")} className= {selected=="MeGusta" ? " rounded-lg selectedPage pageSelector" :" pageSelector"}>Me gusta</div>
+        
     </div>
 
 

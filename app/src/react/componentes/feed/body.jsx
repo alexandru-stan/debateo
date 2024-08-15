@@ -20,10 +20,7 @@ const Body = () => {
   
    
  
-    let noSubscriptionsElement =   <div id="noSubscriptions" className='w-full  flex flex-col items-center text-naranjaMolon font-bold mt-5 text-center '>
-     <p>Vaya... parece ser que no estás suscrito a ninguna comunidad...</p>
-     <div><Image ruta={noSubscriptions}/></div>
-     </div>
+    let noSubscriptionsElement;
     const [postsArr,setPostsArr] = useState([]);
     const [page,setPage] = useState(0);
     const [isLast,setIslast] = useState(false);
@@ -66,9 +63,12 @@ useEffect(  ()=> {
   PostsRequest(request,setPostsArr,fyp).then(response => {
    
     $("#feedSpinner").css("display","none");
-    setPostsArr(response);
+    response.length ? setPostsArr(response) : setPostsArr( noSubscriptionsElement = <div id="noSubscriptions" className='w-full   flex flex-col items-center text-naranjaMolon font-bold mt-5 text-center '>
+      <p>Vaya... parece ser que no estás suscrito a ninguna comunidad...</p>
+      <div><Image ruta={noSubscriptions}/></div>
+      </div>)
     setPage(page+1);
- 
+   
 
  
   })
@@ -127,13 +127,14 @@ if(myRef.current!=null){
           
         } )} className={  fyp? 'rounded-lg pageSelector':' rounded-lg selectedPage pageSelector'}>Siguiendo</div>
       </div>
-        {postsArr}
+
+     { postsArr}
         <SpinnerLoader id="feedSpinner"/>
         
 
         <Mensajes/>
        
-       {!fyp && postsArr.length==0 ? noSubscriptionsElement : null }
+
 
     </div>
     );

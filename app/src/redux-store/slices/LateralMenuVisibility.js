@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const LateralMenuVisibility = createSlice({
     name: 'lateralMenuVisibility',
     initialState: {
-        value: true
+        value: 'block'
     },
     
     reducers: {

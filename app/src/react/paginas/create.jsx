@@ -4,6 +4,8 @@ import { CrearPublicacion } from "../componentes/communities/body/crearPublicaci
 import Header from "../componentes/reusable/header/header";
 // import "../../assets/styles/Create.css"
 
+import { LateralMenu } from "../componentes/reusable/lateralmenu/LateralMenu";
+
 import { useParams } from "react-router-dom";
 export const Create = (props) => {
 
@@ -14,6 +16,7 @@ export const Create = (props) => {
 
         <div className="" id='create'>
             <Header/>
+            <LateralMenu/>
             <CrearPublicacion communityId={community}/>
 
       

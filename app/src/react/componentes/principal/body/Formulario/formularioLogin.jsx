@@ -33,8 +33,7 @@ const navigate = useNavigate();
  function callLogin(){
 
   Login().then(response => {
-    
-    response.data.birth_date = timestampToDate(response.data.birth_date);
+
     sessionStorage.setItem('user',JSON.stringify(response.data));
 
       navigate("/feed");
@@ -93,14 +92,14 @@ const isInitialMount = useRef(true);
       
      
       
-        <div  className='  backdrop-brightness-125 border-moradoLight border-2 rounded-lg p-3 text-white flex flex-col' id='form'>
+        <div  className='  backdrop-brightness-125 border-moradoLight border-2  rounded-lg p-3 text-white flex flex-col' id='form'>
         <p style={{fontSize:'1.5em'}} className='text-center bienvenida'>Bienvenido</p>
           <ToggleForm fn={props.fn} hasAccount = {props.hasAccount}/>
           {/* <TextField color="secondary"  id="Lusername" label="Nombre de usuario" variant="filled"></TextField>
           <TextField className='text-neutral-50' color="secondary" id="Lpassword" label="Contraseña" variant="filled"></TextField> */}
-          <div className='m-3 campoFormularioPrincipal flex justify-around'>
-        <input className=" rounded-md py-2 px-4 text-gray-700 border-b-2 text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon" id='Lusername' placeholder="Nombre de usuario" for="Lusername"/>
-        <input type="password" className=" rounded-md py-2 px-4 text-gray-700 border-b-2 text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon" id='Lpassword'  placeholder="Contraseña" for="Lpassword" />
+          <div className='m-3 campoFormularioPrincipal flex border-moradoLight justify-around'>
+        <input className=" rounded-md py-2 px-4 text-gray-700 border-b-2 border-moradoLight text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon" id='Lusername' placeholder="Nombre de usuario" for="Lusername"/>
+        <input type="password" className=" rounded-md py-2 border-moradoLight px-4 text-gray-700 border-b-2 text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon" id='Lpassword'  placeholder="Contraseña" for="Lpassword" />
         </div>
         <div >
         <label className='w-full' htmlFor='Rsubmit'>
