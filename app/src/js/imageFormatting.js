@@ -1,4 +1,8 @@
 export  function formatImage(base64encodedImage){
+
+
+if(base64encodedImage!= null){
+  
   let byteCharacters = atob(base64encodedImage);
 
         let byteNumbers = new Array(byteCharacters.length);
@@ -12,6 +16,6 @@ export  function formatImage(base64encodedImage){
          
           return URL.createObjectURL(blob);
         
-     
+        }
 }
 

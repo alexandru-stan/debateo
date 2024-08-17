@@ -97,7 +97,7 @@ const [selectedPost, setSelectedPost] = useState();
 
           let comment = subirComentario($('#text').val(),params.id);
           $('#text').val(null);
-          setComments(comments => ([<Comment profileImage = {comment.profileImage} username={comment.username} commentDate={0}  commentText = {comment.commentText}></Comment>]).concat(comments));
+          setComments(comments => ([<Comment profileImage = {null} username={comment.username} commentDate={0}  commentText = {comment.commentText}></Comment>]).concat(comments));
 
           }}>Enviar</button>
           </div>
