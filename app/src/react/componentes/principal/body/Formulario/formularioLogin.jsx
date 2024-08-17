@@ -20,6 +20,7 @@ import { useRef } from 'react';
 import { useEffect } from 'react';
 import { Input } from './inputComponent';
 import { timestampToDate } from '../../../../../js/timestampToDate';
+import { formatImage } from '../../../../../js/imageFormatting';
 let codigoRespuesta;
 let mensajeRespuesta;
 
@@ -33,12 +34,13 @@ const navigate = useNavigate();
  function callLogin(){
 
   Login().then(response => {
-
-    sessionStorage.setItem('user',JSON.stringify(response.data));
-
+    
+    let userData = response.data;
+  userData.profileImageFile = formatImage(userData.profileImageFile);
+    sessionStorage.setItem('user',JSON.stringify(userData));
       navigate("/feed");
     }).catch(
-      () => alert("TUPU")
+      (error) => alert(error)
     );
 
 }

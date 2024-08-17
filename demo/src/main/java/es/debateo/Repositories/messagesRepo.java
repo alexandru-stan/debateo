@@ -10,11 +10,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import es.debateo.DTO.ChatAndUnreadMessagesDTO;
 import es.debateo.Model.Messages;
+import jakarta.persistence.Tuple;
 
 public interface messagesRepo extends JpaRepository<Messages,Integer> {
-	@Query(value = "SELECT " +
+	
+	@Query(value = "SELECT "
+			+ " u.profile_image, "  +
 		    "m1.interactuer, " +
-		    "m1.last_interaction, " +
+		    " m1.last_interaction, " +
 		    "m2.message_id, " +
 		    "m2.message_body, " +
 		    "( " +
@@ -39,14 +42,17 @@ public interface messagesRepo extends JpaRepository<Messages,Integer> {
 		    ") AS m1 " +
 		    "JOIN messages m2 ON " +
 		    "    (m2.message_sender = :username AND m2.message_receiver = m1.interactuer AND m2.message_date = m1.last_interaction) OR " +
-		    "    (m2.message_sender = m1.interactuer AND m2.message_receiver = :username AND m2.message_date = m1.last_interaction) " +
+		    "    (m2.message_sender = m1.interactuer AND m2.message_receiver = :username AND m2.message_date = m1.last_interaction) "
+		    + " JOIN users u ON "
+		    + " m1.interactuer = u.username " +
 		    "GROUP BY " +
 		    "    interactuer, last_interaction, message_id, message_body " +
 		    "HAVING " +
 		    "    interactuer IS NOT NULL " +
 		    "ORDER BY " +
 		    "    m1.last_interaction DESC;",nativeQuery=true)
-	List<Object> RetrieveChats(@Param("username") String username);
+	
+	List<Tuple> RetrieveChats(@Param("username") String username);
 	
 	
 	@Query(value=""

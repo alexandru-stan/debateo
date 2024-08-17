@@ -6,7 +6,7 @@ public class UsersDTO {
 
 	
 	Users user;
-	int subsCount;
+	
 	
 	
 }

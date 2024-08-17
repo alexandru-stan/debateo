@@ -62,7 +62,7 @@ const [selectedPost, setSelectedPost] = useState();
         
         let arr=[]
        response.data.forEach(e =>
-        arr.push(<Comment id={e.commentId} replies={e.replies} commentDate = {e.commentDate} username={e.username} commentText = {e.commentText}/>))
+        arr.push(<Comment profileImage={e.profileImage} id={e.commentId} replies={e.replies} commentDate = {e.commentDate} username={e.username} commentText = {e.commentText}/>))
         setComments(arr);
 
       });
@@ -97,7 +97,7 @@ const [selectedPost, setSelectedPost] = useState();
 
           let comment = subirComentario($('#text').val(),params.id);
           $('#text').val(null);
-          setComments(comments => ([<Comment  username={comment.username} commentDate={0}  commentText = {comment.commentText}></Comment>]).concat(comments));
+          setComments(comments => ([<Comment profileImage = {comment.profileImage} username={comment.username} commentDate={0}  commentText = {comment.commentText}></Comment>]).concat(comments));
 
           }}>Enviar</button>
           </div>

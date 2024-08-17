@@ -4,8 +4,6 @@ const $ = require("jquery")
 export function validarRegister(user){
 
 
-
-
 let valid = true;
 
   switch(false){

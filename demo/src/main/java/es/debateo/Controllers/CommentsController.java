@@ -1,5 +1,8 @@
 package es.debateo.Controllers;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Date;
 import java.util.List;
 
@@ -28,13 +31,21 @@ public class CommentsController {
 	public List<CommentsDTO> getComments(@PathVariable long postid) {
 		List<CommentsDTO> comentarios = repo.getComments(postid);
 		comentarios.forEach(e ->{
-		
+			try {
+				
+				byte[] image = Files.readAllBytes(new File(".\\src\\main\\resources\\static\\profileImages\\"+e.getUsername()+".jpg").toPath());
+				e.setProfileImage(image);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			e.setReplies(repo.getRepliesByCommentId(e.getCommentId()));
-			System.out.println(e.toString());
+			
+		
 		}
 		);
 		return comentarios;
-		
+			
 		
 	}
 	

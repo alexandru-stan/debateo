@@ -9,8 +9,9 @@ export  function formatImage(base64encodedImage){
           let byteArray = new Uint8Array(byteNumbers);
          
           let blob = new Blob([byteArray], { type: 'image' });
-        
+         
           return URL.createObjectURL(blob);
         
      
 }
+

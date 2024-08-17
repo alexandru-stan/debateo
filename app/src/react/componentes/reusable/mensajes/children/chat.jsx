@@ -1,6 +1,7 @@
 import React, { useState,useEffect,useRef } from "react";
 import formatearFecha from "../../../../../js/formatearFecha";
 import { useSelector } from "react-redux";
+import { formatImage } from "../../../../../js/imageFormatting";
 
 
 
@@ -65,9 +66,14 @@ export const Chat = (props) => {
     return(
     <div key={props.interactuer} id={props.interactuer} style={{height:'5rem', direction:'ltr' }} onClick={props.onClick} className='chat  bg-moradoFondo hover:cursor-pointer  flex-col flex m-2 justify-between rounded-lg  hover:bg-moradoLight hover:cursor '>
         <div id='chatInfo' className='flex justify-between ' >
+        <div className="flex items-center">
+        <img style={{width:'2rem', height:'2rem', borderRadius:'100%'}} src={ props.profileImage }></img>
           <div style={{fontSize:'0.8rem',whiteSpace: 'nowrap',
   overflow: 'hidden',
-  textOverflow: 'ellipsis'  }} className='nombreUsuario p-2 text-naranjaMolon '>{props.interactuer}</div>
+  textOverflow: 'ellipsis'  }} className='nombreUsuario p-2 text-naranjaMolon '>
+  
+  {props.interactuer}</div>
+  </div>
           <div ref={hola} id="lastInteraction" style={{fontSize:'0.6rem'}} className='p-2  text-naranjaMolon'>{fechaMostrada}</div>
         </div>
         <div className="flex flex-row items-center">

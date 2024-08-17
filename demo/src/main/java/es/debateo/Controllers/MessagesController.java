@@ -2,6 +2,7 @@ package es.debateo.Controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.debateo.DTO.ChatAndUnreadMessagesDTO;
+import es.debateo.DTO.MessagesDTO;
 import es.debateo.DTO.ServiceResponse;
 import es.debateo.Model.Messages;
 import es.debateo.Repositories.messagesRepo;
@@ -34,11 +36,11 @@ public class MessagesController {
 	
 	
 	@GetMapping("/RetrieveChats/{username}")
-	public ResponseEntity<List<Object>> RetrieveChats(@PathVariable String username) {
+	public ResponseEntity<List<MessagesDTO> > RetrieveChats(@PathVariable String username) {
 	
-		ServiceResponse<Object> respuesta = services.RetrieveChats(username);
+		List<MessagesDTO> respuesta = services.RetrieveChats(username);
 		
-		return new ResponseEntity<List<Object>>(respuesta.getLista(),respuesta.getStatus());
+		return new ResponseEntity<List<MessagesDTO> >(respuesta,HttpStatus.OK);
 		
 	}
 	

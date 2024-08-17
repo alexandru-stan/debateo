@@ -51,7 +51,7 @@ export const Menu = () => {
             
             <div    className=" w-full   border-naranjaMolon p-1 items-center     m-1   cursor-pointer hover:brightness-125 bg-moradoOscuro   h-2/4 flex  " onClick={() => {
                  setMensajesSinLeer(0);
-                 $("#mensajes").animate({height: 'toggle',width:'toggle'}, 100) 
+                 $("#mensajes").is(":visible") ? $("#mensajes").hide() : $("#mensajes").show() ; 
              } } id='menu-3'>
             <Imagen style={{maxWidth:'50%', height:'2rem'}}  ruta={IconoMensajes}></Imagen>
 

@@ -17,6 +17,7 @@ import Imagen from "../img";
 import { leerMensaje } from "../../../../js/leerMensaje";
 import { getUnreadMessagesByChat } from "../../../../js/getUnreadMessagesByChat";
 import { updateUnreadMessages } from "../../../../redux-store/slices/UnreadMessages";
+import { formatImage } from "../../../../js/imageFormatting";
 const $ = require('jquery');
 export const Mensajes = (props) => {
 const username = JSON.parse(sessionStorage.getItem('user')).username;
@@ -67,10 +68,10 @@ stompClient.onConnect = (frame) => {
     let tempArr = [];
       r.data.forEach(e=>{
         
-        
+        console.log(e);
           
     
-        tempArr.push(<Chat unreadMessages={e[4]}   onClick={() => {
+        tempArr.push(<Chat unreadMessages={e.null_isRead_count}   onClick={() => {
 
           
 
@@ -80,9 +81,9 @@ stompClient.onConnect = (frame) => {
           }
 
 
-          dispatch(change(e[0]))
-          ReadMessages(e[0],username);
-          }} interactuer={e[0]} lastInteraction={e[1]} newChat={"ALUPIGUS"} key={e[2]}  lastMessage={e[3]}/>);
+          dispatch(change(e.interactuer))
+          ReadMessages(e.interactuer,username);
+          }} profileImage = {formatImage(e.profile_image)} interactuer={e.interactuer} lastInteraction={e.last_interaction} newChat={"ALUPIGUS"} key={e.message_id}  lastMessage={e.message_body}/>);
     
     
     });
