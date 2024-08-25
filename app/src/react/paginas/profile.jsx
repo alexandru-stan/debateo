@@ -19,7 +19,7 @@ const nav = useNavigate() ;
 
 
 return(
-    <div className="h-full overflow-y-hidden flex items-center flex-col" id='profile'>
+    <div className="h-full  flex items-center flex-col" id='profile'>
     <Header/>
     <LateralMenu/>
     <Body/>

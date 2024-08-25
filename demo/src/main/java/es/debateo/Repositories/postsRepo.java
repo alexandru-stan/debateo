@@ -29,6 +29,15 @@ public interface postsRepo extends JpaRepository<Posts,Long>{
 		       "")
 		Page<PostDTO> getPostsBySubscription(@Param("name") String name, PageRequest page);
 	
+	
+	@Query("SELECT new es.debateo.DTO.PostDTO(p, c,  0 , 0, 0) FROM Posts p " +
+		       " JOIN Communities c ON p.community = c.communityId " +
+		       " "
+		       + " WHERE p.user = :name  "
+		       + " ORDER BY p.publicationId DESC " +
+		       "")
+	Page<PostDTO> getPostsByCreator(@Param("name") String name, PageRequest page);
+	
 
 	@Query("SELECT new es.debateo.DTO.PostDTO(p, c, 0 , 0, 0) FROM Posts p " +
 		       " JOIN Communities c ON p.community = c.communityId "

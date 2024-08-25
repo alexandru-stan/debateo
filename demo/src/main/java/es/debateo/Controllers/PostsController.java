@@ -61,6 +61,15 @@ public class PostsController {
 	}
 	
 	
+	@GetMapping("/byCreator/{username}/{offset}")
+	public ResponseEntity<Page<PostDTO>> getPostsByCreator(@PathVariable String username , @PathVariable int offset){
+		
+		ServiceResponse<PostDTO> response = services.getPostsByCreator(username,offset);
+		System.out.println(response.getPagina().getNumberOfElements() );
+		return new ResponseEntity<Page<PostDTO>>(response.getPagina(),response.getStatus());
+	}
+	
+	
 	@PostMapping("/new")
 	public int  addPost( @RequestParam("image")  MultipartFile file,
 			@RequestParam("titulo") String titulo,
@@ -80,7 +89,7 @@ public class PostsController {
 	}
 	
 	
-	
+
 	
 //	@GetMapping("/byCommunity/{offset}/{communityId}/{username}")
 //	public ResponseEntity<Page<PostDTO>> getPostsByCommunity( @PathVariable int offset, @PathVariable long communityId,@PathVariable String username){

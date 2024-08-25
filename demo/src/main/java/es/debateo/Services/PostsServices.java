@@ -124,6 +124,25 @@ public class PostsServices {
 	}
 	
 	
+	public ServiceResponse<PostDTO> getPostsByCreator(String user,int offset){
+		
+		Page<PostDTO> posts = repo.getPostsByCreator(user,PageRequest.of(offset, 15));
+		
+		posts.forEach(post->{
+			post.setLiked(repo.isItLiked(user, post.getPost().getPublicationId()));
+			post.setLikes(likesRepo.likeCount(post.getPost().getPublicationId()));
+			post.setComments(commentsRepo.countByPostId(post.getPost().getPublicationId()));
+		});
+ServiceResponse<PostDTO> respuesta = new ServiceResponse<PostDTO>(posts,HttpStatus.OK);
+		
+		
+		
+		return respuesta;
+		
+	}
+	
+	
+	
 	public ServiceResponse<PostDTO> getPost(String username,long id){
 		
 		PostDTO post = repo.getPost(id);

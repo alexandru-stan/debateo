@@ -826,6 +826,11 @@ video {
   background-color: rgb(9 9 11 / var(--tw-bg-opacity));
 }
 
+.bg-red-950 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(69 10 10 / var(--tw-bg-opacity));
+}
+
 .text-left {
   text-align: left;
 }

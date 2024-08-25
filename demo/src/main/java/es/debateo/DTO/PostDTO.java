@@ -29,6 +29,9 @@ public class PostDTO {
 		
 	}
 	
+	
+	
+	
 	public PostDTO( Posts post,long likes, long comments, long liked) {
 		super();
 		this.likes = likes;

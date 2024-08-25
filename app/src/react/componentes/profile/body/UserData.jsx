@@ -14,7 +14,7 @@ export const UserData = () =>  {
     console.log(date);
     return (
         <div id='userData
-        ' className='w-full'>
+        ' className='w-2/4'>
         <div className="w-full flex  items-center p-3 text-center  ">
             <img style={{width:'100px',height:'100px'}} className=" rounded-full" src={user.profileImageFile}></img>
             <p className="ml-auto bg-moradoFondo text-naranjaMolon font-semibold hover:bg-moradoLight hover:cursor-pointer border-2 border-moradoLight py-2 px-4 rounded-lg ">Editar perfil</p>
