@@ -7,6 +7,7 @@ import { EditProfile } from "./body/EditProfile";
 import { Mensajes } from '../reusable/mensajes/mensajes';
 import { UserData } from "./body/UserData";
 import { UserPosts } from "./body/Views/UserPosts";
+import { UserComments } from "./body/Views/UserComments";
 export const Body = () => {
 
     const [selected,setSelected] = useState("Publicaciones");
@@ -34,12 +35,13 @@ export const Body = () => {
     <div id="profileUploads" className='mt-4 flex flex-row bg-moradoFondo rounded-lg w-2/4 justify-center' >
         <div onClick={()=>setSelected("Publicaciones")} className= {selected=="Publicaciones" ? " rounded-lg selectedPage pageSelector" :" pageSelector"}>Publicaciones</div>
         <div onClick={()=>setSelected("Comentarios")} className= {selected=="Comentarios" ? " rounded-lg selectedPage pageSelector" :" pageSelector"}>Comentarios</div>
-        <div onClick={()=>setSelected("MeGusta")} className= {selected=="MeGusta" ? " rounded-lg selectedPage pageSelector" :" pageSelector"}>Me gusta</div>
+        <div onClick={()=>{ alert("To be implemented") }} className= {selected=="MeGusta" ? "  pageSelector" :" pageSelector"}>Me gusta</div>
         
     </div>
 
-        <div className="w-full flex flex-col justify-center ">
+        <div className="w-full flex flex-col items-center justify-center ">
           <UserPosts visibility={selected=="Publicaciones" ? true : false}/>
+          <UserComments visibility = {selected=="Comments" ? true : false}/>
         </div>
 
 

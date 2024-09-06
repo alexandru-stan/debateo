@@ -711,10 +711,6 @@ video {
   overflow: auto;
 }
 
-.overflow-y-hidden {
-  overflow-y: hidden;
-}
-
 .rounded {
   border-radius: 0.25rem;
 }
@@ -826,11 +822,6 @@ video {
   background-color: rgb(9 9 11 / var(--tw-bg-opacity));
 }
 
-.bg-red-950 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(69 10 10 / var(--tw-bg-opacity));
-}
-
 .text-left {
   text-align: left;
 }
@@ -857,6 +848,11 @@ video {
 .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 }
 
 .font-bold {
@@ -1220,8 +1216,8 @@ input::file-selector-button:hover{
 
 
 @media(max-width:1200px){
-  .publicacion,#comment-section,.community-info{
-    width: 60%;
+  .publicacion,#comment-box,.comment,.community-info{
+    width: 50%;
     
   }
  
@@ -1382,7 +1378,7 @@ input::file-selector-button:hover{
       flex-direction: column;
     }
   
-    .publicacion,#comment-section,.community-info{
+    .publicacion,#comment-box,.comment,.community-info,#userData,#profileUploads{
       width: 80% !important;
     }
     #formCrearComunidad,#createForm {
@@ -1469,6 +1465,9 @@ input::file-selector-button:hover{
       
     }
 
+  
+
+
     .postMenuButtons{
       left:50%
     }
@@ -1504,7 +1503,7 @@ input::file-selector-button:hover{
       width:70%;
     }
 
-    
+  
 
    
   }
@@ -1532,7 +1531,7 @@ input::file-selector-button:hover{
 
 
  
-  .publicacion,#comment-section,.community-info{
+  .publicacion,#comment-box,.comment,.community-info,#userData,#profileUploads{
   
     width:100% !important;
   }
@@ -1725,5 +1724,12 @@ input::file-selector-button:hover{
 #incomingMessagePopUp{
 border-radius:30px 30px 0 30px !important; /* top-left, top-right, bottom-right, bottom-left */
 }
+
+/* .overlay {
+  opacity:0.2 ;
+
+} */
+
+
 
 /*# sourceMappingURL=/src.b0ce6175.css.map */

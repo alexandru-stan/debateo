@@ -19,7 +19,7 @@ public interface likesRepo extends JpaRepository<Likes,Long>{
 	@Query(value=""
 			+ "SELECT "
 			+ " COUNT(*) "
-			+ " FROM Likes"
+			+ " FROM likes"
 			+ " WHERE post_id=:id",nativeQuery=true)
 	int likeCount(@Param("id") long id);
 	

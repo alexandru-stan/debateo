@@ -3,7 +3,8 @@ import Image from "../../reusable/img";
 import editar from "../../../../assets/img/editar.png";
 import { useEffect,useRef } from "react";
 import { updateUser } from "../../../../js/updateUser";
-export const EditProfile = () => {
+import borrar from "../../../../assets/img/remove.png"
+export const EditProfile = ({editProfile}) => {
   const user = JSON.parse(sessionStorage.getItem('user'));
   const [edit,setEdit] = useState({
     username:false,
@@ -24,9 +25,10 @@ export const EditProfile = () => {
 
 
   return (
-    <div id='userData' className='bg-moradoFondo w-3/6 p-4 rounded-lg '>
-      <div className=' p-2 mb-4 rounded-t-lg'>
-        <h2 className="text-naranjaMolon text-lg font-bold text-center">Datos de usuario</h2>
+    <div id='userData' style={{position:'fixed' , top:'30%', height:'60%'}} className='bg-moradoFondo w-3/6 p-4 rounded-lg '>
+      <div className='  justify-center items-center flex p-2 mb-4 rounded-t-lg'>
+        <h2 className="text-naranjaMolon text-xl font-bold text-center">Datos de usuario</h2>
+        <img className="hover:cursor-pointer hover:bg-moradoLight rounded-3xl"  src={borrar} onClick={()=> editProfile(false)} style={{marginLeft:'auto',width:'5%'}}></img>
         
       </div>
      

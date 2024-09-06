@@ -13,13 +13,18 @@ import { Prueba } from './Prueba';
 import { Admin } from './paginas/admin';
 import { NewCommunity } from './paginas/newCommunity';
 import { Comments } from './paginas/comments';
-
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { PopUp } from '../react/componentes/reusable/popup/PopUp';
 
 
   function App() {
+    const popUpVal = useSelector(state => state.popUp.value);
+    const dispatch = useDispatch();
     return (
      
       <Router>
+      <div className={popUpVal!=null ? 'opacity-50' : null}>
         <Routes>
           <Route exact path="/" element={<Principal />} />
           <Route exact path="/feed" element={<Feed />} />
@@ -32,8 +37,12 @@ import { Comments } from './paginas/comments';
           <Route exact path="/:id/comments" element={<Comments/>}></Route>
 
         </Routes>
+        </div>
+       {popUpVal != null ?<PopUp/> : null } 
       </Router>
-      
+     
+    
+    
     );
   }
   

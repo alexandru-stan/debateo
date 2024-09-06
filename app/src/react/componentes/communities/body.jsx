@@ -6,7 +6,7 @@ import { formatImage } from '../../../js/imageFormatting';
 import { PostsRequestByCommunity } from '../../../js/PostRequestByCommunity';
 import { Mensajes } from '../reusable/mensajes/mensajes';
 import { useRef } from 'react';
-import Button from 'react-bootstrap/Button';
+
 import { useNavigate } from 'react-router-dom';
 import { CrearPublicacion } from './body/crearPublicacion';
 import admin from '../../../assets/img/admin.png';
@@ -16,6 +16,7 @@ import {SERV_DIR,SERV_PORT} from "../../../utilities";
 import { update } from '../../../redux-store/slices/RecentCommunityTrigger';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { assign } from '../../../redux-store/slices/PopUp';
 export const Body = (props) => {
 const [state,setState] = useState(localStorage.getItem('cid'));
 const [info,setInfo] = useState({});
@@ -29,6 +30,8 @@ const rctTrigger = useSelector(state => state.recentCommunityTrigger.value);
 const myRef = useRef();
 let comunidadesRecientes = JSON.parse(localStorage.getItem("comunidadesRecientes"));
 const navigate = useNavigate();
+
+const popUpVal = useSelector(state => state.popUp.value);
 const dispatch = useDispatch();
 let creador;
 let loggedUser = JSON.parse(sessionStorage.getItem('user')).username;
@@ -117,9 +120,9 @@ useEffect(() => {
         setCS(data.communityCreator);
         setSubscription(data.subscription);
       
-      if(creadorState==loggedUser) setSubButton(<Button id='administrar'>Administrar</Button>)
-  else if ( data.subscription!=null) setSubButton(<Button onClick={()=> {changeSub(data.subscription)}} id='Unsub'>Desuscribirse</Button>)
-  else setSubButton(<Button onClick={()=> {changeSub(data.subscription)}} id='Sub'>Suscribirse</Button>)
+      if(creadorState==loggedUser) setSubButton(<button  id='administrar'>Administrar</button>)
+  else if ( data.subscription!=null) setSubButton(<button onClick={()=> {changeSub(data.subscription)}} id='Unsub'>Desuscribirse</button>)
+  else setSubButton(<button onClick={()=> {changeSub(data.subscription)}} id='Sub'>Suscribirse</button>)
         setInfo({
             communityName: data.communityName,
             communityDescription: data.communityDescription,
@@ -152,9 +155,9 @@ useEffect(() => {
 useEffect(()=> {
 
 
+// navigate("/admin/"+state)
 
-
-  if(creadorState==loggedUser) setSubButton(<button className=" hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon" onClick={()=> navigate("/admin/"+state)} id='administrar'>Administrar</button>)
+  if(creadorState==loggedUser) setSubButton(<button className=" hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon" onClick={()=> dispatch(assign("Esta funcionalidad todavía no ha sido implementada"))} id='administrar'>Administrar</button>)
   else if ( subscription!=null) setSubButton(<button className="hover:bg-moradoLight rounded-md p-2  text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none   focus:border-naranjaMolon" onClick={()=> {changeSub(subscription)}} id='Unsub'>Desuscribirse</button>)
   else setSubButton(<button className="hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon" onClick={()=> {changeSub(subscription)}} id='Sub'>Suscribirse</button>)
 

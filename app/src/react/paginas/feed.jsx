@@ -29,7 +29,7 @@ const nav = useNavigate();
 
     return user ? (
        
-        <div style={{ height:'100%'}} className=" pt-1   " id='feed'>
+        <div style={{ height:'100%'}} className=" pt-1  overlay " id='feed'>
        <Header/>
       <LateralMenu/>
         <Body/>

@@ -93,12 +93,12 @@ export const Comment = (props)=> {
 console.log(props);
 
 return (
-    <div style={{overflowWrap:'break-word', marginBottom:'3%'}} className='comment backdrop-brightness-125  w-full mt-2 rounded-md p-2'>
+    <div style={{overflowWrap:'break-word', marginBottom:'3%'}} className='comment backdrop-brightness-125  w-2/6 mt-2 rounded-md p-2'>
     <div style={{fontSize:'1rem'}} className="flex p-2 flex-row justify-between">
       {/* <img src={formatImage(props.profileImageFile)}></img> */}
       <div className='flex flex-row items-center'>
       
-      <img className='' style={{width:'30px', height:'30px', borderRadius:'100%'}} src={formatImage(props.profileImage)} alt="tupu"/>
+      {props.profileImage!=null ? <img className='' style={{width:'30px', height:'30px', borderRadius:'100%'}} src={formatImage(props.profileImage)} alt="tupu"/> : null}
       <h5 style={{marginLeft:'0.5rem'}} className="text-naranjaMolon">{props.username}</h5>
 
       </div>

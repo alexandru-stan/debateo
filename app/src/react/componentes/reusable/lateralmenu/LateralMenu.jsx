@@ -28,9 +28,9 @@ export const LateralMenu = (props) => {
 
   
 
-        <div id="lateralMenu" className={  " bg-moradoOscuro border-r-2 border-moradoLight"} style={{position:'fixed', overflow:'scroll', height:'calc(100vh - 50px)  ',  left:'0%', top:'7%', width:'20%', display:lateralMenuVisibility}}>
+        <div id="lateralMenu" className={   " bg-moradoOscuro border-r-2 border-moradoLight"} style={{zIndex:'1',position:'fixed', overflow:'scroll', height:'calc(100vh - 50px)  ',  left:'0%', top:'7%', width:'20%', display:lateralMenuVisibility}}>
        <div id="user-info" style={{marginTop:'2rem'}} className=" border-b-2 border-moradoLight flex items-center  p-2 ">
-        <Image style={{borderRadius:'100% ', width:'4rem', height:'4rem'}} clase={" p-2"} ruta={user.profileImageFile}/>
+        <Image onerror={()=>{alert("IMAGE NO LONGER AVAILABLE")}} style={{borderRadius:'100% ', width:'4rem', height:'4rem'}} clase={" p-2"} ruta={user.profileImageFile}/>
         <div className="p-2">
             <div className="max-text-2xl text-bold text-naranjaMolon Kanit">{user.username}</div>
             <div className="text-gray-300 text-sm">{user.name}</div>

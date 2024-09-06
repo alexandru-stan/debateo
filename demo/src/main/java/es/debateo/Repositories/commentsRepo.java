@@ -24,5 +24,6 @@ public interface commentsRepo extends JpaRepository<Comments,Long> {
 	@Query(value="SELECT COUNT(*) FROM replies WHERE comment_id = :id",nativeQuery=true)
 	public int getRepliesByCommentId(@Param("id") long id);
 	
+	public List<Comments> getCommentsByUsernameOrderByCommentDateDesc(String username);
 	
 }

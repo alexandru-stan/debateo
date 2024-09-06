@@ -19,7 +19,7 @@ const Post = (props) => {
             <PostHeader fyp={props.fyp} visibleCommunityInfo ={props.visibleCommunityInfo} referencia={props.referencia} publicationId={props.publicationId} publicationTitle = {props.publicationTitle} communityId = {props.communityId} communityName={props.communityName} communityImage = {props.communityImage} publicationUser={props.publicationUser} delete={props.delete}/>
             <PostBody liked={props.liked} publicationBody={props.publicationBody} publicationImage={props.publicationImage} />
             <PostFooter postInfo = {props}/>
-        
+            
        </div>
      
        
