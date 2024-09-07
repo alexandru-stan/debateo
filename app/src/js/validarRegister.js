@@ -1,6 +1,12 @@
 import React from "react";
 
 const $ = require("jquery")
+
+function isValidDate(date) {
+    let parsedDate = new Date(date);
+    return parsedDate instanceof Date && !isNaN(parsedDate.getTime()) && (parsedDate.getFullYear() >= 1900 && parsedDate.getFullYear() <= 2099);
+}
+
 export function validarRegister(user){
 
 
@@ -23,6 +29,10 @@ let valid = true;
             break;
         case /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(user.mail):
             $("#Rmail").siblings("p").html("Tu correo electrónico debe tener un formato válido")
+            valid = false;
+            break;
+        case isValidDate(user.birth_date):
+            $("#Rbirth_date").siblings("p").html("Debes introducir una fecha de nacimiento válida.")
             valid = false;
             break;
     } 

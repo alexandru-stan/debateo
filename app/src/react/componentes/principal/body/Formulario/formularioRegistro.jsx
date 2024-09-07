@@ -36,8 +36,8 @@ const dispatch = useDispatch();
         birth_date: $('#Rbirth_date').val()
     }
 
-    // let resultado = validarRegister(user);
-        let resultado = true;
+    let resultado = validarRegister(user);
+      
 
 
     resultado ? 
