@@ -5,12 +5,15 @@ import calendarIcon from "../../../../assets/img/registerDate.png"
 import cakeIcon from "../../../../assets/img/birthDate.png"
 import { EditProfile } from "./EditProfile";
 import { useState } from "react";
+import { refreshProfileImage } from "../../../../js/RefreshProfileImage";
+import { formatImage } from "../../../../js/imageFormatting";
 export const UserData = () =>  {
     const [editProfile,setEditProfile] = useState(false);
     const user = JSON.parse(sessionStorage.getItem('user'));
     const date = new Date(user.birth_date);
     const formatter = new Intl.DateTimeFormat('es', { month: 'long' });
     const mes = formatter.format(date)
+    const [profileImage,setProfileImage] = useState(JSON.parse(sessionStorage.getItem('user')).profileImageFile);
     console.log(user.birth_date);
     console.log(date);
     const updateParentState = (newValue) => {
@@ -24,7 +27,9 @@ export const UserData = () =>  {
         <div id='userData' className='w-2/4 '>
         {editProfile ? <EditProfile editProfile = {updateParentState}/> : null}
         <div className="w-full flex  items-center p-3 text-center  ">
-            <img style={{width:'100px',height:'100px'}} className=" rounded-full" src={user.profileImageFile}></img>
+            <img onError={()=>{
+                refreshProfileImage(user.username).then(r => setProfileImage(formatImage(r.data.profileImage)));
+            }} style={{width:'100px',height:'100px'}} className=" rounded-full" src={profileImage}></img>
             <p onClick={()=> setEditProfile(!editProfile)} className="ml-auto bg-moradoFondo text-naranjaMolon font-semibold hover:bg-moradoLight hover:cursor-pointer border-2 border-moradoLight py-2 px-4 rounded-lg ">Editar perfil</p>
         </div>
         <div  className="p-3 ">

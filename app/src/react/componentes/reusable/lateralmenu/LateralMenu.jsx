@@ -37,7 +37,7 @@ export const LateralMenu = (props) => {
         <Image onerror={()=>{
         
 
-refreshProfileImage(user.username)
+refreshProfileImage(user.username).then(r => setProfileImage(formatImage(r.data.profileImage)));
 
         }} style={{borderRadius:'100% ', width:'4rem', height:'4rem'}} clase={" p-2"} ruta={profileImage}/>
         <div className="p-2">

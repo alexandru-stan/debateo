@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import es.debateo.DTO.ServiceResponse;
 import es.debateo.Model.Messages;
+import es.debateo.Model.UserRecord;
 import es.debateo.Model.Users;
 import es.debateo.Repositories.usersRepo;
 import es.debateo.Services.MessagesServices;
@@ -113,10 +114,12 @@ public class UsersController {
 	
 
 	@GetMapping("/refreshProfileImage/{username}")
-	public byte[] refreshProfileImage(@PathVariable String username) throws IOException {
+	public UserRecord refreshProfileImage(@PathVariable String username) throws IOException {
 		System.out.println("imagen para " + username);
+	
 		byte[] test = profileImageUtils.returnProfileImage(username);
-		return test; 
+		return new UserRecord(test);
+		
 		
 	}
 	
