@@ -13,6 +13,7 @@ import jQuery from "jquery";
 import { stompClient } from "../../../../../webSocketTesting/webSocket";
 import Image from "../../img";
 import backIcon from "../../../../../assets/img/backIcon.png";
+import cerrar from "../../../../../assets/img/close.png";
 
 export const ChatActual = (props) => {
     const $ = require('jquery');
@@ -119,8 +120,11 @@ export const ChatActual = (props) => {
 selectedChat==null ? 
 
 
-<div  className="flex h-full  flex justify-center items-center">
-<Logo ruta={selectedChatPng} clase="w-1/6 h-1/6"/>
+<div className="h-full p-3">
+<img onClick={()=>{ $("#mensajes").hide() }} src={cerrar} className="hover:cursor-pointer " style={{marginLeft:'auto', width:'5%'}} ></img>
+<div  className="flex h-full   flex justify-center items-center">
+<Logo ruta={selectedChatPng} clase="w-1/6  h-1/6"/>
+</div>
 </div>
 
 
@@ -137,6 +141,7 @@ selectedChat==null ?
         <div style={{}} className="text-naranjaMolon   h-3/4 pl-2 text-extrabold">{selectedChat}</div>
         <sub className="">Conectado por última vez: Unknown</sub>
         </div>
+       <img onClick={()=>{ $("#mensajes").hide() }} src={cerrar} className="hover:cursor-pointer " style={{marginLeft:'auto', width:'5%'}} ></img>
         </div>
         <div id='conversacion' style={{height:'70%'}} className=" p-1 flex bg-moradoOscuro ">
            {messages}

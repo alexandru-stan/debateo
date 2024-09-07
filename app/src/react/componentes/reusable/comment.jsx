@@ -106,9 +106,9 @@ return (
     </div>
         <div className=' comment-text p-2'>{props.commentText}</div>
       <div style={{height:'3rem',borderTop:'1px solid #444073'}} className='p-1  mt-2 w-full flex flex-row items-center'>
-        <p style={{marginRight:'10px',fontSize:'1.5rem'}} className='font-bold  text-naranjaMolon  '>0</p>
+        {/* <p style={{marginRight:'10px',fontSize:'1.5rem'}} className='font-bold  text-naranjaMolon  '>0</p>
         <Image style={{marginRight:'10px' ,  borderRadius:'50%'}} clase='h-full  hover:bg-moradoLight p-1 cursor-pointer' ruta={thumbsUp}/>
-        <Image  style={{marginRight:'10px' ,  borderRadius:'50%'}} clase='h-full hover:bg-moradoLight p-1 cursor-pointer' ruta={thumbsDown}/>
+        <Image  style={{marginRight:'10px' ,  borderRadius:'50%'}} clase='h-full hover:bg-moradoLight p-1 cursor-pointer' ruta={thumbsDown}/> */}
         <Image onclick = {()=>{
           setVisibility('block')
         }} style={{ borderRadius:'50%'}} clase='h-full p-1 hover:bg-moradoLight cursor-pointer' ruta={reply}/>
