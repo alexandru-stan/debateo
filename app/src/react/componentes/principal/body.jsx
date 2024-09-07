@@ -1,5 +1,5 @@
 import React from 'react';
-import imagen from '../../../assets/img/LogoDebateo.PNG'
+import imagen from '../../../assets/img/LogoDebateo.png'
 // import '../../../assets/styles/Principal.css';
 import Carusel from './body/carusel';
 // import RegisterForm from './body/formularioRegistro';

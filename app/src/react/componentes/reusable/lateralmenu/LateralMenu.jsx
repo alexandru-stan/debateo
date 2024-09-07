@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Menu } from "../header/menu";
 import collapse from "../../../../assets/img/collapse.png"
 import Image from "../img"
@@ -9,12 +9,16 @@ import { useEffect } from "react";
 import { useSelector,useDispatch } from "react-redux";
 import { update } from "../../../../redux-store/slices/LateralMenuVisibility";
 import { ComunidadesMasActivas,ComunidadesRecientes,Suscripciones } from "./subMenus";
+import { refreshProfileImage } from "../../../../js/RefreshProfileImage";
+import { formatImage } from "../../../../js/imageFormatting";
 export const LateralMenu = (props) => {
     
     const dispatch = useDispatch();
     const isFirstRender = useRef(true);
     const lateralMenuVisibility = useSelector(state => state.lateralMenuVisibilty.value);
     const user = JSON.parse(sessionStorage.getItem('user'))
+    const [profileImage,setProfileImage] = useState(JSON.parse(sessionStorage.getItem('user')).profileImageFile);
+
 
     const windowWidth = useWindowSize().width;
 
@@ -30,7 +34,12 @@ export const LateralMenu = (props) => {
 
         <div id="lateralMenu" className={   " bg-moradoOscuro border-r-2 border-moradoLight"} style={{zIndex:'1',position:'fixed', overflow:'scroll', height:'calc(100vh - 50px)  ',  left:'0%', top:'7%', width:'20%', display:lateralMenuVisibility}}>
        <div id="user-info" style={{marginTop:'2rem'}} className=" border-b-2 border-moradoLight flex items-center  p-2 ">
-        <Image onerror={()=>{alert("IMAGE NO LONGER AVAILABLE")}} style={{borderRadius:'100% ', width:'4rem', height:'4rem'}} clase={" p-2"} ruta={user.profileImageFile}/>
+        <Image onerror={()=>{
+        
+
+refreshProfileImage(user.username)
+
+        }} style={{borderRadius:'100% ', width:'4rem', height:'4rem'}} clase={" p-2"} ruta={profileImage}/>
         <div className="p-2">
             <div className="max-text-2xl text-bold text-naranjaMolon Kanit">{user.username}</div>
             <div className="text-gray-300 text-sm">{user.name}</div>

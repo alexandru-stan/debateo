@@ -1,7 +1,7 @@
 import React from "react";
 // import theme from "../../../../assets/material-ui-themes/DefaultTheme";
 import Imagen from '../img.jsx';
-import Logo from '../../../../assets/img/LogoDebateo.PNG';
+import Logo from '../../../../assets/img/LogoDebateo.png';
 import IconoMenuMovil from "../../../../assets/img/menuIcons/menuMovil.png"
 import { SearchBar } from "../SearchBar";
 import burger from "../../../../assets/img/burger.png"

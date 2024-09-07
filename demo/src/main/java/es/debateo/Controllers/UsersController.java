@@ -2,7 +2,6 @@ package es.debateo.Controllers;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.ParseException;
@@ -29,6 +28,7 @@ import es.debateo.Model.Users;
 import es.debateo.Repositories.usersRepo;
 import es.debateo.Services.MessagesServices;
 import es.debateo.Services.UserServices;
+import es.debateo.Utils.profileImageUtils;
 
 @RequestMapping("/users")
 @RestController
@@ -46,15 +46,18 @@ public class UsersController {
 	@PostMapping("/login")
 
 	public ResponseEntity<Users> validarLogin(@RequestBody Users credentials) throws IOException {
-
-		
-		
-		ServiceResponse<Users> response = servicio.login(credentials.getUsername(), credentials.getPassword());
-		Users user = response.getObj();	
-		byte[] image = Files.readAllBytes(new File(user.getProfileImage()).toPath());
-		user.setProfileImageFile(image);
-		return new ResponseEntity<Users>(user, response.getStatus());
+	    ServiceResponse<Users> response = servicio.login(credentials.getUsername(), credentials.getPassword());
+	    Users user = response.getObj();
+	    user.setProfileImageFile(profileImageUtils.returnProfileImage(user.getUsername()));
+	    System.out.println(user.getProfileImageFile());
+	    return new ResponseEntity<>(user, response.getStatus());
 	}
+	
+	
+	
+	
+	
+	
 	
 	@PostMapping("/signin")
 	public ResponseEntity<String> registrarUsuario(@RequestParam("Rusername") String username,
@@ -69,7 +72,7 @@ public class UsersController {
 	        String rootDir = System.getProperty("user.dir");
 	        
 	        System.out.println(rootDir);
-	        Path filePath = Paths.get(rootDir, "\\src\\main\\resources\\static\\profileImages\\"+username+"."+imageExtension);
+	        Path filePath = Paths.get(rootDir, "/src/main/resources/static/profileImages/"+username+"."+imageExtension);
 	        System.out.println(filePath.toString());
 	        file.transferTo(new File((filePath.toString())));
 	  
@@ -108,7 +111,23 @@ public class UsersController {
 		
 	}
 	
-	
+
+	@GetMapping("/refreshProfileImage/{username}")
+	public byte[] refreshProfileImage(@PathVariable String username) throws IOException {
+		System.out.println("imagen para " + username);
+		byte[] test = profileImageUtils.returnProfileImage(username);
+		return test; 
+		
+	}
 	
 
 }
+	
+	
+	
+	
+
+
+
+
+

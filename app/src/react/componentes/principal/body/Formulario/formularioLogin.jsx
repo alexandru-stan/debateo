@@ -36,6 +36,7 @@ const navigate = useNavigate();
   Login().then(response => {
     
     let userData = response.data;
+    console.log(userData.profileImageFIle);
   userData.profileImageFile = formatImage(userData.profileImageFile);
     sessionStorage.setItem('user',JSON.stringify(userData));
       navigate("/feed");
