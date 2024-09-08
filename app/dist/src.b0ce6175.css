@@ -813,11 +813,6 @@ video {
   background-color: rgb(23 22 38 / var(--tw-bg-opacity));
 }
 
-.bg-red-950 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(69 10 10 / var(--tw-bg-opacity));
-}
-
 .bg-transparent {
   background-color: transparent;
 }
@@ -1221,11 +1216,14 @@ input::file-selector-button:hover{
 
 
 @media(max-width:1200px){
-  .publicacion,#comment-box,.comment,.community-info{
-    width: 50%;
+  .publicacion,#popUp,#comment-box,.comment,.community-info{
+    width: 50% !important;
     
   }
- 
+  
+  #popUp {
+    left:25% !important
+  }
 
 
 
@@ -1383,7 +1381,7 @@ input::file-selector-button:hover{
       flex-direction: column;
     }
   
-    .publicacion,#comment-box,.comment,.community-info,#userData,#profileUploads{
+    .publicacion,#popUp,#comment-box,.comment,.community-info,#userData,#profileUploads{
       width: 80% !important;
     }
     #formCrearComunidad,#createForm {
@@ -1470,7 +1468,9 @@ input::file-selector-button:hover{
       
     }
 
-  
+    #popUp {
+      left:10% !important
+    }
 
 
     .postMenuButtons{
@@ -1536,7 +1536,7 @@ input::file-selector-button:hover{
 
 
  
-  .publicacion,#comment-box,.comment,.community-info,#userData,#profileUploads{
+  .publicacion,#popUp,#comment-box,.comment,.community-info,#userData,#profileUploads{
   
     width:100% !important;
   }
@@ -1558,7 +1558,9 @@ input::file-selector-button:hover{
     font-size:1em !important;
   }
   
-
+  #popUp {
+    left:0% !important
+  }
   .campoFormularioPrincipal{
           flex-direction: column !important;
           align-items: center;

@@ -47,9 +47,11 @@ public class UsersController {
 	@PostMapping("/login")
 
 	public ResponseEntity<Users> validarLogin(@RequestBody Users credentials) throws IOException {
+		
 	    ServiceResponse<Users> response = servicio.login(credentials.getUsername(), credentials.getPassword());
 	    Users user = response.getObj();
-	    user.setProfileImageFile(profileImageUtils.returnProfileImage(user.getUsername()));
+	    profileImageUtils util = new profileImageUtils();
+	    user.setProfileImageFile(util.returnProfileImage(user.getUsername()));
 	    System.out.println(user.getProfileImageFile());
 	    return new ResponseEntity<>(user, response.getStatus());
 	}
@@ -116,8 +118,9 @@ public class UsersController {
 	@GetMapping("/refreshProfileImage/{username}")
 	public UserRecord refreshProfileImage(@PathVariable String username) throws IOException {
 		System.out.println("imagen para " + username);
-	
-		byte[] test = profileImageUtils.returnProfileImage(username);
+	    profileImageUtils util = new profileImageUtils();
+
+		byte[] test = util.returnProfileImage(username);
 		return new UserRecord(test);
 		
 		

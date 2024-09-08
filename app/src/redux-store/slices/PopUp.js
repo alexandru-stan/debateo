@@ -5,7 +5,7 @@ export const PopUp = createSlice({
 
     name: 'popUp',
     initialState:{
-        value: null
+        value:null
     },
 
     reducers:{

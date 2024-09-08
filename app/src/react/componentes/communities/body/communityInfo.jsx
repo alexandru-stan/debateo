@@ -20,7 +20,7 @@ export const CommunityInfo = (props) => {
 
         
             <div style={{width:'80%'}} className=' community-name p-3    '>
-                <p style={{fontSize:'2rem'}} className='Kanit'>{props.info.communityName}</p>
+                <p style={{fontSize:'1rem',overflowWrap:'break-word'}} className='Kanit font-bold'>{props.info.communityName}</p>
                 <p className="text-naranjaMolon Kanit">{props.info.communityMembers} miembros</p>
                 <p className='community-creator Kanit '>Creada por <span className='text-naranjaMolon font-bold'>{props.info.communityCreator}</span></p>
                 

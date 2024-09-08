@@ -8,10 +8,10 @@ export const PopUp = () => {
     const dispatch = useDispatch();
     return (
         
-        <div className='bg-moradoFondo  flex flex-col items-center p-5 ' style={{ border:'10px solid #35325c ', borderRadius:'5%', position:'fixed', top:'35%', height:'30%', width:'30%',left:'35%', zIndex:'3' }}  >
+        <div id='popUp' className='bg-moradoFondo justify-center  flex flex-col items-center p-5 ' style={{ border:'10px solid #35325c ', borderRadius:'5%', position:'fixed', top:'35%', minHeight:'30%', width:'30%',left:'35%', zIndex:'3' }}  >
        
-       <p style={{fontSize:'2.5rem'}} className="p-1 text-center  text-naranjaMolon Kanit font-bold ">¡Quieto ahí!</p>
-       <p className=" p-1 text-center   Kanit  ">{popUpVal}</p>
+       <p style={{fontSize:'2.5rem'}} className="p-1 text-center   text-naranjaMolon Kanit font-bold ">¡Quieto ahí!</p>
+       <p style={{overflowWrap:'break-word',overflow:'auto'}} className=" p-1 text-center   Kanit  ">{popUpVal}</p>
   
        <button 
         className="bg-moradoLight  w-1/4 mt-3  font-bold py-2 px-4 rounded hover:bg-naranjaMolon Kanit" 

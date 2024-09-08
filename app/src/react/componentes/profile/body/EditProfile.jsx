@@ -92,7 +92,7 @@ export const EditProfile = ({editProfile}) => {
           </div>
           
         </div>
-        <div className=" p-2 border-b-2 border-moradoLight rounded-lg">
+        {/* <div className=" p-2 border-b-2 border-moradoLight rounded-lg">
           <p style={{fontSize:'0.8rem'}} className="text-naranjaMolon Kanit p-1  font-semibold ">Fecha de nacimiento:</p>
           <div className=" flex items-center">
           {edit.birthDate?
@@ -107,7 +107,7 @@ export const EditProfile = ({editProfile}) => {
             setShowEditButtons(true);
           }} clase={'hover:cursor-pointer '} style={{width:'30px',marginLeft:'auto'}} ruta={editar}/>    }
                 </div>
-        </div>
+        </div> */}
     
     
 

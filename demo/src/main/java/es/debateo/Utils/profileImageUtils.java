@@ -7,19 +7,40 @@ import java.util.List;
 
 public class profileImageUtils{
 
-	private final static List<String> extensions = Arrays.asList(".jpg", ".jpeg", ".png", ".gif",".webp");
-	private static byte[] image;
+	private final  static List<String> extensions = Arrays.asList(".jpg", ".jpeg", ".png", ".gif",".webp",".jfif");
+	private  byte[] image;
 	
 	
 	
 	
-	public static byte[] returnProfileImage(String username) throws IOException {
+	public profileImageUtils() {
+		
+	}
+
+
+
+
+	public byte[] getImage() {
+		return image;
+	}
+
+
+
+
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+
+
+
+
+	public  byte[] returnProfileImage(String username) throws IOException {
 		for(String ext : extensions) {
-	    	 String imagePath = "static/profileImages/" + username+ ext;
+	    	 String imagePath = "static/profileImages/" + username + ext;
 	 	     InputStream imageStream = profileImageUtils.class.getClassLoader().getResourceAsStream(imagePath);
 	 	    
 	 	     if(imageStream!=null) {
-	 	    	 image = imageStream.readAllBytes();
+	 	    	 this.image = imageStream.readAllBytes();
 	 	    	
 	 	    	 break;
 	 	     }
@@ -27,7 +48,7 @@ public class profileImageUtils{
 	    }
 		
 		
-		return image;
+		return this.image;
 		
 	}
 	
