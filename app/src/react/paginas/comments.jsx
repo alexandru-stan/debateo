@@ -17,12 +17,17 @@ import { Input } from '../componentes/principal/body/Formulario/inputComponent';
 import { Mensajes } from '../componentes/reusable/mensajes/mensajes';
 
 import { LateralMenu } from "../componentes/reusable/lateralmenu/LateralMenu";
+import SpinnerLoader from '../componentes/reusable/SpinnerLoader';
+
 
 export const Comments = () => {
+  const messagesRender = useSelector(state => state.messagesRender.value);
 const [numeroComentarios, setNumeroComentarios] = useState(null);
 const [post,setPost] = useState();
 const [comments,setComments] = useState();
 const [selectedPost, setSelectedPost] = useState();
+const [loadingPost,setLoadingPost] = useState(true);
+const [loadingComments,setLoadingComments] = useState(true);
   const $ = require('jquery');
     let params = useParams();
     let user = JSON.parse(sessionStorage.getItem('user'));
@@ -31,44 +36,48 @@ const [selectedPost, setSelectedPost] = useState();
   
 
     useEffect(()=> {
-      
-     getPost(user.username,params.id).then(response =>{ 
-      let data = response.data;
-      setNumeroComentarios(data.comments)
-      setSelectedPost(
-        <Post
-          likes = {data.likes}
-          comments = {data.comments}
-          liked={data.liked}
-          communityId={data.community.communityId}
-          communityName={data.community.communityName}
-          communityImage={formatImage(data.community.communityImage)}
-          publicationBody={data.post.publicationBody}
-          publicationTitle={data.post.publicationTitle}
-          publicationId={data.post.publicationId}
-          publicationImage={(data.post.publicationImage.length>0)?<img  src={formatImage(data.post.publicationImage)} alt='img'/>:null}
-          publicationUser={data.post.user}    
-
-
-
-
-        />
-      )
+      getPost(user.username,params.id).then(response =>{ 
+        let data = response.data;
+        setNumeroComentarios(data.comments)
+        setSelectedPost(
+          <Post
+            likes = {data.likes}
+            comments = {data.comments}
+            liked={data.liked}
+            communityId={data.community.communityId}
+            communityName={data.community.communityName}
+            communityImage={formatImage(data.community.communityImage)}
+            publicationBody={data.post.publicationBody}
+            publicationTitle={data.post.publicationTitle}
+            publicationId={data.post.publicationId}
+            publicationImage={(data.post.publicationImage.length>0)?<img  src={formatImage(data.post.publicationImage)} alt='img'/>:null}
+            publicationUser={data.post.user}    
+  
+  
+  
+  
+          />
+  
+        )
+        setLoadingPost(false);
+       
+       })
+    
 
      
-     })
-
-      getComments(params.id).then(response => {
-        
-        let arr=[]
-       response.data.forEach(e =>
-        arr.push(<Comment profileImage={e.profileImage} id={e.commentId} replies={e.replies} commentDate = {e.commentDate} username={e.username} commentText = {e.commentText}/>))
-        setComments(arr);
-
-      });
       },[params.id]);
 
-      
+      useEffect(()=>{
+        getComments(params.id).then(response => {
+        
+          let arr=[]
+         response.data.forEach(e =>
+          arr.push(<Comment profileImage={e.profileImage} id={e.commentId} replies={e.replies} commentDate = {e.commentDate} username={e.username} commentText = {e.commentText}/>))
+          setComments(arr);
+          setLoadingComments(false);
+  
+        });
+    },[params.id])
 
       
 
@@ -83,7 +92,7 @@ const [selectedPost, setSelectedPost] = useState();
         <div  id='comments' className="  flex flex-col items-center">
         <Header/>
         <LateralMenu/>
-          {selectedPost}
+          {loadingPost? <SpinnerLoader id='commPostLoader'/> : selectedPost}
 
         <div  id='comment-section' className=" w-full bg-moradoOscuro
          flex flex-col items-center mt-5">
@@ -102,10 +111,10 @@ const [selectedPost, setSelectedPost] = useState();
           }}>Enviar</button>
           </div>
           
-        {comments}
+        {loadingComments ? <SpinnerLoader id='commLoader'/> : comments}
        
         </div>
-        <Mensajes/>
+        {messagesRender ? <Mensajes/>:null}
         </div>
    
         )

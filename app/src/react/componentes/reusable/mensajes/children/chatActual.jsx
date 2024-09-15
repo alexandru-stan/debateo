@@ -14,6 +14,8 @@ import { stompClient } from "../../../../../webSocketTesting/webSocket";
 import Image from "../../img";
 import backIcon from "../../../../../assets/img/backIcon.png";
 import cerrar from "../../../../../assets/img/close.png";
+import { update as updateMessagesRender } from "../../../../../redux-store/slices/MessagesRender";
+
 
 export const ChatActual = (props) => {
     const $ = require('jquery');
@@ -21,8 +23,8 @@ export const ChatActual = (props) => {
     const incomingMessage = useSelector(state => state.incomingMessage.value);
     const dispatch = useDispatch();
     const [messages,setMessages] = useState([]);
-    const username = JSON.parse(sessionStorage.getItem("user")).username
-   
+    const username = JSON.parse(sessionStorage.getItem("user")).username    
+    // const messagesRender = useState(state => state.messagesRender.value)
   
 
     useEffect(()=> {
@@ -121,7 +123,7 @@ selectedChat==null ?
 
 
 <div className="h-full p-3">
-<img onClick={()=>{ $("#mensajes").hide() }} src={cerrar} className="hover:cursor-pointer " style={{marginLeft:'auto', width:'5%'}} ></img>
+<img onClick={()=>{ dispatch(updateMessagesRender(false)) }} src={cerrar} className="hover:cursor-pointer " style={{marginLeft:'auto', width:'5%'}} ></img>
 <div  className="flex h-full   flex justify-center items-center">
 <Logo ruta={selectedChatPng} clase="w-1/6  h-1/6"/>
 </div>

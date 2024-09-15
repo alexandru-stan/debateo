@@ -9,9 +9,7 @@ function Principal(){
     useEffect(()=> {
         
         sessionStorage.removeItem('user');
-        console.log(JSON.parse(sessionStorage.getItem("user"))?.subsCount)
-        
-    })
+            })
 
     return (
 <>

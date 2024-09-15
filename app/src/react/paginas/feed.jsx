@@ -8,6 +8,7 @@ import { LateralMenu } from "../componentes/reusable/lateralmenu/LateralMenu";
 import { useWindowSize } from "@uidotdev/usehooks";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { LateralMenuRight } from "../componentes/reusable/LateralMenuRight/rightLateralMenu";
 import { update } from "../../redux-store/slices/LateralMenuVisibility";
 import { useRef } from "react";
 const Feed = () => {
@@ -30,10 +31,12 @@ const nav = useNavigate();
     return user ? (
        
         <div style={{ height:'100%'}} className=" pt-1  overlay " id='feed'>
-       <Header/>
-      <LateralMenu/>
+        <Header/>
+        <LateralMenu/>
+        <LateralMenuRight/>
         <Body/>
-         </div>
+        
+        </div>
         
     
     

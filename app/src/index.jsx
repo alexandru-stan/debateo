@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import store from './redux-store/index';
 import "../src/assets/styles/output.css";
 import "../src/assets/css.css";
-import { PopUp } from './react/componentes/reusable/popup/PopUp';
+// import { PopUp } from './react/componentes/reusable/popup/PopUp';
 
 // import { IncomingMessageNotification } from './react/componentes/reusable/mensajes/incomingMessageNotification';
 

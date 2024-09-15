@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Login from '../../../../../js/Login';
 import { red } from '@mui/material/colors';
+import { useState } from 'react';
 
 import { InputLabel, Stack, ThemeProvider, Typography } from '@mui/material';
 import ToggleForm from '../toggleForm';
@@ -21,6 +22,9 @@ import { useEffect } from 'react';
 import { Input } from './inputComponent';
 import { timestampToDate } from '../../../../../js/timestampToDate';
 import { formatImage } from '../../../../../js/imageFormatting';
+import SpinnerLoader from '../../../reusable/SpinnerLoader'
+import PopUp from "../../../reusable/popup/PopUp";
+import { assign } from '../../../../../redux-store/slices/PopUp';
 let codigoRespuesta;
 let mensajeRespuesta;
 
@@ -29,21 +33,27 @@ const $ = require('jquery');
 const Formulario = (props) => {
   const status = useSelector((state) => state.status.value);
   const dispatch = useDispatch();
-const navigate = useNavigate();
+  const navigate = useNavigate();
+  const [loading,setLoading] = useState(false);
 
  function callLogin(){
+  setLoading(true);
+  $('#mensajeErrorLogin').html(null)
 
-  Login().then(response => {
-    
+    Login().then(response => {
     let userData = response.data;
-    console.log(userData.profileImageFIle);
-  userData.profileImageFile = formatImage(userData.profileImageFile);
+        userData.profileImageFile = formatImage(userData.profileImageFile);
     sessionStorage.setItem('user',JSON.stringify(userData));
       navigate("/feed");
     }).catch(
-      (error) => alert(error)
-    );
+      (error) =>  {
+error.response.status==404 ?  $('#mensajeErrorLogin').html("No hemos podido encontrar un usuario con los datos introducidos, vuelve a intentarlo."):  null 
+setLoading(false) } );
 
+
+
+
+ 
 }
 
 
@@ -96,22 +106,28 @@ const isInitialMount = useRef(true);
      
       
         <div  className='  backdrop-brightness-125 border-moradoLight border-2  rounded-lg p-3 text-white flex flex-col' id='form'>
+   
         <p style={{fontSize:'1.5em'}} className='text-center bienvenida'>Bienvenido</p>
           <ToggleForm fn={props.fn} hasAccount = {props.hasAccount}/>
           {/* <TextField color="secondary"  id="Lusername" label="Nombre de usuario" variant="filled"></TextField>
           <TextField className='text-neutral-50' color="secondary" id="Lpassword" label="Contraseña" variant="filled"></TextField> */}
           <div className='m-3 campoFormularioPrincipal flex border-moradoLight justify-around'>
-        <input className=" rounded-md py-2 px-4 text-gray-700 border-b-2 border-moradoLight text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon" id='Lusername' placeholder="Nombre de usuario" for="Lusername"/>
-        <input type="password" className=" rounded-md py-2 border-moradoLight px-4 text-gray-700 border-b-2 text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon" id='Lpassword'  placeholder="Contraseña" for="Lpassword" />
+        <input  className=" rounded-md py-2 px-4 text-gray-700 border-b-2 border-moradoLight text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon" id='Lusername' placeholder="Nombre de usuario" for="Lusername"/>
+        <input  type="password" className=" rounded-md py-2 border-moradoLight px-4 text-gray-700 border-b-2 text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon" id='Lpassword'  placeholder="Contraseña" for="Lpassword" />
         </div>
+        <div className='flex flex-row justify-center w-full'>
+        {loading ? <SpinnerLoader/> : null}
+        </div>
+        <p id='mensajeErrorLogin' className='p-2 Kanit text-red-400 font-bold'></p>
         <div >
+        
         <label className='w-full' htmlFor='Rsubmit'>
           <button className='w-full bg-moradoLight hover:bg-naranjaMolon text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:border-blue-300' onClick={callLogin}>Enviar</button>
         </label>
         </div>
           
         
-          <RespuestaServidor  codigo={codigoRespuesta} texto={mensajeRespuesta}/>
+          {/* <RespuestaServidor  codigo={codigoRespuesta} texto={mensajeRespuesta}/> */}
           </div>
          
       

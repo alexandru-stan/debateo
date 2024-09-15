@@ -10,7 +10,7 @@ export async function PostsRequestByCommunity(request,creador,rol){
 
  
 let loggedUser = JSON.parse(sessionStorage.getItem('user')).username
-
+  console.log(request.page);
 
     let endpoint =  "http://"+SERV_DIR+":"+SERV_PORT+"/posts/byCommunity/"+request.page+"/"+request.state+"/"+loggedUser;
     
@@ -24,12 +24,9 @@ let loggedUser = JSON.parse(sessionStorage.getItem('user')).username
     }
 
     let posts = new Array(response.data.numberOfElements);
-   console.log(posts)
+   
     for(let i=0;i<response.data.numberOfElements;i++){
-
-          
-  
-              posts[i] = <Post
+                    posts[i] = <Post
               likes={arr[i].likes}
               comments={arr[i].comments}
               visibleCommunityInfo = {false}

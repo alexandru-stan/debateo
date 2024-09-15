@@ -3,17 +3,26 @@ import { createSlice } from "@reduxjs/toolkit";
 export const LateralMenuVisibility = createSlice({
     name: 'lateralMenuVisibility',
     initialState: {
-        value: 'block'
+        value: {
+            left:'block',
+            right:'flex'
+        }
     },
     
     reducers: {
-            update: (state,action) => {
-                state.value = action.payload;
+            setLeftVisibility: (state,action) => {
+                state.value.left = action.payload
+
+            },
+
+            setRightVisibility: (state,action) => {
+
+                state.value.right = action.payload
 
             }
     }
 
 })
 
-export  const {update: update} = LateralMenuVisibility.actions;
+export  const {setLeftVisibility,setRightVisibility} = LateralMenuVisibility.actions;
 export default LateralMenuVisibility.reducer;

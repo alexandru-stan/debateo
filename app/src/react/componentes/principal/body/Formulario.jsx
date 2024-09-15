@@ -5,7 +5,9 @@ import { useState } from 'react';
 
 const Formulario = () => {
     const [hasAccount, toggleForm] = useState(false);
-    let formulario
+    
+    
+
 
     function cambiarFormulario() {
         
@@ -16,7 +18,7 @@ const Formulario = () => {
     if(hasAccount){
         return <FormularioLogin fn={cambiarFormulario} hasAccount = {hasAccount}  />
     } else {
-        return <FormularioRegistro fn={cambiarFormulario}  hasAccount = {hasAccount}/>
+        return <FormularioRegistro  fn={cambiarFormulario}  hasAccount = {hasAccount}/>
     }
 
     

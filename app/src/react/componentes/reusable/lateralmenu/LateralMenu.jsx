@@ -7,7 +7,8 @@ import { useWindowSize } from "@uidotdev/usehooks";
 import { useRef } from "react";
 import { useEffect } from "react";
 import { useSelector,useDispatch } from "react-redux";
-import { update } from "../../../../redux-store/slices/LateralMenuVisibility";
+// import { update } from "../../../../redux-store/slices/LateralMenuVisibility";
+import { setLeftVisibility as update } from "../../../../redux-store/slices/LateralMenuVisibility";
 import { ComunidadesMasActivas,ComunidadesRecientes,Suscripciones } from "./subMenus";
 import { refreshProfileImage } from "../../../../js/RefreshProfileImage";
 import { formatImage } from "../../../../js/imageFormatting";
@@ -15,7 +16,7 @@ export const LateralMenu = (props) => {
     
     const dispatch = useDispatch();
     const isFirstRender = useRef(true);
-    const lateralMenuVisibility = useSelector(state => state.lateralMenuVisibilty.value);
+    const lateralMenuVisibility = useSelector(state => state.lateralMenuVisibilty.value.left);
     const user = JSON.parse(sessionStorage.getItem('user'))
     const [profileImage,setProfileImage] = useState(JSON.parse(sessionStorage.getItem('user')).profileImageFile);
 
@@ -37,7 +38,7 @@ export const LateralMenu = (props) => {
         <Image onerror={()=>{
         
 
-refreshProfileImage(user.username).then(r => setProfileImage(formatImage(r.data.profileImage)));
+        refreshProfileImage(user.username).then(r => setProfileImage(formatImage(r.data.profileImage)));
 
         }} style={{borderRadius:'100% ', width:'4rem', height:'4rem'}} clase={" p-2"} ruta={profileImage}/>
         <div className="p-2">

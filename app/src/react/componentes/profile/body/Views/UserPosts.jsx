@@ -4,7 +4,8 @@ import { PostsRequest } from "../../../../../js/PostsRequestByCreator";
 import { useRef } from "react";
 import noSubscriptions from "../../../../../assets/img/noSubscriptions.png";
 import Image from "../../../reusable/img";
-
+import SpinnerLoader from "../../../reusable/SpinnerLoader";
+import { Spinner } from "react-bootstrap";
 export const UserPosts = (props) => {
 
     const $  = require('jquery');
@@ -31,6 +32,7 @@ export const UserPosts = (props) => {
         setPage((prevPage) => prevPage + 1);
         PostsRequest(request,setPostsArr)
           .then((response) => {
+            
             setPostsArr((prevPosts) => prevPosts.concat(response));
             $("#feedSpinner").css("display","none");
 
@@ -82,8 +84,10 @@ if(myRef.current!=null){
     return  (<>
        
         <div  className= {props.visibility ? "w-full  flex flex-col  items-center " : " hidden "}>
-        <p>{props.visibility} </p>
-        {postsArr}</div>
+      
+       { postsArr.length == 0 ? <SpinnerLoader id='spinnerUserPosts'/> : postsArr }
+        
+        </div>
         </>
     )
 

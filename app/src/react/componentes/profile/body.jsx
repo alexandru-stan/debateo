@@ -8,10 +8,12 @@ import { Mensajes } from '../reusable/mensajes/mensajes';
 import { UserData } from "./body/UserData";
 import { UserPosts } from "./body/Views/UserPosts";
 import { UserComments } from "./body/Views/UserComments";
+import { useSelector } from "react-redux";
+
 export const Body = () => {
 
     const [selected,setSelected] = useState("Publicaciones");
-
+    const messagesRender = useSelector(state => state.messagesRender.value);
 
 
 
@@ -29,7 +31,7 @@ export const Body = () => {
         <div className="text-white flex items-center flex-col w-full  mt-5 " id='profile-body'>
        {/* <EditProfile/> */}
        <UserData/>
-       <Mensajes/>
+       {messagesRender ? <Mensajes/> : null}
 
 
     <div id="profileUploads" className='mt-4 flex flex-row bg-moradoFondo rounded-lg w-2/4 justify-center' >
@@ -41,7 +43,7 @@ export const Body = () => {
 
         <div className="w-full flex flex-col items-center justify-center ">
           <UserPosts visibility={selected=="Publicaciones" ? true : false}/>
-          <UserComments visibility = {selected=="Comments" ? true : false}/>
+          <UserComments visibility = {selected=="Comentarios" ? true : false}/>
         </div>
 
 

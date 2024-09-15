@@ -9,12 +9,17 @@ import { useState,useEffect } from "react";
 import Imagen from "../img";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { update } from "../../../../redux-store/slices/MessagesRender";
 
 
 
 
 export const Menu = () => {
-   const  $ = require('jquery');
+
+    const messagesRender = useSelector(state => state.messagesRender.value);
+    const dispatch = useDispatch();
+    const  $ = require('jquery');
     const navigate = useNavigate();
     let name="Programacion";
     const incomingMessage = useSelector(state => state.incomingMessage.value);
@@ -46,16 +51,17 @@ export const Menu = () => {
             <Imagen style={{maxWidth:'50%', height:'2rem'}} ruta={IconoPerfil}></Imagen>
             <div className="letraObjetoMenu Kanit p-2"  style={{}}>Perfil</div>
             </div> 
-
+ 
 
             
             <div    className=" w-full   border-naranjaMolon p-1 items-center     m-1   cursor-pointer hover:brightness-125 bg-moradoOscuro   h-2/4 flex  " onClick={() => {
                  setMensajesSinLeer(0);
-                 $("#mensajes").is(":visible") ? $("#mensajes").hide() : $("#mensajes").show() ; 
+                //  $("#mensajes").is(":visible") ? $("#mensajes").hide() : $("#mensajes").show() ; 
+                    dispatch(update(!messagesRender));
              } } id='menu-3'>
             <Imagen style={{maxWidth:'50%', height:'2rem'}}  ruta={IconoMensajes}></Imagen>
 
-            <div className="letraObjetoMenu Kanit p-2"  style={{}}>Mensajes</div>
+            <div className= "letraObjetoMenu Kanit p-2 "  style={{}}>Mensajes</div>
             <div style={{ width:'25px', marginLeft:'auto'}}  className="   bg-moradoLight rounded-full text-center " id="menuLevelNotification">{mensajesSinLeer>0 ? mensajesSinLeer : null}</div>
             </div> 
 

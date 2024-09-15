@@ -38,7 +38,7 @@ import { PopUp } from '../react/componentes/reusable/popup/PopUp';
 
         </Routes>
         </div>
-       {popUpVal != null ?<PopUp/> : null } 
+       {popUpVal != null ?popUpVal : null } 
       </Router>
      
     

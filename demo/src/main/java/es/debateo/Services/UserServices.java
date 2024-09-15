@@ -1,5 +1,6 @@
 package es.debateo.Services;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import es.debateo.Model.Users;
 import es.debateo.Repositories.communitiesRepo;
 import es.debateo.Repositories.subsRepo;
 import es.debateo.Repositories.usersRepo;
+import es.debateo.Utils.profileImageUtils;
 
 @Service
 public class UserServices{
@@ -34,17 +36,19 @@ public class UserServices{
 
 
 
-	public ServiceResponse<Users> login(String username,String password) {
+	public ServiceResponse<Users> login(String username,String password) throws IOException {
 	
 		boolean exists = repo.existsByUsernameAndPassword(username, password);
 		
 		if(exists) {
-			
+			System.out.println("aAAAAAAAAAAAAAA");
 			Users userData = repo.findById(username).get();
 			userData.setSubsCount((subsRepo.countByUsername(userData.getUsername()) + communitiesRepo.countByCommunityCreator(userData.getUsername())));
+			 profileImageUtils util = new profileImageUtils();
+			userData.setProfileImageFile(util.returnProfileImage(userData.getUsername()));
+			System.out.println("IMAGEN PERFIL "+userData.getProfileImageFile());
 			
-			
-			return new ServiceResponse<Users>(repo.findById(username).get(),HttpStatus.OK);
+			return new ServiceResponse<Users>(userData,HttpStatus.OK);
 			
 		} else {
 			

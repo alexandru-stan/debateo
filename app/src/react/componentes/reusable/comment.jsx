@@ -12,6 +12,8 @@ import { Reply } from './reply';
 import { getReplies } from '../../../js/getReplies';
 import { formatearTimestamps } from '../../../js/formatearTimestamps';
 import { formatImage } from '../../../js/imageFormatting';
+import { useSelector } from 'react-redux';
+
 const $ = require('jquery')
 
 export const Comment = (props)=> {
@@ -90,8 +92,6 @@ export const Comment = (props)=> {
 //         break;
 // }
 
-console.log(props);
-
 return (
     <div style={{overflowWrap:'break-word', marginBottom:'3%'}} className='comment backdrop-brightness-125  w-2/6 mt-2 rounded-md p-2'>
     <div style={{fontSize:'1rem'}} className="flex p-2 flex-row justify-between">
@@ -155,7 +155,7 @@ return (
       
       : null }
       {actualReply}
-      
+  
       
     </div>
 );

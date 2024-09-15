@@ -14,7 +14,7 @@
   "test": "echo \"Error: no test specified\" && exit 1",
   
     
-  "start": "parcel ./public/index.html",
+  "start": " SET  PORT=3000 && parcel ./public/index.html",
   
     
   "build": "react-scripts build"

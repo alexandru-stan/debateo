@@ -10,15 +10,17 @@ import Recommendations from './body/recommendations/recommendations';
 import SpinnerLoader from '../reusable/SpinnerLoader';
 import Image from '../reusable/img';
 import noSubscriptions from "../../../assets/img/noSubscriptions.png"
-
+import { useSelector } from 'react-redux';
+import { LateralMenuRight } from '../reusable/LateralMenuRight/rightLateralMenu';
 
 
 const $ = require('jquery');
 
 // import { requestFeed } from '../../../js/PostRequestParameter';
 const Body = () => {
+
   
-   
+    const messagesRender = useSelector(state => state.messagesRender.value);
  
     let noSubscriptionsElement;
     const [postsArr,setPostsArr] = useState([]);
@@ -26,6 +28,7 @@ const Body = () => {
     const [isLast,setIslast] = useState(false);
     const [fyp,setFyp] = useState(true);
     const myRef = useRef();
+    const [loading,setLoading] = useState();
     let request = {
       page:page,
       myRef:myRef,
@@ -41,6 +44,7 @@ const Body = () => {
       if (entries[0].isIntersecting && !isLast) {
         observer.disconnect();
         setPage((prevPage) => prevPage + 1);
+        console.log("YOU'RE REQUESTING PAGE" + page);
         PostsRequest(request,setPostsArr,fyp)
           .then((response) => {
             setPostsArr((prevPosts) => prevPosts.concat(response));
@@ -59,23 +63,25 @@ const Body = () => {
 
    
 useEffect(  ()=> {
-
-  PostsRequest(request,setPostsArr,fyp).then(response => {
+  setLoading(true);
+ PostsRequest(request,setPostsArr,fyp).then(response => {
    
-    $("#feedSpinner").css("display","none");
+    setLoading(false);
     response.length ? setPostsArr(response) : setPostsArr( noSubscriptionsElement = <div id="noSubscriptions" className='w-full   flex flex-col items-center text-naranjaMolon font-bold mt-5 text-center '>
       <p>Vaya... parece ser que no estás suscrito a ninguna comunidad...</p>
       <div><Image ruta={noSubscriptions}/></div>
       </div>)
     setPage(page+1);
-   
+    }
 
  
-  })
+)
+  
  
  
   
 },[fyp])
+
 
 
 useEffect(()=> {
@@ -93,13 +99,24 @@ if(myRef.current!=null){
 
 
     return(
-    <div  className=' flex flex-col      height:100%                  items-center    '  id='body-feed'>
+      <>
+  
+      <div  className="bg-red-950 w-1/6 flex flex-row justify-center"   > 
+   
+    
         
-
+   
      
-        
+  
+    </div>
+    <div  className=' flex flex-col      height:100%                  items-center    '  id='body-feed'>
+   
+   
+     {messagesRender ? <Mensajes/>:null}
+     
     
       <div id="fyp" className='mt-4 flex flex-row bg-moradoFondo rounded-lg w-2/6 justify-center' >
+      
         <div onClick={(()=>{ 
         fyp? 
         null:
@@ -126,17 +143,26 @@ if(myRef.current!=null){
           null
           
         } )} className={  fyp? 'rounded-lg pageSelector':' rounded-lg selectedPage pageSelector'}>Siguiendo</div>
-      </div>
 
-     { postsArr}
-        <SpinnerLoader id="feedSpinner"/>
+
+      
+
+
+
+      </div>
+     { loading ? <SpinnerLoader clase='w-1/4 ' id='feedLoader'/> : null} 
+     
+             { postsArr}
+       
         
 
-        <Mensajes/>
+      
        
 
 
     </div>
+   
+    </>
     );
 
 

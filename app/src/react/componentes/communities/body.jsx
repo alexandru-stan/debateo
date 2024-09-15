@@ -6,7 +6,7 @@ import { formatImage } from '../../../js/imageFormatting';
 import { PostsRequestByCommunity } from '../../../js/PostRequestByCommunity';
 import { Mensajes } from '../reusable/mensajes/mensajes';
 import { useRef } from 'react';
-
+import SpinnerLoader from '../reusable/SpinnerLoader';
 import { useNavigate } from 'react-router-dom';
 import { CrearPublicacion } from './body/crearPublicacion';
 import admin from '../../../assets/img/admin.png';
@@ -26,17 +26,20 @@ const [isLast,setIslast] = useState(false);
 const[subscription,setSubscription] = useState(null);
 const [SubButton,setSubButton] = useState(null);
 const [creadorState, setCS] = useState(null);
+
+const [loading, setLoading] = useState(true);
 const rctTrigger = useSelector(state => state.recentCommunityTrigger.value);
 const myRef = useRef();
 let comunidadesRecientes = JSON.parse(localStorage.getItem("comunidadesRecientes"));
 const navigate = useNavigate();
-
+const messagesRender = useSelector(state => state.messagesRender.value);
 const popUpVal = useSelector(state => state.popUp.value);
 const dispatch = useDispatch();
 let creador;
 let loggedUser = JSON.parse(sessionStorage.getItem('user')).username;
+
 let request =  {
-  page:page,
+  page:0,
   state:state,
   myRef:myRef,
   setIslast:setIslast,
@@ -48,12 +51,16 @@ const handleIntersection = (entries) => {
   if (entries[0].isIntersecting && !isLast) {
     
     observer.disconnect();
-    setPage((prevPage) => prevPage + 1);
-    PostsRequestByCommunity(request,creador)
+    // setPage((prevPage) => prevPage + 1);
+    request.page = request.page+1;
+    setLoading(true);
+     PostsRequestByCommunity(request,creador)
+  
       .then((response) => {
         setPostsArr((prevPosts) => prevPosts.concat(response));
-       
+       setLoading(false);
       })  
+  
       
   } 
   if(isLast) setIslast(false);
@@ -106,15 +113,15 @@ let userData = JSON.parse(sessionStorage.getItem("user"))
 
 useEffect(() => {
   setState(localStorage.getItem('cid'));
-  setPage(0);
+  // setPage(0);
   setPostsArr([]);
   
    },[localStorage.getItem('cid')])
   
    useEffect(()=> {
+ 
     CommunityInfoRequest(state).then(response => {
-       
-        let data = response.data;
+    let data = response.data;
         
         creador = data.communityCreator;
         setCS(data.communityCreator);
@@ -136,16 +143,18 @@ useEffect(() => {
             admin: data.communityCreator==loggedUser ? <img src={crown} /> : data.subscription=="MOD"?<img  src={admin} />:null
         })
 
+        
        
         PostsRequestByCommunity(request,creador,response.data.subscription).then(response =>{
          
           setPostsArr(response);
+          setLoading(false);
          
          
         
          
         })
-
+        
         
 
     })
@@ -174,8 +183,7 @@ useEffect(()=>{
 
 
 if(myRef.current!=null && postsArr.length>0){
-  console.log("Hola co")
-  observer.observe(myRef.current);
+    observer.observe(myRef.current);
   
 }
 
@@ -188,14 +196,12 @@ if(myRef.current!=null && postsArr.length>0){
 
 
 
-    return (<div className='mt-postMT flex flex-col items-center community-body'>
+    return (
+    <div className='mt-5 flex flex-col justify-center items-center community-body'>
         <CommunityInfo subButton ={SubButton} state={state} info={info}/>
-       
-    {postsArr}
-       
-
-     
-       <Mensajes/>
-        </div>
+        {postsArr}
+        {loading ? <SpinnerLoader clase='mt-5' id='spinnerCommunityPosts'/> : null}
+        {messagesRender ? <Mensajes/>:null}
+    </div>
     )
 }

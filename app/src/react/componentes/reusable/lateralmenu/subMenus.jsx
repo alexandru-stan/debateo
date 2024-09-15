@@ -114,8 +114,7 @@ export const Suscripciones = (props) => {
             
             getSubscriptions(props.username).then(r => {
                 let temp = [];
-               console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-                r.data.forEach(e => {
+                               r.data.forEach(e => {
              
                     temp.push(
                     <div onClick={()=> {
@@ -179,12 +178,7 @@ export const ComunidadesRecientes= () => {
        comunidadesRecientes?.length > 0 ?
         
         JSON.parse(comunidadesRecientes).forEach(e => {
-        console.log("BBBBBBBBBBBBBBBBBBBBBBBBBBBBB "+ typeof e.communityImage)
-
-        
-        
-
-        temp.push(
+                temp.push(
             <div  onClick={()=> {
                 localStorage.setItem('cid',e.communityId);
                 nav('/community/'+e.communityId)

@@ -2,21 +2,22 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { assign } from "../../../../redux-store/slices/PopUp";
-export const PopUp = () => {
-
+export const PopUp = (props) => {
     const popUpVal = useSelector(state => state.popUp.value);
     const dispatch = useDispatch();
+
     return (
         
         <div id='popUp' className='bg-moradoFondo justify-center  flex flex-col items-center p-5 ' style={{ border:'10px solid #35325c ', borderRadius:'5%', position:'fixed', top:'35%', minHeight:'30%', width:'30%',left:'35%', zIndex:'3' }}  >
        
-       <p style={{fontSize:'2.5rem'}} className="p-1 text-center   text-naranjaMolon Kanit font-bold ">¡Quieto ahí!</p>
-       <p style={{overflowWrap:'break-word',overflow:'auto'}} className=" p-1 text-center   Kanit  ">{popUpVal}</p>
+       <p style={{fontSize:'2.5rem'}} className="p-1 text-center   text-naranjaMolon Kanit font-bold ">{props.title}</p>
+       <p style={{overflowWrap:'break-word',overflow:'auto'}} className=" p-1 text-center   Kanit  ">{props.value}</p>
   
        <button 
         className="bg-moradoLight  w-1/4 mt-3  font-bold py-2 px-4 rounded hover:bg-naranjaMolon Kanit" 
         style={{ border: '2px solid #35325c', borderRadius: '5%' }}
         onClick={()=>{dispatch(assign(null))}}>
+        
         Ok
     </button>
         </div>

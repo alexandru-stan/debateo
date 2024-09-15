@@ -37,6 +37,8 @@ const dispatch = useDispatch();
     }
 
     let resultado = validarRegister(user);
+
+   
       
 
 
@@ -74,13 +76,14 @@ const dispatch = useDispatch();
 
 
   useEffect(() => {
+    // alert(status);
     if (isInitialMount.current) {
        isInitialMount.current = false;
        $('#registerResponse').hide();
     } else {
 
     
-      $('#formRegister button').fadeOut(()=>$('#registerResponse').fadeIn().delay(3000).fadeOut(() => $('#formRegister button').fadeIn()));
+      status ? $('#formRegister button').fadeOut(()=>$('#registerResponse').fadeIn().delay(2000).fadeOut(() => $('#formRegister button').fadeIn())) : $('#formRegister button').fadeOut(()=>$('#registerResponse').fadeIn(()=>{props.fn()}));
     
 
     }
@@ -124,7 +127,7 @@ const dispatch = useDispatch();
         </div>
         
         <div style={{marginTop:'10px'}} className='w-3/4'>
-        <input name='Rprofileimg' type="file" id='Rprofileimg' accept="image/*" className=" rounded-md py-2 px-4 text-gray-700 border-b-2 border-moradoLight text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon"  placeholder="Contraseña" for="Rpassword" />
+        <input required name='Rprofileimg' type="file" id='Rprofileimg' accept="image/*" className=" rounded-md py-2 px-4 text-gray-700 border-b-2 border-moradoLight text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon"  placeholder="Contraseña" for="Rpassword" />
         <p  className="mensajeError Kanit text-red-400 font-bold"></p>
         </div>
         

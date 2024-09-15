@@ -8,6 +8,7 @@ import UnreadMessages from "./slices/UnreadMessages";
 import LateralMenuVisibility from "./slices/LateralMenuVisibility";
 import RecentCommunityTrigger from "./slices/RecentCommunityTrigger";
 import PopUp from "./slices/PopUp";
+import MessagesRender from "./slices/MessagesRender";
 
 export default configureStore({
     reducer: {
@@ -19,7 +20,9 @@ export default configureStore({
         unreadMessages: UnreadMessages,
         lateralMenuVisibilty: LateralMenuVisibility,
         recentCommunityTrigger: RecentCommunityTrigger,
-        popUp: PopUp
+        popUp: PopUp,
+        messagesRender: MessagesRender
+        
     }
 })
 

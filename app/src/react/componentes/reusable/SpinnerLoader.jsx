@@ -4,25 +4,16 @@ import loadingSpinner from "../../../assets/img/loadingSpinner.svg";
 export default function SpinnerLoader(props){
 
   const [text,setText] = useState("")
-  const [loading,setLoading] = useState(true);
-  useEffect(()=>{
-    setTimeout(()=> {
-
-      setTimeout(()=> {
-        setText("Loading...");
-      },3000)
-      
-
-    })
-  })
+  
 
   return(
-    <div  className="" id={props.id}> 
-      {loading? (
-        <img src={loadingSpinner}></img>
-      ): (
-        null
-      )}
+    <div style={{width:'10%'}} id={props.id} className="   flex flex-row items-center w-full justify-center"  > 
+   
+       
+        <img style={{width:'50px'}}  className={props.clase} src={loadingSpinner}></img>
+   
+     
+  
     </div>
   )
 }

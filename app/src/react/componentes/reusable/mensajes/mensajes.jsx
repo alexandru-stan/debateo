@@ -18,12 +18,17 @@ import { leerMensaje } from "../../../../js/leerMensaje";
 import { getUnreadMessagesByChat } from "../../../../js/getUnreadMessagesByChat";
 import { updateUnreadMessages } from "../../../../redux-store/slices/UnreadMessages";
 import { formatImage } from "../../../../js/imageFormatting";
+import { update as updateMessagesRender }  from "../../../../redux-store/slices/MessagesRender";
+import SpinnerLoader from "../SpinnerLoader";
+import { Spinner } from "react-bootstrap";
 const $ = require('jquery');
 export const Mensajes = (props) => {
 const username = JSON.parse(sessionStorage.getItem('user')).username;
 const selectedChat = useSelector(state => state.selectedChat.value);
 const unreadMessages = useSelector(state => state.unreadMessages.value);
 const dispatch = useDispatch();
+const messagesRender = useSelector(state => state.messagesRender.value);
+const [spinner,setSpinner] = useState(true);
 const [arrChats,setArrChats] = useState([]);
 const chatsRef = useRef(null);
 stompClient.activate();
@@ -61,17 +66,14 @@ stompClient.onConnect = (frame) => {
          dispatch(updateUnreadMessages(obj));
         });
   
-    $("#mensajes").hide();
+   
  
     RetrieveChats().then( r => {
-      
+      setSpinner(false);
     let tempArr = [];
       r.data.forEach(e=>{
         
-        console.log(e);
-          
-    
-        tempArr.push(<Chat unreadMessages={e.null_isRead_count}   onClick={() => {
+                tempArr.push(<Chat unreadMessages={e.null_isRead_count}   onClick={() => {
 
           
 
@@ -171,14 +173,15 @@ stompClient.onConnect = (frame) => {
           <NuevoChat chatsRef={chatsRef} />  
           <Imagen 
             onclick={() => {
-              $("#mensajes").css("display", "none");
+             dispatch(updateMessagesRender(false))
             }} 
             style={{ width: '10%', height: '2rem', display: 'none' }} 
-            clase="backIcon" 
+            clase="backIcon bg-red-950" 
             ruta={backIcon}
           />
         </div>
         <div key="tupu" id="chats" className="flex w-full flex-col">
+        {spinner ? <div className="flex justify-center w-full"><SpinnerLoader className='w-1/6' id="messagesSpinner" /></div> : null }
           {arrChats}  
         </div>   
       </div>

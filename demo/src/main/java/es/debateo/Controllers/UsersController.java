@@ -49,10 +49,7 @@ public class UsersController {
 	public ResponseEntity<Users> validarLogin(@RequestBody Users credentials) throws IOException {
 		
 	    ServiceResponse<Users> response = servicio.login(credentials.getUsername(), credentials.getPassword());
-	    Users user = response.getObj();
-	    profileImageUtils util = new profileImageUtils();
-	    user.setProfileImageFile(util.returnProfileImage(user.getUsername()));
-	    System.out.println(user.getProfileImageFile());
+	    Users user = response.getObj()!=null ? response.getObj():null;
 	    return new ResponseEntity<>(user, response.getStatus());
 	}
 	
@@ -75,9 +72,10 @@ public class UsersController {
 	        String rootDir = System.getProperty("user.dir");
 	        
 	        System.out.println(rootDir);
-	        Path filePath = Paths.get(rootDir, "/src/main/resources/static/profileImages/"+username+"."+imageExtension);
+	        Path filePath = Paths.get(rootDir, "images/"+username+"."+imageExtension);
 	        System.out.println(filePath.toString());
 	        file.transferTo(new File((filePath.toString())));
+	        System.out.println("/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////");
 	  
 	        
 		Users user = new Users(username,password,name,mail,formatter.parse(birth_date),(filePath.toString()));

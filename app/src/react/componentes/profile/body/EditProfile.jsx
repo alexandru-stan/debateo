@@ -25,7 +25,7 @@ export const EditProfile = ({editProfile}) => {
 
 
   return (
-    <div id='userData' style={{position:'fixed' , top:'30%', height:'60%'}} className='bg-moradoFondo w-3/6 p-4 rounded-lg '>
+    <div id='userData' style={{position:'fixed' , top:'30%', height:'60%',zIndex:'2'}} className='bg-moradoFondo w-3/6 p-4 rounded-lg '>
       <div className='  justify-center items-center flex p-2 mb-4 rounded-t-lg'>
         <h2 className="text-naranjaMolon text-xl font-bold text-center">Datos de usuario</h2>
         <img className="hover:cursor-pointer hover:bg-moradoLight rounded-3xl"  src={borrar} onClick={()=> editProfile(false)} style={{marginLeft:'auto',width:'5%'}}></img>

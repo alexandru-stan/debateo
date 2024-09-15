@@ -14,9 +14,7 @@ export const UserData = () =>  {
     const formatter = new Intl.DateTimeFormat('es', { month: 'long' });
     const mes = formatter.format(date)
     const [profileImage,setProfileImage] = useState(JSON.parse(sessionStorage.getItem('user')).profileImageFile);
-    console.log(user.birth_date);
-    console.log(date);
-    const updateParentState = (newValue) => {
+            const updateParentState = (newValue) => {
         setEditProfile(newValue);
       };
     

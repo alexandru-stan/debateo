@@ -12,7 +12,7 @@ export async function PostsRequest(request,setPostsArr,fyp){
  
 
 
-    $("#feedSpinner").css("display","block");
+    // $("#feedSpinner").css("display","block");
     let endpoint =  "http://"+SERV_DIR+":"+SERV_PORT+"/posts/"+request.loggedUser+"/"+request.page+"/"+fyp;
 
     return axios.get(endpoint).then(response=>{

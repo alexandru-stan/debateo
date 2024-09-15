@@ -10,8 +10,7 @@ export const UserComments = (props) => {
 
         getCommentsByUsername(JSON.parse(sessionStorage.getItem('user')).username).then(e => {
             let temp = [];
-            console.log(e.data);
-            e.data.forEach(obj => {
+                        e.data.forEach(obj => {
                 temp.push(<Comment
                 profileImage = {null}
                 commentText={obj.commentText} 
@@ -26,8 +25,7 @@ export const UserComments = (props) => {
 
 
             })
-            console.log(temp);
-            setCommentsArr(temp);
+                        setCommentsArr(temp);
         })
 
 
@@ -35,7 +33,7 @@ export const UserComments = (props) => {
     },[])
     
     return (
-        <div className="w-full flex flex-col items-center mt-5 p-1">
+        <div className={props.visibility ? "w-full flex flex-col items-center mt-5 p-1" : "hidden"}>
       {commentsArr}
         </div>
      

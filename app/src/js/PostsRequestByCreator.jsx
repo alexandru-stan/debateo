@@ -9,10 +9,7 @@ import { SERV_DIR,SERV_PORT } from '../utilities';
 const $ = require("jquery");
 export async function PostsRequest(request,setPostsArr){
 
- console.log(request.loggedUser);
-
-
-    $("#feedSpinner").css("display","block");
+     $("#feedSpinner").css("display","block");
     let endpoint =  "http://"+SERV_DIR+":"+SERV_PORT+"/posts/byCreator/"+request.loggedUser+"/"+request.page;
 
     return axios.get(endpoint).then(response=>{
@@ -79,7 +76,6 @@ export async function PostsRequest(request,setPostsArr){
               
     }
 
-console.log(posts);
 return posts;
 
     })
