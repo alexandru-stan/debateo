@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 
 import es.debateo.DTO.ServiceResponse;
@@ -55,6 +56,23 @@ public class UserServices{
 			return new ServiceResponse<Users>((Users) null,HttpStatus.NOT_FOUND);
 			
 		}
+		
+		
+		 authenticationManager.authenticate(
+	                new UsernamePasswordAuthenticationToken(
+	                	
+	                        input.getUsername(),
+	                        input.getPassword()
+	                )
+	        );
+
+	        return repo.findById(input.getUsername())
+	                .orElseThrow();
+		
+		
+		
+		
+		
 		
 		
 		

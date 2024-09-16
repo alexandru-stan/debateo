@@ -33,7 +33,7 @@ import es.debateo.Utils.profileImageUtils;
 
 @RequestMapping("/users")
 @RestController
-public class UsersController {
+public class UsersController  {
 
 	
 	@Autowired
