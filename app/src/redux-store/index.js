@@ -23,6 +23,10 @@ export default configureStore({
         popUp: PopUp,
         messagesRender: MessagesRender
         
-    }
+    },
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+          serializableCheck: false,
+        }),
 })
 

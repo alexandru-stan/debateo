@@ -19,12 +19,12 @@ let valid = true;
         break;
         
 
-        case /^[a-zA-Z0-9]{9,16}$/.test(user.password):
-        $("#Rpassword").siblings("p").html("La contraseña debe tener entre 9 y 16 caracteres y no contener ningún símbolo especial")
+        case /^.{8,24}$/.test(user.password):
+        $("#Rpassword").siblings("p").html("La contraseña debe tener entre 8 y 24 caracteres")
         valid = false;
         break;
         case /^[A-Z][a-z]*$/.test(user.name):
-            $("#Rname").siblings("p").html("Tu nombre debe comenzar por una mayúscula y no puede contener números ni símbolos especiales.")
+            $("#Rname").siblings("p").html("Tu nombre no puede contener números ni símbolos especiales.")
             valid = false;
             break;
         case /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(user.mail):

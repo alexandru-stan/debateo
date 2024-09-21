@@ -5,18 +5,19 @@ import { createCommunity } from "../../js/createCommunity";
 import { useNavigate } from "react-router-dom";
 import {Mensajes} from "../componentes/reusable/mensajes/mensajes";
 import { LateralMenu } from "../componentes/reusable/lateralmenu/LateralMenu";
+import { useSelector } from "react-redux";
 
 export const NewCommunity = () => {
     const nav = useNavigate();    
     let form = useRef(null);
-
+    const messagesRender = useSelector(state => state.messagesRender.value);
 
     return ( 
     
       
     
     <div id='new' className="w-full flex flex-col items-center">
-      <Mensajes/>
+     {messagesRender ? <Mensajes/>:null}
       <LateralMenu/>
             <Header/>
 

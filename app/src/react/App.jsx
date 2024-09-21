@@ -16,15 +16,40 @@ import { Comments } from './paginas/comments';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { PopUp } from '../react/componentes/reusable/popup/PopUp';
-
+import { update } from '../redux-store/slices/IncomingMessage';
+import newMessage from "../assets/audio/newMessage.mp3";
+import { stompClient } from "../webSocketTesting/webSocket";
 
   function App() {
+    
     const popUpVal = useSelector(state => state.popUp.value);
+    const incomingMessage = useSelector(state => state.incomingMessage.value);
     const dispatch = useDispatch();
+    let audio = new Audio(newMessage);
+    stompClient.activate();
+    stompClient.onConnect = (frame) => {
+    stompClient.subscribe('/'+JSON.parse(sessionStorage.getItem("user")).username,(message) => {
+      let mensaje = JSON.parse(message.body);
+      audio.play();
+      dispatch(update(mensaje))
+      // alert("jeje")
+      // cambiarUltimoMensajeDelChat(mensaje);
+
+
+    
+  });
+
+
+
+};
+
+
+
+
     return (
      
       <Router>
-      <div className={popUpVal!=null ? 'opacity-50' : null}>
+      <div  className={popUpVal!=null ? 'opacity-50 noscroll ' : null}>
         <Routes>
           <Route exact path="/" element={<Principal />} />
           <Route exact path="/feed" element={<Feed />} />

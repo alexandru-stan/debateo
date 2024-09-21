@@ -12,14 +12,19 @@ import { setLeftVisibility as update } from "../../../../redux-store/slices/Late
 import { ComunidadesMasActivas,ComunidadesRecientes,Suscripciones } from "./subMenus";
 import { refreshProfileImage } from "../../../../js/RefreshProfileImage";
 import { formatImage } from "../../../../js/imageFormatting";
+import logout from "../../../../assets/img/logout.png";
+import { assign } from "../../../../redux-store/slices/PopUp";
+import { useNavigate } from "react-router-dom";
+
 export const LateralMenu = (props) => {
     
     const dispatch = useDispatch();
     const isFirstRender = useRef(true);
     const lateralMenuVisibility = useSelector(state => state.lateralMenuVisibilty.value.left);
+    const popUp = useSelector(state => state.popUp.value);
     const user = JSON.parse(sessionStorage.getItem('user'))
     const [profileImage,setProfileImage] = useState(JSON.parse(sessionStorage.getItem('user')).profileImageFile);
-
+    const nav = useNavigate();
 
     const windowWidth = useWindowSize().width;
 
@@ -41,9 +46,36 @@ export const LateralMenu = (props) => {
         refreshProfileImage(user.username).then(r => setProfileImage(formatImage(r.data.profileImage)));
 
         }} style={{borderRadius:'100% ', width:'4rem', height:'4rem'}} clase={" p-2"} ruta={profileImage}/>
-        <div className="p-2">
+        <div className="p-3 flex flex-row items-center justify-between w-full">
+        <div>
             <div className="max-text-2xl text-bold text-naranjaMolon Kanit">{user.username}</div>
             <div className="text-gray-300 text-sm">{user.name}</div>
+        </div>
+            <div  className="  flex justify-center w-1/4">
+               <img onClick={ () => {
+
+                dispatch(assign(
+                <div style={{top:'0%',bottom:'0%'}} className=" w-full flex justify-center items-center   fixed">
+                <div id="logout"  style={{border:'2px solid #444073'}} className="bg-moradoFondo rounded-lg p-5 flex flex-col items-center justify-between  w-2/6">
+                        <p className="Kanit text-naranjaMolon text-2xl font-bold">¿Estás seguro de que quieres cerrar tu sesión?</p>
+                        <div className="flex mt-2 p-2 flex-row w-full justify-around ">
+                        <p  
+                        onClick={()=>{
+                            dispatch(assign(null));
+                            nav("/")
+                            
+                            }}
+                        className="bg-moradoLight text-center   Kanit font-bold text-xl  text-white py-2 px-6 rounded-lg w-2/6 hover:bg-naranjaMolon hover:cursor-pointer ">Sí</p>
+                        <p
+                        onClick={()=>{dispatch(assign(null))}}
+                         className="bg-moradoLight  text-center Kanit font-bold text-xl text-white py-2 px-6 rounded-lg w-2/6 hover:bg-naranjaMolon hover:cursor-pointer">No</p>
+                        </div>
+                </div>
+                </div>
+                ));
+               
+               }} title='Cerrar sesión' className="w-3/4 hover:cursor-pointer hover:bg-moradoFondo p-2 rounded-3xl" src={logout}></img>
+            </div>
         </div>
         </div>
        <Menu/>

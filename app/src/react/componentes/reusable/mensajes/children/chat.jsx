@@ -67,7 +67,7 @@ export const Chat = (props) => {
     <div key={props.interactuer} id={props.interactuer} style={{height:'5rem', direction:'ltr' }} onClick={props.onClick} className='chat  bg-moradoFondo hover:cursor-pointer  flex-col flex m-2 justify-between rounded-lg  hover:bg-moradoLight hover:cursor '>
         <div id='chatInfo' className='flex justify-between ' >
         <div className="flex items-center">
-        <img style={{width:'2rem', height:'2rem', borderRadius:'100%'}} src={ props.profileImage }></img>
+        <img style={{width:'2rem', height:'2rem', borderRadius:'100%'}} src={props.profileImage }></img>
           <div style={{fontSize:'0.8rem',whiteSpace: 'nowrap',
   overflow: 'hidden',
   textOverflow: 'ellipsis'  }} className='nombreUsuario p-2 text-naranjaMolon '>

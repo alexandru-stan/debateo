@@ -18,6 +18,7 @@ import { Mensajes } from '../componentes/reusable/mensajes/mensajes';
 
 import { LateralMenu } from "../componentes/reusable/lateralmenu/LateralMenu";
 import SpinnerLoader from '../componentes/reusable/SpinnerLoader';
+import { refreshProfileImage } from '../../js/RefreshProfileImage';
 
 
 export const Comments = () => {
@@ -106,7 +107,8 @@ const [loadingComments,setLoadingComments] = useState(true);
 
           let comment = subirComentario($('#text').val(),params.id);
           $('#text').val(null);
-          setComments(comments => ([<Comment profileImage = {null} username={comment.username} commentDate={0}  commentText = {comment.commentText}></Comment>]).concat(comments));
+          refreshProfileImage(user.username).then(e => setComments(comments => ([<Comment profileImage = {e.data.profileImage} username={comment.username} commentDate={0}  commentText = {comment.commentText}></Comment>]).concat(comments)) )
+          
 
           }}>Enviar</button>
           </div>

@@ -102,7 +102,9 @@ const dispatch = useDispatch();
         <div className=' flex flex-col  items-center '>
 
         <div style={{marginTop:'10px'}}  className=' w-3/4 flex flex-col items-center'>
+        
         <input name='Rusername' id='Rusername' className=" rounded-md py-2 px-4 text-gray-700 border-b-2 border-moradoLight text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon"  placeholder="Nombre de usuario" for="Rusername"/>
+       {/* <span>a</span> */}
         <p className="mensajeError Kanit text-red-400 font-bold"></p>
         </div>
 

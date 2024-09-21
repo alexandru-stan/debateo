@@ -1,5 +1,5 @@
 import React from "react";
-
+import stockNews from "../../../../assets/img/stockNews.jpg";
 
 export const NewsCard = (props) => {
     return (
@@ -7,7 +7,7 @@ export const NewsCard = (props) => {
         
      
         <div className="mt-2 flex w-2/4 justify-center  max-h-2/6 m-1 w-full text-center ">
-            <img style={{width:'100%'}} className="  " src={props.imagen}></img>
+            <img  style={{width:'100%'}} className="  " src={props.imagen} onError={stockNews}></img>
         </div>
         <div className=" Kanit text-naranjaMolon font-bold mt-2 text-center max-h-2/6 w-full ">{props.titular}</div>
         

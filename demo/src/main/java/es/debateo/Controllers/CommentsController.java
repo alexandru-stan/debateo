@@ -1,8 +1,6 @@
 package es.debateo.Controllers;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import es.debateo.DTO.CommentsDTO;
 import es.debateo.Model.Comments;
 import es.debateo.Repositories.commentsRepo;
+import es.debateo.Utils.profileImageUtils;
 
 @RestController
 @RequestMapping("/comments")
@@ -32,11 +31,10 @@ public class CommentsController {
 	@GetMapping("/{postid}")
 	public List<CommentsDTO> getComments(@PathVariable long postid) {
 		List<CommentsDTO> comentarios = repo.getComments(postid);
+		 profileImageUtils util = new profileImageUtils();
 		comentarios.forEach(e ->{
 			try {
-				
-				byte[] image = Files.readAllBytes(new File(".\\src\\main\\resources\\static\\profileImages\\"+e.getUsername()+".jpg").toPath());
-				e.setProfileImage(image);
+				e.setProfileImage(util.returnProfileImage(e.getUsername()));
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

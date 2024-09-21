@@ -101,7 +101,7 @@ if(myRef.current!=null){
     return(
       <>
   
-      <div  className="bg-red-950 w-1/6 flex flex-row justify-center"   > 
+      <div  className="bg-red-950 w-1/6 flex   flex-row justify-center"   > 
    
     
         

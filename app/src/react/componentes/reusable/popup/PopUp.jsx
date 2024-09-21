@@ -8,8 +8,8 @@ export const PopUp = (props) => {
 
     return (
         
-        <div id='popUp' className='bg-moradoFondo justify-center  flex flex-col items-center p-5 ' style={{ border:'10px solid #35325c ', borderRadius:'5%', position:'fixed', top:'35%', minHeight:'30%', width:'30%',left:'35%', zIndex:'3' }}  >
-       
+        <div  className=' justify-center w-full h-full   flex flex-col items-center  ' style={{  position:'fixed', top:'0%', bottom:'0%',zIndex:'3' }}  >
+       <div id='popUp' className="bg-moradoFondo flex flex-col justify-center items-center w-2/6 h-2/6" style={{border:'10px solid #35325c ', borderRadius:'5%'}}>
        <p style={{fontSize:'2.5rem'}} className="p-1 text-center   text-naranjaMolon Kanit font-bold ">{props.title}</p>
        <p style={{overflowWrap:'break-word',overflow:'auto'}} className=" p-1 text-center   Kanit  ">{props.value}</p>
   
@@ -20,6 +20,9 @@ export const PopUp = (props) => {
         
         Ok
     </button>
+
+</div>
+
         </div>
     )
 

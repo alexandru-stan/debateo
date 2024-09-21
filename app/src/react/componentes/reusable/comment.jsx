@@ -13,20 +13,23 @@ import { getReplies } from '../../../js/getReplies';
 import { formatearTimestamps } from '../../../js/formatearTimestamps';
 import { formatImage } from '../../../js/imageFormatting';
 import { useSelector } from 'react-redux';
+import { refreshProfileImage } from '../../../js/RefreshProfileImage';
 
 const $ = require('jquery')
 
 export const Comment = (props)=> {
  let fechaBBDD = props.commentDate==0 ? "Ahora mismo" : new Date(props.commentDate);
  let fechaFinal = formatearTimestamps(fechaBBDD);
-
-
-
+const user = JSON.parse(sessionStorage.getItem("user"));
+  console.log(props.commentText+"  "+typeof props.profileImage);
+  const [profileImage,setProfileImage] = useState(null)
   const [visibility,setVisibility] = useState('hidden');
   const [input,setInput] = useState(null);
   const [replies,setReplies] = useState([]);
   const [replyVisibility,setReplyVisibility] = useState(false);
   const [actualReply, setActualReply] = useState([]);
+  const [image,setImage] = useState(props.profileImage);
+
 
 
   useEffect(() => {
@@ -98,7 +101,7 @@ return (
       {/* <img src={formatImage(props.profileImageFile)}></img> */}
       <div className='flex flex-row items-center'>
       
-      {props.profileImage!=null ? <img className='' style={{width:'30px', height:'30px', borderRadius:'100%'}} src={formatImage(props.profileImage)} alt="tupu"/> : null}
+      {props.profileImage!=null ? <img className='' style={{width:'30px', height:'30px', borderRadius:'100%'}} src={ formatImage(props.profileImage)}  /> : null}
       <h5 style={{marginLeft:'0.5rem'}} className="text-naranjaMolon">{props.username}</h5>
 
       </div>

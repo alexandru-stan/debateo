@@ -193,7 +193,7 @@ input::file-selector-button:hover{
 
 
 @media(max-width:1200px){
-  .publicacion,#feedLoader,#popUp,#comment-box,.comment,.community-info{
+  .publicacion,#logout,#feedLoader,#popUp,#logout,#comment-box,.comment,.community-info{
     width: 50% !important;
     
   }
@@ -363,7 +363,7 @@ input::file-selector-button:hover{
       flex-direction: column;
     }
   
-    .publicacion,#feedLoader #popUp,#comment-box,.comment,.community-info,#userData,#profileUploads{
+    .publicacion,#feedLoader, #logout, #popUp,#comment-box,.comment,.community-info,#userData,#profileUploads{
       width: 80% !important;
     }
     #formCrearComunidad,#createForm {
@@ -515,7 +515,7 @@ input::file-selector-button:hover{
 
 
  
-  .publicacion,#popUp,#comment-box,.comment,.community-info,#userData,#profileUploads{
+  .publicacion,#popUp,#logout,#comment-box,.comment,.community-info,#userData,#profileUploads{
   
     width:100% !important;
   }
@@ -716,3 +716,8 @@ border-radius:30px 30px 0 30px !important; /* top-left, top-right, bottom-right,
   opacity:0.2 ;
 
 } */
+
+
+.noscroll{
+  overflow: hidden !important;
+}

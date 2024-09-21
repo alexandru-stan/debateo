@@ -38,6 +38,7 @@ export const LateralMenuRight = (props) => {
             
            
                         response.data.data.forEach(element => {
+                console.log(element)
                 temp.push(<NewsCard id={element.uuid} imagen ={element.image_url} titular={element.title} cuerpo = {element.description} enlace = {element.url} />  )
             });
             setNews(temp);

@@ -4,8 +4,11 @@ import editar from "../../../../assets/img/editar.png";
 import { useEffect,useRef } from "react";
 import { updateUser } from "../../../../js/updateUser";
 import borrar from "../../../../assets/img/remove.png"
+import { assign } from "../../../../redux-store/slices/PopUp";
+import { useSelector,useDispatch } from "react-redux";
 export const EditProfile = ({editProfile}) => {
   const user = JSON.parse(sessionStorage.getItem('user'));
+  console.log(user);
   const [edit,setEdit] = useState({
     username:false,
     name:false,
@@ -18,17 +21,19 @@ export const EditProfile = ({editProfile}) => {
   const [mail, setMail] = useState(JSON.parse(sessionStorage.getItem('user')).mail);
   const [birthDate, setBirthDate] = useState(JSON.parse(sessionStorage.getItem('user')).birth_date);
   const $ = require("jquery");
-
+  const popUpVal = useSelector(state => state.popUp.value);
+  const dispatch = useDispatch();
 
 
 
 
 
   return (
-    <div id='userData' style={{position:'fixed' , top:'30%', height:'60%',zIndex:'2'}} className='bg-moradoFondo w-3/6 p-4 rounded-lg '>
-      <div className='  justify-center items-center flex p-2 mb-4 rounded-t-lg'>
+    <div id='userData' style={{position:'fixed' ,  top:'0%', height:'100%', bottom:'0%'}} className='w-full flex justify-center items-center   w-3/6 p-4 rounded-lg '>
+    <div className="bg-moradoFondo w-3/6 h-3/6">
+      <div className=' bg-moradoFondo  justify-center items-center flex p-2 mb-4 rounded-t-lg'>
         <h2 className="text-naranjaMolon text-xl font-bold text-center">Datos de usuario</h2>
-        <img className="hover:cursor-pointer hover:bg-moradoLight rounded-3xl"  src={borrar} onClick={()=> editProfile(false)} style={{marginLeft:'auto',width:'5%'}}></img>
+        <img className="hover:cursor-pointer hover:bg-moradoLight rounded-3xl"  src={borrar} onClick={()=> dispatch(assign(null))} style={{marginLeft:'auto',width:'5%'}}></img>
         
       </div>
      
@@ -129,14 +134,17 @@ export const EditProfile = ({editProfile}) => {
           username: username,
           name: name,
           mail: mail,
-          birth_date: birthDate
+          birth_date: new Date(),
+          profileImageFile: sessionStorage.getItem('user').profile_image
         }));
 
     updateUser({
           username: username,
           name: name,
           mail: mail,
-          birthDate: birthDate
+          birthDate: new Date(),
+          profileImageFile: sessionStorage.getItem('user').profileImageFile
+
         }, user.username);
 
 
@@ -155,7 +163,7 @@ export const EditProfile = ({editProfile}) => {
    : null}
 
     
-  
+   </div>
     </div>
   );
 };

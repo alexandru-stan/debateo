@@ -21,6 +21,8 @@ import { formatImage } from "../../../../js/imageFormatting";
 import { update as updateMessagesRender }  from "../../../../redux-store/slices/MessagesRender";
 import SpinnerLoader from "../SpinnerLoader";
 import { Spinner } from "react-bootstrap";
+import { refreshProfileImage } from "../../../../js/RefreshProfileImage";
+import test from "../../../../assets/img/admin.png";
 const $ = require('jquery');
 export const Mensajes = (props) => {
 const username = JSON.parse(sessionStorage.getItem('user')).username;
@@ -28,13 +30,15 @@ const selectedChat = useSelector(state => state.selectedChat.value);
 const unreadMessages = useSelector(state => state.unreadMessages.value);
 const dispatch = useDispatch();
 const messagesRender = useSelector(state => state.messagesRender.value);
+const incomingMessage = useSelector(state => state.incomingMessage.value);
 const [spinner,setSpinner] = useState(true);
 const [arrChats,setArrChats] = useState([]);
 const chatsRef = useRef(null);
-stompClient.activate();
-useEffect(()=> {
 
-},[unreadMessages])
+useEffect(()=> {
+  incomingMessage!=null ? cambiarUltimoMensajeDelChat(incomingMessage) : null
+
+},[incomingMessage])
 
 
 
@@ -42,21 +46,21 @@ let audio = new Audio(newMessage);
 
 
 
-stompClient.onConnect = (frame) => {
+// stompClient.onConnect = (frame) => {
   
-  stompClient.subscribe('/'+username,(message) => {
-      let mensaje = JSON.parse(message.body);
+//   stompClient.subscribe('/'+username,(message) => {
+//       let mensaje = JSON.parse(message.body);
       
-      audio.play();
-      dispatch(update(mensaje))
-      cambiarUltimoMensajeDelChat(mensaje);
+//       audio.play();
+//       dispatch(update(mensaje))
+//       cambiarUltimoMensajeDelChat(mensaje);
 
     
-  });
+//   });
 
 
 
-};
+// };
 
 
     useEffect(()=>{
@@ -141,6 +145,7 @@ stompClient.onConnect = (frame) => {
             lastMessage={mensaje.messageBody}
             newChat = {mensaje.messageSender!=username?true:false}
             key = {mensaje.messageId}
+            profileImage = {test}
            
           />,
           ...actualState
@@ -173,7 +178,7 @@ stompClient.onConnect = (frame) => {
           <NuevoChat chatsRef={chatsRef} />  
           <Imagen 
             onclick={() => {
-             dispatch(updateMessagesRender(false))
+             dispatch(updateMessagesRender(!messagesRender))
             }} 
             style={{ width: '10%', height: '2rem', display: 'none' }} 
             clase="backIcon bg-red-950" 

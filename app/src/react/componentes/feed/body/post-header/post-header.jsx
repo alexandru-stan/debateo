@@ -6,6 +6,7 @@ import { PopUp } from '../../../reusable/popup/PopUp';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { assign } from '../../../../../redux-store/slices/PopUp';
+import SpinnerLoader from '../../../reusable/SpinnerLoader';
 
 export const PostHeader = (props) => {
 const navigate = useNavigate();
@@ -19,6 +20,10 @@ useEffect(()=> {
     myRef.current.addEventListener('focusout',() =>  setDotsMenuVisibility("none"));
     myRef.current.addEventListener('click',() =>  setDotsMenuVisibility("none"));
 },[])
+
+// useEffect(()=>{
+//     console.log(dotsMenuVisibility)
+// },[dotsMenuVisibility])
 
     return (
         
@@ -35,13 +40,14 @@ useEffect(()=> {
             localStorage.setItem('cid',props.communityId);
             navigate('/community/'+props.communityId)}}>{props.communityName}</div> 
 
-        
+                
         <div ref={myRef} tabIndex="0" id='postMenu' className='ml-auto'>
                     <Image clase={'hover:cursor-pointer'} style={{width:'1.5rem'}} onclick={() => dotsMenuVisibility=='none' ? setDotsMenuVisibility('block') : setDotsMenuVisibility('none') } ruta={dotsmenu}/>
                         <div  className=' postMenuButtons  bg-moradoFondo p-2 border-2 border-moradoLight  rounded-lg' id={"a"} style={{ position:'absolute', display:dotsMenuVisibility}}>
-                            <p onClick={() => dispatch(assign(<PopUp title="¡Quieto ahí!" value={"Esta funcionalidad todavía no ha sido implementada"} />))} className=' rounded-lg p-1 hover:brightness-150 bg-moradoFondo hover:cursor-pointer '>Denunciar publicación </p>
+                            <p onClick={() => {dispatch(assign(<PopUp title="¡Quieto ahí!" value={"Esta funcionalidad todavía no ha sido implementada"} />));}} className=' rounded-lg p-1 hover:brightness-150 bg-moradoFondo hover:cursor-pointer '>Denunciar publicación </p>
                             <p onClick={() => dispatch(assign(<PopUp title="¡Quieto ahí!" value={"Esta funcionalidad todavía no ha sido implementada"} />))} className=' rounded-lg p-1 hover:brightness-150 bg-moradoFondo hover:cursor-pointer '>Guardar </p>
                             <p onClick={() => dispatch(assign(<PopUp title="¡Quieto ahí!" value={"Esta funcionalidad todavía no ha sido implementada"} />))} className=' rounded-lg  p-1 hover:brightness-150 bg-moradoFondo hover:cursor-pointer' >No me interesa <span className='text-naranjaMolon'>{props.communityName}</span></p>      
+                            {/* <p onClick={()=> dispatch(assign(<div style={{ position:'fixed', top:'0%', bottom:'50%'}} className='  w-full h-full flex justify-center'><SpinnerLoader/></div>))}>TEST</p> */}
                         </div>
                 </div>
 
@@ -57,9 +63,9 @@ useEffect(()=> {
         <div ref={myRef} tabIndex="0" id='postMenu' style={{marginLeft:'auto'}} className=' ml-auto'>
         
         <Image clase={'hover:cursor-pointer'} style={{width:'1.5rem'}} onclick={() => dotsMenuVisibility=='none' ? setDotsMenuVisibility('block') : setDotsMenuVisibility('none') } ruta={dotsmenu}/>
-                        <div  className=' postMenuButtons  bg-moradoFondo p-2 border-2 border-moradoLight  rounded-lg' id={"a"} style={{ position:'absolute', display:dotsMenuVisibility}}>
-                            <p className=' rounded-lg p-1 hover:brightness-150 bg-moradoFondo hover:cursor-pointer '>Denunciar publicación </p>
-                            <p className=' rounded-lg p-1 hover:brightness-150 bg-moradoFondo hover:cursor-pointer '>Guardar </p>
+                        <div    className=' postMenuButtons  bg-moradoFondo p-2 border-2 border-moradoLight  rounded-lg' id={"a"} style={{ position:'absolute', display:dotsMenuVisibility}}>
+                            <p onClick={() => {dispatch(assign(<PopUp title="¡Quieto ahí!" value={"Esta funcionalidad todavía no ha sido implementada"} />));}} className=' rounded-lg p-1 hover:brightness-150 bg-moradoFondo hover:cursor-pointer '>Denunciar publicación </p>
+                            <p onClick={() => {dispatch(assign(<PopUp title="¡Quieto ahí!" value={"Esta funcionalidad todavía no ha sido implementada"} />));}} className=' rounded-lg p-1 hover:brightness-150 bg-moradoFondo hover:cursor-pointer '>Guardar </p>
                         </div>
         </div>
 </div>
