@@ -7,7 +7,7 @@ import { useWindowSize } from "@uidotdev/usehooks";
 import { useRef } from "react";
 import { useEffect } from "react";
 import { useSelector,useDispatch } from "react-redux";
-// import { update } from "../../../../redux-store/slices/LateralMenuVisibility";
+
 import { setLeftVisibility as update } from "../../../../redux-store/slices/LateralMenuVisibility";
 import { ComunidadesMasActivas,ComunidadesRecientes,Suscripciones } from "./subMenus";
 import { refreshProfileImage } from "../../../../js/RefreshProfileImage";
@@ -15,6 +15,9 @@ import { formatImage } from "../../../../js/imageFormatting";
 import logout from "../../../../assets/img/logout.png";
 import { assign } from "../../../../redux-store/slices/PopUp";
 import { useNavigate } from "react-router-dom";
+import { update as incoming } from "../../../../redux-store/slices/IncomingMessage";
+import newMessage from "../../../../assets/audio/newMessage.mp3"
+import { stompClient } from "../../../../webSocketTesting/webSocket";
 
 export const LateralMenu = (props) => {
     
@@ -32,6 +35,40 @@ export const LateralMenu = (props) => {
       
         windowWidth< 1101 ? dispatch(update('none')) : dispatch(update('block'));
     },[windowWidth])
+
+
+
+    let audio = new Audio(newMessage);
+
+  
+
+    stompClient.activate();
+    stompClient.onConnect = (frame) => {
+    stompClient.subscribe('/'+JSON.parse(sessionStorage.getItem("user")).username,(message) => {
+      let mensaje = JSON.parse(message.body);
+      audio.play();
+      dispatch(incoming(mensaje))
+
+      // alert("jeje")
+      // cambiarUltimoMensajeDelChat(mensaje);
+
+
+
+    
+  });
+
+    }  
+
+
+
+
+
+
+
+
+
+
+
 
     return (
 
@@ -74,7 +111,7 @@ export const LateralMenu = (props) => {
                 </div>
                 ));
                
-               }} title='Cerrar sesión' className="w-3/4 hover:cursor-pointer hover:bg-moradoFondo p-2 rounded-3xl" src={logout}></img>
+               }} title='Cerrar sesión' className="w-2/4 hover:cursor-pointer hover:bg-moradoFondo  rounded-3xl" src={logout}></img>
             </div>
         </div>
         </div>

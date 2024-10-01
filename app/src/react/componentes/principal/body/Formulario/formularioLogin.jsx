@@ -31,13 +31,22 @@ let mensajeRespuesta;
 const $ = require('jquery');
 
 const Formulario = (props) => {
+  const myRef = useRef(null);
   const status = useSelector((state) => state.status.value);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loading,setLoading] = useState(false);
 
  function callLogin(){
-  setLoading(true);
+const username = 
+
+$("#Lusername").val().length == 0  ||  $("#Lpassword").val().length == 0 ?
+
+$('#mensajeErrorLogin').html("Tienes que introducir tanto tu nombre de usuario como tu contraseña para inciar sesión")
+
+:
+
+ setLoading(true);
   $('#mensajeErrorLogin').html(null)
 
     Login().then(response => {
@@ -47,8 +56,13 @@ const Formulario = (props) => {
       navigate("/feed");
     }).catch(
       (error) =>  {
-error.response.status==404 ?  $('#mensajeErrorLogin').html("No hemos podido encontrar un usuario con los datos introducidos, vuelve a intentarlo."):  null 
-setLoading(false) } );
+        setLoading(false)
+error.response.status==404 ?   $('#mensajeErrorLogin').html("No hemos podido encontrar un usuario con los datos introducidos, vuelve a intentarlo."):  null;
+
+
+
+
+} );
 
 
 
@@ -90,6 +104,14 @@ const isInitialMount = useRef(true);
   },[status]);
 
 
+  useEffect(()=>{
+
+    myRef.current.addEventListener("keydown", (event)=> {
+      event.key==='Enter' ? callLogin() : null
+    
+    })
+
+  },[])
 
 
 
@@ -105,7 +127,7 @@ const isInitialMount = useRef(true);
       
      
       
-        <div  className='  backdrop-brightness-125 border-moradoLight border-2  rounded-lg p-3 text-white flex flex-col' id='form'>
+        <div ref={myRef}  className='  backdrop-brightness-125 border-moradoLight border-2  rounded-lg p-3 text-white flex flex-col' id='form'>
    
         <p style={{fontSize:'1.5em'}} className='text-center bienvenida'>Bienvenido</p>
           <ToggleForm fn={props.fn} hasAccount = {props.hasAccount}/>

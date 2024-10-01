@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from "react-dom";
 import {
     BrowserRouter as Router, Route, Routes,
@@ -24,24 +24,8 @@ import { stompClient } from "../webSocketTesting/webSocket";
     
     const popUpVal = useSelector(state => state.popUp.value);
     const incomingMessage = useSelector(state => state.incomingMessage.value);
-    const dispatch = useDispatch();
-    let audio = new Audio(newMessage);
-    stompClient.activate();
-    stompClient.onConnect = (frame) => {
-    stompClient.subscribe('/'+JSON.parse(sessionStorage.getItem("user")).username,(message) => {
-      let mensaje = JSON.parse(message.body);
-      audio.play();
-      dispatch(update(mensaje))
-      // alert("jeje")
-      // cambiarUltimoMensajeDelChat(mensaje);
-
-
     
-  });
 
-
-
-};
 
 
 

@@ -1,8 +1,11 @@
 package es.debateo.Model;
 
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
-
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,7 +17,7 @@ import jakarta.persistence.Transient;
 
 
 @Entity
-public class Users {
+public class Users implements UserDetails {
 
 	@Id
 	private String username;
@@ -35,8 +38,18 @@ public class Users {
 	@Transient
 	private byte[] profileImageFile;
 	
+	@Transient 
+	String token;
 	
 	
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
 	public byte[] getProfileImageFile() {
 		return profileImageFile;
 	}
@@ -127,6 +140,36 @@ public class Users {
 	public String toString() {
 		return "Users [username=" + username + ", password=" + password + ", name=" + name + ", mail=" + mail
 				+ ", birth_date=" + birth_date + ", subsCount=" + subsCount + "]";
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return List.of();
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 	
 	

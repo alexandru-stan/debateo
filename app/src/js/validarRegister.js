@@ -23,7 +23,7 @@ let valid = true;
         $("#Rpassword").siblings("p").html("La contraseña debe tener entre 8 y 24 caracteres")
         valid = false;
         break;
-        case /^[A-Z][a-z]*$/.test(user.name):
+        case /^[a-zA-Z]+$/.test(user.name):
             $("#Rname").siblings("p").html("Tu nombre no puede contener números ni símbolos especiales.")
             valid = false;
             break;
@@ -35,6 +35,8 @@ let valid = true;
             $("#Rbirth_date").siblings("p").html("Debes introducir una fecha de nacimiento válida.")
             valid = false;
             break;
+
+       
     } 
 
 

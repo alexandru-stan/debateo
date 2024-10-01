@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import es.debateo.DTO.ServiceResponse;
@@ -24,29 +27,29 @@ public class UserServices{
 	subsRepo subsRepo;
 	@Autowired 
 	communitiesRepo communitiesRepo;
+	@Autowired
+	PasswordEncoder passwordEncoder;
+//	@Autowired
+//	AuthenticationManager authenticationManager;
+
 	
 	
-	
-	
-	public UserServices(usersRepo repo) {
-		super();
-		this.repo = repo;
-	}
+
 
 
 
 
 	public ServiceResponse<Users> login(String username,String password) throws IOException {
 	
-		boolean exists = repo.existsByUsernameAndPassword(username, password);
+
+		Users user = repo.existsById(username) ?  repo.findById(username).get() : null;
 		
-		if(exists) {
-			System.out.println("aAAAAAAAAAAAAAA");
+		if(user!=null && passwordEncoder.matches(password, user.getPassword())) {
 			Users userData = repo.findById(username).get();
 			userData.setSubsCount((subsRepo.countByUsername(userData.getUsername()) + communitiesRepo.countByCommunityCreator(userData.getUsername())));
-			 profileImageUtils util = new profileImageUtils();
+			profileImageUtils util = new profileImageUtils();
 			userData.setProfileImageFile(util.returnProfileImage(userData.getUsername()));
-			System.out.println("IMAGEN PERFIL "+userData.getProfileImageFile());
+			
 			
 			return new ServiceResponse<Users>(userData,HttpStatus.OK);
 			
@@ -66,7 +69,7 @@ public class UserServices{
 		if(repo.existsById(user.getUsername())) {
 			return new ServiceResponse<String>("EL NOMBRE DE USUARIO YA EXISTE",HttpStatus.CONFLICT);
 		} else {
-			
+	
 			repo.save(user);
 			return new ServiceResponse<String>("CUENTA CREADA CORRECTAMENTE",HttpStatus.OK);
 			

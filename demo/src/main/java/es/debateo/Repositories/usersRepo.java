@@ -14,7 +14,7 @@ import es.debateo.Model.Users;
 
 public interface  usersRepo extends JpaRepository<Users,String>{
 
-	public boolean existsByUsernameAndPassword(String username, String password);
+//	public boolean existsByUsernameAndPassword(String username);
 	
 
 	@Query("SELECT e.username FROM Users e WHERE e.username LIKE %:param% AND e.username <> :requestUser ")
