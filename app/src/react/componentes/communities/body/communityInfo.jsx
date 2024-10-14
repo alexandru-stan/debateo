@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from '../../reusable/img';
 import { formatImage } from '../../../../js/imageFormatting';
 import { useNavigate } from 'react-router-dom';
@@ -9,6 +9,9 @@ export const CommunityInfo = (props) => {
 
     const navigate = useNavigate();
     const [loading,setLoading] = useState(true);
+
+ 
+
 
 
     return (

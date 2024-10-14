@@ -37,7 +37,7 @@ let loggedUser = JSON.parse(sessionStorage.getItem('user')).username
               publicationImage={(arr[i].post.publicationImage.length>0)?<img src={formatImage(arr[i].post.publicationImage)} alt='image'/>:null}
               publicationUser={arr[i].post.user}
               referencia={(posts.length-i)==1?request.myRef:null}
-              delete={arr[i].post.user==loggedUser || loggedUser==creador || rol== "MOD" ?<Button
+              delete={arr[i].post.user==loggedUser || loggedUser==creador || rol== "MOD" ?<button
               onClick={() =>
                 deleteFunction(arr[i].post.publicationId).then((response) => {
                  
@@ -53,7 +53,7 @@ let loggedUser = JSON.parse(sessionStorage.getItem('user')).username
               }
             >
               Eliminar
-    </Button>:null}
+    </button>:null}
 
              
 

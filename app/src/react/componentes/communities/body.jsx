@@ -127,9 +127,9 @@ useEffect(() => {
         setCS(data.communityCreator);
         setSubscription(data.subscription);
       
-      if(creadorState==loggedUser) setSubButton(<button  id='administrar'>Administrar</button>)
-  else if ( data.subscription!=null) setSubButton(<button onClick={()=> {changeSub(data.subscription)}} id='Unsub'>Desuscribirse</button>)
-  else setSubButton(<button onClick={()=> {changeSub(data.subscription)}} id='Sub'>Suscribirse</button>)
+      if(creadorState==loggedUser) setSubButton(<button className=" hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon" id='administrar'>Administrar</button>)
+  else if ( data.subscription!=null) setSubButton(<button className=" hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon" onClick={()=> {changeSub(data.subscription)}} id='Unsub'>Desuscribirse</button>)
+  else setSubButton(<button className=" hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon" onClick={()=> {changeSub(data.subscription)}} id='Sub'>Suscribirse</button>)
         setInfo({
             communityName: data.communityName,
             communityDescription: data.communityDescription,
@@ -162,19 +162,14 @@ useEffect(() => {
 
 
 useEffect(()=> {
-
-
-// navigate("/admin/"+state)
-
-  if(creadorState==loggedUser) setSubButton(<button className=" hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon" onClick={()=> dispatch(assign("Esta funcionalidad todavía no ha sido implementada"))} id='administrar'>Administrar</button>)
+console.log("ola");
+  if(creadorState==loggedUser) setSubButton(<button className=" hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon" onClick={()=> navigate("/admin/"+state)} id='administrar'>Administrar</button>)
   else if ( subscription!=null) setSubButton(<button className="hover:bg-moradoLight rounded-md p-2  text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none   focus:border-naranjaMolon" onClick={()=> {changeSub(subscription)}} id='Unsub'>Desuscribirse</button>)
   else setSubButton(<button className="hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon" onClick={()=> {changeSub(subscription)}} id='Sub'>Suscribirse</button>)
 
-},[subscription,creadorState])
+},[subscription,creadorState,state,])
 
-useEffect(() => {
-  
-},[postsArr])
+
  
 
 

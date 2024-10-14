@@ -7,15 +7,13 @@ export const  Body = (props) => {
   
 
   return (
-    <div style={{marginTop:'2%'}} id="adminpanel-body" className="  flex flex-col items-center w-4/6 ">
-    <div className=" w-full">
-    <p className="Kanit text-naranjaMolon  text-bold" style={{marginBottom:'2%', fontSize:'2rem'}}>Vista de administrador</p>
+    <div style={{marginTop:'0%'}} id="adminpanel-body" className=" h-full  flex flex-col    w-3/6 ">
+    <div className="  p-2 flex flex-col border-r border-moradoLight  h-full  w-1/4">
+    <p className=" p-2 Kanit text-naranjaMolon  text-bold" style={{marginBottom:'2%', fontSize:'1rem'}}>Vista de administrador</p>
+    <p  className="p-2 hover:bg-moradoLight   hover:cursor-pointer Kanit">Gestión de usuarios</p>
+    <p className="p-2 hover:bg-moradoLight  hover:cursor-pointer Kanit">Opciones</p>
     </div>
-    <div className="flex p-2">
-    <p className="p-2 hover:cursor-pointer Kanit">Gestión de usuarios</p>
-    <p className="p-2 hover:cursor-pointer Kanit">Opciones</p>
-    </div>
-    <div id='adminpanel-sections' className="w-full flex justify-evenly p-5 ">
+    <div id='adminpanel-sections' className="w-full flex justify-evenly ">
     {/* <Mods id={props.id}/>
     <UsuariosVetados/>
     <CommunityOptions/> */}
