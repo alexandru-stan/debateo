@@ -66,6 +66,9 @@ public class UsersController {
 			@RequestParam("Rmail") String mail,
 			@RequestParam("Rbirth_date") String birth_date,
 			@RequestParam("Rprofileimg") MultipartFile file) throws ParseException, IllegalStateException, IOException {
+		
+		System.out.println(username);
+		
 	     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 	     String imageExtension = FilenameUtils.getExtension(file.getOriginalFilename());
 	     // Get the root directory of the project
@@ -78,8 +81,8 @@ public class UsersController {
 	        System.out.println("/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////");
 	  
 	        
-		Users user = new Users(username,password,name,mail,formatter.parse(birth_date),(filePath.toString()));
-		
+		Users user = new Users(username,password,name,mail,formatter.parse(birth_date));
+		System.out.println(user.toString());
 		ServiceResponse<String> response = servicio.signin(user);
 		servicioMensajes.sendMessage(new Messages("Hola "+user.getUsername()+", bienvenido a Debateo. \n Estamos aquí para cualquier cosa que necesites :) ","debateosoporte",user.getUsername(),new Date(),false));
 		

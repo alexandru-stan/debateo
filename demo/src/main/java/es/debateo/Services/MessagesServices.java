@@ -24,12 +24,14 @@ public class MessagesServices {
 	
 	public List<MessagesDTO> RetrieveChats(String username){
 		List<MessagesDTO> messages = new ArrayList<MessagesDTO>();
+		System.out.println("aaa");
 		List<Tuple> tuple = repo.RetrieveChats(username);
 		
 		tuple.forEach(e -> {
-			
-			MessagesDTO message = new MessagesDTO(null, (String) e.get(1), (Date) e.get(2), (int) e.get(3), (String) e.get(4), (Long)e.get(5));
+		
+			MessagesDTO message = new MessagesDTO(null, (String) e.get(0), (Date) e.get(1), (int) e.get(2), (String) e.get(3), (Long)e.get(4));
 			profileImageUtils util = new profileImageUtils();
+			
 			try {
 				message.setProfile_image(util.returnProfileImage(message.getInteractuer()));
 			} catch (IOException e1) {

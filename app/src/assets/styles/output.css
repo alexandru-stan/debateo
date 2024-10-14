@@ -952,6 +952,10 @@ video {
   cursor: pointer;
 }
 
+.hover\:cursor-text:hover {
+  cursor: text;
+}
+
 .hover\:border-2:hover {
   border-width: 2px;
 }

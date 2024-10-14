@@ -37,13 +37,15 @@ const dispatch = useDispatch();
     }
 
     let resultado = validarRegister(user);
+    // let resultado = true;
 
    
       
-
+    console.log(formRef)
 
     resultado ? 
 
+      
 
       Register(formRef).then(response => {
       codigoRespuesta = response.status;

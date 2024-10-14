@@ -65,11 +65,13 @@ public class UserServices{
 	
 	
 	public ServiceResponse<String> signin(Users user) {
-		
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		if(repo.existsById(user.getUsername())) {
 			return new ServiceResponse<String>("EL NOMBRE DE USUARIO YA EXISTE",HttpStatus.CONFLICT);
 		} else {
 	
+		
+			
 			repo.save(user);
 			return new ServiceResponse<String>("CUENTA CREADA CORRECTAMENTE",HttpStatus.OK);
 			

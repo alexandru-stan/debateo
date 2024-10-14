@@ -2,6 +2,8 @@ package es.debateo.DTO;
 
 import java.util.Date;
 
+import jakarta.persistence.Transient;
+
 
 
 

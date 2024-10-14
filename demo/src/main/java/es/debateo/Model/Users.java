@@ -29,8 +29,7 @@ public class Users implements UserDetails {
 	private String mail;
 	@Column
 	private Date birth_date;
-	@Column 
-	String profileImage;
+
 	
 	@Transient
 	private int subsCount;
@@ -58,13 +57,6 @@ public class Users implements UserDetails {
 		this.profileImageFile = profileImageFile;
 	}
 
-	public String getProfileImage() {
-		return profileImage;
-	}
-
-	public void setProfileImage(String profileImage) {
-		this.profileImage = profileImage;
-	}
 
 	public int getSubsCount() {
 		return subsCount;
@@ -116,14 +108,14 @@ public class Users implements UserDetails {
 		this.birth_date = birth_date;
 	}
 
-	public Users(String username, String password, String name, String mail, Date birth_date,String profileImage) {
+	public Users(String username, String password, String name, String mail, Date birth_date) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.name = name;
 		this.mail = mail;
 		this.birth_date = birth_date;
-		this.profileImage = profileImage;
+	
 		
 	}
 

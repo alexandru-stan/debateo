@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { TextField } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
 import theme from '../../../../assets/material-ui-themes/DefaultTheme'
-import Button from 'react-bootstrap/Button';
+
 import { subirPublicacion } from "../../../../js/subirPublicacion";
 import { useState } from "react";
 import { useRef } from "react";

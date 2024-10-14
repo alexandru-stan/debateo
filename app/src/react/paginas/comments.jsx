@@ -19,8 +19,9 @@ import { Mensajes } from '../componentes/reusable/mensajes/mensajes';
 import { LateralMenu } from "../componentes/reusable/lateralmenu/LateralMenu";
 import SpinnerLoader from '../componentes/reusable/SpinnerLoader';
 import { refreshProfileImage } from '../../js/RefreshProfileImage';
-
-
+import { AddComment } from '../componentes/comments/addComment';
+import addEmoji from "../../assets/img/addEmoji.png";
+import EmojiPicker from 'emoji-picker-react';
 export const Comments = () => {
   const messagesRender = useSelector(state => state.messagesRender.value);
 const [numeroComentarios, setNumeroComentarios] = useState(null);
@@ -84,10 +85,12 @@ const [loadingComments,setLoadingComments] = useState(true);
 
 
 
+    const updateChildState = (newValue) => {
+     setWritable(!writable)
+  };
 
-
-
-
+  const [writable, setWritable] = useState(false);
+  const [emojiPicker, setEmojiPicker] = useState(false);
     return(
     
         <div  id='comments' className="  flex flex-col items-center">
@@ -95,23 +98,48 @@ const [loadingComments,setLoadingComments] = useState(true);
         <LateralMenu/>
           {loadingPost? <SpinnerLoader id='commPostLoader'/> : selectedPost}
 
-        <div  id='comment-section' className=" w-full bg-moradoOscuro
-         flex flex-col items-center mt-5">
-        <div className=" bg-moradoOscuro w-2/6 flex flex-row justify-center items-center" id='comment-box'>
-        
-        <div class="w-full bg-moradoOscuro">
-  <textarea id="text" style={{filter:"brightness(125%)"}}class="  w-full rounded-md text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro border-b-2 border-moradoLight focus:outline-none focus:border-naranjaMolon text-gray-700 py-2 pl-2 pr-8 transition-all duration-300" placeholder="Escribe tu comentario..."/>
-          </div>
-          
-          <button className='font-bold text-naranjaMolon p-2 mt-2 rounded-3xl hover:cursor-pointer hover:bg-moradoLight' onClick={()=>{
+          <div id='commentBox' onClick={() => !writable ?  setWritable(true) : null} style={{minHeight:'4rem',border:'1px solid #444073'}} className=" hover:cursor-text w-2/6 rounded-3xl flex flex-col  justify-center   mt-3 p-2">
 
-          let comment = subirComentario($('#text').val(),params.id);
-          $('#text').val(null);
+          <AddComment writable={writable}/>
+          
+       { writable ? 
+          <div className=" flex flex-row relative  items-center">
+          <img onClick={()=>setEmojiPicker(!emojiPicker)}  className='mt-2  p-2 rounded-3xl hover:cursor-pointer hover:bg-moradoLight' style={{width:'50px', height:'50px'}} src={addEmoji}/>
+          {emojiPicker?<EmojiPicker searchPlaceHolder='Buscar' theme='dark' onEmojiClick={(data,event)=>{$("#uploadComment").val($("#uploadComment").val() + data.emoji)}} style={{ position:'absolute', top:'100%', zIndex:'3', width:'100%'}}/> : null }
+          <button onClick={()=> setWritable(false)} className='font-bold commentButtons ml-auto   text-naranjaMolon p-2 mt-2 rounded-3xl hover:cursor-pointer hover:bg-moradoLight w-1/6'>
+            Cancelar
+          </button>
+         
+          <button className='font-bold commentButtons  text-naranjaMolon p-2 mt-2 rounded-3xl hover:cursor-pointer hover:bg-moradoLight w-1/6' onClick={()=>{
+            setWritable(false)
+          let comment = subirComentario($('#uploadComment').val(),params.id);
+          $('#uploadComment').val(null);
           refreshProfileImage(user.username).then(e => setComments(comments => ([<Comment profileImage = {e.data.profileImage} username={comment.username} commentDate={0}  commentText = {comment.commentText}></Comment>]).concat(comments)) )
+          setWritable(false);
+          setEmojiPicker(false);
+
+          }}>Enviar</button> 
+
+          </div>
+            :null} 
+          </div>
+      
+               
+        <div  id='comment-section' className=" w-full bg-moradoOscuro
+         flex flex-col items-center mt-5 ">
+        {/* <div className=" bg-moradoOscuro w-2/6 flex flex-row justify-center items-center" id='comment-box'> */}
+     
+        {/* <div class="w-full bg-moradoOscuro">
+  <textarea id="text" style={{filter:"brightness(125%)"}} class=" p-3 w-full rounded-md text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro border-b-2 border-moradoLight focus:outline-none focus:border-naranjaMolon text-gray-700  transition-all duration-300" placeholder="Escribe tu comentario..."/>
+          </div> */}
+          
           
 
-          }}>Enviar</button>
-          </div>
+
+
+
+
+          {/* </div> */}
           
         {loadingComments ? <SpinnerLoader id='commLoader'/> : comments}
        

@@ -15,7 +15,7 @@ import jakarta.persistence.Tuple;
 public interface messagesRepo extends JpaRepository<Messages,Integer> {
 	
 	@Query(value = "SELECT "
-			+ " u.profile_image, "  +
+			+
 		    "m1.interactuer, " +
 		    " m1.last_interaction, " +
 		    "m2.message_id, " +

@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Post from '../react/componentes/feed/body/post';
-import { Button } from 'react-bootstrap';
+
 import { formatImage } from './imageFormatting';
 import { deleteFunction } from './DeletePublication';
 import { SERV_DIR,SERV_PORT } from '../utilities';

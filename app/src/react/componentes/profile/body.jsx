@@ -37,7 +37,7 @@ export const Body = () => {
     <div id="profileUploads" className='mt-4 flex flex-row bg-moradoFondo rounded-lg w-2/4 justify-center' >
         <div onClick={()=>setSelected("Publicaciones")} className= {selected=="Publicaciones" ? " rounded-lg selectedPage pageSelector" :" pageSelector"}>Publicaciones</div>
         <div onClick={()=>setSelected("Comentarios")} className= {selected=="Comentarios" ? " rounded-lg selectedPage pageSelector" :" pageSelector"}>Comentarios</div>
-        <div onClick={()=>{ alert("To be implemented") }} className= {selected=="MeGusta" ? "  pageSelector" :" pageSelector"}>Me gusta</div>
+        {/* <div onClick={()=>{ alert("To be implemented") }} className= {selected=="MeGusta" ? "  pageSelector" :" pageSelector"}>Me gusta</div> */}
         
     </div>
 

@@ -29,7 +29,7 @@ public class Posts {
 	@Column(name="publication_body")
 	String publicationBody;
 	
-	@Column(name="publicationImage")
+	@Column(name="publication_image")
 	byte[] publicationImage;
 	public long getPublicationId() {
 		return publicationId;

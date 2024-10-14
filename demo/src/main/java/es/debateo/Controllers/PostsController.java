@@ -78,7 +78,9 @@ public class PostsController {
 			@RequestParam("community") String community){
 		Posts savedPost = null;
 		try {
+			
 			Posts post = new Posts(user,Long.valueOf(community),titulo,cuerpo,file.getBytes());
+			System.out.println(post.toString());
 			 savedPost= repo.save(post);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

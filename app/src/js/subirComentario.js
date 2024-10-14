@@ -3,6 +3,7 @@ import {SERV_DIR,SERV_PORT} from "../utilities";
 export function subirComentario(comentario,post){
    
   
+    console.log(comentario);
   
 
     let comment = {
