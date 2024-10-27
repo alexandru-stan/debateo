@@ -22,7 +22,11 @@ public interface communitiesRepo extends JpaRepository<Communities,Long> {
 			+ "c.communityBackgroundImage,"
 			+ "c.communityMembers,"
 			+ "c.communityCreator,"
-			+ "c.categoria) "
+			+ "c.categoria,"
+			+ "c.privateCommunity,"
+			+ "c.sensitiveContent,"
+			+ "c.blockNewSubscriptions, "
+			+ "c.adminMode) "
 			+ " FROM Communities c "
 			+ "WHERE c.communityId=:id")
 	CommunityDTO getCommunityData(@Param("id") long id);
@@ -50,5 +54,10 @@ public interface communitiesRepo extends JpaRepository<Communities,Long> {
 			+ "  "
 			)
 	List<Communities> getHotCommunities();
+	
+	@Query("SELECT new es.debateo.Model.Communities(c.sensitiveContent, c.privateCommunity, c.blockNewSubscriptions, c.adminMode)"
+			+ " FROM Communities c"
+			+ " WHERE c.communityId = :id ")
+	Communities getCommunityOptions(@Param("id") int id);
 			
 }

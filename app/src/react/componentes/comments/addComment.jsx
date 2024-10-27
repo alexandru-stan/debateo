@@ -22,12 +22,12 @@ export const AddComment = ({writable}) => {
            ref = {textareaRef}
            style={{
             background: 'none',
-            color: 'inherit',
-            font: 'inherit',
+            color: 'white',
+            font: 'none',
             lineHeight: 'inherit',
             padding: 0,
             margin: 0,
-            border:'none',
+            border:'',
            
             
             

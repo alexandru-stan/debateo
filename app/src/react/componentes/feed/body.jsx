@@ -100,22 +100,14 @@ if(myRef.current!=null){
 
     return(
       <>
-  
-      <div  className="bg-red-950 w-1/6 flex   flex-row justify-center"   > 
-   
-    
-        
-   
-     
-  
-    </div>
-    <div  className=' flex flex-col      height:100%                  items-center    '  id='body-feed'>
+ 
+    <div  className=' flex flex-col                   items-center    '  id='body-feed'>
    
    
      {messagesRender ? <Mensajes/>:null}
      
     
-      <div id="fyp" className='mt-4 flex flex-row bg-moradoFondo rounded-lg w-2/6 justify-center' >
+      <div id="fyp" className='mt-4 flex flex-row bg-moradoFondo  rounded-lg w-2/6 justify-center' >
       
         <div onClick={(()=>{ 
         fyp? 

@@ -97,9 +97,19 @@ public class CommunitiesController {
 		
 	return new ResponseEntity<List<Communities>>(result, HttpStatus.OK);
 		
+		}
+	
+	
+	@GetMapping("/options/{id}")
+	public ResponseEntity<Communities> getCommunityOptions(@PathVariable int id){
+		
+		
+		Communities response = repo.getCommunityOptions(id);
+		
+		return new ResponseEntity<Communities>(response,HttpStatus.OK);
+		
 		
 	}
-	
 	
 	
 	

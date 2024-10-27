@@ -9,7 +9,7 @@ export const Admin = () => {
 let params = useParams();
 
 return(
-    <div style={{height:'100vh'}} className="flex  h-1/4 flex-col w-full items-center" id='adminpanel'>
+    <div style={{height:'100%'}} className="flex  bg-emerald-350   flex-col w-full items-center" id='adminpanel'>
     <Header/>
     <LateralMenu/>
     <Body id={params.id}/>

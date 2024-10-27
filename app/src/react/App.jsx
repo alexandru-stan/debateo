@@ -33,7 +33,7 @@ import { stompClient } from "../webSocketTesting/webSocket";
     return (
      
       <Router>
-      <div  className={popUpVal!=null ? 'opacity-50 noscroll ' : null}>
+      <div  className={popUpVal!=null ? 'opacity-50 noscroll ' : ""}>
         <Routes>
           <Route exact path="/" element={<Principal />} />
           <Route exact path="/feed" element={<Feed />} />

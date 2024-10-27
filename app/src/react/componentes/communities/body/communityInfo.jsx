@@ -11,7 +11,7 @@ export const CommunityInfo = (props) => {
     const [loading,setLoading] = useState(true);
 
  
-
+console.log(props.info);
 
 
     return (

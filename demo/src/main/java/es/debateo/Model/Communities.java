@@ -44,6 +44,16 @@ public class Communities {
 	@Column(name="categoria")
 	long categoria;
 
+	@Column(name="private_community")
+	boolean privateCommunity;
+	@Column(name="block_new_subscriptions")
+	boolean blockNewSubscriptions;
+	@Column(name="admin_mode")
+	boolean adminMode;
+
+	
+	
+	
 	public Communities(long communityId, String communityName, String communityDescription, byte[] communityImage,
 			byte[] communityBackgroundImage, int communityMembers, String communityCreator, boolean sensitiveContent,
 			long categoria) {
@@ -60,6 +70,86 @@ public class Communities {
 
 	
 	
+	
+	public Communities(boolean sensitiveContent, boolean privateCommunity, boolean blockNewSubscriptions,
+			boolean adminMode) {
+		super();
+		this.sensitiveContent = sensitiveContent;
+		this.privateCommunity = privateCommunity;
+		this.blockNewSubscriptions = blockNewSubscriptions;
+		this.adminMode = adminMode;
+	}
+
+
+
+
+	public boolean isPrivateCommunity() {
+		return privateCommunity;
+	}
+
+
+
+	public void setPrivateCommunity(boolean privateCommunity) {
+		this.privateCommunity = privateCommunity;
+	}
+
+
+
+
+
+
+
+	
+
+
+
+	public boolean isBlockNewSubscriptions() {
+		return blockNewSubscriptions;
+	}
+
+
+
+	public void setBlockNewSubscriptions(boolean blockNewSubscriptions) {
+		this.blockNewSubscriptions = blockNewSubscriptions;
+	}
+
+
+
+	public boolean isAdminMode() {
+		return adminMode;
+	}
+
+
+
+	public void setAdminMode(boolean adminMode) {
+		this.adminMode = adminMode;
+	}
+
+
+
+
+
+
+	public Communities(long communityId, String communityName, String communityDescription, byte[] communityImage,
+			byte[] communityBackgroundImage, int communityMembers, String communityCreator, boolean sensitiveContent,
+			long categoria, boolean privateCommunity, boolean blockNewSubscriptions, boolean adminMode) {
+		super();
+		this.communityId = communityId;
+		this.communityName = communityName;
+		this.communityDescription = communityDescription;
+		this.communityImage = communityImage;
+		this.communityBackgroundImage = communityBackgroundImage;
+		this.communityMembers = communityMembers;
+		this.communityCreator = communityCreator;
+		this.sensitiveContent = sensitiveContent;
+		this.categoria = categoria;
+		this.privateCommunity = privateCommunity;
+		this.blockNewSubscriptions = blockNewSubscriptions;
+		this.adminMode = adminMode;
+	}
+
+
+
 	public Communities(String communityName, String communityDescription, byte[] communityImage,
 			String communityCreator) {
 		super();

@@ -568,32 +568,20 @@ video {
   margin-left: 10px;
 }
 
-.mt-postMT {
-  margin-top: 10%;
+.mt-auto {
+  margin-top: auto;
 }
 
-.mr-auto {
-  margin-right: auto;
+.mt-postMT {
+  margin-top: 10%;
 }
 
 .block {
   display: block;
 }
 
-.inline-block {
-  display: inline-block;
-}
-
-.inline {
-  display: inline;
-}
-
 .flex {
   display: flex;
-}
-
-.inline-flex {
-  display: inline-flex;
 }
 
 .hidden {
@@ -630,15 +618,6 @@ video {
 
 .h-full {
   height: 100%;
-}
-
-.h-max {
-  height: -webkit-max-content;
-  height: max-content;
-}
-
-.h-1\/4 {
-  height: 25%;
 }
 
 .w-1\/4 {
@@ -715,10 +694,6 @@ video {
   align-items: center;
 }
 
-.justify-start {
-  justify-content: flex-start;
-}
-
 .justify-end {
   justify-content: flex-end;
 }
@@ -735,12 +710,12 @@ video {
   justify-content: space-around;
 }
 
-.justify-evenly {
-  justify-content: space-evenly;
-}
-
 .overflow-auto {
   overflow: auto;
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
 }
 
 .rounded {
@@ -800,10 +775,6 @@ video {
   border-right-width: 2px;
 }
 
-.border-r {
-  border-right-width: 1px;
-}
-
 .border-solid {
   border-style: solid;
 }
@@ -828,19 +799,9 @@ video {
   border-color: rgb(248 250 252 / var(--tw-border-opacity));
 }
 
-.border-red-950 {
-  --tw-border-opacity: 1;
-  border-color: rgb(69 10 10 / var(--tw-border-opacity));
-}
-
 .border-b-moradoLight {
   --tw-border-opacity: 1;
   border-bottom-color: rgb(68 64 115 / var(--tw-border-opacity));
-}
-
-.border-r-moradoLight {
-  --tw-border-opacity: 1;
-  border-right-color: rgb(68 64 115 / var(--tw-border-opacity));
 }
 
 .bg-emerald-950 {
@@ -875,11 +836,6 @@ video {
 .bg-zinc-950 {
   --tw-bg-opacity: 1;
   background-color: rgb(9 9 11 / var(--tw-bg-opacity));
-}
-
-.bg-red-300 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(252 165 165 / var(--tw-bg-opacity));
 }
 
 .text-left {
@@ -1036,6 +992,11 @@ video {
 .hover\:bg-naranjaMolon:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(255 140 0 / var(--tw-bg-opacity));
+}
+
+.hover\:text-naranjaMolon:hover {
+  --tw-text-opacity: 1;
+  color: rgb(255 140 0 / var(--tw-text-opacity));
 }
 
 .hover\:text-naranjaSeleccionado:hover {
@@ -1313,7 +1274,9 @@ input::file-selector-button:hover{
  
   width:40% !important;
 }
-
+#adminpanel-body{
+margin-left:0 !important;
+}
  
 
 #burger-menu {
@@ -1326,7 +1289,7 @@ input::file-selector-button:hover{
     width:33% !important
 
   }
-  #mods,#banned{
+  #mods{
     width:30%;
   }
 
@@ -1394,7 +1357,9 @@ input::file-selector-button:hover{
       
       
     }
-
+    #adminpanel-body {
+      width:90%;
+    }
     #header-feed img {
       margin-left:0 !important;
       
@@ -1484,7 +1449,7 @@ input::file-selector-button:hover{
 
 
 #lateralMenu,#lateralMenuRight {
-  width:60% !important;
+  width:80% !important;
   top:7% !important;
 }
 
@@ -1601,6 +1566,30 @@ input::file-selector-button:hover{
   
   top:5% !important;
 }
+#adminpanel-body{
+  width: 100%;
+}
+#bannedHeader {
+  flex-direction: column !important;
+  align-items: center;
+
+}
+#bannedHeader button {
+  margin-left:0; 
+  width:100%;
+}
+
+#adminpanel-body{
+
+  flex-direction: column !important;
+  align-items: center;
+
+
+}
+#adminPanelLeft{
+  width:100%;
+}
+
 }
   
 @media  (max-width: 500px){
@@ -1626,7 +1615,9 @@ input::file-selector-button:hover{
   width: 100%;
 }
 
-
+#adminpanel-body {
+  width:100%;
+}
 #lateralMenu {
   width:70% !important;
 }
@@ -1735,7 +1726,7 @@ input::file-selector-button:hover{
 
 /* On hover, change background color of the checkbox */
 .custom-checkbox:hover .checkmark {
-  background-color: #bbb;
+  /* background-color: #ff8c00; */
 }
 
 /* Create the checkmark (hidden by default) */
@@ -1747,8 +1738,8 @@ input::file-selector-button:hover{
   top: 2px;
   width: 5px;
   height: 10px;
-  border: solid white;
-  border-width: 0 2px 2px 0;
+  /* border: solid #444073; */
+  /* border-width: 0 2px 2px 0; */
   transform: rotate(45deg);
 }
 
@@ -1825,7 +1816,7 @@ border-radius:30px 30px 0 30px !important; /* top-left, top-right, bottom-right,
   overflow: hidden !important;
 }
 
-#uploadComment{
+#uploadComment,#searchUserVetoMenu{
   border: none;
     overflow: auto;
     outline: none;
@@ -1853,6 +1844,69 @@ border-radius:30px 30px 0 30px !important; /* top-left, top-right, bottom-right,
   border-color: #444073 !important;
   font-family:'Kanit' !important;
 }
+
+html, body {
+  height: 100%;
+}
+
+
+/* Customize the label (the checkLabel) */
+.checkLabel {
+  display: block;
+  position: relative;
+  padding-left: 3%;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkLabel input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1rem;
+  width: 1rem;
+  background-color: #444073;
+  border-radius: 20%;
+}
+
+/* On mouse-over, add a grey background color */
+/* .checkLabel:hover input ~ .checkmark {
+  background-color: #ccc;
+} */
+
+/* When the checkbox is checked, add a blue background */
+.checkLabel input:checked ~ .checkmark {
+  background-color: #ff8c00;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.checkLabel input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
 
 
 /*# sourceMappingURL=/src.b0ce6175.css.map */
