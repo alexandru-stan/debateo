@@ -4,9 +4,11 @@
 
 
 import java.io.IOException;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +22,10 @@ import org.springframework.web.multipart.MultipartFile;
 import es.debateo.DTO.PostDTO;
 import es.debateo.DTO.ServiceResponse;
 import es.debateo.Model.Posts;
+import es.debateo.Model.Subscriptions;
+import es.debateo.Model.ComplexID.SubscriptionsID;
 import es.debateo.Repositories.postsRepo;
+import es.debateo.Repositories.subsRepo;
 import es.debateo.Services.PostsServices;
 
 @RestController
@@ -35,6 +40,9 @@ public class PostsController {
 	
 	@Autowired
 	postsRepo repo;
+	
+	@Autowired
+	subsRepo subsRepo;
 	
 	@GetMapping("/{username}/{offset}/{fyp}")
 	public ResponseEntity<Page<PostDTO>> getPosts(@PathVariable String username, @PathVariable int offset, @PathVariable boolean fyp){
@@ -51,13 +59,18 @@ public class PostsController {
 	@GetMapping("/byCommunity/{offset}/{communityId}/{username}")
 	public ResponseEntity<Page<PostDTO>> getPostsByCommunity(@PathVariable String username, @PathVariable int offset, @PathVariable long communityId){
 		
-		System.out.println("LA PAGINA ES:"+offset);
+//		System.out.println("LA PAGINA ES:"+offset);
+		
+		Optional<Subscriptions> sub = subsRepo.findById(new SubscriptionsID(username,communityId));
+		
+		if(sub.isEmpty() || sub.get().getSubscriptionLevel() != Subscriptions.subscriptionType.BANNED ) {
+		
+	
 		ServiceResponse<PostDTO> response = services.getPostsByCommunity(username,communityId,offset);
-		
-		System.out.println(response.getPagina());
-		
 		return new ResponseEntity<Page<PostDTO>>(response.getPagina(),response.getStatus());
-		
+		}else {
+			return new ResponseEntity<Page<PostDTO>>(HttpStatus.FORBIDDEN);
+		}
 	}
 	
 	

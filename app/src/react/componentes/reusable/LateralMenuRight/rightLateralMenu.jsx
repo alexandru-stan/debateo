@@ -32,31 +32,31 @@ export const LateralMenuRight = (props) => {
         windowWidth< 1101 ? dispatch(update('none')) : dispatch(update('flex'));
     },[windowWidth])
 
-    useEffect(()=>{
-        let temp = [];
-        getNews().then(response => {
+    // useEffect(()=>{
+    //     let temp = [];
+    //     getNews().then(response => {
             
            
-                        response.data.data.forEach(element => {
-                console.log(element)
-                temp.push(<NewsCard id={element.uuid} imagen ={element.image_url} titular={element.title} cuerpo = {element.description} enlace = {element.url} />  )
-            });
-            setNews(temp);
-        }).catch(e => {
-            temp.push(<NewsCard id={1} imagen ={"https://images.ecestaticos.com/_Oun23mlaCdecRt3xOetFB_lLlE=/0x0:2272x1497/600x315/filters:fill(white):format(jpg):quality(99):watermark(f.elconfidencial.com/file/0f2/6d9/13e/0f26d913e1b27ca111e62b656aa354da.png,0,275,1)/f.elconfidencial.com/original/fff/023/462/fff023462c3dc46315249549c4696fed.jpg"} titular={"James Middleton, hermano de Kate Middleton, relata como nunca su intento de suicidio y cómo su perra evitó que saltara al vacío"} cuerpo = {"En uno de los capítulos de sus memorias, que serán publicadas en pocos días, el cuñado del príncipe Guillermo recuerda al detalle la terrible noche que viv..."} enlace = {"https://www.vanitatis.elconfidencial.com/casas-reales/2024-09-14/james-middleton-confesion-depresion-intento-suicidio_3962126/"} />  )
-            temp.push(<NewsCard id={2} imagen ={"https://www.rtpa.es/fotos//24/09/20240914121919_RTPA5539157.jpg"} titular={"La vuelta al cole, un esfuerzo añadido para los jóvenes con problemas de salud mental"
-            } cuerpo = {"Los expertos recomiendan incluir la salud mental como uno de los pilares educativos"
-            } enlace = {"https://www.rtpa.es/noticias-nacional/2024-09-14/La-vuelta-al-cole,-un-esfuerzo-añadido-para-los-jovenes-con-problemas-de-salud-mental_111726314504.html"
-            } />  )
-            temp.push(<NewsCard id={2} imagen ={"https://www.rtpa.es/fotos//24/09/20240914122559_RTPA5539184.jpg"} titular={"La Fundación Síndrome de Dravet va a abrir un laboratorio propio"} 
-            cuerpo = {"Una cena benéfica en colaboración con Asociación de Veteranos del Sporting de Gijón"
-            } enlace = {"https://www.rtpa.es/noticias-asturias/2024-09-14/La-Fundacion-Sindrome-de-Dravet-va-a-abrir-un-laboratorio-propio_111726314819.html"
-            } />  )
-            temp.push(<NewsCard id={3} imagen ={null} titular={"Ha subido el precio de la luz "} cuerpo = {"Ha subido el precio de la luz "} enlace = {"Ha subido el precio de la luz "} />  )
-            setNews(temp);
-        })
+    //                     response.data.data.forEach(element => {
+    //             console.log(element)
+    //             temp.push(<NewsCard id={element.uuid} imagen ={element.image_url} titular={element.title} cuerpo = {element.description} enlace = {element.url} />  )
+    //         });
+    //         setNews(temp);
+    //     }).catch(e => {
+    //         temp.push(<NewsCard id={1} imagen ={"https://images.ecestaticos.com/_Oun23mlaCdecRt3xOetFB_lLlE=/0x0:2272x1497/600x315/filters:fill(white):format(jpg):quality(99):watermark(f.elconfidencial.com/file/0f2/6d9/13e/0f26d913e1b27ca111e62b656aa354da.png,0,275,1)/f.elconfidencial.com/original/fff/023/462/fff023462c3dc46315249549c4696fed.jpg"} titular={"James Middleton, hermano de Kate Middleton, relata como nunca su intento de suicidio y cómo su perra evitó que saltara al vacío"} cuerpo = {"En uno de los capítulos de sus memorias, que serán publicadas en pocos días, el cuñado del príncipe Guillermo recuerda al detalle la terrible noche que viv..."} enlace = {"https://www.vanitatis.elconfidencial.com/casas-reales/2024-09-14/james-middleton-confesion-depresion-intento-suicidio_3962126/"} />  )
+    //         temp.push(<NewsCard id={2} imagen ={"https://www.rtpa.es/fotos//24/09/20240914121919_RTPA5539157.jpg"} titular={"La vuelta al cole, un esfuerzo añadido para los jóvenes con problemas de salud mental"
+    //         } cuerpo = {"Los expertos recomiendan incluir la salud mental como uno de los pilares educativos"
+    //         } enlace = {"https://www.rtpa.es/noticias-nacional/2024-09-14/La-vuelta-al-cole,-un-esfuerzo-añadido-para-los-jovenes-con-problemas-de-salud-mental_111726314504.html"
+    //         } />  )
+    //         temp.push(<NewsCard id={2} imagen ={"https://www.rtpa.es/fotos//24/09/20240914122559_RTPA5539184.jpg"} titular={"La Fundación Síndrome de Dravet va a abrir un laboratorio propio"} 
+    //         cuerpo = {"Una cena benéfica en colaboración con Asociación de Veteranos del Sporting de Gijón"
+    //         } enlace = {"https://www.rtpa.es/noticias-asturias/2024-09-14/La-Fundacion-Sindrome-de-Dravet-va-a-abrir-un-laboratorio-propio_111726314819.html"
+    //         } />  )
+    //         temp.push(<NewsCard id={3} imagen ={null} titular={"Ha subido el precio de la luz "} cuerpo = {"Ha subido el precio de la luz "} enlace = {"Ha subido el precio de la luz "} />  )
+    //         setNews(temp);
+    //     })
         
-    },[]);
+    // },[]);
 
     return (
 

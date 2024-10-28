@@ -17,6 +17,7 @@ import { update } from '../../../redux-store/slices/RecentCommunityTrigger';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { assign } from '../../../redux-store/slices/PopUp';
+// import locked from '../../../assets/img/locked';
 export const Body = (props) => {
 const [state,setState] = useState(localStorage.getItem('cid'));
 const [info,setInfo] = useState({});
@@ -153,6 +154,13 @@ useEffect(() => {
          
         
          
+        }).catch(response => {
+          setLoading(false);
+          setPostsArr(
+
+            <p className="mt-5 text-2xl Kanit text-naranjaMolon">Has sido vetado de esta comunidad</p>
+
+          )
         })
         
         

@@ -77,12 +77,18 @@ export const VetoMenu = (props) => {
 <div className="w-full flex flex-col mt-3 Kanit text-lg items-start overflow-y-auto">
     {resultados.map(e => {
         let check = selected.includes(e);
-      return   <p  onClick={()=>selectUnselect(e)} className={"mt-2 p-2 w-full Kanit hover:text-naranjaMolon hover:cursor-pointer hover:bg-moradoLight "} >{check ? e + "  ✓":e}</p>
+      return   <p  onClick={()=>{
+
+        selectUnselect(e)
+    }} className={"mt-2 p-2 w-full Kanit hover:text-naranjaMolon hover:cursor-pointer hover:bg-moradoLight "} >{check ? e + "  ✓":e}</p>
     })}
 </div>
 
 <div className="mt-auto flex justify-end w-full">
-{selected.length>0 ?<button onClick={()=> BanUsers(selected,props.id) } className=" hover:bg-moradoLight    rounded-md p-1  w-1/6 border-2 border-moradoLight bg-moradoFondo placeholder-gray-400  placeholder-gray-400 ">Vetar</button>
+{selected.length>0 ?<button onClick={()=> {
+    BanUsers(selected,props.id)
+    props.setBanned(prevSelected => [...prevSelected, ...selected]);
+} } className=" hover:bg-moradoLight    rounded-md p-1  w-1/6 border-2 border-moradoLight bg-moradoFondo placeholder-gray-400  placeholder-gray-400 ">Vetar</button>
 :null }
 <button onClick={()=> dispatch(assign(null))} className=" hover:bg-moradoLight    rounded-md p-1  w-1/6 border-2 border-moradoLight bg-moradoFondo placeholder-gray-400  placeholder-gray-400 ">Cancelar</button>
 
