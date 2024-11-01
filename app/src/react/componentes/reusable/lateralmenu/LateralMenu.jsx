@@ -92,24 +92,49 @@ export const LateralMenu = (props) => {
                <img onClick={ () => {
 
                 dispatch(assign(
-                <div style={{top:'0%',bottom:'0%'}} className=" w-full flex justify-center items-center   fixed">
-                <div id="logout"  style={{border:'2px solid #444073'}} className="bg-moradoFondo rounded-lg p-5 flex flex-col items-center justify-between  w-2/6">
-                        <p className="Kanit text-naranjaMolon text-2xl font-bold">¿Estás seguro de que quieres cerrar tu sesión?</p>
-                        <div className="flex mt-2 p-2 flex-row w-full justify-around ">
-                        <p  
-                        onClick={()=>{
-                            dispatch(assign(null));
-                            nav("/")
+                    {
+                        block:true,
+                        value:  <div style={{top:'0%',bottom:'0%'}} className=" w-full  flex justify-center items-center   fixed">
+                     <div id="logout"  style={{border:'2px solid #444073'}} className="bg-moradoFondo rounded-lg p-5 flex flex-col items-center justify-between  w-2/6">
+                                 <p className="Kanit text-naranjaMolon text-2xl font-bold">¿Estás seguro de que quieres cerrar tu sesión?</p>
+                                 <div className="flex mt-2 p-2 flex-row w-full justify-around ">
+                                 <p  
+                                 onClick={()=>{
+                                     dispatch(assign(null));
+                                    nav("/")
+                                    
+                                    }}
+                                 className="bg-moradoLight text-center   Kanit font-bold text-xl  text-white py-2 px-6 rounded-lg w-2/6 hover:bg-naranjaMolon hover:cursor-pointer ">Sí</p>
+                                <p
+                                 onClick={()=>{dispatch(assign(null))}}
+                                 className="bg-moradoLight  text-center Kanit font-bold text-xl text-white py-2 px-6 rounded-lg w-2/6 hover:bg-naranjaMolon hover:cursor-pointer">No</p>
+                                 </div>
+                         </div>
+                         </div>
+
+                    }
+                ))
+
+
+                // dispatch(assign(
+                // <div style={{top:'0%',bottom:'0%'}} className=" w-full flex justify-center items-center   fixed">
+                // <div id="logout"  style={{border:'2px solid #444073'}} className="bg-moradoFondo rounded-lg p-5 flex flex-col items-center justify-between  w-2/6">
+                //         <p className="Kanit text-naranjaMolon text-2xl font-bold">¿Estás seguro de que quieres cerrar tu sesión?</p>
+                //         <div className="flex mt-2 p-2 flex-row w-full justify-around ">
+                //         <p  
+                //         onClick={()=>{
+                //             dispatch(assign(null));
+                //             nav("/")
                             
-                            }}
-                        className="bg-moradoLight text-center   Kanit font-bold text-xl  text-white py-2 px-6 rounded-lg w-2/6 hover:bg-naranjaMolon hover:cursor-pointer ">Sí</p>
-                        <p
-                        onClick={()=>{dispatch(assign(null))}}
-                         className="bg-moradoLight  text-center Kanit font-bold text-xl text-white py-2 px-6 rounded-lg w-2/6 hover:bg-naranjaMolon hover:cursor-pointer">No</p>
-                        </div>
-                </div>
-                </div>
-                ));
+                //             }}
+                //         className="bg-moradoLight text-center   Kanit font-bold text-xl  text-white py-2 px-6 rounded-lg w-2/6 hover:bg-naranjaMolon hover:cursor-pointer ">Sí</p>
+                //         <p
+                //         onClick={()=>{dispatch(assign(null))}}
+                //          className="bg-moradoLight  text-center Kanit font-bold text-xl text-white py-2 px-6 rounded-lg w-2/6 hover:bg-naranjaMolon hover:cursor-pointer">No</p>
+                //         </div>
+                // </div>
+                // </div>
+                // ));
                
                }} title='Cerrar sesión' className="w-2/4 hover:cursor-pointer hover:bg-moradoFondo  rounded-3xl" src={logout}></img>
             </div>

@@ -66,34 +66,51 @@ public class SubscriptionsController {
 		
 	}
 	
-	@GetMapping("/bannedUsers/{communityId}")
-	public ResponseEntity<List<String>> returnBannedUsers(@PathVariable int communityId) {
-		
-		return new ResponseEntity<List<String>>(repo.bannedUsers(communityId),HttpStatus.ACCEPTED);
-		
-	}
+	@GetMapping("/users/{communityId}/{type}")
+	public ResponseEntity<List<String>> returnUsers(@PathVariable int communityId, @PathVariable String type) {
+		if(type.equals("banned")) {
+		return new ResponseEntity<List<String>>(repo.getUsers(communityId, "BANNED"),HttpStatus.ACCEPTED);
+		} else if(type.equals("mods")) {
+		return new ResponseEntity<List<String>>(repo.getUsers(communityId, "MOD"),HttpStatus.ACCEPTED);
+		}else {
+		return null;
+		}
+		}
 
-	@PutMapping("/banUsers/{id}")
-	public void ban(@RequestBody List<String> items,@PathVariable int id) {
+	@PutMapping("/banUsers/{id}/{type}")
+	public void ban(@RequestBody List<String> items,@PathVariable int id, @PathVariable String type) {
 		
-		items.forEach(e -> {
-			boolean exists = repo.existsByUsernameAndCommunityId(e,id);
-			
-			repo.save(new Subscriptions(e,id,new Date(),Subscriptions.subscriptionType.BANNED));
-			
-		});
+		if(type.equals("banned")) {
+			items.forEach(e -> {
+				boolean exists = repo.existsByUsernameAndCommunityId(e,id);
+				
+				if(exists) {
+					repo.banUsers(id,items, Subscriptions.subscriptionType.BANNED);
+				} else {
+					repo.save(new Subscriptions(e,id,new Date(),Subscriptions.subscriptionType.BANNED));
+				}
+				
+			});
+		} else {
+			repo.banUsers(id,items, Subscriptions.subscriptionType.MOD);
+		}
 		
-		repo.banUsers(id,items, Subscriptions.subscriptionType.BANNED);
+		
+		
+			 
 		
 	}
 	
-	@PutMapping("/unban/{id}")
-	public void unban(@PathVariable int id, @RequestBody List<String> users ) {
+	@PutMapping("/unban/{id}/{type}")
+	public void unban(@PathVariable int id, @RequestBody List<String> users,@PathVariable String type ) {
 		
-		System.out.println(id);
-		System.out.println(users);
+
 		
-		repo.unbanUsers(id, users);
+		if(type.equals("banned")) {
+			repo.unbanUsers(id, users);
+		} else {
+			repo.downgrade(id,users, Subscriptions.subscriptionType.MEMBER);
+		}
 		
 	}
 	

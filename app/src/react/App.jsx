@@ -33,7 +33,7 @@ import { stompClient } from "../webSocketTesting/webSocket";
     return (
      
       <Router>
-      <div  className={popUpVal!=null ? 'opacity-50 noscroll ' : ""}>
+      <div  className={popUpVal?.block ? 'opacity-50 noscroll ' : ""}>
         <Routes>
           <Route exact path="/" element={<Principal />} />
           <Route exact path="/feed" element={<Feed />} />
@@ -47,7 +47,7 @@ import { stompClient } from "../webSocketTesting/webSocket";
 
         </Routes>
         </div>
-       {popUpVal != null ?popUpVal : null } 
+       {popUpVal != null ? popUpVal.value : null } 
       </Router>
      
     

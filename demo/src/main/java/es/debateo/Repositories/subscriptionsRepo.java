@@ -30,9 +30,10 @@ public interface subscriptionsRepo extends JpaRepository<Subscriptions,Subscript
 	
 	@Query(value = "SELECT username "
 			+ " FROM subscriptions"
-			+ " WHERE subscription_level =  'BANNED' "
+			+ " WHERE subscription_level =  :type "
 			+ " AND community_id = :id", nativeQuery = true)
-	public List<String> bannedUsers( @Param("id") long communityId );
+	public List<String> getUsers( @Param("id") long communityId, String type );
+
 	
 	
 	@Modifying
@@ -44,9 +45,17 @@ public interface subscriptionsRepo extends JpaRepository<Subscriptions,Subscript
 	public void banUsers(@Param("id") int id ,@Param("users") List<String> users, @Param("banned") Subscriptions.subscriptionType banned);
 	
 	
+	@Modifying
+	@Transactional
+	@Query("UPDATE Subscriptions s "
+			+ " SET s.subscriptionLevel = :member "
+			+ " WHERE username IN (:users) "
+			+ " AND s.communityId = :id ")
+	public void downgrade(@Param("id") int id ,@Param("users") List<String> users, @Param("member") Subscriptions.subscriptionType banned);
+	
 	@Query("SELECT s.username "
 			+ " FROM Subscriptions s "
-			+ " WHERE s.subscriptionLevel='MOD' "
+			+ " WHERE s.subscriptionLevel='MEMBER' "
 			+ " AND s.communityId=:id")
 	public List<String> getMods(@Param("id") long id);
 	

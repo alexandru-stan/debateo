@@ -568,10 +568,6 @@ video {
   margin-left: 10px;
 }
 
-.mt-auto {
-  margin-top: auto;
-}
-
 .mt-postMT {
   margin-top: 10%;
 }
@@ -1253,12 +1249,12 @@ input::file-selector-button:hover{
 
 
 @media(max-width:1200px){
-  .publicacion,#commentBox,#logout,#feedLoader,#popUp,#logout,#comment-box,.comment,.community-info{
+  .publicacion,#commentBox,#logout,#vetoMenu,#feedLoader,#popUp,#logout,#comment-box,.comment,.community-info{
     width: 50% !important;
     
   }
   
-  #popUp {
+  #popUp{
     left:25% !important
   }
 
@@ -1431,7 +1427,7 @@ margin-left:0 !important;
       flex-direction: column;
     }
   
-    .publicacion,#commentBox,#feedLoader, #logout, #popUp,#comment-box,.comment,.community-info,#userData,#profileUploads{
+    .publicacion,#commentBox,#feedLoader, #logout,#vetoMenu,#popUp,#comment-box,.comment,.community-info,#userData,#profileUploads{
       width: 80% !important;
     }
     #formCrearComunidad,#createForm {
@@ -1569,7 +1565,7 @@ margin-left:0 !important;
 #adminpanel-body{
   width: 100%;
 }
-#bannedHeader {
+#bannedHeader,#modsHeader {
   flex-direction: column !important;
   align-items: center;
 
@@ -1578,6 +1574,11 @@ margin-left:0 !important;
   margin-left:0; 
   width:100%;
 }
+#modsHeader button {
+  margin-left:0; 
+  width:100%;
+}
+
 
 #adminpanel-body{
 
@@ -1607,7 +1608,7 @@ margin-left:0 !important;
 
 
  
-  .publicacion,#commentBox,#popUp,#logout,#comment-box,.comment,.community-info,#userData,#profileUploads{
+  .publicacion,#commentBox,#popUp,#logout,#vetoMenu,#comment-box,.comment,.community-info,#userData,#profileUploads{
   
     width:100% !important;
   }

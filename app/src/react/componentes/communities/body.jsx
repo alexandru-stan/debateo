@@ -123,15 +123,21 @@ useEffect(() => {
  
     CommunityInfoRequest(state).then(response => {
     let data = response.data;
-        
+     
         creador = data.communityCreator;
         setCS(data.communityCreator);
         setSubscription(data.subscription);
-      
-      if(creadorState==loggedUser) setSubButton(<button className=" hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon" id='administrar'>Administrar</button>)
+  
+  if(data.subscription != "BANNED") {
+  if(creadorState==loggedUser) setSubButton(<button className=" hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon"  onClick={()=> navigate("/admin/"+state)}  id='administrar'>Administrar</button>)
   else if ( data.subscription!=null) setSubButton(<button className=" hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon" onClick={()=> {changeSub(data.subscription)}} id='Unsub'>Desuscribirse</button>)
   else setSubButton(<button className=" hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon" onClick={()=> {changeSub(data.subscription)}} id='Sub'>Suscribirse</button>)
-        setInfo({
+  
+  } else {
+
+  }
+ 
+  setInfo({
             communityName: data.communityName,
             communityDescription: data.communityDescription,
             communityImage: formatImage(data.communityImage),
@@ -171,10 +177,13 @@ useEffect(() => {
 
 useEffect(()=> {
 console.log("ola");
+if(subscription !='BANNED'){
   if(creadorState==loggedUser) setSubButton(<button className=" hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon" onClick={()=> navigate("/admin/"+state)} id='administrar'>Administrar</button>)
   else if ( subscription!=null) setSubButton(<button className="hover:bg-moradoLight rounded-md p-2  text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none   focus:border-naranjaMolon" onClick={()=> {changeSub(subscription)}} id='Unsub'>Desuscribirse</button>)
   else setSubButton(<button className="hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon" onClick={()=> {changeSub(subscription)}} id='Sub'>Suscribirse</button>)
-
+} else {
+  setSubButton(null);
+}
 },[subscription,creadorState,state,])
 
 
@@ -201,7 +210,7 @@ if(myRef.current!=null && postsArr.length>0){
 
     return (
     <div className='mt-5 flex flex-col justify-center items-center community-body'>
-        <CommunityInfo subButton ={SubButton} state={state} info={info}/>
+        <CommunityInfo subscription ={subscription} subButton ={SubButton} state={state} info={info}/>
         {postsArr}
         {loading ? <SpinnerLoader clase='mt-5' id='spinnerCommunityPosts'/> : null}
         {messagesRender ? <Mensajes/>:null}
