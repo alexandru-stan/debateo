@@ -25,6 +25,7 @@ import { formatImage } from '../../../../../js/imageFormatting';
 import SpinnerLoader from '../../../reusable/SpinnerLoader'
 import PopUp from "../../../reusable/popup/PopUp";
 import { assign } from '../../../../../redux-store/slices/PopUp';
+import { update } from '../../../../../redux-store/slices/SessionToken';
 let codigoRespuesta;
 let mensajeRespuesta;
 
@@ -36,7 +37,8 @@ const Formulario = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loading,setLoading] = useState(false);
-
+  const token = useSelector(state=>state.sessionToken.value);
+  
  function callLogin(){
 const username = 
 
@@ -53,7 +55,12 @@ $('#mensajeErrorLogin').html("Tienes que introducir tanto tu nombre de usuario c
     let userData = response.data;
         userData.profileImageFile = formatImage(userData.profileImageFile);
     sessionStorage.setItem('user',JSON.stringify(userData));
+   
+    // document.cookie = "username=debateo; expires=Fri, 31 Dec 2024 23:59:59 GMT; path=/"
+    localStorage.setItem('token',"debateo");
       navigate("/feed");
+
+
     }).catch(
       (error) =>  {
         setLoading(false)

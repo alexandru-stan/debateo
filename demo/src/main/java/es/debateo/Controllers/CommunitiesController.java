@@ -54,15 +54,22 @@ public class CommunitiesController {
 	public long add(@RequestParam("image") MultipartFile file,
 					@RequestParam("name") String name,
 					@RequestParam("description") String desc,
-					@RequestParam("creator") String creator
+					@RequestParam("creator") String creator,
+					@RequestParam(name="privateCommunity",defaultValue="false") boolean privateCommunity,
+					@RequestParam(name="adminMode",defaultValue="false") boolean adminMode,
+					@RequestParam(name="blockNewSubscriptions",defaultValue="false") boolean blockNewSubscriptions,
+					@RequestParam(name="sensitiveContent",defaultValue="false") boolean sensitiveContent
+					
 					
 		
 			
 			
 			) {
+		
+
 		Communities response=null;
 		try {
-			 response = repo.save(new Communities(name,desc,file.getBytes(),creator));
+			 response = repo.save(new Communities(name,desc,file.getBytes(),creator,sensitiveContent,privateCommunity,blockNewSubscriptions,adminMode));
 			return response.getCommunityId();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

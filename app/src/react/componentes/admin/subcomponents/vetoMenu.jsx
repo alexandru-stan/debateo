@@ -99,13 +99,13 @@ export const VetoMenu = (props) => {
     })}
 </div>
 
-<div className=" bg-red-950  flex justify-end w-full">
+<div className="   flex justify-end w-full">
 {selected.length>0 ?<button onClick={()=> {
     BanUsers(selected,props.id,props.type);
     props.setBanned(prevSelected => [...prevSelected, ...selected]);
     showInfo();
     
-} } className=" hover:bg-moradoLight    rounded-md p-1  w-2/6 border-2 border-moradoLight bg-moradoFondo placeholder-gray-400  placeholder-gray-400 ">Vetar</button>
+} } className=" hover:bg-moradoLight    rounded-md p-1  w-2/6 border-2 border-moradoLight bg-moradoFondo placeholder-gray-400  placeholder-gray-400 ">{props.type=='banned' ? 'Vetar' : 'Ascender'}</button>
 :null }
 <button onClick={()=> dispatch(assign(null))} className=" hover:bg-moradoLight    rounded-md p-1  w-2/6 border-2 border-moradoLight bg-moradoFondo placeholder-gray-400  placeholder-gray-400 ">Cancelar</button>
 

@@ -59,5 +59,12 @@ public interface communitiesRepo extends JpaRepository<Communities,Long> {
 			+ " FROM Communities c"
 			+ " WHERE c.communityId = :id ")
 	Communities getCommunityOptions(@Param("id") int id);
+	
+	@Query("SELECT CASE WHEN c.privateCommunity = true THEN true ELSE false END FROM Communities c WHERE c.communityId = :communityId")
+	boolean isCommunityPrivate(@Param("communityId") long communityId);
+	
+	@Query("SELECT c.communityCreator FROM Communities c WHERE communityId = :id")
+	String getCommunityCreator(@Param("id") long communityCreator); 
+
 			
 }

@@ -14,7 +14,7 @@ import { refreshProfileImage } from "../../../../js/RefreshProfileImage";
 import { formatImage } from "../../../../js/imageFormatting";
 import logout from "../../../../assets/img/logout.png";
 import { assign } from "../../../../redux-store/slices/PopUp";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { update as incoming } from "../../../../redux-store/slices/IncomingMessage";
 import newMessage from "../../../../assets/audio/newMessage.mp3"
 import { stompClient } from "../../../../webSocketTesting/webSocket";
@@ -26,8 +26,9 @@ export const LateralMenu = (props) => {
     const lateralMenuVisibility = useSelector(state => state.lateralMenuVisibilty.value.left);
     const popUp = useSelector(state => state.popUp.value);
     const user = JSON.parse(sessionStorage.getItem('user'))
-    const [profileImage,setProfileImage] = useState(JSON.parse(sessionStorage.getItem('user')).profileImageFile);
+    const [profileImage,setProfileImage] = useState(refreshProfileImage(user?.username));
     const nav = useNavigate();
+    const loc = useLocation();
 
     const windowWidth = useWindowSize().width;
 
@@ -66,13 +67,15 @@ export const LateralMenu = (props) => {
 
 
 
-
+// alert(loc.pathname)
 
 
 
     return (
 
 
+  
+        loc.pathname != "/" ? 
   
 
         <div id="lateralMenu" className={   " bg-moradoOscuro border-r-2 border-moradoLight"} style={{zIndex:'1',position:'fixed', overflow:'scroll', height:'calc(100vh - 50px)  ',  left:'0%', top:'7%', width:'20%', display:lateralMenuVisibility}}>
@@ -150,6 +153,11 @@ export const LateralMenu = (props) => {
 
 
         </div>
+
+        : 
+        null
+
+           
 
     )
 

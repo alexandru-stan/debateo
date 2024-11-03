@@ -6,9 +6,11 @@ import { useNavigate } from "react-router-dom";
 import {Mensajes} from "../componentes/reusable/mensajes/mensajes";
 import { LateralMenu } from "../componentes/reusable/lateralmenu/LateralMenu";
 import { useSelector } from "react-redux";
+import { useState } from "react";
 
 export const NewCommunity = () => {
     const nav = useNavigate();    
+    const [options,setOptions] = useState([]);
     let form = useRef(null);
     const messagesRender = useSelector(state => state.messagesRender.value);
 
@@ -18,7 +20,7 @@ export const NewCommunity = () => {
     
     <div id='new' className="w-full flex flex-col items-center">
      {messagesRender ? <Mensajes/>:null}
-      <LateralMenu/>
+      {/* <LateralMenu/> */}
             <Header/>
 
           
@@ -45,13 +47,66 @@ export const NewCommunity = () => {
         rows={4} // Aquí puedes ajustar la altura cambiando el número de filas
     ></textarea>
 
-        
+     
 <label for="imagen" class="block text-naranjaMolon text-sm font-bold mb-2">
   Selecciona una imagen:
   <input required name="image" type="file" id="imagen" accept="image/png, image/gif, image/jpeg" class="hover:cursor-pointer appearance-none  text-naranjaMolon text-sm font-bold  rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
 </label>
+<div className=" flex flex-col mt-2 mb-5 w-full " >
+<label className="custom-checkbox p-2" >
+<input id='privateCommunity' name='privateCommunity' onChange={() => setOptions(prevOptions => ({
+    ...prevOptions,
+    privateCommunity:!prevOptions.privateCommunity
+}))} checked={options.privateCommunity?true:null} type='checkbox'/>
+<span class="checkmark"></span>
+Comunidad privada
+</label>
 
 
+
+
+
+
+
+<label className="custom-checkbox p-2" >
+<input id='sensitiveContent' name='sensitiveContent' onChange={() => setOptions(prevOptions => ({
+    ...prevOptions,
+    sensitiveContent:!prevOptions.sensitiveContent
+}))} checked={options.sensitiveContent?'checked':null} type='checkbox'/>
+<span class="checkmark"></span>
+Contenido sensible
+</label>
+
+
+
+
+
+
+
+
+
+{/* <label className="custom-checkbox p-2" >
+<input id='blockNewSubscriptions' name='blockNewSubscriptions' onChange={() => setOptions(prevOptions => ({
+    ...prevOptions,
+    blockNewSubscriptions:!prevOptions.blockNewSubscriptions
+}))} checked={options.blockNewSubscriptions?'checked':null} type='checkbox'/>
+<span  class="checkmark"></span>
+Suscripciones bloqueadas
+</label>
+
+
+
+
+<label className="custom-checkbox p-2" >
+<input id='adminMode' name='adminMode' onChange={() => setOptions(prevOptions => ({
+    ...prevOptions,
+    adminMode:!prevOptions.adminMode
+}))} checked={options.adminMode?'adminMode':null} type='checkbox'/>
+<span class="checkmark"></span>
+Modo administrador
+</label> */}
+
+</div> 
 
 
 
@@ -59,6 +114,7 @@ export const NewCommunity = () => {
       
           
         </form>
+
         </div>
         </div>
             

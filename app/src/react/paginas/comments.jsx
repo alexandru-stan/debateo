@@ -95,7 +95,7 @@ const [loadingComments,setLoadingComments] = useState(true);
     
         <div  id='comments' className="  flex flex-col items-center">
         <Header/>
-        <LateralMenu/>
+        {/* <LateralMenu/> */}
           {loadingPost? <SpinnerLoader id='commPostLoader'/> : selectedPost}
 
           <div id='commentBox' onClick={() => !writable ?  setWritable(true) : null} style={{minHeight:'4rem',border:'1px solid #444073'}} className=" hover:cursor-text w-2/6 rounded-3xl flex flex-col  justify-center   mt-3 p-2">

@@ -46,7 +46,14 @@ public class UsersController {
 
 	@PostMapping("/login")
 
-	public ResponseEntity<Users> validarLogin(@RequestBody Users credentials) throws IOException {
+//	public ResponseEntity<Users> validarLogin(@RequestBody Users credentials) throws IOException {
+//		
+//	    ServiceResponse<Users> response = servicio.login(credentials.getUsername(), credentials.getPassword());
+//	    Users user = response.getObj()!=null ? response.getObj():null;
+//	    return new ResponseEntity<>(user, response.getStatus());
+//	}
+	
+public ResponseEntity<Users> validarLogin(@RequestBody Users credentials) throws IOException {
 		
 	    ServiceResponse<Users> response = servicio.login(credentials.getUsername(), credentials.getPassword());
 	    Users user = response.getObj()!=null ? response.getObj():null;

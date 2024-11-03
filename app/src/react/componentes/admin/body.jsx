@@ -3,6 +3,7 @@ import { Mods } from "./mods";
 import { UsuariosVetados } from "./usuariosvetados";
 import { CommunityOptions } from "./communityOptions";
 import { useState } from "react";
+import { Reports } from "./reports";
 // import { UsuariosVetados } from "./usuariosvetados";
 export const  Body = (props) => {
 
@@ -20,7 +21,7 @@ export const  Body = (props) => {
         return <CommunityOptions id={props.id}/>
         break;
       case "REPORTS":
-       return  <p>jejee</p>
+       return  <Reports/>
        break;
     
    

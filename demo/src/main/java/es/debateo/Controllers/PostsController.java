@@ -24,6 +24,7 @@ import es.debateo.DTO.ServiceResponse;
 import es.debateo.Model.Posts;
 import es.debateo.Model.Subscriptions;
 import es.debateo.Model.ComplexID.SubscriptionsID;
+import es.debateo.Repositories.communitiesRepo;
 import es.debateo.Repositories.postsRepo;
 import es.debateo.Repositories.subsRepo;
 import es.debateo.Services.PostsServices;
@@ -44,6 +45,9 @@ public class PostsController {
 	@Autowired
 	subsRepo subsRepo;
 	
+	@Autowired
+	communitiesRepo communitiesRepo;
+	
 	@GetMapping("/{username}/{offset}/{fyp}")
 	public ResponseEntity<Page<PostDTO>> getPosts(@PathVariable String username, @PathVariable int offset, @PathVariable boolean fyp){
 		
@@ -57,19 +61,30 @@ public class PostsController {
 	}
 	
 	@GetMapping("/byCommunity/{offset}/{communityId}/{username}")
-	public ResponseEntity<Page<PostDTO>> getPostsByCommunity(@PathVariable String username, @PathVariable int offset, @PathVariable long communityId){
+	public ResponseEntity<?> getPostsByCommunity(@PathVariable String username, @PathVariable int offset, @PathVariable long communityId){
 		
 //		System.out.println("LA PAGINA ES:"+offset);
 		
 		Optional<Subscriptions> sub = subsRepo.findById(new SubscriptionsID(username,communityId));
-		
-		if(sub.isEmpty() || sub.get().getSubscriptionLevel() != Subscriptions.subscriptionType.BANNED ) {
-		
+		boolean isPrivate = communitiesRepo.isCommunityPrivate(communityId);
+		String creator = communitiesRepo.getCommunityCreator(communityId);
 	
-		ServiceResponse<PostDTO> response = services.getPostsByCommunity(username,communityId,offset);
-		return new ResponseEntity<Page<PostDTO>>(response.getPagina(),response.getStatus());
-		}else {
-			return new ResponseEntity<Page<PostDTO>>(HttpStatus.FORBIDDEN);
+		System.out.println(creator+" "+username);
+		System.out.println(sub.isPresent());
+		if(sub.isPresent() && sub.get().getSubscriptionLevel() == Subscriptions.subscriptionType.BANNED ) {
+			
+			return new ResponseEntity<String>("Has sido vetado de esta comunidad", HttpStatus.FORBIDDEN);
+	
+	
+		} else if(sub.isEmpty() && isPrivate && !creator.equals(username)){
+			
+			return new ResponseEntity<String>("Necesitas suscribirte a la comunidad para poder acceder a sus publicaciones", HttpStatus.PAYMENT_REQUIRED);
+			
+			
+		} else {
+			ServiceResponse<PostDTO> response = services.getPostsByCommunity(username,communityId,offset);
+			
+			return new ResponseEntity<Page<PostDTO>>(response.getPagina(),response.getStatus());
 		}
 	}
 	

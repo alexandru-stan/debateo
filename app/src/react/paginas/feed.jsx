@@ -32,7 +32,7 @@ const nav = useNavigate();
        
         <div style={{}} className=" pt-1   overlay " id='feed'>
         <Header/>
-        <LateralMenu/>
+        {/* <LateralMenu/> */}
         <LateralMenuRight/>
         <Body/>
         

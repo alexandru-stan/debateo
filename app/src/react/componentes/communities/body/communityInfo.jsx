@@ -3,6 +3,7 @@ import Image from '../../reusable/img';
 import { formatImage } from '../../../../js/imageFormatting';
 import { useNavigate } from 'react-router-dom';
 import SpinnerLoader from '../../reusable/SpinnerLoader';
+import sensible from "../../../../assets/img/sensible.png"
 
 export const CommunityInfo = (props) => {
 
@@ -28,21 +29,21 @@ export const CommunityInfo = (props) => {
                <p style={{fontSize:'1rem',overflowWrap:'break-word'}} className='Kanit font-bold'>{props.info.communityName}</p>
                <p className="text-naranjaMolon Kanit">{props.info.communityMembers} miembros</p>
                <p className='community-creator Kanit '>Creada por <span className='text-naranjaMolon font-bold'>{props.info.communityCreator}</span></p>
-               
            </div>
            {/* <div  className=' bg-emerald-950 admin '>{props.info.admin}</div> */}
            </div>
    </div>
        <div  className=' p-2 description'>{props.info.communityDescription}
        <div className='flex p-2 justify-center' style={{marginTop:'2%'}} id='communityButtons'>
-      {props.subscription!= 'BANNED' ? <button style={{ marginRight:'2%'}}  className=" hover:bg-moradoLight  rounded-md p-2  border-2 border-moradoLight bg-moradoFondo placeholder-gray-400  placeholder-gray-400 " onClick={() => {
+      {props.apiResponse!=403 && props.apiResponse!=402 ? <button style={{ marginRight:'2%'}}  className=" hover:bg-moradoLight  rounded-md p-2  border-2 border-moradoLight bg-moradoFondo placeholder-gray-400  placeholder-gray-400 " onClick={() => {
          navigate("/upload/"+props.state);
        }}>Crear publicación</button> : null}
-       {props.subButton}
+       {props.apiResponse!=403  ? props.subButton : null}
        </div>
 
        </div>
-      
+       {props.info.sensitiveContent ? <div className='flex flex-row items-center justify-center  '> <img className='' style={{width:'10%'}} src={sensible}/><p className='Kanit  text-naranjaMolon text-center text-sm'>Esta comunidad puede incluir contenido sensible</p></div> : null}
+
        </div>
       }
     

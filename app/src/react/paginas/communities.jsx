@@ -31,7 +31,7 @@ export const Communities = () => {
     return (
         <div className=" p-1  h-full" id='communities'>
         <Header/>
-        <LateralMenu/>
+        {/* <LateralMenu/> */}
         <Body id={id}/>
        
 

@@ -19,7 +19,7 @@ export const Create = (props) => {
         <div className="" id='create'>
             <Header/>
             {messagesRender ? <Mensajes/>:null}
-            <LateralMenu/>
+            {/* <LateralMenu/> */}
             <CrearPublicacion communityId={community}/>
 
       

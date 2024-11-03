@@ -22,14 +22,15 @@ export const Body = (props) => {
 const [state,setState] = useState(localStorage.getItem('cid'));
 const [info,setInfo] = useState({});
 const [postsArr,setPostsArr] = useState([]);
-const [page,setPage] = useState(0);
+// const [page,setPage] = useState(0);
 const [isLast,setIslast] = useState(false);
 const[subscription,setSubscription] = useState(null);
 const [SubButton,setSubButton] = useState(null);
 const [creadorState, setCS] = useState(null);
+const [apiResponse,setApiResponse] = useState();
 
 const [loading, setLoading] = useState(true);
-const rctTrigger = useSelector(state => state.recentCommunityTrigger.value);
+// const rctTrigger = useSelector(state => state.recentCommunityTrigger.value);
 const myRef = useRef();
 let comunidadesRecientes = JSON.parse(localStorage.getItem("comunidadesRecientes"));
 const navigate = useNavigate();
@@ -101,14 +102,16 @@ let userData = JSON.parse(sessionStorage.getItem("user"))
    userData.subsCount++;
   sessionStorage.setItem('user',JSON.stringify(userData))
     setSubscription("MEMBER");
+  
   }
   else {
     axios.delete("http://"+SERV_DIR+":"+SERV_PORT+"/subscriptions/unsub/"+loggedUser+"/"+state);
     userData.subsCount--;
     sessionStorage.setItem('user',JSON.stringify(userData));
     setSubscription(null);
-  }
 
+  }
+  // setApiResponse(null);
 }
 
 
@@ -130,8 +133,8 @@ useEffect(() => {
   
   if(data.subscription != "BANNED") {
   if(creadorState==loggedUser) setSubButton(<button className=" hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon"  onClick={()=> navigate("/admin/"+state)}  id='administrar'>Administrar</button>)
-  else if ( data.subscription!=null) setSubButton(<button className=" hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon" onClick={()=> {changeSub(data.subscription)}} id='Unsub'>Desuscribirse</button>)
-  else setSubButton(<button className=" hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon" onClick={()=> {changeSub(data.subscription)}} id='Sub'>Suscribirse</button>)
+  else if ( data.subscription!=null) setSubButton(<button className=" hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon" onClick={()=> {    changeSub(subscription)}} id='Unsub'>Desuscribirse</button>)
+  else setSubButton(<button className=" hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon" onClick={()=> {    changeSub(subscription)}} id='Sub'>Suscribirse</button>)
   
   } else {
 
@@ -153,18 +156,21 @@ useEffect(() => {
         
        
         PostsRequestByCommunity(request,creador,response.data.subscription).then(response =>{
-         
+         console.log(response);
           setPostsArr(response);
           setLoading(false);
-         
+          setApiResponse(200);
+      
          
         
          
         }).catch(response => {
+          console.log(response);
           setLoading(false);
+          setApiResponse(response.response.status);
           setPostsArr(
 
-            <p className="mt-5 text-2xl Kanit text-naranjaMolon">Has sido vetado de esta comunidad</p>
+            <p  className="mt-5 w-2/4 text-2xl Kanit text-center text-naranjaMolon">{response.response.data}</p>
 
           )
         })
@@ -172,19 +178,22 @@ useEffect(() => {
         
 
     })
-   },[state])
+   },[state,subscription])
 
 
 useEffect(()=> {
 console.log("ola");
 if(subscription !='BANNED'){
   if(creadorState==loggedUser) setSubButton(<button className=" hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon" onClick={()=> navigate("/admin/"+state)} id='administrar'>Administrar</button>)
-  else if ( subscription!=null) setSubButton(<button className="hover:bg-moradoLight rounded-md p-2  text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none   focus:border-naranjaMolon" onClick={()=> {changeSub(subscription)}} id='Unsub'>Desuscribirse</button>)
+  else if ( subscription!=null) setSubButton(<button className="hover:bg-moradoLight rounded-md p-2  text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none   focus:border-naranjaMolon" onClick={()=> {
+    changeSub(subscription)
+ 
+  }} id='Unsub'>Desuscribirse</button>)
   else setSubButton(<button className="hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon" onClick={()=> {changeSub(subscription)}} id='Sub'>Suscribirse</button>)
 } else {
   setSubButton(null);
 }
-},[subscription,creadorState,state,])
+},[subscription,creadorState,state])
 
 
  
@@ -210,7 +219,7 @@ if(myRef.current!=null && postsArr.length>0){
 
     return (
     <div className='mt-5 flex flex-col justify-center items-center community-body'>
-        <CommunityInfo subscription ={subscription} subButton ={SubButton} state={state} info={info}/>
+        <CommunityInfo apiResponse={apiResponse} setApiResponse={setApiResponse} subscription ={subscription} subButton ={SubButton} state={state} info={info}/>
         {postsArr}
         {loading ? <SpinnerLoader clase='mt-5' id='spinnerCommunityPosts'/> : null}
         {messagesRender ? <Mensajes/>:null}

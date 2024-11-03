@@ -11,7 +11,7 @@ let params = useParams();
 return(
     <div style={{height:'100%'}} className="flex  bg-emerald-350   flex-col w-full items-center" id='adminpanel'>
     <Header/>
-    <LateralMenu/>
+    {/* <LateralMenu/> */}
     <Body id={params.id}/>
  
     

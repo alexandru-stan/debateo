@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from "react-dom";
 import {
     BrowserRouter as Router, Route, Routes,
+    useLocation,
+    useNavigate,
   } from 'react-router-dom';
 
 import Principal from "./paginas/principal";
@@ -19,22 +21,25 @@ import { PopUp } from '../react/componentes/reusable/popup/PopUp';
 import { update } from '../redux-store/slices/IncomingMessage';
 import newMessage from "../assets/audio/newMessage.mp3";
 import { stompClient } from "../webSocketTesting/webSocket";
+import { LateralMenu } from './componentes/reusable/lateralmenu/LateralMenu';
+import { update as tokenUpdate } from '../redux-store/slices/SessionToken';
 
+// import { useState } from 'react';
   function App() {
     
     const popUpVal = useSelector(state => state.popUp.value);
-    const incomingMessage = useSelector(state => state.incomingMessage.value);
-    
+    const token =  useSelector(state => state.sessionToken.value);
 
 
-
+   
 
 
     return (
      
       <Router>
       <div  className={popUpVal?.block ? 'opacity-50 noscroll ' : ""}>
-        <Routes>
+          <LateralMenu/>
+                <Routes>
           <Route exact path="/" element={<Principal />} />
           <Route exact path="/feed" element={<Feed />} />
           <Route exact path = "/community/:id" element={<Communities/>}></Route>

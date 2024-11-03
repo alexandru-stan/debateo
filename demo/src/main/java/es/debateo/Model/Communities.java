@@ -71,6 +71,23 @@ public class Communities {
 	
 	
 	
+	public Communities(String communityName, String communityDescription, byte[] communityImage,
+			String communityCreator, boolean sensitiveContent, boolean privateCommunity, boolean blockNewSubscriptions,
+			boolean adminMode) {
+		super();
+		this.communityName = communityName;
+		this.communityDescription = communityDescription;
+		this.communityImage = communityImage;
+		this.communityCreator = communityCreator;
+		this.sensitiveContent = sensitiveContent;
+		this.privateCommunity = privateCommunity;
+		this.blockNewSubscriptions = blockNewSubscriptions;
+		this.adminMode = adminMode;
+	}
+
+
+
+
 	public Communities(boolean sensitiveContent, boolean privateCommunity, boolean blockNewSubscriptions,
 			boolean adminMode) {
 		super();
