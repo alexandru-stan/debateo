@@ -32,7 +32,7 @@ const [loadingPost,setLoadingPost] = useState(true);
 const [loadingComments,setLoadingComments] = useState(true);
   const $ = require('jquery');
     let params = useParams();
-    let user = JSON.parse(sessionStorage.getItem('user'));
+    let user = JSON.parse(localStorage.getItem('userData'));
     
 
   

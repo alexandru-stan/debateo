@@ -22,33 +22,35 @@ import { update } from '../redux-store/slices/IncomingMessage';
 import newMessage from "../assets/audio/newMessage.mp3";
 import { stompClient } from "../webSocketTesting/webSocket";
 import { LateralMenu } from './componentes/reusable/lateralmenu/LateralMenu';
-import { update as tokenUpdate } from '../redux-store/slices/SessionToken';
+import { update as tokenUpdate } from '../redux-store/slices/LateralRender';
+import axios from 'axios';
+import { SERV_DIR,SERV_PORT } from '../utilities';
 
 // import { useState } from 'react';
   function App() {
     
     const popUpVal = useSelector(state => state.popUp.value);
-    const token =  useSelector(state => state.sessionToken.value);
+    // const userData = useSelector(state =>state.sessionToken.value);
+    const dispatch = useDispatch();
+    const lateralRender = useSelector(state => state.lateralRender.value)
 
-
-   
-
-
+    console.log(localStorage.getItem('userData') == null );
+    console.log(lateralRender);
     return (
      
       <Router>
       <div  className={popUpVal?.block ? 'opacity-50 noscroll ' : ""}>
-          <LateralMenu/>
-                <Routes>
-          <Route exact path="/" element={<Principal />} />
+        {lateralRender ?  <LateralMenu/>  : null  } 
+          <Routes>
+          <Route exact path="/" element={localStorage.getItem('userData')!=undefined ? <Feed /> : <Principal />} />
           <Route exact path="/feed" element={<Feed />} />
-          <Route exact path = "/community/:id" element={<Communities/>}></Route>
-          <Route exact path ="/profile" element={<Profile/>}></Route>
-          <Route exact path="/prueba" element={<Prueba/>}></Route>
-          <Route exact path="/upload/:id" element={<Create/>}></Route>
-          <Route exact path="/admin/:id" element={<Admin/>}></Route>
-          <Route exact path="/new/community" element={<NewCommunity/>}></Route>
-          <Route exact path="/:id/comments" element={<Comments/>}></Route>
+          <Route exact path = "/community/:id" element={<Communities />}></Route>
+          <Route exact path ="/profile" element={<Profile />}></Route>
+          <Route exact path="/prueba" element={<Prueba />}></Route>
+          <Route exact path="/upload/:id" element={<Create />}></Route>
+          <Route exact path="/admin/:id" element={<Admin />}></Route>
+          <Route exact path="/new/community" element={<NewCommunity />}></Route>
+          <Route exact path="/:id/comments" element={<Comments />}></Route>
 
         </Routes>
         </div>

@@ -9,7 +9,7 @@ import {SERV_DIR,SERV_PORT} from "../utilities";
 export async function PostsRequestByCommunity(request,creador,rol){
 
  
-let loggedUser = JSON.parse(sessionStorage.getItem('user')).username
+let loggedUser = JSON.parse(localStorage.getItem('userData')).username
   console.log(request.page);
 
     let endpoint =  "http://"+SERV_DIR+":"+SERV_PORT+"/posts/byCommunity/"+request.page+"/"+request.state+"/"+loggedUser;

@@ -18,18 +18,18 @@ export const PostFooter = (props) => {
     
     const [like,setLike] = useState(postInfo.liked==1?true:false);
     const [likesCount,setLikesCount] = useState(postInfo.likes);
+    const username = props.userData.username;
 
-
-let loggedUser = JSON.parse(sessionStorage.getItem('user')).username
+// let username = JSON.parse(localStorage.getItem('userData')).username
     function changeLikeStatus(){
         
-        if(!like) axios.post("http://"+SERV_DIR+":"+SERV_PORT+"/likes/"+loggedUser+"/"+postInfo.publicationId).then(()=>{
+        if(!like) axios.post("http://"+SERV_DIR+":"+SERV_PORT+"/likes/"+username+"/"+postInfo.publicationId).then(()=>{
         
         setLikesCount(likesCount+1)
         // postInfo.liked=1;
     }
         );
-        else axios.delete("http://"+SERV_DIR+":"+SERV_PORT+"/likes/"+loggedUser+"/"+postInfo.publicationId).then(()=>{
+        else axios.delete("http://"+SERV_DIR+":"+SERV_PORT+"/likes/"+username+"/"+postInfo.publicationId).then(()=>{
           
         setLikesCount(likesCount-1)
         // postInfo.liked=0;

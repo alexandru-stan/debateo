@@ -5,17 +5,26 @@ import Header from "../componentes/reusable/header/header";
 import { useSelector } from "react-redux";
 import { Mensajes } from "../componentes/reusable/mensajes/mensajes";
 // import "../../assets/styles/Create.css"
-
+import { useEffect } from "react";
 import { LateralMenu } from "../componentes/reusable/lateralmenu/LateralMenu";
 
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 export const Create = (props) => {
     const messagesRender = useSelector(state => state.messagesRender.value);
     let community= useParams();
+    const nav = useNavigate();
+
+    useEffect(()=> {
+      
+        localStorage.getItem('userData') == undefined ? nav("/") : null;
+        
+    })
+
+
         return (
 
   
-
+            localStorage.getItem('userData') != undefined ?  
         <div className="" id='create'>
             <Header/>
             {messagesRender ? <Mensajes/>:null}
@@ -24,5 +33,7 @@ export const Create = (props) => {
 
       
          </div>
+
+         : null
     )
 }

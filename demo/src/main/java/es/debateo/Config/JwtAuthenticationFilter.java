@@ -1,17 +1,15 @@
-														//package es.debateo.Config;
+//														package es.debateo.Config;
 //
 //import java.io.IOException;
+//import java.security.Key;
 //
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.lang.NonNull;
-//import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-//import org.springframework.security.core.context.SecurityContextHolder;
-//import org.springframework.security.core.userdetails.UserDetails;
-//import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 //import org.springframework.stereotype.Component;
 //import org.springframework.web.filter.OncePerRequestFilter;
 //
 //import es.debateo.Repositories.usersRepo;
+//import io.jsonwebtoken.security.Keys;
 //import jakarta.servlet.FilterChain;
 //import jakarta.servlet.ServletException;
 //import jakarta.servlet.http.HttpServletRequest;
@@ -24,7 +22,8 @@
 //	JwtService jwtService;
 //	@Autowired
 //	usersRepo repo;
-//	
+//	private static final String secretKey = "40ceb4c5f16780a7a84ac056d8781ca95ef21ce2adce87879a9b55a6f61dbe0c";
+//
 //	
 //	@Override
 //	protected void doFilterInternal(
@@ -38,36 +37,27 @@
 //			final String username;
 //			
 //			
-//			if(authHeader == null || !authHeader.startsWith("Bearer")) {
-//				filterChain.doFilter(request, response);
-//				return;
-//			}
-//			
-//			jwt = authHeader.substring(7);
-//			
-//			username = jwtService.extractUsername(jwt);
-//	
-//			if(username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-//				
-//				UserDetails userDetails = repo.findById(username).get();
-//				if(jwtService.isTokenValid(jwt, userDetails)) {
-//				UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userDetails,
-//						null,
-//						userDetails.getAuthorities());
-//				authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-//				SecurityContextHolder.getContext().setAuthentication(authToken);
-//				
-//				
-//				
-//				
-//				}
-//				
-//			
+//			if(authHeader != null && authHeader.startsWith("Bearer")) {
+//		
+//				jwt = authHeader.substring(7);
+//				Key key = Keys.hmacShaKeyFor(secretKey.getBytes());
 //				
 //				
 //				
 //			}
 //			
+
+				
+				
+				
+		
+				
+			
+				
+				
+				
+		
+			
 //		
 //		
 //		

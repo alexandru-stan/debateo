@@ -69,7 +69,7 @@ export const ComunidadesMasActivas = () => {
 export const Suscripciones = (props) => {
     const [collapsed,setCollapsed] = useState(false);
     const [items,setItems] = useState(null);
-    const user = JSON.parse(sessionStorage.getItem('user'));
+    // const user = JSON.parse(localStorage.getItem('userData'));
     const nav = useNavigate();
     useEffect(() => {
         retrieve();
@@ -77,7 +77,7 @@ export const Suscripciones = (props) => {
 
     function retrieve() {
         let temp = [];
-        getSubscriptions(user.username).then(r => {
+        getSubscriptions(props.userData.username).then(r => {
             
             r.data.forEach(e => {
                 temp.push(
@@ -112,7 +112,7 @@ export const Suscripciones = (props) => {
         <div onClick={()=> {
             setCollapsed(!collapsed)
             
-            getSubscriptions(props.username).then(r => {
+            getSubscriptions(props.userData.username).then(r => {
                 let temp = [];
                                r.data.forEach(e => {
              

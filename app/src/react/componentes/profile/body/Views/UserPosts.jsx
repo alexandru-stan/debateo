@@ -13,13 +13,14 @@ export const UserPosts = (props) => {
     const [postsArr,setPostsArr] = useState([]);
     const [page,setPage] = useState(0);
     const [isLast,setIslast] = useState(false);
+  
 
     const myRef = useRef();
     let request = {
       page:page,
       myRef:myRef,
       setIslast:setIslast,
-      loggedUser: JSON.parse(sessionStorage.getItem('user')).username,
+      loggedUser: props.user.username
      
     }
 

@@ -7,7 +7,7 @@ import { formatImage } from '../../../../../js/imageFormatting';
 
 const  Recommendations =   () => {
 const [state,setState] = useState();
-const username = JSON.parse(sessionStorage.getItem("user")).username;
+const username = JSON.parse(localStorage.getItem("user")).username;
 
 useEffect(() => {
 

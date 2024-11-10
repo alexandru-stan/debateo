@@ -7,7 +7,7 @@ import borrar from "../../../../assets/img/remove.png"
 import { assign } from "../../../../redux-store/slices/PopUp";
 import { useSelector,useDispatch } from "react-redux";
 export const EditProfile = ({editProfile}) => {
-  const user = JSON.parse(sessionStorage.getItem('user'));
+  const user = JSON.parse(localStorage.getItem('userData'));
   console.log(user);
   const [edit,setEdit] = useState({
     username:false,
@@ -16,10 +16,10 @@ export const EditProfile = ({editProfile}) => {
     birthDate:false
   });
   const [showEditButtons, setShowEditButtons] = useState(false);
-  const [username, setUsername] = useState(JSON.parse(sessionStorage.getItem('user')).username);
-  const [name, setName] = useState(JSON.parse(sessionStorage.getItem('user')).name);
-  const [mail, setMail] = useState(JSON.parse(sessionStorage.getItem('user')).mail);
-  const [birthDate, setBirthDate] = useState(JSON.parse(sessionStorage.getItem('user')).birth_date);
+  const [username, setUsername] = useState(JSON.parse(localStorage.getItem('userData')).username);
+  const [name, setName] = useState(JSON.parse(localStorage.getItem('userData')).name);
+  const [mail, setMail] = useState(JSON.parse(localStorage.getItem('userData')).mail);
+  const [birthDate, setBirthDate] = useState(JSON.parse(localStorage.getItem('userData')).birth_date);
   const $ = require("jquery");
   const popUpVal = useSelector(state => state.popUp.value);
   const dispatch = useDispatch();
@@ -135,7 +135,7 @@ export const EditProfile = ({editProfile}) => {
           name: name,
           mail: mail,
           birth_date: new Date(),
-          profileImageFile: sessionStorage.getItem('user').profile_image
+          profileImageFile: localStorage.getItem('userData').profile_image
         }));
 
     updateUser({
@@ -143,7 +143,7 @@ export const EditProfile = ({editProfile}) => {
           name: name,
           mail: mail,
           birthDate: new Date(),
-          profileImageFile: sessionStorage.getItem('user').profileImageFile
+          profileImageFile: localStorage.getItem('userData').profileImageFile
 
         }, user.username);
 

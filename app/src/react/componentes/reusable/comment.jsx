@@ -20,7 +20,7 @@ const $ = require('jquery')
 export const Comment = (props)=> {
  let fechaBBDD = props.commentDate==0 ? "Ahora mismo" : new Date(props.commentDate);
  let fechaFinal = formatearTimestamps(fechaBBDD);
-const user = JSON.parse(sessionStorage.getItem("user"));
+const user = JSON.parse(localStorage.getItem("user"));
   console.log(props.commentText+"  "+typeof props.profileImage);
   const [profileImage,setProfileImage] = useState(null)
   const [visibility,setVisibility] = useState('hidden');
@@ -126,7 +126,7 @@ return (
             let reply = {
               
               commentId:props.id,
-              username: JSON.parse(sessionStorage.getItem("user")).username,
+              username: JSON.parse(localStorage.getItem("user")).username,
               replyText: $('#replyTo'+props.id).val()
 
             }

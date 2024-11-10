@@ -12,16 +12,14 @@ import Image from '../reusable/img';
 import noSubscriptions from "../../../assets/img/noSubscriptions.png"
 import { useSelector } from 'react-redux';
 import { LateralMenuRight } from '../reusable/LateralMenuRight/rightLateralMenu';
-
+import { useSelectorr } from 'react-redux';
 
 const $ = require('jquery');
 
 // import { requestFeed } from '../../../js/PostRequestParameter';
-const Body = () => {
+const Body = (props) => {
 
-  
     const messagesRender = useSelector(state => state.messagesRender.value);
- 
     let noSubscriptionsElement;
     const [postsArr,setPostsArr] = useState([]);
     const [page,setPage] = useState(0);
@@ -29,13 +27,18 @@ const Body = () => {
     const [fyp,setFyp] = useState(true);
     const myRef = useRef();
     const [loading,setLoading] = useState();
+    const userData = JSON.parse(localStorage.getItem('userData'))
+
+    
+
     let request = {
       page:page,
       myRef:myRef,
       setIslast:setIslast,
-      loggedUser: JSON.parse(sessionStorage.getItem('user')).username,
+      loggedUser: userData?.username,
      
     }
+
 
 
  

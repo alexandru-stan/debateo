@@ -21,8 +21,8 @@ export const LateralMenuRight = (props) => {
     const dispatch = useDispatch();
     const isFirstRender = useRef(true);
     const lateralMenuVisibilityRight = useSelector(state => state.lateralMenuVisibilty.value.right);
-    const user = JSON.parse(sessionStorage.getItem('user'))
-    const [profileImage,setProfileImage] = useState(JSON.parse(sessionStorage.getItem('user')).profileImageFile);
+    // const user = JSON.parse(localStorage.getItem('userData'))
+    // const [profileImage,setProfileImage] = useState(JSON.parse(localStorage.getItem('userData')).profileImageFile);
     const [news,setNews] = useState([]);
 
     const windowWidth = useWindowSize().width;

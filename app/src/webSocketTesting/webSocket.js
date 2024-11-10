@@ -6,7 +6,7 @@ export const stompClient = new StompJs.Client({
     brokerURL: 'ws://'+SERV_DIR+':'+SERV_PORT+'/websocket'
 });
 
-const username = JSON.parse(sessionStorage.getItem("user"))?.username;
+const username = JSON.parse(localStorage.getItem("user"))?.username;
 
 
 

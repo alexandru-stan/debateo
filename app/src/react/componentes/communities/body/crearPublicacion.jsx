@@ -13,7 +13,7 @@ let form = useRef();
 const $ = require('jquery');
 const nav = useNavigate();
 
-let user = JSON.parse(sessionStorage.getItem('user')).username;
+let user = JSON.parse(localStorage.getItem('userData')).username;
 
 
 

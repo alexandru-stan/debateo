@@ -5,27 +5,29 @@ import { Body } from "../componentes/profile/body";
 import { LateralMenu } from "../componentes/reusable/lateralmenu/LateralMenu";
 // import "../../assets/styles/Profile.css";
 export const Profile = () => {
-let user = sessionStorage.getItem('user');
+let user = JSON.parse(localStorage.getItem('userData'));
 
 const nav = useNavigate() ;
-    useEffect(()=> {
-        
-        if(user==null){
-            nav("/");
-        } else {
-            
-        }
-    })
+
+
+useEffect(()=> {
+      
+    localStorage.getItem('userData') == undefined ? nav("/") : null;
+    
+})
 
 
 return(
+    localStorage.getItem('userData') != undefined ?  
     <div className="h-full  flex items-center flex-col" id='profile'>
     <Header/>
     {/* <LateralMenu/> */}
-    <Body/>
+    <Body user = {user} />
     
 
     </div>
+
+: nav("/")
 
 );
 

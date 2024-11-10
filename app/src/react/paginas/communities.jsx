@@ -11,13 +11,13 @@ import { LateralMenu } from "../componentes/reusable/lateralmenu/LateralMenu";
 export const Communities = () => {
 
     let {id} = useParams();
-    let user = sessionStorage.getItem('user');
-   
+    let userData = localStorage.getItem('userData');
+    
 
     const nav = useNavigate() ;
         useEffect(()=> {
             
-            if(user==null){
+            if(userData==undefined){
                 nav("/");
             } else {
                 
@@ -29,12 +29,14 @@ export const Communities = () => {
 
    
     return (
+        userData != undefined ? 
         <div className=" p-1  h-full" id='communities'>
         <Header/>
         {/* <LateralMenu/> */}
-        <Body id={id}/>
+        <Body userData={userData} id={id}/>
        
 
         </div>
-    )
+: null    
+)
 }

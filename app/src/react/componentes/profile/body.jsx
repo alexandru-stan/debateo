@@ -9,14 +9,15 @@ import { UserData } from "./body/UserData";
 import { UserPosts } from "./body/Views/UserPosts";
 import { UserComments } from "./body/Views/UserComments";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-export const Body = () => {
+export const Body = (props) => {
 
     const [selected,setSelected] = useState("Publicaciones");
     const messagesRender = useSelector(state => state.messagesRender.value);
+    const nav = useNavigate()
 
-
-
+  
 
 
 
@@ -30,7 +31,7 @@ export const Body = () => {
     return (
         <div className="text-white flex items-center flex-col w-full  mt-5 " id='profile-body'>
        {/* <EditProfile/> */}
-       <UserData/>
+       <UserData user={props.user}/>
        {messagesRender ? <Mensajes/> : null}
 
 
@@ -42,8 +43,8 @@ export const Body = () => {
     </div>
 
         <div className="w-full flex flex-col items-center justify-center ">
-          <UserPosts visibility={selected=="Publicaciones" ? true : false}/>
-          <UserComments visibility = {selected=="Comentarios" ? true : false}/>
+          <UserPosts user={props.user} visibility={selected=="Publicaciones" ? true : false}/>
+          <UserComments user ={props.user} visibility = {selected=="Comentarios" ? true : false}/>
         </div>
 
 

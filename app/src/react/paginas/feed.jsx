@@ -11,36 +11,31 @@ import { useDispatch } from "react-redux";
 import { LateralMenuRight } from "../componentes/reusable/LateralMenuRight/rightLateralMenu";
 import { update } from "../../redux-store/slices/LateralMenuVisibility";
 import { useRef } from "react";
-const Feed = () => {
-    let user = JSON.parse(sessionStorage.getItem('user'));
-const nav = useNavigate();
+const Feed = (props) => {
+    // const userData = JSON.parse(localStorage.getItem(user));
+    const nav = useNavigate();
+    
+    useEffect(()=>{
 
-    useEffect(()=> {
-      
-        
-        if(user==null){
-            nav("/");
-        } else {
-            
-        }
-       
-    })
+        localStorage.getItem('userData') == undefined ? nav("/") : null;
+
+    },)
 
 
-
-    return user ? (
-       
+    return  (
+        localStorage.getItem('userData') != undefined ?  
         <div style={{}} className=" pt-1   overlay " id='feed'>
         <Header/>
         {/* <LateralMenu/> */}
         <LateralMenuRight/>
-        <Body/>
+        <Body userData={props.userData} />
+        {/* {token} */}
         
         </div>
         
+    : null
     
-    
-    ) : null;
+    ) 
     
     
     

@@ -18,19 +18,22 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { update as incoming } from "../../../../redux-store/slices/IncomingMessage";
 import newMessage from "../../../../assets/audio/newMessage.mp3"
 import { stompClient } from "../../../../webSocketTesting/webSocket";
-
+import { update as updateLatRender } from "../../../../redux-store/slices/LateralRender";
 export const LateralMenu = (props) => {
     
     const dispatch = useDispatch();
     const isFirstRender = useRef(true);
     const lateralMenuVisibility = useSelector(state => state.lateralMenuVisibilty.value.left);
     const popUp = useSelector(state => state.popUp.value);
-    const user = JSON.parse(sessionStorage.getItem('user'))
-    const [profileImage,setProfileImage] = useState(refreshProfileImage(user?.username));
+    // const user = JSON.parse(localStorage.getItem('userData'))
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    const [profileImage,setProfileImage] = useState(refreshProfileImage(userData.username));
     const nav = useNavigate();
     const loc = useLocation();
 
     const windowWidth = useWindowSize().width;
+
+    // alert(user?.username);
 
     useEffect(() => {
       
@@ -45,10 +48,11 @@ export const LateralMenu = (props) => {
 
     stompClient.activate();
     stompClient.onConnect = (frame) => {
-    stompClient.subscribe('/'+JSON.parse(sessionStorage.getItem("user")).username,(message) => {
+    stompClient.subscribe('/'+userData.username,(message) => {
       let mensaje = JSON.parse(message.body);
       audio.play();
       dispatch(incoming(mensaje))
+      
 
       // alert("jeje")
       // cambiarUltimoMensajeDelChat(mensaje);
@@ -75,7 +79,6 @@ export const LateralMenu = (props) => {
 
 
   
-        loc.pathname != "/" ? 
   
 
         <div id="lateralMenu" className={   " bg-moradoOscuro border-r-2 border-moradoLight"} style={{zIndex:'1',position:'fixed', overflow:'scroll', height:'calc(100vh - 50px)  ',  left:'0%', top:'7%', width:'20%', display:lateralMenuVisibility}}>
@@ -83,16 +86,16 @@ export const LateralMenu = (props) => {
         <Image onerror={()=>{
         
 
-        refreshProfileImage(user.username).then(r => setProfileImage(formatImage(r.data.profileImage)));
+        refreshProfileImage(userData.username).then(r => setProfileImage(formatImage(r.data.profileImage)));
 
         }} style={{borderRadius:'100% ', width:'4rem', height:'4rem'}} clase={" p-2"} ruta={profileImage}/>
         <div className="p-3 flex flex-row items-center justify-between w-full">
         <div>
-            <div className="max-text-2xl text-bold text-naranjaMolon Kanit">{user.username}</div>
-            <div className="text-gray-300 text-sm">{user.name}</div>
+            <div className="max-text-2xl text-bold text-naranjaMolon Kanit">{userData.username}</div>
+            <div className="text-gray-300 text-sm">{userData.name}</div>
         </div>
-            <div  className="  flex justify-center w-1/4">
-               <img onClick={ () => {
+            <div  className="  flex justify-center ">
+               <img style={{width:'2rem'}} onClick={ () => {
 
                 dispatch(assign(
                     {
@@ -104,13 +107,17 @@ export const LateralMenu = (props) => {
                                  <p  
                                  onClick={()=>{
                                      dispatch(assign(null));
-                                    nav("/")
+
+                                     localStorage.removeItem('userData');
+                               
+                                     nav("/")
+                                     dispatch(updateLatRender(false));
                                     
                                     }}
                                  className="bg-moradoLight text-center   Kanit font-bold text-xl  text-white py-2 px-6 rounded-lg w-2/6 hover:bg-naranjaMolon hover:cursor-pointer ">Sí</p>
                                 <p
                                  onClick={()=>{dispatch(assign(null))}}
-                                 className="bg-moradoLight  text-center Kanit font-bold text-xl text-white py-2 px-6 rounded-lg w-2/6 hover:bg-naranjaMolon hover:cursor-pointer">No</p>
+                                 className="bg-moradoLight   text-center Kanit font-bold text-xl text-white py-2 px-6 rounded-lg w-2/6 hover:bg-naranjaMolon hover:cursor-pointer">No</p>
                                  </div>
                          </div>
                          </div>
@@ -139,14 +146,14 @@ export const LateralMenu = (props) => {
                 // </div>
                 // ));
                
-               }} title='Cerrar sesión' className="w-2/4 hover:cursor-pointer hover:bg-moradoFondo  rounded-3xl" src={logout}></img>
+               }} title='Cerrar sesión' className=" hover:cursor-pointer hover:bg-moradoFondo  rounded-3xl" src={logout}></img>
             </div>
         </div>
         </div>
-       <Menu/>
+       <Menu userData={userData}/>
         {/* <ComunidadesRecientes/> */}
-        <ComunidadesMasActivas/>
-        <Suscripciones username={user.username}/>
+        <ComunidadesMasActivas userData={userData}/>
+        <Suscripciones userData={userData} />
 
 
        
@@ -154,8 +161,7 @@ export const LateralMenu = (props) => {
 
         </div>
 
-        : 
-        null
+      
 
            
 

@@ -8,7 +8,7 @@ export function subirComentario(comentario,post){
 
     let comment = {
         postId:post,
-        username:JSON.parse(sessionStorage.getItem('user')).username,
+        username:JSON.parse(localStorage.getItem('userData')).username,
         commentDate:null,
         commentText:comentario
 

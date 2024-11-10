@@ -7,17 +7,22 @@ import {Mensajes} from "../componentes/reusable/mensajes/mensajes";
 import { LateralMenu } from "../componentes/reusable/lateralmenu/LateralMenu";
 import { useSelector } from "react-redux";
 import { useState } from "react";
-
+import { useEffect } from "react";
 export const NewCommunity = () => {
     const nav = useNavigate();    
     const [options,setOptions] = useState([]);
     let form = useRef(null);
     const messagesRender = useSelector(state => state.messagesRender.value);
-
+    useEffect(()=> {
+      
+        localStorage.getItem('userData') == undefined ? nav("/") : null;
+        
+    })
+    
     return ( 
     
       
-    
+        localStorage.getItem('userData') != undefined ?  
     <div id='new' className="w-full flex flex-col items-center">
      {messagesRender ? <Mensajes/>:null}
       {/* <LateralMenu/> */}
@@ -117,6 +122,8 @@ Modo administrador
 
         </div>
         </div>
-            
+     
+     :null
+     
     )
 }

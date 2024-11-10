@@ -6,7 +6,7 @@ import { change } from "../../../../../redux-store/slices/SelectedChatSlice";
 
 export const NuevoChat = (props) => {
     const [resultados,setResultados] = useState([]);
-    const user = JSON.parse(sessionStorage.getItem('user')).username;
+    const user = JSON.parse(localStorage.getItem('userData')).username;
     const selectedChat = useSelector(state => state.selectedChat.value);
     const dispatch = useDispatch();
     let timerId;

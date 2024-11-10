@@ -41,7 +41,7 @@ export const VetoMenu = (props) => {
     const dispatch = useDispatch();
     const [resultados,setResultados] = useState([]);
     const [selected,setSelected] = useState([]);
-    const user = JSON.parse(sessionStorage.getItem('user')).username;
+    const user = JSON.parse(localStorage.getItem('userData')).username;
     
     function search(event) {
     if(event.target.value.length!=0){

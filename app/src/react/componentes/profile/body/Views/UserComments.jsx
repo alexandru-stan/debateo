@@ -7,8 +7,8 @@ export const UserComments = (props) => {
     const [commentsArr,setCommentsArr] = useState(<div>a</div>);
     
     useEffect(() => {
-
-        getCommentsByUsername(JSON.parse(sessionStorage.getItem('user')).username).then(e => {
+        console.log("as");
+        getCommentsByUsername(props.user.username).then(e => {
             let temp = [];
                         e.data.forEach(obj => {
                 temp.push(<Comment

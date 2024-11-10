@@ -9,7 +9,7 @@ import LateralMenuVisibility from "./slices/LateralMenuVisibility";
 import RecentCommunityTrigger from "./slices/RecentCommunityTrigger";
 import PopUp from "./slices/PopUp";
 import MessagesRender from "./slices/MessagesRender";
-import  SessionToken from "./slices/SessionToken";
+import  LateralRender from "./slices/LateralRender";
 
 export default configureStore({
     reducer: {
@@ -23,7 +23,7 @@ export default configureStore({
         recentCommunityTrigger: RecentCommunityTrigger,
         popUp: PopUp,
         messagesRender: MessagesRender,
-        sessionToken: SessionToken
+        lateralRender: LateralRender
         
     },
     middleware: (getDefaultMiddleware) =>

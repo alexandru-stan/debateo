@@ -10,15 +10,16 @@ import { formatImage } from "../../../../js/imageFormatting";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { assign } from "../../../../redux-store/slices/PopUp";
-export const UserData = () =>  {
+import subscount from "../../../../assets/img/subsCount.png";
+export const UserData = (props) =>  {
     const [editProfile,setEditProfile] = useState(false);
-    const user = JSON.parse(sessionStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem('userData'));
     const popUpVal = useSelector(state => state.popUp.value);
     const dispatch = useDispatch();
     const date = new Date(user.birth_date);
     const formatter = new Intl.DateTimeFormat('es', { month: 'long' });
     const mes = formatter.format(date)
-    const [profileImage,setProfileImage] = useState(JSON.parse(sessionStorage.getItem('user')).profileImageFile);
+    const [profileImage,setProfileImage] = useState(user.profileImageFile);
             const updateParentState = (newValue) => {
         setEditProfile(newValue);
       };
@@ -42,12 +43,18 @@ export const UserData = () =>  {
             <p className="text-gray-400 ">{user.name}</p>
         </div>
 
-        <div style={{paddingLeft:'0.75rem'}} className=" flex ">
+        <div style={{paddingLeft:'0.75rem'}} className=" flex flex-col ">
         
         <div className="flex items-center">
         <img style={{width:'1rem', marginRight:'1rem'}} src={cakeIcon}/>
         <p className=" text-gray-400 ">Fecha de nacimiento: {date.getDate()} de {mes} de {date.getFullYear()} </p>
         </div>
+
+        {/* <div className="flex items-center">
+            <img style={{width:'1rem', marginRight:'1rem'}} src={subscount}/>
+            <p className="text-gray-400 "></p>
+        </div> */}
+
         {/* <div style={{marginLeft:'2%'}} className="flex items-center">
         <img style={{width:'1rem', marginRight:'1rem'}} src={calendarIcon}/>
         <p className="text-gray-400"> Se unió en {mes} de {date.getFullYear()} </p>

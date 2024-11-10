@@ -25,7 +25,7 @@ import { refreshProfileImage } from "../../../../js/RefreshProfileImage";
 import test from "../../../../assets/img/admin.png";
 const $ = require('jquery');
 export const Mensajes = (props) => {
-const username = JSON.parse(sessionStorage.getItem('user')).username;
+const username = JSON.parse(localStorage.getItem('userData')).username;
 const selectedChat = useSelector(state => state.selectedChat.value);
 const unreadMessages = useSelector(state => state.unreadMessages.value);
 const dispatch = useDispatch();

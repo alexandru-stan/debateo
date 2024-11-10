@@ -23,7 +23,7 @@ export const ChatActual = (props) => {
     const incomingMessage = useSelector(state => state.incomingMessage.value);
     const dispatch = useDispatch();
     const [messages,setMessages] = useState([]);
-    const username = JSON.parse(sessionStorage.getItem("user")).username    
+    const username = JSON.parse(localStorage.getItem("userData")).username    
     // const messagesRender = useState(state => state.messagesRender.value)
   
 

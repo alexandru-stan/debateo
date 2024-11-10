@@ -12,7 +12,7 @@ export const PostHeader = (props) => {
 const navigate = useNavigate();
 const popUpVal = useSelector(state => state.popUp.value);
 const dispatch = useDispatch();
-const username = JSON.parse(sessionStorage.getItem('user')).username;
+// const username = JSON.parse(localStorage.getItem('userData')).username;
 const [dotsMenuVisibility, setDotsMenuVisibility] = useState("none");
 const myRef = useRef(null)
 

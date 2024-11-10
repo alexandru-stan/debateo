@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import es.debateo.Config.JwtService;
 import es.debateo.DTO.ServiceResponse;
 import es.debateo.Model.Messages;
 import es.debateo.Model.UserRecord;
@@ -44,6 +45,9 @@ public class UsersController {
 	@Autowired
 	usersRepo repo;
 
+	@Autowired
+	JwtService jwtService;
+	
 	@PostMapping("/login")
 
 //	public ResponseEntity<Users> validarLogin(@RequestBody Users credentials) throws IOException {
@@ -57,6 +61,8 @@ public ResponseEntity<Users> validarLogin(@RequestBody Users credentials) throws
 		
 	    ServiceResponse<Users> response = servicio.login(credentials.getUsername(), credentials.getPassword());
 	    Users user = response.getObj()!=null ? response.getObj():null;
+	    String token =  jwtService.generateToken(user);
+	    user.setToken(token);
 	    return new ResponseEntity<>(user, response.getStatus());
 	}
 	

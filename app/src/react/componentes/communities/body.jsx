@@ -7,7 +7,7 @@ import { PostsRequestByCommunity } from '../../../js/PostRequestByCommunity';
 import { Mensajes } from '../reusable/mensajes/mensajes';
 import { useRef } from 'react';
 import SpinnerLoader from '../reusable/SpinnerLoader';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { CrearPublicacion } from './body/crearPublicacion';
 import admin from '../../../assets/img/admin.png';
 import crown from '../../../assets/img/crown.png';
@@ -38,7 +38,13 @@ const messagesRender = useSelector(state => state.messagesRender.value);
 const popUpVal = useSelector(state => state.popUp.value);
 const dispatch = useDispatch();
 let creador;
-let loggedUser = JSON.parse(sessionStorage.getItem('user')).username;
+let loggedUser = JSON.parse(localStorage.getItem('userData')).username;
+const loc = useLocation();
+
+useEffect(()=>{
+localStorage.setItem('cid',loc.pathname.split("community/")[1]);
+setState(loc.pathname.split("community/")[1])
+},[loc])
 
 let request =  {
   page:0,
@@ -95,19 +101,19 @@ const observer = new IntersectionObserver(handleIntersection);
 
 
 function changeSub(subscription){
-let userData = JSON.parse(sessionStorage.getItem("user"))
+let userData = JSON.parse(localStorage.getItem("userData"))
   if(subscription==null) {
     
     axios.post("http://"+SERV_DIR+":"+SERV_PORT+"/subscriptions/sub/"+loggedUser+"/"+state);
    userData.subsCount++;
-  sessionStorage.setItem('user',JSON.stringify(userData))
+  // sessionStorage.setItem('user',JSON.stringify(userData))
     setSubscription("MEMBER");
   
   }
   else {
     axios.delete("http://"+SERV_DIR+":"+SERV_PORT+"/subscriptions/unsub/"+loggedUser+"/"+state);
     userData.subsCount--;
-    sessionStorage.setItem('user',JSON.stringify(userData));
+    // sessionStorage.setItem('user',JSON.stringify(userData));
     setSubscription(null);
 
   }
@@ -117,13 +123,13 @@ let userData = JSON.parse(sessionStorage.getItem("user"))
 
 useEffect(() => {
   setState(localStorage.getItem('cid'));
-  // setPage(0);
+//  alert("a");
   setPostsArr([]);
-  
+  // alert(localStorage.getItem('cid'))
    },[localStorage.getItem('cid')])
   
    useEffect(()=> {
- 
+    // alert(state);
     CommunityInfoRequest(state).then(response => {
     let data = response.data;
      
@@ -165,7 +171,7 @@ useEffect(() => {
         
          
         }).catch(response => {
-          console.log(response);
+          // console.log(response);
           setLoading(false);
           setApiResponse(response.response.status);
           setPostsArr(

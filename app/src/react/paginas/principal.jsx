@@ -4,13 +4,15 @@ import Body from "../componentes/principal/body";
 // import styles from "../../assets/styles/Principal.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { stompClient } from "../../webSocketTesting/webSocket";
-
+import { useNavigate } from "react-router-dom";
 function Principal(){
-    stompClient.deactivate();
+  const nav = useNavigate();
     useEffect(()=> {
+       
+        // stompClient.deactivate();
+        // localStorage.removeItem('token')
         
-        sessionStorage.removeItem('user');
-            })
+    })
 
     return (
 <>

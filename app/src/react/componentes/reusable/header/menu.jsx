@@ -15,7 +15,7 @@ import { update } from "../../../../redux-store/slices/MessagesRender";
 
 
 
-export const Menu = () => {
+export const Menu = (props) => {
 
     const messagesRender = useSelector(state => state.messagesRender.value);
     const dispatch = useDispatch();
@@ -26,7 +26,7 @@ export const Menu = () => {
     const [mensajesSinLeer, setMensajesSinLeer] = useState(null);
     useEffect(()=>{
 
-        getUnreadMessages(JSON.parse(sessionStorage.getItem('user')).username).then(response => { 
+        getUnreadMessages(props.userData.username).then(response => { 
             
             setMensajesSinLeer(response.data)});
         
