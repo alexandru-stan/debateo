@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -48,13 +49,17 @@ public class PostsController {
 	@Autowired
 	communitiesRepo communitiesRepo;
 	
-	@GetMapping("/{username}/{offset}/{fyp}")
+	
+	
+	
+	
+	@PostMapping("/{username}/{offset}/{fyp}")
 	public ResponseEntity<Page<PostDTO>> getPosts(@PathVariable String username, @PathVariable int offset, @PathVariable boolean fyp){
+
 		
-		System.out.println("LA PAGINA ES:"+offset);
 		ServiceResponse<PostDTO> response = services.getPosts(username,offset,fyp);
 		
-		System.out.println(response.getPagina());
+		
 		
 		return new ResponseEntity<Page<PostDTO>>(response.getPagina(),response.getStatus());
 		
@@ -63,14 +68,14 @@ public class PostsController {
 	@GetMapping("/byCommunity/{offset}/{communityId}/{username}")
 	public ResponseEntity<?> getPostsByCommunity(@PathVariable String username, @PathVariable int offset, @PathVariable long communityId){
 		
-//		System.out.println("LA PAGINA ES:"+offset);
+//		
 		
 		Optional<Subscriptions> sub = subsRepo.findById(new SubscriptionsID(username,communityId));
 		boolean isPrivate = communitiesRepo.isCommunityPrivate(communityId);
 		String creator = communitiesRepo.getCommunityCreator(communityId);
 	
-		System.out.println(creator+" "+username);
-		System.out.println(sub.isPresent());
+		
+		
 		if(sub.isPresent() && sub.get().getSubscriptionLevel() == Subscriptions.subscriptionType.BANNED ) {
 			
 			return new ResponseEntity<String>("Has sido vetado de esta comunidad", HttpStatus.FORBIDDEN);
@@ -93,7 +98,7 @@ public class PostsController {
 	public ResponseEntity<Page<PostDTO>> getPostsByCreator(@PathVariable String username , @PathVariable int offset){
 		
 		ServiceResponse<PostDTO> response = services.getPostsByCreator(username,offset);
-		System.out.println(response.getPagina().getNumberOfElements() );
+		
 		return new ResponseEntity<Page<PostDTO>>(response.getPagina(),response.getStatus());
 	}
 	
@@ -108,7 +113,7 @@ public class PostsController {
 		try {
 			
 			Posts post = new Posts(user,Long.valueOf(community),titulo,cuerpo,file.getBytes());
-			System.out.println(post.toString());
+			
 			 savedPost= repo.save(post);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

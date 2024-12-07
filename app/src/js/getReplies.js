@@ -11,7 +11,12 @@ export async function getReplies(commentId){
 
     
 
-const e = await axios.get("http://"+SERV_DIR+":"+SERV_PORT+"/replies/"+commentId);
+const e = await axios.get("http://"+SERV_DIR+":"+SERV_PORT+"/replies/"+commentId,{
+    headers:{
+        'Authorization':'Bearer '+ JSON.parse(localStorage.getItem('userData')).token,
+        'Content-Type': 'application/json'
+    }
+});
 
 e.data.forEach(e => replies.push(<Reply username={e.username} replyText={e.replyText} replyDate={e.replyDate} />));
 

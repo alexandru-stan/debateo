@@ -2,9 +2,23 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { assign } from "../../../../redux-store/slices/PopUp";
+import { useNavigate } from "react-router-dom";
+import { update as updateLatRender } from "../../../../redux-store/slices/LateralRender";
 export const PopUp = (props) => {
     const popUpVal = useSelector(state => state.popUp.value);
     const dispatch = useDispatch();
+    const nav = useNavigate();
+    const effects = {
+        logout: () => {
+
+            dispatch(updateLatRender(false));
+            dispatch(assign(null));
+            localStorage.removeItem('userData');
+            nav("/")
+            
+        }
+    }
+
 
     return (
         
@@ -16,7 +30,7 @@ export const PopUp = (props) => {
        <button 
         className="bg-moradoLight  w-1/4 mt-3  font-bold py-2 px-4 rounded hover:bg-naranjaMolon Kanit" 
         style={{ border: '2px solid #35325c', borderRadius: '5%' }}
-        onClick={()=>{dispatch(assign(null))}}>
+        onClick={effects[props.effect]}>
         
         Ok
     </button>

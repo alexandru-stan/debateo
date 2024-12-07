@@ -25,6 +25,7 @@ import { LateralMenu } from './componentes/reusable/lateralmenu/LateralMenu';
 import { update as tokenUpdate } from '../redux-store/slices/LateralRender';
 import axios from 'axios';
 import { SERV_DIR,SERV_PORT } from '../utilities';
+import { Mensajes } from './componentes/reusable/mensajes/mensajes';
 
 // import { useState } from 'react';
   function App() {
@@ -33,14 +34,20 @@ import { SERV_DIR,SERV_PORT } from '../utilities';
     // const userData = useSelector(state =>state.sessionToken.value);
     const dispatch = useDispatch();
     const lateralRender = useSelector(state => state.lateralRender.value)
-
-    console.log(localStorage.getItem('userData') == null );
-    console.log(lateralRender);
+    const messagesRender = useSelector(state => state.messagesRender.value);
+    useEffect(()=>{console.log(popUpVal);},[popUpVal])
+    
+    
+    
     return (
      
       <Router>
       <div  className={popUpVal?.block ? 'opacity-50 noscroll ' : ""}>
-        {lateralRender ?  <LateralMenu/>  : null  } 
+        {lateralRender ? <>
+        <LateralMenu/> 
+        {messagesRender ? <Mensajes/> : null}
+        
+        </>  : null  } 
           <Routes>
           <Route exact path="/" element={localStorage.getItem('userData')!=undefined ? <Feed /> : <Principal />} />
           <Route exact path="/feed" element={<Feed />} />

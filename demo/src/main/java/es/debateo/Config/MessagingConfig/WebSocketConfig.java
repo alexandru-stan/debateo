@@ -1,4 +1,4 @@
-package es.debateo.Config;
+package es.debateo.Config.MessagingConfig;
 
 import java.util.Set;
 
@@ -17,7 +17,7 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 
 @Configuration
 @EnableWebSocketMessageBroker
-public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
+public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {	
 
 	
 //THIS METHOD DEFINES AN STOMP ENDPOINT TO WHICH THE USER WILL BE ABLE TO CONNECT BEFORE ANYTHING ELSE.
@@ -26,6 +26,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
   public void registerStompEndpoints(StompEndpointRegistry
    registry) {
 	  registry.addEndpoint("/websocket").setAllowedOriginPatterns("*");
+	  System.out.println("AB");
     
   }
 

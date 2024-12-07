@@ -52,7 +52,7 @@ const [loadingComments,setLoadingComments] = useState(true);
             publicationBody={data.post.publicationBody}
             publicationTitle={data.post.publicationTitle}
             publicationId={data.post.publicationId}
-            publicationImage={(data.post.publicationImage.length>0)?<img  src={formatImage(data.post.publicationImage)} alt='img'/>:null}
+            publicationImage={(data.post.publicationImage.length>0)?formatImage(data.post.publicationImage):null}
             publicationUser={data.post.user}    
   
   
@@ -96,7 +96,7 @@ const [loadingComments,setLoadingComments] = useState(true);
         <div  id='comments' className="  flex flex-col items-center">
         <Header/>
         {/* <LateralMenu/> */}
-          {loadingPost? <SpinnerLoader id='commPostLoader'/> : selectedPost}
+          {loadingPost? <SpinnerLoader hijoStyle={{width:'4rem'}} id='commPostLoader'/> : selectedPost}
 
           <div id='commentBox' onClick={() => !writable ?  setWritable(true) : null} style={{minHeight:'4rem',border:'1px solid #444073'}} className=" hover:cursor-text w-2/6 rounded-3xl flex flex-col  justify-center   mt-3 p-2">
 
@@ -141,10 +141,10 @@ const [loadingComments,setLoadingComments] = useState(true);
 
           {/* </div> */}
           
-        {loadingComments ? <SpinnerLoader id='commLoader'/> : comments}
+        {loadingComments ? <SpinnerLoader hijoStyle={{width:'4rem'}} id='commLoader'/> : comments}
        
         </div>
-        {messagesRender ? <Mensajes/>:null}
+        {/*messagesRender ? <Mensajes/>:null*/}
         </div>
    
         )

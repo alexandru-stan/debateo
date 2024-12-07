@@ -67,7 +67,7 @@ export const LateralMenuRight = (props) => {
         {/* <NewsCard imagen={null} titular = {null} cuerpo = {null} enlace ={null}/>
          */}
          <p id="actualidad" style={{marginTop:'4rem'}} className="Kanit text-center font-bold text-3xl text-naranjaMolon">Actualidad</p>
-           {news.length>0 ? news : <SpinnerLoader id='newsSpinner' />}
+           {news.length>0 ? news : <SpinnerLoader hijoStyle={{width:'4rem'}} id='newsSpinner' />}
 
         </div>
 

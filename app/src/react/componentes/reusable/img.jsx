@@ -8,7 +8,13 @@ const Logo = (props) => {
 
 
     return (
-        <img onError={props.onerror} onClick={props.onclick} style={props.style} id={props.id} className={props.clase} draggable='false' src={props.ruta}  />
+        <img alt="" onLoad={props.onload} onError={() => {
+    
+            props.onerror();
+
+        
+        
+        }} onClick={props.onclick} style={props.style} id={props.id} className={props.clase} draggable='false' src={props.ruta}  />
     )
 }
 

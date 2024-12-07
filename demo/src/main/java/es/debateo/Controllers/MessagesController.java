@@ -61,7 +61,7 @@ public class MessagesController {
 
 		// Check if the message was saved successfully
 		if (savedMessage != null) {
-		    System.out.println("EL MENSAJE ID"+ savedMessage.getMessageId());
+		    
 		    simpMessagingTemplate.convertAndSend("/" + savedMessage.getMessageReceiver(), savedMessage);
 		} else {
 		    // Handle the case where saving failed, if needed
@@ -79,7 +79,7 @@ public class MessagesController {
 
 	@PutMapping("/read/{id}")
 	public void readMessage(@PathVariable int id) {
-		System.out.println(id);
+		
 		services.ReadMessage(id);
 		
 	}

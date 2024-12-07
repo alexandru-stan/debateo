@@ -3,7 +3,7 @@ import {SERV_DIR,SERV_PORT} from "../utilities";
 export function subirComentario(comentario,post){
    
   
-    console.log(comentario);
+    console.log(comentario);    
   
 
     let comment = {
@@ -14,7 +14,12 @@ export function subirComentario(comentario,post){
 
     }
 
-    axios.post("http://"+SERV_DIR+":"+SERV_PORT+"/comments",comment)
+    axios.post("http://"+SERV_DIR+":"+SERV_PORT+"/comments",comment,{
+        headers:{
+            'Authorization':'Bearer '+ JSON.parse(localStorage.getItem('userData')).token,
+            'Content-Type': 'application/json'
+        }
+    })
 
     return comment;
 

@@ -12,7 +12,12 @@ export async function PostsRequest(request,setPostsArr){
      $("#feedSpinner").css("display","block");
     let endpoint =  "http://"+SERV_DIR+":"+SERV_PORT+"/posts/byCreator/"+request.loggedUser+"/"+request.page;
 
-    return axios.get(endpoint).then(response=>{
+    return axios.get(endpoint,{
+        headers:{
+            'Authorization':'Bearer '+ JSON.parse(localStorage.getItem('userData')).token,
+            'Content-Type': 'application/json'
+        }
+    }).then(response=>{
       
     let arr = response.data.content;
  
@@ -38,7 +43,7 @@ export async function PostsRequest(request,setPostsArr){
               publicationBody={arr[i].post.publicationBody}
               publicationTitle={arr[i].post.publicationTitle}
               publicationId={arr[i].post.publicationId}
-              publicationImage={(arr[i].post.publicationImage.length>0)?<img style={{}} src={formatImage(arr[i].post.publicationImage)} alt='img'/>:null}
+              publicationImage={(arr[i].post.publicationImage.length>0)?formatImage(arr[i].post.publicationImage):null}
               publicationUser={arr[i].post.user}
               referencia={(posts.length-i)==1?request.myRef:null}
             //   delete={arr[i].subscription?.subscriptionLevel=="MOD" || arr[i].post.user==request.loggedUser || arr[i].post.user == arr[i].post.user==request.creador ?

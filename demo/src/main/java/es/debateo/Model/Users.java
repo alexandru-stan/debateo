@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.csrf.CsrfToken;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -40,7 +41,20 @@ public class Users implements UserDetails {
 	@Transient 
 	String token;
 	
+	@Transient
+	CsrfToken csrfToken;
 	
+	
+	
+	
+	public CsrfToken getCsrfToken() {
+		return csrfToken;
+	}
+
+	public void setCsrfToken(CsrfToken csrfToken) {
+		this.csrfToken = csrfToken;
+	}
+
 	public String getToken() {
 		return token;
 	}

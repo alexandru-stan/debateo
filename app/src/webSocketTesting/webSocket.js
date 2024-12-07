@@ -3,7 +3,9 @@ import {useSelector, useDispatch} from "react-redux";
 import React from "react";
 import * as StompJs from "@stomp/stompjs";
 export const stompClient = new StompJs.Client({
-    brokerURL: 'ws://'+SERV_DIR+':'+SERV_PORT+'/websocket'
+    brokerURL: 'ws://'+SERV_DIR+':'+SERV_PORT+'/websocket',
+    reconnectDelay:0,
+    
 });
 
 const username = JSON.parse(localStorage.getItem("user"))?.username;
@@ -12,6 +14,7 @@ const username = JSON.parse(localStorage.getItem("user"))?.username;
 
 stompClient.onWebSocketError = (error) => {
     console.error('Error with websocket', error);
+    return;
 };
 
 stompClient.onStompError = (frame) => {

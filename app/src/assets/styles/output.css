@@ -513,10 +513,6 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.visible {
-  visibility: visible;
-}
-
 .collapse {
   visibility: collapse;
 }
@@ -812,11 +808,6 @@ video {
 .bg-moradoOscuro {
   --tw-bg-opacity: 1;
   background-color: rgb(23 22 38 / var(--tw-bg-opacity));
-}
-
-.bg-red-950 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(69 10 10 / var(--tw-bg-opacity));
 }
 
 .bg-transparent {

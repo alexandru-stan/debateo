@@ -32,6 +32,7 @@ export const Menu = (props) => {
         
     },[])
 
+  
     
 
     useEffect(()=>{
@@ -58,8 +59,9 @@ export const Menu = (props) => {
             
             <div    className=" w-full   border-naranjaMolon p-1 items-center     m-1   cursor-pointer hover:brightness-125 bg-moradoOscuro   h-2/4 flex  " onClick={() => {
                  setMensajesSinLeer(0);
-                //  $("#mensajes").is(":visible") ? $("#mensajes").hide() : $("#mensajes").show() ; 
+
                     dispatch(update(!messagesRender));
+                 
              } } id='menu-3'>
             <Imagen style={{maxWidth:'50%', height:'2rem'}}  ruta={IconoMensajes}></Imagen>
 

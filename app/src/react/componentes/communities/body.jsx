@@ -104,14 +104,24 @@ function changeSub(subscription){
 let userData = JSON.parse(localStorage.getItem("userData"))
   if(subscription==null) {
     
-    axios.post("http://"+SERV_DIR+":"+SERV_PORT+"/subscriptions/sub/"+loggedUser+"/"+state);
+    axios.post("http://"+SERV_DIR+":"+SERV_PORT+"/subscriptions/sub/"+loggedUser+"/"+state,null,{
+      headers:{
+          'Authorization':'Bearer '+ JSON.parse(localStorage.getItem('userData')).token,
+          'Content-Type': 'application/json'
+      }
+  });
    userData.subsCount++;
   // sessionStorage.setItem('user',JSON.stringify(userData))
     setSubscription("MEMBER");
   
   }
   else {
-    axios.delete("http://"+SERV_DIR+":"+SERV_PORT+"/subscriptions/unsub/"+loggedUser+"/"+state);
+    axios.delete("http://"+SERV_DIR+":"+SERV_PORT+"/subscriptions/unsub/"+loggedUser+"/"+state,{
+      headers:{
+          'Authorization':'Bearer '+ JSON.parse(localStorage.getItem('userData')).token,
+          'Content-Type': 'application/json'
+      }
+  });
     userData.subsCount--;
     // sessionStorage.setItem('user',JSON.stringify(userData));
     setSubscription(null);
@@ -175,7 +185,7 @@ useEffect(() => {
           setLoading(false);
           setApiResponse(response.response.status);
           setPostsArr(
-
+         
             <p  className="mt-5 w-2/4 text-2xl Kanit text-center text-naranjaMolon">{response.response.data}</p>
 
           )
@@ -227,8 +237,8 @@ if(myRef.current!=null && postsArr.length>0){
     <div className='mt-5 flex flex-col justify-center items-center community-body'>
         <CommunityInfo apiResponse={apiResponse} setApiResponse={setApiResponse} subscription ={subscription} subButton ={SubButton} state={state} info={info}/>
         {postsArr}
-        {loading ? <SpinnerLoader clase='mt-5' id='spinnerCommunityPosts'/> : null}
-        {messagesRender ? <Mensajes/>:null}
+        {loading ? <SpinnerLoader hijoStyle={{width:'4rem', backgroundColor:'red'}} clase='mt-5' id='spinnerCommunityPosts'/> : null}
+        {/*messagesRender ? <Mensajes/>:null*/}
     </div>
     )
 }

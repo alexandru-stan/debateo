@@ -21,6 +21,7 @@ export const ChatActual = (props) => {
     const $ = require('jquery');
     const selectedChat = useSelector(state => state.selectedChat.value);
     const incomingMessage = useSelector(state => state.incomingMessage.value);
+    const messagesRender = useSelector(state => state.messagesRender.value);
     const dispatch = useDispatch();
     const [messages,setMessages] = useState([]);
     const username = JSON.parse(localStorage.getItem("userData")).username    
@@ -119,11 +120,16 @@ export const ChatActual = (props) => {
     return (
         
 
+<>
+
+<img onClick={()=>{ dispatch(updateMessagesRender(!messagesRender)) }} src={cerrar} id='cerrarMensajes' className="absolute hover:cursor-pointer  " style={{right:'1%', width:'2rem'}} ></img>
+
+{
 selectedChat==null ? 
 
 
-<div className="h-full p-3">
-<img onClick={()=>{ dispatch(updateMessagesRender(false)) }} src={cerrar} className="hover:cursor-pointer " style={{marginLeft:'auto', width:'5%'}} ></img>
+<div className="h-full ">
+{/* <img onClick={()=>{ dispatch(updateMessagesRender(!messagesRender)) }} src={cerrar} className="hover:cursor-pointer " style={{marginLeft:'auto', width:'5%'}} ></img> */}
 <div  className="flex h-full   flex justify-center items-center">
 <Logo ruta={selectedChatPng} clase="w-1/6  h-1/6"/>
 </div>
@@ -143,7 +149,7 @@ selectedChat==null ?
         <div style={{}} className="text-naranjaMolon   h-3/4 pl-2 text-extrabold">{selectedChat}</div>
         <sub className="">Conectado por última vez: Unknown</sub>
         </div>
-       <img onClick={()=>{ $("#mensajes").hide() }} src={cerrar} className="hover:cursor-pointer " style={{marginLeft:'auto', width:'5%'}} ></img>
+       {/* <img onClick={()=>{ dispatch(updateMessagesRender(!messagesRender)) }} src={cerrar} className="hover:cursor-pointer " style={{marginLeft:'auto', width:'5%'}} ></img> */}
         </div>
         <div id='conversacion' style={{height:'70%'}} className=" p-1 flex bg-moradoOscuro ">
            {messages}
@@ -157,8 +163,8 @@ selectedChat==null ?
             }} style={{marginLeft:'5%', height:'2rem' }} className="hover:cursor-pointer bg-moradoOscuro" src={enviarMensaje}/>
         </div>
     </>
-  
-        
+  }
+    </>
  
     
     )

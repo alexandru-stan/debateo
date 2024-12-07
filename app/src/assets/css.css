@@ -332,6 +332,12 @@ margin-left:0 !important;
           width:70%;
         }
 
+        #lateralMenu {
+          top:4% !important;
+          bottom:0% !important;
+        }
+
+
   }
 
 
@@ -351,6 +357,9 @@ margin-left:0 !important;
 
 
   @media(max-width:800px){
+
+   
+
 
     /* .community-image {
       width:30% !important;
@@ -391,7 +400,7 @@ margin-left:0 !important;
 
 #lateralMenu,#lateralMenuRight {
   width:80% !important;
-  top:7% !important;
+  top:4% !important;
 }
 
     
@@ -853,3 +862,4 @@ html, body {
 }
 
 /* Style the checkmark/indicator */
+

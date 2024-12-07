@@ -27,7 +27,7 @@ export const Create = (props) => {
             localStorage.getItem('userData') != undefined ?  
         <div className="" id='create'>
             <Header/>
-            {messagesRender ? <Mensajes/>:null}
+            {/*messagesRender ? <Mensajes/>:null*/}
             {/* <LateralMenu/> */}
             <CrearPublicacion communityId={community}/>
 

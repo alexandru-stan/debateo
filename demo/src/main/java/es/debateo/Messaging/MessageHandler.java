@@ -19,8 +19,7 @@
 //
 //	@MessageMapping("/send")
 //		public void onReceiveMessage(String message) {
-//	    	System.out.println("Received message: " + message);
-//	    	messagingTemplate.convertAndSend(channel, message);
+//	    	
 //		}
 //
 //

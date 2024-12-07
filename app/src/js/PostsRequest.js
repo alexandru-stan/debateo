@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Post from '../react/componentes/feed/body/post';
-
+import imageResize from './imageResize';
 import { formatImage } from './imageFormatting';
 import { deleteFunction } from './DeletePublication';
 import { SERV_DIR,SERV_PORT } from '../utilities';
@@ -14,8 +14,13 @@ export async function PostsRequest(request,setPostsArr,fyp){
 
     // $("#feedSpinner").css("display","block");
     let endpoint =  "http://"+SERV_DIR+":"+SERV_PORT+"/posts/"+request.loggedUser+"/"+request.page+"/"+fyp;
-
-    return axios.get(endpoint).then(response=>{
+    let token = JSON.parse(localStorage.getItem('userData')).token;
+    return axios.post(endpoint,null,{
+        headers:{
+            'Authorization':'Bearer '+token,
+            'Content-Type': 'application/json'
+        }
+    }).then(response=>{
       
     let arr = response.data.content;
  
@@ -41,7 +46,7 @@ export async function PostsRequest(request,setPostsArr,fyp){
               publicationBody={arr[i].post.publicationBody}
               publicationTitle={arr[i].post.publicationTitle}
               publicationId={arr[i].post.publicationId}
-              publicationImage={(arr[i].post.publicationImage.length>0)?<img style={{}} src={formatImage(arr[i].post.publicationImage)} alt='img'/>:null}
+              publicationImage={(arr[i].post.publicationImage.length>0)? formatImage(arr[i].post.publicationImage):null}
               publicationUser={arr[i].post.user}
               referencia={(posts.length-i)==1?request.myRef:null}
             //   delete={arr[i].subscription?.subscriptionLevel=="MOD" || arr[i].post.user==request.loggedUser || arr[i].post.user == arr[i].post.user==request.creador ?
@@ -82,6 +87,8 @@ export async function PostsRequest(request,setPostsArr,fyp){
 
 return posts;
 
+    }).catch(message => {
+        console.log("jeje")
     })
 
 

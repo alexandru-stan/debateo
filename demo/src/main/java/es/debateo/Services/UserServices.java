@@ -2,13 +2,15 @@ package es.debateo.Services;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +22,7 @@ import es.debateo.Repositories.usersRepo;
 import es.debateo.Utils.profileImageUtils;
 
 @Service
-public class UserServices{
+public class UserServices implements UserDetailsService{
 	@Autowired
 	usersRepo repo;
 	@Autowired
@@ -89,7 +91,7 @@ public class UserServices{
 		Pageable page = PageRequest.of(0, 5);
 		
 		List<String> a = repo.search(cadena,page,requestUser);
-		System.out.println(a);
+		
 		return new ServiceResponse<String>(a,HttpStatus.OK);
 		
 	}
@@ -98,6 +100,15 @@ public class UserServices{
 	public void userUpdate(Users user, String originalUsername) {
 		
 		repo.updateUser(user.getUsername(),user.getName(),user.getMail(),user.getBirth_date(),originalUsername);
+		
+	}
+
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+		Optional<Users> user = repo.findById(username);
+		if(user.isPresent()) return user.get(); else return null;
 		
 	}
 	

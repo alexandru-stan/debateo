@@ -1,4 +1,5 @@
 // ESTE SCRIPT SERÁ EL ENCARGADO DE PINTAR EL COMPONENTE APP QUE CONTENDRÁ TODA LA APLICACIÓN
+import './js/axiosInterceptor';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './react/App';
@@ -7,6 +8,7 @@ import { Provider } from 'react-redux';
 import store from './redux-store/index';
 import "../src/assets/styles/output.css";
 import "../src/assets/css.css";
+
 // import { PopUp } from './react/componentes/reusable/popup/PopUp';
 
 // import { IncomingMessageNotification } from './react/componentes/reusable/mensajes/incomingMessageNotification';

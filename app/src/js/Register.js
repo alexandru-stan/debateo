@@ -6,7 +6,7 @@ const $ = require('jquery');
   formData.forEach((value, key) => {
     });
 
-     return  axios.post('http://'+SERV_DIR+":"+SERV_PORT+"/users/signin",formData );
+     return  axios.post('http://'+SERV_DIR+":"+SERV_PORT+"/users/signin",formData);
      
 
 }

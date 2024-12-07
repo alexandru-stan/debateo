@@ -147,7 +147,7 @@ const isInitialMount = useRef(true);
         <input  type="password" className=" rounded-md py-2 border-moradoLight px-4 text-gray-700 border-b-2 text-white backdrop-brightness-125 placeholder-gray-400 bg-moradoOscuro placeholder-gray-400 focus:outline-none  w-full focus:border-naranjaMolon" id='Lpassword'  placeholder="Contraseña" for="Lpassword" />
         </div>
         <div className='flex flex-row justify-center w-full'>
-        {loading ? <SpinnerLoader/> : null}
+        {loading ? <SpinnerLoader hijoStyle={{width:'4rem'}}/> : null}
         </div>
         <p id='mensajeErrorLogin' className='p-2 Kanit text-red-400 font-bold'></p>
         <div >

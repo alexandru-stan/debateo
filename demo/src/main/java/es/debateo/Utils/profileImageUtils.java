@@ -37,11 +37,11 @@ public class profileImageUtils {
             // Check if the file exists
             if (Files.exists(imagePath)) {
                 this.image = Files.readAllBytes(imagePath);
-                System.out.println("IMAGE FOUND: " + imagePath.toAbsolutePath());
+                
                 break;
             }
             
-            System.out.println("Image not found: " + imagePath.toAbsolutePath());
+            
         }
 
         return this.image;

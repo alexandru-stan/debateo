@@ -7,7 +7,7 @@ import { useWindowSize } from "@uidotdev/usehooks";
 import { useRef } from "react";
 import { useEffect } from "react";
 import { useSelector,useDispatch } from "react-redux";
-
+import SpinnerLoader from "../SpinnerLoader";
 import { setLeftVisibility as update } from "../../../../redux-store/slices/LateralMenuVisibility";
 import { ComunidadesMasActivas,ComunidadesRecientes,Suscripciones } from "./subMenus";
 import { refreshProfileImage } from "../../../../js/RefreshProfileImage";
@@ -19,25 +19,27 @@ import { update as incoming } from "../../../../redux-store/slices/IncomingMessa
 import newMessage from "../../../../assets/audio/newMessage.mp3"
 import { stompClient } from "../../../../webSocketTesting/webSocket";
 import { update as updateLatRender } from "../../../../redux-store/slices/LateralRender";
+
 export const LateralMenu = (props) => {
     
     const dispatch = useDispatch();
-    const isFirstRender = useRef(true);
+    // const isFirstRender = useRef(true);
     const lateralMenuVisibility = useSelector(state => state.lateralMenuVisibilty.value.left);
     const popUp = useSelector(state => state.popUp.value);
     // const user = JSON.parse(localStorage.getItem('userData'))
+    const lateralMenuRef = useRef(null);
     const userData = JSON.parse(localStorage.getItem('userData'));
-    const [profileImage,setProfileImage] = useState(refreshProfileImage(userData.username));
+    const [profileImage,setProfileImage] = useState(null);
     const nav = useNavigate();
     const loc = useLocation();
 
     const windowWidth = useWindowSize().width;
 
-    // alert(user?.username);
+
 
     useEffect(() => {
       
-        windowWidth< 1101 ? dispatch(update('none')) : dispatch(update('block'));
+        windowWidth < 1101 ? dispatch(update('none')) : dispatch(update('block'));
     },[windowWidth])
 
 
@@ -45,7 +47,7 @@ export const LateralMenu = (props) => {
     let audio = new Audio(newMessage);
 
   
-
+    
     stompClient.activate();
     stompClient.onConnect = (frame) => {
     stompClient.subscribe('/'+userData.username,(message) => {
@@ -68,10 +70,24 @@ export const LateralMenu = (props) => {
 
 
 
+ 
+useEffect(() => {
+    refreshProfileImage(userData.username).then(r => setProfileImage(formatImage(r.data.profileImage)));
+    const handleClickOutside = (event) => {
+        if (lateralMenuRef.current && !lateralMenuRef.current.contains(event.target) && lateralMenuVisibility=='block' && window.innerWidth < 1101 ) {
+        
+          event.target.id == 'burger-menu' ? null :   dispatch(update('none'));
+            
+        }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+    };
+}, []);
 
 
-
-// alert(loc.pathname)
 
 
 
@@ -80,16 +96,24 @@ export const LateralMenu = (props) => {
 
   
   
-
-        <div id="lateralMenu" className={   " bg-moradoOscuro border-r-2 border-moradoLight"} style={{zIndex:'1',position:'fixed', overflow:'scroll', height:'calc(100vh - 50px)  ',  left:'0%', top:'7%', width:'20%', display:lateralMenuVisibility}}>
+//-50px
+        <div id="lateralMenu" ref={lateralMenuRef} className={   " bg-moradoOscuro border-r-2 border-moradoLight"} style={{zIndex:'1',position:'fixed', overflow:'scroll',   left:'0%', top:'7%', width:'20%', display:lateralMenuVisibility}}>
        <div id="user-info" style={{marginTop:'2rem'}} className=" border-b-2 border-moradoLight flex items-center  p-2 ">
-        <Image onerror={()=>{
+     <div style={{width:'30%',height:'4rem'}} className="flex justify-center ">
+    
+    {profileImage != null ?  <Image onerror={()=>{
         
-
+    
         refreshProfileImage(userData.username).then(r => setProfileImage(formatImage(r.data.profileImage)));
 
-        }} style={{borderRadius:'100% ', width:'4rem', height:'4rem'}} clase={" p-2"} ruta={profileImage}/>
-        <div className="p-3 flex flex-row items-center justify-between w-full">
+        }} style={{borderRadius:'100% ',  width:'4rem', height:'4rem'}} clase={" p-2"}  ruta={profileImage}/>
+       
+     
+
+       : <SpinnerLoader hijoStyle={{ width:'50%'}}/> }
+    
+    </div>
+       <div style={{width:'70%'}} className=" flex  flex-row items-center justify-between">
         <div>
             <div className="max-text-2xl text-bold text-naranjaMolon Kanit">{userData.username}</div>
             <div className="text-gray-300 text-sm">{userData.name}</div>

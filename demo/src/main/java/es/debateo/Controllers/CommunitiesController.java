@@ -34,7 +34,7 @@ public class CommunitiesController {
 	@GetMapping("/search/{cadena}")
 	public ResponseEntity<List<Communities>> search(@PathVariable String cadena){
 		
-		System.out.println(cadena);
+		
 		ServiceResponse<Communities> response = services.search(cadena);
 		return new ResponseEntity<List<Communities>>(response.getLista(),response.getStatus());
 		
@@ -99,7 +99,7 @@ public class CommunitiesController {
 	
 	@GetMapping("/{username}")
 	public ResponseEntity<List<Communities>> getSubscribedCommunities(@PathVariable String username) {
-	System.out.println(username);
+	
 	List<Communities> result = repo.getSubscribedCommunities(username);
 		
 	return new ResponseEntity<List<Communities>>(result, HttpStatus.OK);

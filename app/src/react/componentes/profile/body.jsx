@@ -32,7 +32,7 @@ export const Body = (props) => {
         <div className="text-white flex items-center flex-col w-full  mt-5 " id='profile-body'>
        {/* <EditProfile/> */}
        <UserData user={props.user}/>
-       {messagesRender ? <Mensajes/> : null}
+       {/* {messagesRender ? <Mensajes/> : null} */}
 
 
     <div id="profileUploads" className='mt-4 flex flex-row bg-moradoFondo rounded-lg w-2/4 justify-center' >

@@ -14,7 +14,20 @@ import { formatImage } from "./imageFormatting";
         
       
 
- return axios.post("http://"+SERV_DIR+":"+SERV_PORT+"/posts/new",formData);
+//  return axios.post("http://"+SERV_DIR+":"+SERV_PORT+"/posts/new",formData,{
+//   headers:{
+//       'Authorization':'Bearer '+ JSON.parse(localStorage.getItem('userData')).token,
+//       'Content-Type': 'application/json'
+//   }
+// });
+
+
+return axios.post("http://"+SERV_DIR+":"+SERV_PORT+"/posts/new",formData,{
+  headers:{
+      'Authorization':'Bearer '+ JSON.parse(localStorage.getItem('userData')).token,
+  
+  }
+});
 
 
         

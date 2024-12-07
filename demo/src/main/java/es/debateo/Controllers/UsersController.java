@@ -12,6 +12,7 @@ import java.util.List;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import es.debateo.Config.JwtService;
+import es.debateo.Config.Security.Authentication.JWT.JwtService;
 import es.debateo.DTO.ServiceResponse;
 import es.debateo.Model.Messages;
 import es.debateo.Model.UserRecord;
@@ -31,6 +32,7 @@ import es.debateo.Repositories.usersRepo;
 import es.debateo.Services.MessagesServices;
 import es.debateo.Services.UserServices;
 import es.debateo.Utils.profileImageUtils;
+import jakarta.servlet.http.HttpServletRequest;
 
 @RequestMapping("/users")
 @RestController
@@ -57,17 +59,22 @@ public class UsersController {
 //	    return new ResponseEntity<>(user, response.getStatus());
 //	}
 	
-public ResponseEntity<Users> validarLogin(@RequestBody Users credentials) throws IOException {
+public ResponseEntity<Users> validarLogin(@RequestBody Users credentials, HttpServletRequest request) throws IOException {
 		
 	    ServiceResponse<Users> response = servicio.login(credentials.getUsername(), credentials.getPassword());
 	    Users user = response.getObj()!=null ? response.getObj():null;
 	    String token =  jwtService.generateToken(user);
 	    user.setToken(token);
+	    user.setCsrfToken( (CsrfToken)request.getAttribute("_csrf"));
+	    
 	    return new ResponseEntity<>(user, response.getStatus());
 	}
 	
 	
-	
+	@PostMapping("/test")
+	public String test(){
+		return "hola";
+	}
 	
 	
 	
@@ -80,22 +87,22 @@ public ResponseEntity<Users> validarLogin(@RequestBody Users credentials) throws
 			@RequestParam("Rbirth_date") String birth_date,
 			@RequestParam("Rprofileimg") MultipartFile file) throws ParseException, IllegalStateException, IOException {
 		
-		System.out.println(username);
+		
 		
 	     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 	     String imageExtension = FilenameUtils.getExtension(file.getOriginalFilename());
 	     // Get the root directory of the project
 	        String rootDir = System.getProperty("user.dir");
 	        
-	        System.out.println(rootDir);
+	        
 	        Path filePath = Paths.get(rootDir, "images/"+username+"."+imageExtension);
-	        System.out.println(filePath.toString());
+	        
 	        file.transferTo(new File((filePath.toString())));
-	        System.out.println("/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////");
+	        
 	  
 	        
 		Users user = new Users(username,password,name,mail,formatter.parse(birth_date));
-		System.out.println(user.toString());
+		
 		ServiceResponse<String> response = servicio.signin(user);
 		servicioMensajes.sendMessage(new Messages("Hola "+user.getUsername()+", bienvenido a Debateo. \n Estamos aquí para cualquier cosa que necesites :) ","debateosoporte",user.getUsername(),new Date(),false));
 		
@@ -123,7 +130,7 @@ public ResponseEntity<Users> validarLogin(@RequestBody Users credentials) throws
 
 	@PutMapping("/update/{originalUsername}")
 	public void updateUser(@RequestBody Users user, @PathVariable String originalUsername) {
-		System.out.println(user.toString());
+		
 		servicio.userUpdate(user, originalUsername);
 		
 	}
@@ -131,7 +138,7 @@ public ResponseEntity<Users> validarLogin(@RequestBody Users credentials) throws
 
 	@GetMapping("/refreshProfileImage/{username}")
 	public UserRecord refreshProfileImage(@PathVariable String username) throws IOException {
-		System.out.println("imagen para " + username);
+		
 	    profileImageUtils util = new profileImageUtils();
 
 		byte[] test = util.returnProfileImage(username);

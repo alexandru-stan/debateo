@@ -86,7 +86,7 @@ if(myRef.current!=null){
        
         <div  className= {props.visibility ? "w-full  flex flex-col  items-center " : " hidden "}>
       
-       { postsArr.length == 0 ? <SpinnerLoader id='spinnerUserPosts'/> : postsArr }
+       { postsArr.length == 0 ? <SpinnerLoader hijoStyle={{width:'4rem'}} id='spinnerUserPosts'/> : postsArr }
         
         </div>
         </>

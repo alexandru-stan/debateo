@@ -23,13 +23,23 @@ export const PostFooter = (props) => {
 // let username = JSON.parse(localStorage.getItem('userData')).username
     function changeLikeStatus(){
         
-        if(!like) axios.post("http://"+SERV_DIR+":"+SERV_PORT+"/likes/"+username+"/"+postInfo.publicationId).then(()=>{
+        if(!like) axios.post("http://"+SERV_DIR+":"+SERV_PORT+"/likes/"+username+"/"+postInfo.publicationId,null,{
+            headers:{
+                'Authorization':'Bearer '+ JSON.parse(localStorage.getItem('userData')).token,
+                'Content-Type': 'application/json'
+            }
+        }).then(()=>{
         
         setLikesCount(likesCount+1)
         // postInfo.liked=1;
     }
         );
-        else axios.delete("http://"+SERV_DIR+":"+SERV_PORT+"/likes/"+username+"/"+postInfo.publicationId).then(()=>{
+        else axios.delete("http://"+SERV_DIR+":"+SERV_PORT+"/likes/"+username+"/"+postInfo.publicationId,{
+            headers:{
+                'Authorization':'Bearer '+ JSON.parse(localStorage.getItem('userData')).token,
+                'Content-Type': 'application/json'
+            }
+        }).then(()=>{
           
         setLikesCount(likesCount-1)
         // postInfo.liked=0;

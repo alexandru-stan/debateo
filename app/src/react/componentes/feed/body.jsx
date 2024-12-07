@@ -107,7 +107,7 @@ if(myRef.current!=null){
     <div  className=' flex flex-col                   items-center    '  id='body-feed'>
    
    
-     {messagesRender ? <Mensajes/>:null}
+    {/*messagesRender ? <Mensajes/>:null*/}
      
     
       <div id="fyp" className='mt-4 flex flex-row bg-moradoFondo  rounded-lg w-2/6 justify-center' >
@@ -145,7 +145,7 @@ if(myRef.current!=null){
 
 
       </div>
-     { loading ? <SpinnerLoader clase='w-1/4 ' id='feedLoader'/> : null} 
+     { loading ? <SpinnerLoader hijoStyle={{width:'4rem'}} clase='w-1/4 ' id='feedLoader'/> : null} 
      
              { postsArr}
        

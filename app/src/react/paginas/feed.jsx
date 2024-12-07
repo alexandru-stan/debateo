@@ -24,7 +24,7 @@ const Feed = (props) => {
 
     return  (
         localStorage.getItem('userData') != undefined ?  
-        <div style={{}} className=" pt-1   overlay " id='feed'>
+        <div style={{}} className="   overlay " id='feed'>
         <Header/>
         {/* <LateralMenu/> */}
         <LateralMenuRight/>

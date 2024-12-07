@@ -24,7 +24,7 @@ export const NewCommunity = () => {
       
         localStorage.getItem('userData') != undefined ?  
     <div id='new' className="w-full flex flex-col items-center">
-     {messagesRender ? <Mensajes/>:null}
+     {/*messagesRender ? <Mensajes/>:null*/}
       {/* <LateralMenu/> */}
             <Header/>
 

@@ -105,7 +105,7 @@ public class PostsServices {
 	
 	
 	public ServiceResponse<PostDTO> getPostsByCommunity(String user,long id,int offset){
-		System.out.println("Controlador OK");
+		
 		
 		Page<PostDTO> posts = repo.getPostsByCommunity(id,PageRequest.of(offset, 15));
 		posts.forEach(post->{
@@ -113,7 +113,7 @@ public class PostsServices {
 			post.setLikes(likesRepo.likeCount(post.getPost().getPublicationId()));
 			post.setComments(commentsRepo.countByPostId(post.getPost().getPublicationId()));
 		});
-		System.out.println("REPO OK");
+		
 		ServiceResponse<PostDTO> respuesta = new ServiceResponse<PostDTO>(posts,HttpStatus.OK);
 		
 		
@@ -167,8 +167,7 @@ ServiceResponse<PostDTO> respuesta = new ServiceResponse<PostDTO>(posts,HttpStat
 //	
 //		List<Tuple> a = queryReturn.getPagina().getContent();
 //		boolean isLast= queryReturn.getPagina().isLast();
-//		System.out.println(isLast);
-//		List<PostDTO> list = new ArrayList<PostDTO>();
+//		
 //		Page<PostDTO> page;
 //	
 //		for(Tuple tuple: a){
@@ -204,8 +203,7 @@ ServiceResponse<PostDTO> respuesta = new ServiceResponse<PostDTO>(posts,HttpStat
 //			
 //		}
 //		
-//		System.out.println(a.size());
-//		System.out.println(list.size());
+//		
 //		page= new PageImpl<PostDTO>(list,PageRequest.of(offset, size),queryReturn.getPagina().getTotalElements());
 //		
 //
@@ -238,8 +236,7 @@ ServiceResponse<PostDTO> respuesta = new ServiceResponse<PostDTO>(posts,HttpStat
 //		
 //		List<Tuple> a = queryReturn.getPagina().getContent();
 //		boolean isLast= queryReturn.getPagina().isLast();
-//		System.out.println(isLast);
-//		List<PostDTO> list = new ArrayList<PostDTO>();
+//		
 //		Page<PostDTO> page;
 //	
 //	
@@ -257,16 +254,14 @@ ServiceResponse<PostDTO> respuesta = new ServiceResponse<PostDTO>(posts,HttpStat
 //					liked
 //					);
 //			
-//			System.out.println("TIENE"+tuple.get("comments")+" COMENTARIO");
-//			list.add(post);
+//			
 //			
 //		
 //			
 //			
 //		}
 //		
-//		System.out.println(a.size());
-//		System.out.println(list.size());
+//		
 //		page= new PageImpl<PostDTO>(list,PageRequest.of(offset, size),queryReturn.getPagina().getTotalElements());
 //		
 //

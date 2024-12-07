@@ -24,7 +24,7 @@ public class MessagesServices {
 	
 	public List<MessagesDTO> RetrieveChats(String username){
 		List<MessagesDTO> messages = new ArrayList<MessagesDTO>();
-		System.out.println("aaa");
+		
 		List<Tuple> tuple = repo.RetrieveChats(username);
 		
 		tuple.forEach(e -> {
@@ -65,7 +65,7 @@ public class MessagesServices {
 		
 		Messages savedMessage = repo.saveAndFlush(message);
 		
-		System.out.println("SERVICE "+ savedMessage.getMessageId());
+		
 		return savedMessage;
 	
 	}

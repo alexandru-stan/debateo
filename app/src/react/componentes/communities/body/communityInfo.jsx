@@ -17,7 +17,7 @@ export const CommunityInfo = (props) => {
     return (
    
         <div style={{}} className='community-info  Kanit p-2   flex flex-col justify-center items-center bg-moradoFondo w-2/6  rounded-lg '>
-        {props.info.communityId == undefined ? <SpinnerLoader id='loaderCommunityInfo'/> : <div className='info      w-5/6'>
+        {props.info.communityId == undefined ? <SpinnerLoader hijoStyle={{width:'4rem'}} id='loaderCommunityInfo'/> : <div className='info      w-5/6'>
    
    <div className='  communityImageAndInfo flex flex-col '>
   

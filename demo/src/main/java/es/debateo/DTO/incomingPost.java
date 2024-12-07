@@ -12,7 +12,7 @@ public class incomingPost {
 		this.publicationTitle = publicationTitle;
 		this.publicationBody = publicationBody;
 //		this.publicationImage = imagen;
-		System.out.println(imagen);
+		
 	}
 	public String getPublicationTitle() {
 		return publicationTitle;
@@ -31,7 +31,7 @@ public class incomingPost {
 	}
 	public void setPublicationImage(MultipartFile publicationImage) {
 //		this.publicationImage = publicationImage;
-		System.out.println(publicationImage);
+		
 	}
 	
 	

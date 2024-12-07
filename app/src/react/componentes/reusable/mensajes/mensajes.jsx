@@ -24,7 +24,7 @@ import { Spinner } from "react-bootstrap";
 import { refreshProfileImage } from "../../../../js/RefreshProfileImage";
 import test from "../../../../assets/img/admin.png";
 const $ = require('jquery');
-export const Mensajes = (props) => {
+export const Mensajes = () => {
 const username = JSON.parse(localStorage.getItem('userData')).username;
 const selectedChat = useSelector(state => state.selectedChat.value);
 const unreadMessages = useSelector(state => state.unreadMessages.value);
@@ -181,12 +181,12 @@ let audio = new Audio(newMessage);
              dispatch(updateMessagesRender(!messagesRender))
             }} 
             style={{ width: '10%', height: '2rem', display: 'none' }} 
-            clase="backIcon bg-red-950" 
+            clase="backIcon cursor-pointer" 
             ruta={backIcon}
           />
         </div>
         <div key="tupu" id="chats" className="flex w-full flex-col">
-        {spinner ? <div className="flex justify-center w-full"><SpinnerLoader className='w-1/6' id="messagesSpinner" /></div> : null }
+        {spinner ? <div className="flex justify-center w-full"><SpinnerLoader hijoStyle={{width:'4rem'}} className='w-1/6' id="messagesSpinner" /></div> : null }
           {arrChats}  
         </div>   
       </div>

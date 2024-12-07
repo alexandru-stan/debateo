@@ -22,7 +22,7 @@ export const Chat = (props) => {
 
   useEffect(()=>{
 
-
+    useEffect
 
     incomingMessage!=null ? 
     
