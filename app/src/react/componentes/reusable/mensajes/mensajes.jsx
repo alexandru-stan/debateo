@@ -108,50 +108,57 @@ let audio = new Audio(newMessage);
     },[]);
 
 
-   
+    console.log(arrChats);
 
     function cambiarUltimoMensajeDelChat(mensaje){
       
-      let chatAActualizar =(mensaje.messageSender)==(username) ? mensaje.messageReceiver:(mensaje.messageSender);
+      let chatAActualizar = (mensaje.messageSender)==(username) ? mensaje.messageReceiver:(mensaje.messageSender);
       if(($("#"+chatAActualizar).html()!=undefined)){
       $("#"+chatAActualizar+" #lastMessage").html(() => mensaje.messageBody.length > 25 ? mensaje.messageBody.substring(0,25) +"...": mensaje.messageBody);
       $("#"+chatAActualizar+" #lastInteraction").text(formatearFecha(new Date(mensaje.messageDate)));
       $("#"+chatAActualizar).css("order", parseInt($('#chats :first-child').css("order"))-1);
     
-      
+   
 
       } else {
         
-       
-        
-        setArrChats(actualState => [
+        let notMe = mensaje.messageSender == username ? mensaje.messageReceiver : mensaje.messageSender;
+        alert("FUERA DE CHAT 1"+notMe);
+
+        const newChat = (
           <Chat
-            
             onClick={() => {
-
-              if($("#chatActual").css("display")=="none"){
-              $("#chatList").css("display","none");
-              $("#chatActual").css("display","block");
-          }
-
-               dispatch(change(mensaje.messageSender == username ? mensaje.messageReceiver : mensaje.messageSender))
-               
-               
-               
-               
-               }}
-            interactuer={mensaje.messageSender == username ? mensaje.messageReceiver : mensaje.messageSender}
+              if ($("#chatActual").css("display") == "none") {
+                $("#chatList").css("display", "none");
+                $("#chatActual").css("display", "block");
+              }
+              dispatch(change(notMe));
+            }}
+            interactuer={notMe}
             lastInteraction={mensaje.messageDate}
             lastMessage={mensaje.messageBody}
-            newChat = {mensaje.messageSender!=username?true:false}
-            key = {mensaje.messageId}
-            profileImage = {test}
-           
-          />,
-          ...actualState
-        ]);
+            newChat={mensaje.messageSender !== username}
+            key={Math.floor(Math.random() * 100) + 1}
+            profileImage={null}
+          />
+        );
         
         
+
+
+
+        setArrChats((actualState) =>{ return [
+         
+       newChat,...actualState
+          
+    
+
+
+
+
+        ]});
+        
+        alert("FUERA DE CHAT 2"+notMe);
 
 
       }
@@ -171,7 +178,7 @@ let audio = new Audio(newMessage);
     >
       <div 
         style={{ direction: "rtl", borderRight: '1px solid #444073' }} 
-        className="flex flex-col items-center overflow-auto p-3 w-2/6" 
+        className="flex flex-col  bg-red-950 items-center overflow-auto p-3 w-2/6" 
         id='chatList'
       >
         <div className="flex flex-row items-center justify-center w-full">

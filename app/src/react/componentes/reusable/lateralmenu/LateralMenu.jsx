@@ -97,7 +97,7 @@ useEffect(() => {
   
   
 //-50px
-        <div id="lateralMenu" ref={lateralMenuRef} className={   " bg-moradoOscuro border-r-2 border-moradoLight"} style={{zIndex:'1',position:'fixed', overflow:'scroll',   left:'0%', top:'7%', width:'20%', display:lateralMenuVisibility}}>
+        <div id="lateralMenu" ref={lateralMenuRef} className={   " bg-moradoOscuro border-r-2 border-moradoLight"} style={{zIndex:'1',position:'fixed', overflow:'scroll',   left:'0%', bottom:'0%', top:'7%', width:'20%', display:lateralMenuVisibility}}>
        <div id="user-info" style={{marginTop:'2rem'}} className=" border-b-2 border-moradoLight flex items-center  p-2 ">
      <div style={{width:'30%',height:'4rem'}} className="flex justify-center ">
     

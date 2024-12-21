@@ -8,7 +8,7 @@ import { PopUp } from '../react/componentes/reusable/popup/PopUp';
 axios.interceptors.response.use(
   function (response) {
 
-    console.log('Intercepted Response:', response);
+    // console.log('Intercepted Response:', response);
 
     return response; // Always return the response to propagate it
   },
@@ -16,7 +16,7 @@ axios.interceptors.response.use(
     if(error.response.status == 401) {
 
       
-      console.warn("igual no tan bobo");
+      // console.warn("igual no tan bobo");
 
       store.getState().popUp.value == null  ?  store.dispatch(assign({
       block: true,

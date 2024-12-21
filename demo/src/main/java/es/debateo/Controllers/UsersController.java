@@ -11,6 +11,8 @@ import java.util.List;
 
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -63,11 +65,18 @@ public ResponseEntity<Users> validarLogin(@RequestBody Users credentials, HttpSe
 		
 	    ServiceResponse<Users> response = servicio.login(credentials.getUsername(), credentials.getPassword());
 	    Users user = response.getObj()!=null ? response.getObj():null;
+	   try {
 	    String token =  jwtService.generateToken(user);
 	    user.setToken(token);
 	    user.setCsrfToken( (CsrfToken)request.getAttribute("_csrf"));
-	    
 	    return new ResponseEntity<>(user, response.getStatus());
+	   }catch(NullPointerException e ) {
+		
+		  return new ResponseEntity<>(null,HttpStatus.FORBIDDEN);
+		   
+	   }
+	    
+
 	}
 	
 	
@@ -138,7 +147,7 @@ public ResponseEntity<Users> validarLogin(@RequestBody Users credentials, HttpSe
 
 	@GetMapping("/refreshProfileImage/{username}")
 	public UserRecord refreshProfileImage(@PathVariable String username) throws IOException {
-		
+		System.out.println(username);
 	    profileImageUtils util = new profileImageUtils();
 
 		byte[] test = util.returnProfileImage(username);

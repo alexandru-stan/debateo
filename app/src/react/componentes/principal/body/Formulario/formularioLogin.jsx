@@ -65,8 +65,9 @@ $('#mensajeErrorLogin').html("Tienes que introducir tanto tu nombre de usuario c
 
     }).catch(
       (error) =>  {
-        setLoading(false)
-error.response.status==404 ?   $('#mensajeErrorLogin').html("No hemos podido encontrar un usuario con los datos introducidos, vuelve a intentarlo."):  null;
+
+setLoading(false)
+error.response.status==403 ?   $('#mensajeErrorLogin').html("No hemos podido encontrar un usuario con los datos introducidos, vuelve a intentarlo."):  "Fallo inesperado, por favor, inténtelo más tarde";
 
 
 

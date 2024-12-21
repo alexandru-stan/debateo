@@ -65,7 +65,7 @@ export const ChatActual = (props) => {
             r.data.forEach(element => {
 
                     
-                temp.push(<MessageBubble loggedUser = {username} sender = {element.messageSender}  body={element.messageBody}/>)
+                temp.push(<MessageBubble key={element.messageId} loggedUser = {username} sender = {element.messageSender}  body={element.messageBody}/>)
             
             });
 
@@ -92,7 +92,7 @@ export const ChatActual = (props) => {
     
 
         function sendMessage(element){
-            
+            alert(selectedChat);
             let message = {
                 messageId:null,
                 messageBody:element,
@@ -101,7 +101,7 @@ export const ChatActual = (props) => {
                 messageDate: new Date().toISOString()
             }
 
-            setMessages([<MessageBubble loggedUser={username} sender={username} body={element} />,...messages]);
+            setMessages([<MessageBubble key={message.messageDate} loggedUser={username} sender={username} body={element} />,...messages]);
           
              props.cambiarUltimoMensajeDelChat(message);
         

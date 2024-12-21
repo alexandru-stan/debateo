@@ -2,6 +2,7 @@ import React, { useState,useEffect,useRef } from "react";
 import formatearFecha from "../../../../../js/formatearFecha";
 import { useSelector } from "react-redux";
 import { formatImage } from "../../../../../js/imageFormatting";
+import { refreshProfileImage } from "../../../../../js/RefreshProfileImage";
 
 
 
@@ -15,59 +16,68 @@ export const Chat = (props) => {
   const incomingMessage = useSelector(state => state.incomingMessage.value);
   const selectedChat = useSelector( state => state.selectedChat.value)
   const [unread,setUnread] = useState(0);
+  const [profileImage,setProfileImage] = useState(props.profileImage);
+
+  const username = JSON.parse(localStorage.getItem('userData')).username;
 
 
-
-  
 
   useEffect(()=>{
+ 
+    console.log("DENTRO DE CHAT " +props.interactuer);
+    profileImage==null ? refreshProfileImage(props.interactuer).then(e => setProfileImage(formatImage(e.data.profileImage))) : null
+  },[])
+  
+  
 
-    useEffect
+  // useEffect(()=>{
 
-    incomingMessage!=null ? 
+  //   useEffect
+
+  //   incomingMessage!=null ? 
     
-    incomingMessage.messageSender==props.interactuer && incomingMessage.messageSender != selectedChat ?
+  //   incomingMessage.messageSender==props.interactuer && incomingMessage.messageSender != selectedChat ?
     
-        setUnread(unread+1)
+  //       setUnread(unread+1)
         
-      :null
-    :null
+  //     :null
+  //   :null
   
     
 
-  },[incomingMessage])
+  // },[incomingMessage])
 
-  useEffect(()=> {
+  // useEffect(()=> {
 
-    selectedChat==props.interactuer ? 
-    setUnread(0) : 
-    null
-
-
-  },[selectedChat])
+  //   selectedChat==props.interactuer ? 
+  //   setUnread(0) : 
+  //   null
 
 
-  useEffect(() =>  {
+  // },[selectedChat])
 
-    unreadMessages!=null ?
-      unreadMessages[props.interactuer]!=undefined ? setUnread(unreadMessages[props.interactuer]) : null
-    :null
 
-  },[unreadMessages]);
+  // useEffect(() =>  {
+
+  //   unreadMessages!=null ?
+  //     unreadMessages[props.interactuer]!=undefined ? setUnread(unreadMessages[props.interactuer]) : null
+  //   :null
+
+  // },[unreadMessages]);
 
    
 
-  useEffect(() => {
-  hola.current.parentElement.parentElement.style.order=1;// Now, it should log the DOM element when the component mounts
+  // useEffect(() => {
+  // hola.current.parentElement.parentElement.style.order=1;// Now, it should log the DOM element when the component mounts
  
 
-  }, []); 
+  // }, []); 
 
     return(
-    <div key={props.interactuer} id={props.interactuer} style={{height:'5rem', direction:'ltr' }} onClick={props.onClick} className='chat  bg-moradoFondo hover:cursor-pointer  flex-col flex m-2 justify-between rounded-lg  hover:bg-moradoLight hover:cursor '>
+    <div  id={props.interactuer} style={{height:'5rem', direction:'ltr' }} onClick={props.onClick} className='chat p-2 bg-moradoFondo hover:cursor-pointer  flex-col flex m-2 justify-between rounded-lg  hover:bg-moradoLight hover:cursor '>
         <div id='chatInfo' className='flex justify-between ' >
         <div className="flex items-center">
-        <img style={{width:'2rem', height:'2rem', borderRadius:'100%'}} src={props.profileImage }></img>
+        <img style={{width:'2rem', height:'2rem', borderRadius:'100%'}} src={profileImage}></img>
           <div style={{fontSize:'0.8rem',whiteSpace: 'nowrap',
   overflow: 'hidden',
   textOverflow: 'ellipsis'  }} className='nombreUsuario p-2 text-naranjaMolon '>

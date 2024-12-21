@@ -126,7 +126,7 @@ return (
             let reply = {
               
               commentId:props.id,
-              username: JSON.parse(localStorage.getItem("user")).username,
+              username: JSON.parse(localStorage.getItem("userData")).username,
               replyText: $('#replyTo'+props.id).val()
 
             }
