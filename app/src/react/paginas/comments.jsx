@@ -74,7 +74,7 @@ const [loadingComments,setLoadingComments] = useState(true);
         
           let arr=[]
          response.data.forEach(e =>
-          arr.push(<Comment profileImage={e.profileImage} id={e.commentId} replies={e.replies} commentDate = {e.commentDate} username={e.username} commentText = {e.commentText}/>))
+          arr.push(<Comment key={e.commentId} profileImage={e.profileImage} id={e.commentId} replies={e.replies} commentDate = {e.commentDate} username={e.username} commentText = {e.commentText}/>))
           setComments(arr);
           setLoadingComments(false);
   
@@ -111,10 +111,10 @@ const [loadingComments,setLoadingComments] = useState(true);
           </button>
          
           <button className='font-bold commentButtons  text-naranjaMolon p-2 mt-2 rounded-3xl hover:cursor-pointer hover:bg-moradoLight w-1/6' onClick={()=>{
-            setWritable(false)
+          setWritable(false)
           let comment = subirComentario($('#uploadComment').val(),params.id);
           $('#uploadComment').val(null);
-          refreshProfileImage(user.username).then(e => setComments(comments => ([<Comment profileImage = {e.data.profileImage} username={comment.username} commentDate={0}  commentText = {comment.commentText}></Comment>]).concat(comments)) )
+          refreshProfileImage(user.username).then(e => setComments(comments => ([<Comment key={comment.commentId} id={comment.commentId} profileImage = {e.data.profileImage} username={comment.username} commentDate={0}  commentText = {comment.commentText}></Comment>]).concat(comments)) )
           setWritable(false);
           setEmojiPicker(false);
 

@@ -178,7 +178,7 @@ let audio = new Audio(newMessage);
     >
       <div 
         style={{ direction: "rtl", borderRight: '1px solid #444073' }} 
-        className="flex flex-col  bg-red-950 items-center overflow-auto p-3 w-2/6" 
+        className="flex flex-col   items-center overflow-auto p-3 w-2/6" 
         id='chatList'
       >
         <div className="flex flex-row items-center justify-center w-full">

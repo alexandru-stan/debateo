@@ -21,7 +21,7 @@ export const Comment = (props)=> {
  let fechaBBDD = props.commentDate==0 ? "Ahora mismo" : new Date(props.commentDate);
  let fechaFinal = formatearTimestamps(fechaBBDD);
 const user = JSON.parse(localStorage.getItem("user"));
-  console.log(props.commentText+"  "+typeof props.profileImage);
+
   const [profileImage,setProfileImage] = useState(null)
   const [visibility,setVisibility] = useState('hidden');
   const [input,setInput] = useState(null);
@@ -96,18 +96,18 @@ const user = JSON.parse(localStorage.getItem("user"));
 // }
 
 return (
-    <div style={{overflowWrap:'break-word', marginBottom:'3%'}} className='comment backdrop-brightness-125  w-2/6 mt-2 rounded-md p-2'>
+    <div  style={{overflowWrap:'break-word', marginBottom:'3%'}} className='comment backdrop-brightness-125  w-2/6 mt-2 rounded-md p-2'>
     <div style={{fontSize:'1rem'}} className="flex p-2 flex-row justify-between">
       {/* <img src={formatImage(props.profileImageFile)}></img> */}
       <div className='flex flex-row items-center'>
       
       {props.profileImage!=null ? <img className='' style={{width:'30px', height:'30px', borderRadius:'100%'}} src={ formatImage(props.profileImage)}  /> : null}
       <h5 style={{marginLeft:'0.5rem'}} className="text-naranjaMolon">{props.username}</h5>
-
+ 
       </div>
       <h5>{fechaFinal}</h5>
     </div>
-        <div style={{whiteSpace:'pre-wrap'}} className='  comment-text p-2'>{props.commentText}</div>
+        <div style={{whiteSpace:'pre-wrap'}} className='  comment-text p-2'>{props.commentText} </div>
       <div style={{height:'3rem',borderTop:'1px solid #444073'}} className='p-1  mt-2 w-full flex flex-row items-center'>
         {/* <p style={{marginRight:'10px',fontSize:'1.5rem'}} className='font-bold  text-naranjaMolon  '>0</p>
         <Image style={{marginRight:'10px' ,  borderRadius:'50%'}} clase='h-full  hover:bg-moradoLight p-1 cursor-pointer' ruta={thumbsUp}/>
@@ -135,7 +135,7 @@ return (
             setVisibility('hidden')
 
             sendReply(reply);
-            setActualReply([...actualReply,<Reply username={reply.username} replyText = {reply.replyText} replyDate={1234} />])
+            setActualReply([...actualReply,<Reply key={Math.floor(Math.random() * 10000) + 1} username={reply.username} replyText = {reply.replyText} replyDate={1234} />])
 
 
         } }  className=' font-bold text-naranjaMolon p-2 mt-2 rounded-3xl hover:cursor-pointer hover:bg-moradoLight'>Responder</p>

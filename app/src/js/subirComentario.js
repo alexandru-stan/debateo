@@ -10,7 +10,8 @@ export function subirComentario(comentario,post){
         postId:post,
         username:JSON.parse(localStorage.getItem('userData')).username,
         commentDate:null,
-        commentText:comentario
+        commentText:comentario,
+        commentId:0
 
     }
 
@@ -19,7 +20,7 @@ export function subirComentario(comentario,post){
             'Authorization':'Bearer '+ JSON.parse(localStorage.getItem('userData')).token,
             'Content-Type': 'application/json'
         }
-    })
+    }).then(e => comment.commentId = e.data);
 
     return comment;
 

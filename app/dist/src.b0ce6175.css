@@ -816,11 +816,6 @@ video {
   background-color: rgb(23 22 38 / var(--tw-bg-opacity));
 }
 
-.bg-red-950 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(69 10 10 / var(--tw-bg-opacity));
-}
-
 .bg-transparent {
   background-color: transparent;
 }
@@ -1914,6 +1909,14 @@ html, body {
 
 /* Style the checkmark/indicator */
 
+/* .menuItem {
 
+  border: 1px solid transparent;
+}
+
+.menuItem:hover {
+
+  border: 1px solid red;
+} */
 
 /*# sourceMappingURL=/src.b0ce6175.css.map */

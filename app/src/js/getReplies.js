@@ -18,7 +18,10 @@ const e = await axios.get("http://"+SERV_DIR+":"+SERV_PORT+"/replies/"+commentId
     }
 });
 
-e.data.forEach(e => replies.push(<Reply username={e.username} replyText={e.replyText} replyDate={e.replyDate} />));
+
+e.data.forEach(e => replies.push(<Reply  key={e.replyId} username={e.username} replyText={e.replyText} replyDate={e.replyDate} />));
+
+
 
     return replies;
   

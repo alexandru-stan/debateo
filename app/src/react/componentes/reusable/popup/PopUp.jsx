@@ -9,6 +9,11 @@ export const PopUp = (props) => {
     const dispatch = useDispatch();
     const nav = useNavigate();
     const effects = {
+        
+        close: () => {
+            dispatch(assign(null)); 
+        },
+
         logout: () => {
 
             dispatch(updateLatRender(false));
@@ -17,6 +22,8 @@ export const PopUp = (props) => {
             nav("/")
             
         }
+
+       
     }
 
 

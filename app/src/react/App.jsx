@@ -35,7 +35,7 @@ import { Mensajes } from './componentes/reusable/mensajes/mensajes';
     const dispatch = useDispatch();
     const lateralRender = useSelector(state => state.lateralRender.value)
     const messagesRender = useSelector(state => state.messagesRender.value);
-    useEffect(()=>{console.log(popUpVal);},[popUpVal])
+
     
     
     

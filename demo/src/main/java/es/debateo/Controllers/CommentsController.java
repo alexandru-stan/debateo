@@ -50,9 +50,10 @@ public class CommentsController {
 	}
 	
 	@PostMapping()
-	public void postComment(@RequestBody Comments comment) {
+	public long postComment(@RequestBody Comments comment) {
 		comment.setCommenDate(new Date());
-		repo.save(comment);
+		Comments retrievedComment = repo.saveAndFlush(comment);
+		return retrievedComment.getCommentId();
 	}
 	
 	

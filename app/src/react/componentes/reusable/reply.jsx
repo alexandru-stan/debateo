@@ -7,10 +7,11 @@ export const Reply = (props) => {
 
     return(
 
-        <div className="w-full" style={{marginBottom:'2%', borderBottom:'1px solid #444073'}}>
+        <div  className="w-full" style={{marginBottom:'2%', borderBottom:'1px solid #444073'}}>
     <div style={{marginLeft:'5%'}} id='replies' className='  flex flex-row  '> 
     <div className="     w-2/4">
     <p className="  text-naranjaMolon font-bold">{props.username}</p>
+   
     </div>
     <div className="w-2/4 flex justify-end " style={{ marginLeft:'auto'}}>
         {fechaFinal}

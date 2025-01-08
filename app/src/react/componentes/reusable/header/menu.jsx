@@ -45,19 +45,19 @@ export const Menu = (props) => {
     return (
         <>
         <div id='menu' className="  p-2 border-b-2 border-moradoLight     text-white flex flex-col   w-full  " >
-            <div className="cursor-pointer  hover:brightness-125 w-full  bg-moradoOscuro  p-1  m-1  flex items-center    border-naranjaMolon  flex  " onClick={() => navigate("/feed")} id='menu-1' >
+            <div className="cursor-pointer menuItem hover:text-naranjaMolon   w-full  bg-moradoOscuro  p-1  m-1  flex items-center   flex  " onClick={() => navigate("/feed")} id='menu-1' >
             <Imagen style={{maxWidth:'50%', height:'2rem'}}   ruta={IconoParaTi}></Imagen>
             <div className="letraObjetoMenu Kanit  p-2 "  style={{}}>Para ti</div>
             </div>
 
-            <div  className=" w-full   border-naranjaMolon p-1 items-center    m-1   cursor-pointer hover:brightness-125  bg-moradoOscuro  h-2/4  flex  " onClick={() => navigate("/profile")} id='menu-2'>
+            <div  className=" w-full menuItem hover:text-naranjaMolon   p-1 items-center    m-1   cursor-pointer hover:brightness-125  bg-moradoOscuro  h-2/4  flex  " onClick={() => navigate("/profile")} id='menu-2'>
             <Imagen style={{maxWidth:'50%', height:'2rem'}} ruta={IconoPerfil}></Imagen>
             <div className="letraObjetoMenu Kanit p-2"  style={{}}>Perfil</div>
             </div> 
  
 
             
-            <div    className=" w-full   border-naranjaMolon p-1 items-center     m-1   cursor-pointer hover:brightness-125 bg-moradoOscuro   h-2/4 flex  " onClick={() => {
+            <div    className=" w-full menuItem   p-1 items-center  hover:text-naranjaMolon   m-1   cursor-pointer hover:brightness-125 bg-moradoOscuro   h-2/4 flex  " onClick={() => {
                  setMensajesSinLeer(0);
 
                     dispatch(update(!messagesRender));
@@ -65,11 +65,11 @@ export const Menu = (props) => {
              } } id='menu-3'>
             <Imagen style={{maxWidth:'50%', height:'2rem'}}  ruta={IconoMensajes}></Imagen>
 
-            <div className= "letraObjetoMenu Kanit p-2 "  style={{}}>Mensajes</div>
+            <div className= " hover:text-naranjaMolon letraObjetoMenu hover:text-naranjaMolon Kanit p-2 "  style={{}}>Mensajes</div>
             <div style={{ width:'25px', marginLeft:'auto'}}  className="   bg-moradoLight rounded-full text-center " id="menuLevelNotification">{mensajesSinLeer>0 ? mensajesSinLeer : null}</div>
             </div> 
 
-            <div   className=" w-full    border-naranjaMolon p-1   m-1 items-center     cursor-pointer hover:brightness-125 bg-moradoOscuro h-2/4  flex  " onClick={()=> navigate("/new/community")} id='menu-4'>
+            <div   className=" menuItem w-full  hover:text-naranjaMolon hover:text-naranjaMolon  p-1   m-1 items-center     cursor-pointer hover:brightness-125 bg-moradoOscuro h-2/4  flex  " onClick={()=> navigate("/new/community")} id='menu-4'>
             <Imagen style={{maxWidth:'50%', height:'2rem'}}  ruta={IconoComunidades}></Imagen>
             <div className="letraObjetoMenu Kanit p-2"  style={{}}>Comunidad</div>
             </div> 
