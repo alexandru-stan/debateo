@@ -13,12 +13,25 @@ export const NewCommunity = () => {
     const [options,setOptions] = useState([]);
     let form = useRef(null);
     const messagesRender = useSelector(state => state.messagesRender.value);
+    const titleInput = useRef();
+    const [titleLength, setTitleLength] = useState(0);
+    const [desclen, setdesclen] = useState(0);
+    const descriptionInput = useRef();
     useEffect(()=> {
       
         localStorage.getItem('userData') == undefined ? nav("/") : null;
         
     })
     
+    function handleTitleChange(){
+   
+        setTitleLength(titleInput.current.value.length)
+    }
+
+    function handleDescChange(){
+        setdesclen(descriptionInput.current.value.length)
+    }
+
     return ( 
     
       
@@ -34,26 +47,32 @@ export const NewCommunity = () => {
         <form className=" w-3/6   flex items-center justify-center flex-col" ref={form} id="formCrearComunidad" onSubmit={ (event) => {event.preventDefault(); createCommunity(form).then((response)=> { localStorage.setItem('cid',response.data); nav("/community/"+response.data)}); }}>
        
     <input
+        onChange={handleTitleChange}
         placeholder="Nombre de la comunidad"
-        className=" w-full m-2 bg-moradoLight text-white px-4 py-2 rounded-lg placeholder-white focus:outline-none focus:ring-2 focus:ring-naranjaMolon"
+        className=" w-full  bg-moradoLight text-white px-4 py-2 rounded-lg placeholder-white focus:outline-none focus:ring-2 focus:ring-naranjaMolon"
         type="text"
         required
         name='name'
         id='titulo'
+        maxLength={30}
+        ref={titleInput}
     />
-
+   <div style={{marginLeft:'2%'}} className="mb-3  w-full"><sub className='text-left'></sub>{titleLength}/30</div> 
 
     <textarea
+        ref={descriptionInput}
+        onChange={handleDescChange}
         placeholder="Descripción de la comunidad"
-        className="m-2 w-full bg-moradoLight text-white px-4 py-2 rounded-lg placeholder-white focus:outline-none focus:ring-2 focus:ring-naranjaMolon"
+        className=" w-full bg-moradoLight text-white px-4 py-2 rounded-lg placeholder-white focus:outline-none focus:ring-2 focus:ring-naranjaMolon"
         required
         name='description'
         id='cuerpo'
         rows={4} // Aquí puedes ajustar la altura cambiando el número de filas
     ></textarea>
+    <div style={{marginLeft:'2%'}} className="mb-3  w-full"><sub className='text-left'></sub>{desclen}/200</div>
 
      
-<label for="imagen" class="block text-naranjaMolon text-sm font-bold mb-2">
+<label for="imagen" class="block text-naranjaMolon text-sm mt-5 font-bold mb-2">
   Selecciona una imagen:
   <input required name="image" type="file" id="imagen" accept="image/png, image/gif, image/jpeg" class="hover:cursor-pointer appearance-none  text-naranjaMolon text-sm font-bold  rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
 </label>

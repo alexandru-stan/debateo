@@ -10,11 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.orm.jpa.JpaSystemException;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -114,12 +114,14 @@ public class PostsController {
 			
 			Posts post = new Posts(user,Long.valueOf(community),titulo,cuerpo,file.getBytes());
 			
+		     System.out.println("aaaaaa");
 			 savedPost= repo.save(post);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
+			 
+			} catch ( Exception e) {
+					System.out.println("puta");
+					return 0;
+			}
 	return (int) savedPost.getPublicationId();
 	}
 	

@@ -92,7 +92,10 @@ export const ChatActual = (props) => {
     
 
         function sendMessage(element){
-            alert(selectedChat);
+
+           
+            if(!element.length == 0){
+
             let message = {
                 messageId:null,
                 messageBody:element,
@@ -113,6 +116,11 @@ export const ChatActual = (props) => {
                 
             });
             
+
+        } 
+
+
+
 
         }
     
@@ -158,6 +166,7 @@ selectedChat==null ?
         <div className="flex bg-moradoOscuro items-center p-1 " style={{height:'15%'}} id='bandejaMensajes'>
             <input id='chatBox' placeholder="Escribe un mensaje" className="bg-moradoOscuro w-5/6"></input>
             <img onClick={() => { 
+
                 sendMessage($("#chatBox").val()) 
                 $("#chatBox").val(null);
             }} style={{marginLeft:'5%', height:'2rem' }} className="hover:cursor-pointer bg-moradoOscuro" src={enviarMensaje}/>

@@ -23,7 +23,7 @@ export const ComunidadesMasActivas = () => {
             
             r.data.forEach(e => {
                 temp.push(
-                    <div
+                    <div 
                         onClick={() => {
                             localStorage.setItem('cid', e.communityId);
                             nav('/community/' + e.communityId);
@@ -36,8 +36,8 @@ export const ComunidadesMasActivas = () => {
                             src={formatImage(e.communityImage)}
                             alt={e.communityName}
                         />
-                        <div className="w-full p-2">
-                            <p>{e.communityName}</p>
+                        <div  className="w-full p-2">
+                            <p style={{textOverflow:'ellipsis',whiteSpace:'nowrap',overflow:'hidden', width:'90%'}}>{e.communityName}</p>
                         </div>
                     </div>
                 );

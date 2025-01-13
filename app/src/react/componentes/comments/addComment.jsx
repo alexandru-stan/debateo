@@ -18,7 +18,7 @@ export const AddComment = ({writable}) => {
         
            writable ? 
            
-           <textarea id='uploadComment' className="flex w-full   justify-center items-center p-2"
+           <textarea id='uploadComment' maxLength={40000} className="flex w-full   justify-center items-center p-2"
            ref = {textareaRef}
            style={{
             background: 'none',

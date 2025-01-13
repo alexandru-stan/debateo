@@ -133,13 +133,13 @@ let userData = JSON.parse(localStorage.getItem("userData"))
 
 useEffect(() => {
   setState(localStorage.getItem('cid'));
-//  alert("a");
+
   setPostsArr([]);
-  // alert(localStorage.getItem('cid'))
+ 
    },[localStorage.getItem('cid')])
   
    useEffect(()=> {
-    // alert(state);
+   
     CommunityInfoRequest(state).then(response => {
     let data = response.data;
      
@@ -198,7 +198,7 @@ useEffect(() => {
 
 
 useEffect(()=> {
-console.log("ola");
+
 if(subscription !='BANNED'){
   if(creadorState==loggedUser) setSubButton(<button className=" hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon" onClick={()=> navigate("/admin/"+state)} id='administrar'>Administrar</button>)
   else if ( subscription!=null) setSubButton(<button className="hover:bg-moradoLight rounded-md p-2  text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none   focus:border-naranjaMolon" onClick={()=> {

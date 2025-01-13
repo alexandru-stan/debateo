@@ -123,7 +123,7 @@ let audio = new Audio(newMessage);
       } else {
         
         let notMe = mensaje.messageSender == username ? mensaje.messageReceiver : mensaje.messageSender;
-        alert("FUERA DE CHAT 1"+notMe);
+    
 
         const newChat = (
           <Chat
@@ -158,7 +158,7 @@ let audio = new Audio(newMessage);
 
         ]});
         
-        alert("FUERA DE CHAT 2"+notMe);
+     
 
 
       }

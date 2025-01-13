@@ -16,15 +16,8 @@ export const Body = (props) => {
     const [selected,setSelected] = useState("Publicaciones");
     const messagesRender = useSelector(state => state.messagesRender.value);
     const nav = useNavigate()
-
   
-
-
-
-
-
-
-
+  
 
 
 

@@ -18,7 +18,7 @@ const Header = () => {
     const lateralMenuVisibilityRight = useSelector(state => state.lateralMenuVisibilty.value.right);
     const dispatch = useDispatch();
     const $ = require("jquery");
-  
+
     return (<>
         
         <div className=" p-2   items-center bg-moradoOscuro  m-0 sticky top-0 justify-center  z-30 flex w-full  border-b-solid border-b-2 border-b-moradoLight " id='header-feed'>

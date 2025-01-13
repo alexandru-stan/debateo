@@ -78,7 +78,7 @@ const dispatch = useDispatch();
 
 
   useEffect(() => {
-    // alert(status);
+   
     if (isInitialMount.current) {
        isInitialMount.current = false;
        $('#registerResponse').hide();

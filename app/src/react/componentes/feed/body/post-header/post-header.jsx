@@ -18,7 +18,7 @@ const myRef = useRef(null)
 
 useEffect(()=> {
     myRef.current.addEventListener('focusout',() =>  setDotsMenuVisibility("none"));
-    myRef.current.addEventListener('click',() =>  setDotsMenuVisibility("none"));
+    // myRef.current.addEventListener('click',() =>  setDotsMenuVisibility("none"));
 },[])
 
 // useEffect(()=>{

@@ -111,13 +111,14 @@ const [loadingComments,setLoadingComments] = useState(true);
           </button>
          
           <button className='font-bold commentButtons  text-naranjaMolon p-2 mt-2 rounded-3xl hover:cursor-pointer hover:bg-moradoLight w-1/6' onClick={()=>{
+          if (!$('#uploadComment').val().length == 0){
           setWritable(false)
           let comment = subirComentario($('#uploadComment').val(),params.id);
           $('#uploadComment').val(null);
           refreshProfileImage(user.username).then(e => setComments(comments => ([<Comment key={comment.commentId} id={comment.commentId} profileImage = {e.data.profileImage} username={comment.username} commentDate={0}  commentText = {comment.commentText}></Comment>]).concat(comments)) )
           setWritable(false);
           setEmojiPicker(false);
-
+          }
           }}>Enviar</button> 
 
           </div>

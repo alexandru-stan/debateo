@@ -32,7 +32,7 @@ export const LateralMenu = (props) => {
     const [profileImage,setProfileImage] = useState(null);
     const nav = useNavigate();
     const loc = useLocation();
-
+    const isFirstRender =  useRef(true);
     const windowWidth = useWindowSize().width;
 
 
@@ -41,7 +41,11 @@ export const LateralMenu = (props) => {
       
         windowWidth < 1101 ? dispatch(update('none')) : dispatch(update('block'));
     },[windowWidth])
+    useEffect(()=>{
+        isFirstRender.current ? isFirstRender.current = false :  windowWidth < 1101 ? dispatch(update('none')) : null
+     
 
+    },[loc])
 
 
     let audio = new Audio(newMessage);
@@ -97,7 +101,7 @@ useEffect(() => {
   
   
 //-50px
-        <div id="lateralMenu" ref={lateralMenuRef} className={   "  bg-moradoOscuro border-r-2 border-moradoLight"} style={{zIndex:'1',position:'fixed', overflow:'scroll',   left:'0%', bottom:'0%', top:'7%', width:'20%', display:lateralMenuVisibility}}>
+        <div id="lateralMenu" ref={lateralMenuRef} className={   " overflow-x-hidden bg-moradoOscuro border-r-2 border-moradoLight"} style={{zIndex:'1',position:'fixed', overflow:'scroll',   left:'0%', bottom:'0%', top:'7%', width:'20%', display:lateralMenuVisibility}}>
        <div id="user-info" style={{marginTop:'2rem'}} className=" border-b-2 border-moradoLight flex items-center  p-2 ">
      <div style={{width:'30%',height:'4rem'}} className="flex justify-center ">
     

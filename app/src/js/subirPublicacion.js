@@ -9,18 +9,7 @@ import { formatImage } from "./imageFormatting";
         formData.append('user' ,    user);
  
         
-      
-
-        
-      
-
-//  return axios.post("http://"+SERV_DIR+":"+SERV_PORT+"/posts/new",formData,{
-//   headers:{
-//       'Authorization':'Bearer '+ JSON.parse(localStorage.getItem('userData')).token,
-//       'Content-Type': 'application/json'
-//   }
-// });
-
+if(formData.get("image").size <= 25000000){
 
 return axios.post("http://"+SERV_DIR+":"+SERV_PORT+"/posts/new",formData,{
   headers:{
@@ -28,6 +17,11 @@ return axios.post("http://"+SERV_DIR+":"+SERV_PORT+"/posts/new",formData,{
   
   }
 });
+} else {
+
+ return null;
+
+}
 
 
         
