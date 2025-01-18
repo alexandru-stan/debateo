@@ -1,9 +1,15 @@
 import React from "react";
 import { useState,useEffect } from "react";
 import { getCommunityOptions } from "../../../js/getCommunityOptions";
+import { updateCommunityOptions } from "../../../js/updateCommunityOptions";
 export const CommunityOptions = (props) => {
 const [options,setOptions] = useState(null)
+const [editting, setEditting] = useState(false);
 
+useEffect(()=>{
+    console.log(options);
+}
+    ,[options])
 
 
 useEffect(()=>{
@@ -17,6 +23,7 @@ useEffect(()=>{
 
     return (
     options !=null ? 
+<>
 <div  id='options' className="  rounded-2xl p-2 w-full flex flex-col ">
 
 
@@ -24,11 +31,17 @@ useEffect(()=>{
 <div  className="flex flex-col mt-2 w-full">
 <div className="flex ">
 <label className="custom-checkbox" >
-<input onChange={() => setOptions(prevOptions => ({
+<input onChange={() => 
+{
+setEditting(true);
+setOptions(prevOptions => ({
     ...prevOptions,
     privateCommunity:!prevOptions.privateCommunity
-}))} checked={options.privateCommunity?true:null} type='checkbox'/>
-<span class="checkmark"></span>
+}))
+
+}
+} checked={options.privateCommunity} type='checkbox'/>
+<span className="checkmark"></span>
 Comunidad privada
 </label>
 
@@ -36,11 +49,21 @@ Comunidad privada
 
 <div className="flex mt-2  ">
 <label className="custom-checkbox" >
-<input onChange={() => setOptions(prevOptions => ({
+<input onChange={() =>
+{
+setEditting(true);
+setOptions(prevOptions => ({
     ...prevOptions,
     sensitiveContent:!prevOptions.sensitiveContent
-}))} checked={options.sensitiveContent?'checked':null} type='checkbox'/>
-<span class="checkmark"></span>
+
+
+}))
+
+}
+
+
+}checked={options.sensitiveContent} type='checkbox'/>
+<span className="checkmark"></span>
 Contenido sensible
 </label>
 </div>
@@ -54,11 +77,18 @@ Contenido sensible
 </div>
 <div className="flex mt-2 ">
 <label className="custom-checkbox" >
-<input onChange={() => setOptions(prevOptions => ({
+<input onChange={() => 
+{
+setEditting(true);
+setOptions(prevOptions => ({
     ...prevOptions,
     blockNewSubscriptions:!prevOptions.blockNewSubscriptions
-}))} checked={options.blockNewSubscriptions?'checked':null} type='checkbox'/>
-<span  class="checkmark"></span>
+}))
+
+}
+
+} checked={options.blockNewSubscriptions} type='checkbox'/>
+<span  className="checkmark"></span>
 Suscripciones bloqueadas
 </label>
 
@@ -67,18 +97,44 @@ Suscripciones bloqueadas
 </div>
 <div className="flex mt-2 ">
 <label className="custom-checkbox" >
-<input onChange={() => setOptions(prevOptions => ({
+<input onChange={() => 
+
+{
+setEditting(true);
+setOptions(prevOptions => ({
     ...prevOptions,
     adminMode:!prevOptions.adminMode
-}))} checked={options.adminMode?'adminMode':null} type='checkbox'/>
-<span class="checkmark"></span>
+}))
+
+}
+
+} checked={options.adminMode} type='checkbox'/>
+<span className="checkmark"></span>
 Modo administrador
 </label>
 </div>
-</div>
 
+
+</div>
+{editting ?
+    <div className="w-full flex justify-around mt-5">
+<button onClick={()=> {
+    setEditting(false);
+    updateCommunityOptions(options)
+    }} className=" hover:bg-moradoLight  rounded-md p-1  w-2/6 border-2 border-moradoLight bg-moradoFondo placeholder-gray-400  placeholder-gray-400 ">Guardar cambios</button>
+<button onClick={()=> { 
+    setEditting(false);
+    getCommunityOptions(props.id).then(response => setOptions(response.data))}} className=" hover:bg-moradoLight   rounded-md p-1  w-2/6 border-2 border-moradoLight bg-moradoFondo placeholder-gray-400  placeholder-gray-400 ">Cancelar</button>
+</div>
+:null }
+
+</>
 :
-<p>a</p>
-    )
+null
+
+
+
+   
+)
 
 }

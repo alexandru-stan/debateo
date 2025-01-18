@@ -20,7 +20,8 @@ public class JWTAuthenticationProvider implements AuthenticationProvider {
 	
 		try {
 		jwtService.IsTokenValid(authentication.getName());
-		return new JwtAuthentication(true,authentication.getName(),null);
+		String name =  jwtService.extractUsername(authentication.getName());
+		return new JwtAuthentication(true,name,null);
 		} catch (Exception e) {
 		
 			return new JwtAuthentication(false,authentication.getName(),null);

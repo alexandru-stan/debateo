@@ -32,6 +32,7 @@ let loggedUser = JSON.parse(localStorage.getItem('userData')).username
    
     for(let i=0;i<response.data.numberOfElements;i++){
                     posts[i] = <Post
+              key= {arr[i].post.publicationId}
               likes={arr[i].likes}
               comments={arr[i].comments}
               visibleCommunityInfo = {false}

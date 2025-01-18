@@ -10,12 +10,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import es.debateo.DTO.CommunityDTO;
+import es.debateo.DTO.CommunityOptionsRecord;
 import es.debateo.DTO.ServiceResponse;
 import es.debateo.Model.Communities;
 import es.debateo.Repositories.communitiesRepo;
@@ -108,17 +110,29 @@ public class CommunitiesController {
 	
 	
 	@GetMapping("/options/{id}")
-	public ResponseEntity<Communities> getCommunityOptions(@PathVariable int id){
+	public ResponseEntity<CommunityOptionsRecord> getCommunityOptions(@PathVariable int id){
 		
 		
-		Communities response = repo.getCommunityOptions(id);
+		CommunityOptionsRecord response = repo.getCommunityOptions(id);
 		
-		return new ResponseEntity<Communities>(response,HttpStatus.OK);
+		return new ResponseEntity<CommunityOptionsRecord>(response,HttpStatus.OK);
 		
 		
 	}
 	
-	
+	@PostMapping("/options/update")
+	public ResponseEntity<Boolean> updateCommunityOptions(@RequestBody CommunityOptionsRecord cor){
+		
+		System.out.println(cor.toString());
+		repo.updateCommunityOptions(
+				cor.privateCommunity(),
+				cor.sensitiveContent(), 
+				cor.blockNewSubscriptions(), 
+				cor.adminMode(), 
+				cor.communityId());
+		return new ResponseEntity<Boolean>(true,HttpStatus.ACCEPTED);
+		
+	}
 	
 	
 	

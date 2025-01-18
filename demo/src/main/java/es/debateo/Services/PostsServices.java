@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import es.debateo.DTO.PostDTO;
 import es.debateo.DTO.ServiceResponse;
+import es.debateo.Model.Subscriptions;
 import es.debateo.Repositories.commentsRepo;
 import es.debateo.Repositories.likesRepo;
 import es.debateo.Repositories.postsRepo;
@@ -79,7 +80,7 @@ public class PostsServices {
 	public ServiceResponse<PostDTO> getPosts(String username,int offset,boolean fyp){
 		
 		
-		Page<PostDTO> posts = fyp ? repo.getPostsFyp(PageRequest.of(offset, 10)) :  repo.getPostsBySubscription(username,PageRequest.of(offset, 15));
+		Page<PostDTO> posts = fyp ? repo.getPostsFyp(PageRequest.of(offset, 10),username, Subscriptions.subscriptionType.BANNED) :  repo.getPostsBySubscription(username,PageRequest.of(offset, 15));
 		
 //		Page<PostDTO> posts = repo.getPostsBySubscription(username,PageRequest.of(offset, 15));
 		

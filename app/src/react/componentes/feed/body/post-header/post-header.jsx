@@ -28,9 +28,11 @@ useEffect(()=> {
     return (
         
         <div style={{ overflowWrap:'break-word', height:'15%'}} className='post-header  p-1 border-b-2   border-moradoLight  text-white '>
+
        {props.visibleCommunityInfo ? 
        
         <div className=' h-2/6 flex items-center  post-info'>
+          
         <div style={{width:'2rem' ,  height:'2rem'}}>
         <img  style={{borderRadius:'50%', width:'100%' ,height:'100%',  border:'none'}} src={props.communityImage} />
         </div>

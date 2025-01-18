@@ -135,9 +135,8 @@ useEffect(() => {
                                  <p  
                                  onClick={()=>{
                                      dispatch(assign(null));
-
+                                     stompClient.deactivate();
                                      localStorage.removeItem('userData');
-                               
                                      nav("/")
                                      dispatch(updateLatRender(false));
                                     

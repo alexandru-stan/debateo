@@ -3,14 +3,14 @@
 
 
 
-import java.io.IOException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.orm.jpa.JpaSystemException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,15 +52,13 @@ public class PostsController {
 	
 	
 	
-	
+
 	@PostMapping("/{username}/{offset}/{fyp}")
-	public ResponseEntity<Page<PostDTO>> getPosts(@PathVariable String username, @PathVariable int offset, @PathVariable boolean fyp){
+	public ResponseEntity<Page<PostDTO>> getPosts(@PathVariable String username, @PathVariable int offset, @PathVariable boolean fyp, Authentication auth){
 
 		
 		ServiceResponse<PostDTO> response = services.getPosts(username,offset,fyp);
-		
-		
-		
+		System.out.println("pido página "+offset);
 		return new ResponseEntity<Page<PostDTO>>(response.getPagina(),response.getStatus());
 		
 	}
@@ -74,6 +72,7 @@ public class PostsController {
 		boolean isPrivate = communitiesRepo.isCommunityPrivate(communityId);
 		String creator = communitiesRepo.getCommunityCreator(communityId);
 	
+		System.out.println("pido página "+offset);
 		
 		
 		if(sub.isPresent() && sub.get().getSubscriptionLevel() == Subscriptions.subscriptionType.BANNED ) {

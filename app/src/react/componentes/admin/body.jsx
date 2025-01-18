@@ -7,7 +7,7 @@ import { Reports } from "./reports";
 // import { UsuariosVetados } from "./usuariosvetados";
 export const  Body = (props) => {
 
-  const [selected,setSelected] = useState("USERS_MANAGEMENT")
+  const [selected,setSelected] = useState("SETTINGS")
 
   function render(){
     switch(selected){

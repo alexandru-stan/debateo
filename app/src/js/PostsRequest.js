@@ -34,7 +34,7 @@ export async function PostsRequest(request,setPostsArr,fyp){
    
           
               posts[i] = <Post
-            
+              key = {arr[i].post.publicationId}
               likes={arr[i].likes}
               fyp = {fyp}
               visibleCommunityInfo = {true}

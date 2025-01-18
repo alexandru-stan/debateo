@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import es.debateo.DTO.PostDTO;
 import es.debateo.Model.Posts;
+import es.debateo.Model.Subscriptions;
 import jakarta.persistence.Tuple;
 
 public interface postsRepo extends JpaRepository<Posts,Long>{
@@ -42,10 +43,10 @@ public interface postsRepo extends JpaRepository<Posts,Long>{
 
 	@Query("SELECT new es.debateo.DTO.PostDTO(p, c, 0 , 0, 0) FROM Posts p " +
 		       " JOIN Communities c ON p.community = c.communityId"
-		       + " JOIN  Subscriptions s ON s.communityId = c.communityId"
-		       + " "
+		       + " LEFT JOIN  Subscriptions s ON s.communityId = c.communityId AND s.username =:name"
+		       + " WHERE s.subscriptionLevel <> :banned OR s.subscriptionLevel IS NULL "
 		       + " ORDER BY p.publicationId DESC ")
-	Page<PostDTO> getPostsFyp(PageRequest page);
+	Page<PostDTO> getPostsFyp(PageRequest page, @Param("name") String name, @Param("banned") Subscriptions.subscriptionType banned);
 	
 //	
 //	@Query(value = "SELECT "		

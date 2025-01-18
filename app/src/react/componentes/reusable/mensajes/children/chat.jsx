@@ -3,7 +3,7 @@ import formatearFecha from "../../../../../js/formatearFecha";
 import { useSelector } from "react-redux";
 import { formatImage } from "../../../../../js/imageFormatting";
 import { refreshProfileImage } from "../../../../../js/RefreshProfileImage";
-
+import { ReadMessages } from "../../../../../js/ReadMessages";
 
 
 export const Chat = (props) => {
@@ -30,40 +30,48 @@ export const Chat = (props) => {
   
   
 
-  // useEffect(()=>{
+  useEffect(()=>{
 
-  //   useEffect
 
-  //   incomingMessage!=null ? 
+
+    if(incomingMessage!=null){
+     
+      if(   incomingMessage.messageSender==props.interactuer && incomingMessage.messageSender != selectedChat ){
+        setUnread(unread+1)
+      } else if (incomingMessage.messageSender == selectedChat){
+        ReadMessages(incomingMessage.messageSender, username);
+
+      }
+
+    }
     
-  //   incomingMessage.messageSender==props.interactuer && incomingMessage.messageSender != selectedChat ?
+ 
     
-  //       setUnread(unread+1)
+    
         
-  //     :null
-  //   :null
+   
   
-    
-
-  // },[incomingMessage])
-
-  // useEffect(()=> {
-
-  //   selectedChat==props.interactuer ? 
-  //   setUnread(0) : 
-  //   null
 
 
-  // },[selectedChat])
+ },[incomingMessage])
+
+  useEffect(()=> {
+
+    selectedChat == props.interactuer ? 
+    setUnread(0) : 
+    null
 
 
-  // useEffect(() =>  {
+  },[selectedChat])
 
-  //   unreadMessages!=null ?
-  //     unreadMessages[props.interactuer]!=undefined ? setUnread(unreadMessages[props.interactuer]) : null
-  //   :null
 
-  // },[unreadMessages]);
+    useEffect(() =>  {
+
+      unreadMessages!=null ?
+        unreadMessages[props.interactuer]!=undefined ? setUnread(unreadMessages[props.interactuer]) : null
+      :null
+
+    },[unreadMessages]);
 
    
 

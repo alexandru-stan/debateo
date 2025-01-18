@@ -33,7 +33,7 @@ export const Communities = () => {
         <div className=" p-1  h-full" id='communities'>
         <Header/>
         {/* <LateralMenu/> */}
-        <Body userData={userData} id={id}/>
+        <Body  id={id}/>
        
 
         </div>

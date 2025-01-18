@@ -18,12 +18,14 @@ import { update } from "../../../../redux-store/slices/MessagesRender";
 export const Menu = (props) => {
 
     const messagesRender = useSelector(state => state.messagesRender.value);
+    const selectedChat = useSelector(state => state.selectedChat.value);
     const dispatch = useDispatch();
     const  $ = require('jquery');
     const navigate = useNavigate();
     let name="Programacion";
     const incomingMessage = useSelector(state => state.incomingMessage.value);
     const [mensajesSinLeer, setMensajesSinLeer] = useState(null);
+    
     useEffect(()=>{
 
         getUnreadMessages(props.userData.username).then(response => { 
@@ -36,9 +38,15 @@ export const Menu = (props) => {
     
 
     useEffect(()=>{
+
+
+
         incomingMessage!=null ? 
-        setMensajesSinLeer(state => state+1) 
-        :
+
+    
+           selectedChat != incomingMessage.messageSender ?   setMensajesSinLeer(state => state+1)    : null
+        
+                            :
         null
     },[incomingMessage])
 
@@ -58,7 +66,7 @@ export const Menu = (props) => {
 
             
             <div    className=" w-full menuItem   p-1 items-center  hover:text-naranjaMolon   m-1   cursor-pointer hover:brightness-125 bg-moradoOscuro   h-2/4 flex  " onClick={() => {
-                 setMensajesSinLeer(0);
+                    setMensajesSinLeer(0);
 
                     dispatch(update(!messagesRender));
                  

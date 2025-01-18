@@ -147,7 +147,7 @@ public ResponseEntity<Users> validarLogin(@RequestBody Users credentials, HttpSe
 
 	@GetMapping("/refreshProfileImage/{username}")
 	public UserRecord refreshProfileImage(@PathVariable String username) throws IOException {
-		System.out.println(username);
+
 	    profileImageUtils util = new profileImageUtils();
 
 		byte[] test = util.returnProfileImage(username);
