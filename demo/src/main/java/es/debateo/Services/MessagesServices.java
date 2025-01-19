@@ -13,7 +13,7 @@ import es.debateo.DTO.MessagesDTO;
 import es.debateo.DTO.ServiceResponse;
 import es.debateo.Model.Messages;
 import es.debateo.Repositories.messagesRepo;
-import es.debateo.Utils.profileImageUtils;
+import es.debateo.Utils.ImageUtils;
 import jakarta.persistence.Tuple;
 @Service
 public class MessagesServices {
@@ -30,10 +30,10 @@ public class MessagesServices {
 		tuple.forEach(e -> {
 		
 			MessagesDTO message = new MessagesDTO(null, (String) e.get(0), (Date) e.get(1), (int) e.get(2), (String) e.get(3), (Long)e.get(4));
-			profileImageUtils util = new profileImageUtils();
+			ImageUtils<String> util = new ImageUtils<String>();
 			
 			try {
-				message.setProfile_image(util.returnProfileImage(message.getInteractuer()));
+				message.setProfile_image(util.returnImage(message.getInteractuer(),"profileImages"));
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

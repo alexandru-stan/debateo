@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import es.debateo.DTO.CommentsDTO;
 import es.debateo.Model.Comments;
 import es.debateo.Repositories.commentsRepo;
-import es.debateo.Utils.profileImageUtils;
+import es.debateo.Utils.ImageUtils;
 
 @RestController
 @RequestMapping("/comments")
@@ -31,10 +31,10 @@ public class CommentsController {
 	@GetMapping("/{postid}")
 	public List<CommentsDTO> getComments(@PathVariable long postid) {
 		List<CommentsDTO> comentarios = repo.getComments(postid);
-		 profileImageUtils util = new profileImageUtils();
+		ImageUtils<String> util = new ImageUtils<String>();
 		comentarios.forEach(e ->{
 			try {
-				e.setProfileImage(util.returnProfileImage(e.getUsername()));
+				e.setProfileImage(util.returnImage(e.getUsername(),"profileImages"));
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

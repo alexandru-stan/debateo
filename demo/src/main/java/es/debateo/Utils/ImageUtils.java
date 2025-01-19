@@ -1,47 +1,68 @@
-	package es.debateo.Utils;
+package es.debateo.Utils;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
 
-import java.io.ByteArrayOutputStream;
-import java.util.zip.Deflater;
-import java.util.zip.Inflater;
+import org.apache.commons.io.FilenameUtils;
+import org.springframework.web.multipart.MultipartFile;
 
-public class ImageUtils {
+public class ImageUtils<T>{
 
-
-    public static byte[] compressImage(byte[] data) {
-        Deflater deflater = new Deflater();
-        deflater.setLevel(Deflater.BEST_COMPRESSION);
-        deflater.setInput(data);
-        deflater.finish();
-
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream(data.length);
-        byte[] tmp = new byte[4*1024];
-        while (!deflater.finished()) {
-            int size = deflater.deflate(tmp);
-            outputStream.write(tmp, 0, size);
-        }
-        try {
-            outputStream.close();
-        } catch (Exception ignored) {
-        }
-        return outputStream.toByteArray();
+    private static final List<String> extensions = Arrays.asList(".jpg", ".jpeg", ".png", ".gif", ".webp", ".jfif");
+    private byte[] image;
+    
+    public ImageUtils() {
     }
 
+    public byte[] getImage() {
+        return image;
+    }
 
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
 
-    public static byte[] decompressImage(byte[] data) {
-        Inflater inflater = new Inflater();
-        inflater.setInput(data);
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream(data.length);
-        byte[] tmp = new byte[4*1024];
-        try {
-            while (!inflater.finished()) {
-                int count = inflater.inflate(tmp);
-                outputStream.write(tmp, 0, count);
+    
+    
+    public boolean saveImageToFilesystem(MultipartFile file, T id, String folder) throws IllegalStateException, IOException {
+    	
+    	 String imageExtension = FilenameUtils.getExtension(file.getOriginalFilename());
+	     String rootDir = System.getProperty("user.dir");
+	     Path filePath = Paths.get(rootDir, "images/"+folder+"/"+id+"."+imageExtension);
+	     file.transferTo(new File((filePath.toString())));
+
+    	
+    	return false;
+    }
+    
+    
+    
+    public byte[] returnImage(T id, String folder) throws IOException {
+        // Get the user.dir property
+        String userDir = System.getProperty("user.dir");
+
+        // Define the directory to search for images
+        Path imageDir = Paths.get(userDir, "images/"+folder); // "images" is the folder name inside user.dir
+
+        // Iterate over all file extensions
+        for (String ext : extensions) {
+            // Define the path to the image file
+            Path imagePath = imageDir.resolve(id + ext);
+
+            // Check if the file exists
+            if (Files.exists(imagePath)) {
+                this.image = Files.readAllBytes(imagePath);
+                
+                break;
             }
-            outputStream.close();
-        } catch (Exception ignored) {
+            
+            
         }
-        return outputStream.toByteArray();
-    }
 
+        return this.image;
+    }
 }

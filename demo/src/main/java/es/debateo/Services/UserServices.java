@@ -19,7 +19,7 @@ import es.debateo.Model.Users;
 import es.debateo.Repositories.communitiesRepo;
 import es.debateo.Repositories.subsRepo;
 import es.debateo.Repositories.usersRepo;
-import es.debateo.Utils.profileImageUtils;
+import es.debateo.Utils.ImageUtils;
 
 @Service
 public class UserServices implements UserDetailsService{
@@ -49,8 +49,8 @@ public class UserServices implements UserDetailsService{
 		if(user!=null && passwordEncoder.matches(password, user.getPassword())) {
 			Users userData = repo.findById(username).get();
 			userData.setSubsCount((subsRepo.countByUsername(userData.getUsername()) + communitiesRepo.countByCommunityCreator(userData.getUsername())));
-			profileImageUtils util = new profileImageUtils();
-			userData.setProfileImageFile(util.returnProfileImage(userData.getUsername()));
+			ImageUtils<String> util = new ImageUtils<String>();
+			userData.setProfileImageFile(util.returnImage(userData.getUsername(),"profileImages"));
 			
 			
 			return new ServiceResponse<Users>(userData,HttpStatus.OK);

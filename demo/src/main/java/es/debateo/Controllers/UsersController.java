@@ -6,13 +6,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,13 +25,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import es.debateo.Config.Security.Authentication.JWT.JwtService;
 import es.debateo.DTO.ServiceResponse;
-import es.debateo.Model.Messages;
 import es.debateo.Model.UserRecord;
 import es.debateo.Model.Users;
 import es.debateo.Repositories.usersRepo;
 import es.debateo.Services.MessagesServices;
 import es.debateo.Services.UserServices;
-import es.debateo.Utils.profileImageUtils;
+import es.debateo.Utils.ImageUtils;
 import jakarta.servlet.http.HttpServletRequest;
 
 @RequestMapping("/users")
@@ -99,22 +96,22 @@ public ResponseEntity<Users> validarLogin(@RequestBody Users credentials, HttpSe
 		
 		
 	     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-	     String imageExtension = FilenameUtils.getExtension(file.getOriginalFilename());
-	     // Get the root directory of the project
-	        String rootDir = System.getProperty("user.dir");
+	     
+	     
+	   
+	     ImageUtils<String> imageUtils = new ImageUtils<String>();
+	     
+	     imageUtils.saveImageToFilesystem(file, username, "profileImages");
+	     
+//	     String imageExtension = FilenameUtils.getExtension(file.getOriginalFilename());
+//	     String rootDir = System.getProperty("user.dir");
+//	     Path filePath = Paths.get(rootDir, "images/"+username+"."+imageExtension);
+//	     file.transferTo(new File((filePath.toString())));
 	        
-	        
-	        Path filePath = Paths.get(rootDir, "images/"+username+"."+imageExtension);
-	        
-	        file.transferTo(new File((filePath.toString())));
-	        
-	  
-	        
-		Users user = new Users(username,password,name,mail,formatter.parse(birth_date));
+	     Users user = new Users(username,password,name,mail,formatter.parse(birth_date));
 		
 		ServiceResponse<String> response = servicio.signin(user);
-		servicioMensajes.sendMessage(new Messages("Hola "+user.getUsername()+", bienvenido a Debateo. \n Estamos aquí para cualquier cosa que necesites :) ","debateosoporte",user.getUsername(),new Date(),false));
-		
+//		servicioMensajes.sendMessage(new Messages("Hola "+user.getUsername()+", bienvenido a Debateo. \n Estamos aquí para cualquier cosa que necesites :) ","debateosoporte",user.getUsername(),new Date(),false));
 		return new ResponseEntity<String>(response.getObj(),response.getStatus());
 	
 	}
@@ -148,9 +145,8 @@ public ResponseEntity<Users> validarLogin(@RequestBody Users credentials, HttpSe
 	@GetMapping("/refreshProfileImage/{username}")
 	public UserRecord refreshProfileImage(@PathVariable String username) throws IOException {
 
-	    profileImageUtils util = new profileImageUtils();
-
-		byte[] test = util.returnProfileImage(username);
+	   ImageUtils<String> util = new ImageUtils<String>();
+	    byte[] test = util.returnImage(username,"profileImages");
 		return new UserRecord(test);
 		
 		

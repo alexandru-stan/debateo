@@ -22,6 +22,7 @@ import es.debateo.DTO.ServiceResponse;
 import es.debateo.Model.Communities;
 import es.debateo.Repositories.communitiesRepo;
 import es.debateo.Services.CommunitiesServices;
+import es.debateo.Utils.ImageUtils;
 
 @RestController
 
@@ -44,10 +45,11 @@ public class CommunitiesController {
 	
 	
 	@GetMapping("/{username}/{id}")
-	public ResponseEntity<CommunityDTO> getCommunity(@PathVariable String username,@PathVariable long id){
+	public ResponseEntity<CommunityDTO> getCommunity(@PathVariable String username,@PathVariable long id) throws IOException{
 		
 		ServiceResponse<CommunityDTO> response = services.findCommunitiesById(username,id);
-		
+		ImageUtils<Long> imageUtils = new ImageUtils<Long>();
+		response.getObj().setCommunityImage(imageUtils.returnImage(response.getObj().getCommunityId(),"communityImages"));
 		return new ResponseEntity<CommunityDTO>(response.getObj(),response.getStatus());
 		
 	}
@@ -66,19 +68,15 @@ public class CommunitiesController {
 		
 			
 			
-			) {
+			) throws IllegalStateException, IOException {
 		
 
 		Communities response=null;
-		try {
-			 response = repo.save(new Communities(name,desc,file.getBytes(),creator,sensitiveContent,privateCommunity,blockNewSubscriptions,adminMode));
-			return response.getCommunityId();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		ImageUtils<Long> imageUtils = new ImageUtils<Long>();
+		response = repo.save(new Communities(name,desc,null,creator,sensitiveContent,privateCommunity,blockNewSubscriptions,adminMode));
+		imageUtils.saveImageToFilesystem(file,response.getCommunityId(), "communityImages");
 		return response.getCommunityId();
+//		return response.getCommunityId();
 		
 	}
 	
