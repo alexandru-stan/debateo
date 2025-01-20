@@ -15,221 +15,261 @@ import {SERV_DIR,SERV_PORT} from "../../../utilities";
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
-export const Body = (props) => {
-const [state,setState] = useState(localStorage.getItem('cid'));
-const [info,setInfo] = useState({});
-const [postsArr,setPostsArr] = useState([]);
-const [page,setPage] = useState(0);
-const [isLast,setIslast] = useState(false);
-const[subscription,setSubscription] = useState(null);
-const [SubButton,setSubButton] = useState(null);
-const [creadorState, setCS] = useState(null);
-const [apiResponse,setApiResponse] = useState();
-const [loading, setLoading] = useState(true);
-const myRef = useRef();
-const navigate = useNavigate();
-let creador;
-let loggedUser = JSON.parse(localStorage.getItem('userData')).username;
-const loc = useLocation();
-
-useEffect(()=>{
-localStorage.setItem('cid',loc.pathname.split("community/")[1]);
-setState(loc.pathname.split("community/")[1])
-},[loc])
-
-let request =  {
-  page:page,
-  state:state,
-  myRef:myRef,
-  setIslast:setIslast,
-  setPostsArr:setPostsArr,
-
-
-}
-const handleIntersection = (entries) => {
-  if (entries[0].isIntersecting && !isLast) {
-    
-    observer.disconnect();
-    // setPage((prevPage) => prevPage + 1);
-    // request.page = request.page+1;
-    setLoading(true);
-     PostsRequestByCommunity(request,creador)
-  
-      .then((response) => {
-        setPostsArr((prevPosts) => prevPosts.concat(response));
-       setLoading(false);
-      })  
-  
-      
-  } 
-  if(isLast) setIslast(false);
-
-
-};
-const observer = new IntersectionObserver(handleIntersection);
+// export const Body = (props) => {
+// const [state,setState] = useState(localStorage.getItem('cid'));
+// const [info,setInfo] = useState({});
+// const [postsArr,setPostsArr] = useState([]);
+// const [page,setPage] = useState(0);
+// const [isLast,setIslast] = useState(false);
+// const[subscription,setSubscription] = useState(null);
+// const [SubButton,setSubButton] = useState(null);
+// const [creadorState, setCS] = useState(null);
+// const [apiResponse,setApiResponse] = useState();
+// const [loading, setLoading] = useState(true);
+// const myRef = useRef();
+// const navigate = useNavigate();
+// let creador;
+// let loggedUser = JSON.parse(localStorage.getItem('userData')).username;
 
 
 // useEffect(()=>{
-// if(info.communityId!=undefined){
+// localStorage.setItem('cid',loc.pathname.split("community/")[1]);
+// setState(loc.pathname.split("community/")[1])
+// },[loc])
 
+// let request =  {
+//   page:page,
+//   state:state,
+//   myRef:myRef,
+//   setIslast:setIslast,
+//   setPostsArr:setPostsArr,
 
-//   let index = comunidadesRecientes.findIndex(obj => obj == info.communityId) 
-
-//  index == -1 ?
-//  (function() {comunidadesRecientes.push(info.communityId);
-//   localStorage.setItem("comunidadesRecientes", JSON.stringify(comunidadesRecientes))
-//   dispatch(update(!rctTrigger))})
-//   :
-
-//   comunidadesRecientes.splice(index,1);
-//   comunidadesRecientes.unshift(info.communityId);
-//   localStorage.setItem("comunidadesRecientes",JSON.stringify(comunidadesRecientes))
-//   dispatch(update(!rctTrigger))
 
 // }
-// },[info])
-
-
-
-function changeSub(subscription){
-let userData = JSON.parse(localStorage.getItem("userData"))
-  if(subscription==null) {
+// const handleIntersection = (entries) => {
+//   if (entries[0].isIntersecting && !isLast) {
     
-    axios.post("http://"+SERV_DIR+":"+SERV_PORT+"/subscriptions/sub/"+loggedUser+"/"+state,null,{
-      headers:{
-          'Authorization':'Bearer '+ JSON.parse(localStorage.getItem('userData')).token,
-          'Content-Type': 'application/json'
-      }
-  });
-   userData.subsCount++;
-  // sessionStorage.setItem('user',JSON.stringify(userData))
-    setSubscription("MEMBER");
+//     observer.disconnect();
+//     // setPage((prevPage) => prevPage + 1);
+//     // request.page = request.page+1;
+//     setLoading(true);
+//      PostsRequestByCommunity(request,creador)
   
-  }
-  else {
-    axios.delete("http://"+SERV_DIR+":"+SERV_PORT+"/subscriptions/unsub/"+loggedUser+"/"+state,{
-      headers:{
-          'Authorization':'Bearer '+ JSON.parse(localStorage.getItem('userData')).token,
-          'Content-Type': 'application/json'
-      }
-  });
-    userData.subsCount--;
-    // sessionStorage.setItem('user',JSON.stringify(userData));
-    setSubscription(null);
-
-  }
-  // setApiResponse(null);
-}
+//       .then((response) => {
+//         setPostsArr((prevPosts) => prevPosts.concat(response));
+//        setLoading(false);
+//       })  
+  
+      
+//   } 
+//   if(isLast) setIslast(false);
 
 
-useEffect(() => {
-  setState(localStorage.getItem('cid'));
+// };
+// const observer = new IntersectionObserver(handleIntersection);
 
-  setPostsArr([]);
+
+// // useEffect(()=>{
+// // if(info.communityId!=undefined){
+
+
+// //   let index = comunidadesRecientes.findIndex(obj => obj == info.communityId) 
+
+// //  index == -1 ?
+// //  (function() {comunidadesRecientes.push(info.communityId);
+// //   localStorage.setItem("comunidadesRecientes", JSON.stringify(comunidadesRecientes))
+// //   dispatch(update(!rctTrigger))})
+// //   :
+
+// //   comunidadesRecientes.splice(index,1);
+// //   comunidadesRecientes.unshift(info.communityId);
+// //   localStorage.setItem("comunidadesRecientes",JSON.stringify(comunidadesRecientes))
+// //   dispatch(update(!rctTrigger))
+
+// // }
+// // },[info])
+
+
+
+// function changeSub(subscription){
+// let userData = JSON.parse(localStorage.getItem("userData"))
+//   if(subscription==null) {
+    
+//     axios.post("http://"+SERV_DIR+":"+SERV_PORT+"/subscriptions/sub/"+loggedUser+"/"+state,null,{
+//       headers:{
+//           'Authorization':'Bearer '+ JSON.parse(localStorage.getItem('userData')).token,
+//           'Content-Type': 'application/json'
+//       }
+//   });
+//    userData.subsCount++;
+//   // sessionStorage.setItem('user',JSON.stringify(userData))
+//     setSubscription("MEMBER");
+  
+//   }
+//   else {
+//     axios.delete("http://"+SERV_DIR+":"+SERV_PORT+"/subscriptions/unsub/"+loggedUser+"/"+state,{
+//       headers:{
+//           'Authorization':'Bearer '+ JSON.parse(localStorage.getItem('userData')).token,
+//           'Content-Type': 'application/json'
+//       }
+//   });
+//     userData.subsCount--;
+//     // sessionStorage.setItem('user',JSON.stringify(userData));
+//     setSubscription(null);
+
+//   }
+//   // setApiResponse(null);
+// }
+
+
+// useEffect(() => {
+//   setState(localStorage.getItem('cid'));
+
+//   setPostsArr([]);
  
-   },[localStorage.getItem('cid')])
+//    },[localStorage.getItem('cid')])
   
-   useEffect(()=> {
+//    useEffect(()=> {
    
-    CommunityInfoRequest(state).then(response => {
-    let data = response.data;
+//     CommunityInfoRequest(state).then(response => {
+//     let data = response.data;
      
-        creador = data.communityCreator;
-        setCS(data.communityCreator);
-        setSubscription(data.subscription);
+//         creador = data.communityCreator;
+//         setCS(data.communityCreator);
+//         setSubscription(data.subscription);
   
-  if(data.subscription != "BANNED") {
-  if(creadorState==loggedUser) setSubButton(<button className=" hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon"  onClick={()=> navigate("/admin/"+state)}  id='administrar'>Administrar</button>)
-  else if ( data.subscription!=null) setSubButton(<button className=" hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon" onClick={()=> {    changeSub(subscription)}} id='Unsub'>Desuscribirse</button>)
-  else setSubButton(<button className=" hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon" onClick={()=> {    changeSub(subscription)}} id='Sub'>Suscribirse</button>)
+//   if(data.subscription != "BANNED") {
+//   if(creadorState==loggedUser) setSubButton(<button className=" hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon"  onClick={()=> navigate("/admin/"+state)}  id='administrar'>Administrar</button>)
+//   else if ( data.subscription!=null) setSubButton(<button className=" hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon" onClick={()=> {    changeSub(subscription)}} id='Unsub'>Desuscribirse</button>)
+//   else setSubButton(<button className=" hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon" onClick={()=> {    changeSub(subscription)}} id='Sub'>Suscribirse</button>)
   
-  } else {
+//   } else {
 
-  }
+//   }
  
-  setInfo({
-            communityName: data.communityName,
-            communityDescription: data.communityDescription,
-            communityImage: formatImage(data.communityImage),
-            communityBackgroundImage: formatImage(data.communityBackgroundImage),
-            communityCreator: data.communityCreator,
-            communityMembers: data.communityMembers,
-            sensitiveContent: data.sensitiveContent,
-            communityId:data.communityId,
-            categoria: data.categoria,
-            admin: data.communityCreator==loggedUser ? <img src={crown} /> : data.subscription=="MOD"?<img  src={admin} />:null
-        })
+//   setInfo({
+//             communityName: data.communityName,
+//             communityDescription: data.communityDescription,
+//             communityImage: formatImage(data.communityImage),
+//             communityBackgroundImage: formatImage(data.communityBackgroundImage),
+//             communityCreator: data.communityCreator,
+//             communityMembers: data.communityMembers,
+//             sensitiveContent: data.sensitiveContent,
+//             communityId:data.communityId,
+//             categoria: data.categoria,
+//             admin: data.communityCreator==loggedUser ? <img src={crown} /> : data.subscription=="MOD"?<img  src={admin} />:null
+//         })
 
         
        
-        PostsRequestByCommunity(request,creador,response.data.subscription).then(response =>{
-         console.log(response);
-          setPostsArr(response);
-          setLoading(false);
-          setApiResponse(200);
-          setPage(page+1)
+//         PostsRequestByCommunity(request,creador,response.data.subscription).then(response =>{
+//          console.log(response);
+//           setPostsArr(response);
+//           setLoading(false);
+//           setApiResponse(200);
+//           setPage(page+1)
          
         
          
-        }).catch(response => {
-          // console.log(response);
-          setLoading(false);
-          setApiResponse(response.response.status);
-          setPostsArr(
+//         }).catch(response => {
+//           // console.log(response);
+//           setLoading(false);
+//           setApiResponse(response.response.status);
+//           setPostsArr(
          
-            <p  className="mt-5 w-2/4 text-2xl Kanit text-center text-naranjaMolon">{response.response.data}</p>
+//             <p  className="mt-5 w-2/4 text-2xl Kanit text-center text-naranjaMolon">{response.response.data}</p>
 
-          )
-        })
+//           )
+//         })
         
         
 
-    })
-   },[state,subscription])
+//     })
+//    },[state,subscription])
 
 
-useEffect(()=> {
+// useEffect(()=> {
 
-if(subscription !='BANNED'){
-  if(creadorState==loggedUser) setSubButton(<button className=" hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon" onClick={()=> navigate("/admin/"+state)} id='administrar'>Administrar</button>)
-  else if ( subscription!=null) setSubButton(<button className="hover:bg-moradoLight rounded-md p-2  text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none   focus:border-naranjaMolon" onClick={()=> {
-    changeSub(subscription)
+// if(subscription !='BANNED'){
+//   if(creadorState==loggedUser) setSubButton(<button className=" hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon" onClick={()=> navigate("/admin/"+state)} id='administrar'>Administrar</button>)
+//   else if ( subscription!=null) setSubButton(<button className="hover:bg-moradoLight rounded-md p-2  text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none   focus:border-naranjaMolon" onClick={()=> {
+//     changeSub(subscription)
  
-  }} id='Unsub'>Desuscribirse</button>)
-  else setSubButton(<button className="hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon" onClick={()=> {changeSub(subscription)}} id='Sub'>Suscribirse</button>)
-} else {
-  setSubButton(null);
-}
-},[subscription,creadorState,state])
+//   }} id='Unsub'>Desuscribirse</button>)
+//   else setSubButton(<button className="hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon" onClick={()=> {changeSub(subscription)}} id='Sub'>Suscribirse</button>)
+// } else {
+//   setSubButton(null);
+// }
+// },[subscription,creadorState,state])
 
 
  
 
 
 
-useEffect(()=>{
+// useEffect(()=>{
 
 
-if(myRef.current!=null && postsArr.length>0){
-    observer.observe(myRef.current);
+// if(myRef.current!=null && postsArr.length>0){
+//     observer.observe(myRef.current);
   
-}
+// }
 
 
-},[postsArr])
-
-
-
+// },[postsArr])
 
 
 
 
-    return (
-    <div className='mt-5 flex flex-col justify-center items-center community-body'>
-        <CommunityInfo apiResponse={apiResponse} setApiResponse={setApiResponse} subscription ={subscription} subButton ={SubButton} state={state} info={info}/>
-        {postsArr}
-        {loading ? <SpinnerLoader hijoStyle={{width:'4rem'}} clase='mt-5' id='spinnerCommunityPosts'/> : null}
-        {/*messagesRender ? <Mensajes/>:null*/}
-    </div>
-    )
-}
+
+
+
+//     return (
+//     <div className='mt-5 flex flex-col justify-center items-center community-body'>
+//         <CommunityInfo apiResponse={apiResponse} setApiResponse={setApiResponse} subscription ={subscription} subButton ={SubButton} state={state} info={info}/>
+//         {postsArr}
+//         {loading ? <SpinnerLoader hijoStyle={{width:'4rem'}} clase='mt-5' id='spinnerCommunityPosts'/> : null}
+//         {/*messagesRender ? <Mensajes/>:null*/}
+//     </div>
+//     )
+// }
+
+
+export const Body = (props) => {
+ const loc = useLocation();
+ const [communityInfo,setCommunityInfo] = useState();
+
+useEffect(() => {
+// localStorage.setItem('cid',loc.pathname.split("community/")[1]);
+// setState(loc.pathname.split("community/")[1])
+
+CommunityInfoRequest(loc.pathname.split("community/")[1]).then(e => {
+  
+      setCommunityInfo(e.data);
+      if(e.data.subscription?.subscriptionLevel != 'BANNED' && !(e.data.privateCommunity==true && e.data.subscription?.subscriptionLevel==null)){
+      
+       // PostsRequestByCommunity(request,creador,response.data.subscription);
+      } else {
+      
+       
+
+      }
+
+});
+
+
+},[loc])
+
+
+
+
+  
+      return (
+      <div className='mt-5 flex flex-col justify-center items-center community-body'>
+          <CommunityInfo communityInfo ={communityInfo}/>
+          {/* {postsArr} */}
+          {/* {loading ? <SpinnerLoader hijoStyle={{width:'4rem'}} clase='mt-5' id='spinnerCommunityPosts'/> : null} */}
+          {/*messagesRender ? <Mensajes/>:null*/}
+      </div>
+      )
+  }

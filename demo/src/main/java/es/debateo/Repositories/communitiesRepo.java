@@ -29,10 +29,15 @@ public interface communitiesRepo extends JpaRepository<Communities,Long> {
 			+ "c.privateCommunity,"
 			+ "c.sensitiveContent,"
 			+ "c.blockNewSubscriptions, "
-			+ "c.adminMode) "
-			+ " FROM Communities c "
+			+ "c.adminMode,"
+			+ " s) "
+			+ " FROM Communities c"
+			+ " LEFT JOIN Subscriptions s"
+			+ " ON c.communityId = s.communityId"
+			+ " AND s.username = :requestUser"
+			+ "  "
 			+ "WHERE c.communityId=:id")
-	CommunityDTO getCommunityData(@Param("id") long id);
+	CommunityDTO getCommunityData(@Param("id") long id, @Param("requestUser") String requestUser);
 	
 	int countByCommunityCreator(String communityCreator);
 	

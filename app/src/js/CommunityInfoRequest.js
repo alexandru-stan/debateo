@@ -6,7 +6,7 @@ import { SERV_DIR,SERV_PORT } from "../utilities";
     let userName = JSON.parse(localStorage.getItem('userData')).username;
     
  
-    return axios.get('http://'+SERV_DIR+':'+SERV_PORT+'/communities/'+userName+'/'+communityId,{
+    return axios.get('http://'+SERV_DIR+':'+SERV_PORT+'/communities/data/'+communityId,{
         headers:{
             'Authorization':'Bearer '+ JSON.parse(localStorage.getItem('userData')).token,
             'Content-Type': 'application/json'

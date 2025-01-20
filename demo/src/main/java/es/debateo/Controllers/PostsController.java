@@ -59,6 +59,7 @@ public class PostsController {
 		
 		ServiceResponse<PostDTO> response = services.getPosts(username,offset,fyp);
 		System.out.println("pido página "+offset);
+	
 		return new ResponseEntity<Page<PostDTO>>(response.getPagina(),response.getStatus());
 		
 	}

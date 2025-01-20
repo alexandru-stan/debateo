@@ -1,6 +1,6 @@
 package es.debateo.DTO;
 
-import jakarta.persistence.Column;
+import es.debateo.Model.Subscriptions;
 
 public class CommunityDTO {
 
@@ -30,12 +30,8 @@ long communityId;
 	boolean privateCommunity;
 	boolean blockNewSubscriptions;
 	boolean adminMode;
-	
-	
-	
 	long categoria;
-	
-	String subscription;
+	Subscriptions subscription;
 
 	public long getCommunityId() {
 		return communityId;
@@ -109,17 +105,17 @@ long communityId;
 		this.categoria = categoria;
 	}
 
-	public String getSubscription() {
+	public Subscriptions getSubscription() {
 		return subscription;
 	}
 
-	public void setSubscription(String subscription) {
+	public void setSubscription(Subscriptions subscription) {
 		this.subscription = subscription;
 	}
 
 	public CommunityDTO(long communityId, String communityName, String communityDescription, byte[] communityImage,
 			byte[] communityBackgroundImage, long communityMembers, String communityCreator, 
-			long categoria, boolean privateCommunity, boolean sensitiveContent, boolean blockNewSubscriptions, boolean adminMode) {
+			long categoria, boolean privateCommunity, boolean sensitiveContent, boolean blockNewSubscriptions, boolean adminMode, Subscriptions subscription) {
 		super();
 		this.communityId = communityId;
 		this.communityName = communityName;
@@ -133,6 +129,7 @@ long communityId;
 		this.sensitiveContent = sensitiveContent;
 		this.blockNewSubscriptions = blockNewSubscriptions;
 		this.adminMode = adminMode;
+		this.subscription = subscription;
 		
 	
 	}

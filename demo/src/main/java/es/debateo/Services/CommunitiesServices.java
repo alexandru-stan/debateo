@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import es.debateo.DTO.CommunityDTO;
@@ -32,17 +33,12 @@ public class CommunitiesServices {
 		
 	}
 	
-	public ServiceResponse<CommunityDTO> findCommunitiesById(String username,long id){
+	public ServiceResponse<CommunityDTO> findCommunitiesById(long id){
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		System.out.println(username);
+		CommunityDTO community = repo.getCommunityData(id,"pap");
 		
-		CommunityDTO community = repo.getCommunityData(id);
 		
-		
-		if(subsRepo.existsById(new SubscriptionsID(username,id))) {
-//			community.setSubscription(subsRepo.getSub(username,id).getSubscriptionLevel());
-			community.setSubscription( subsRepo.findById(new SubscriptionsID(username,id)).get().getSubscriptionLevel().name());
-		} else {
-			community.setSubscription(null);
-		}
 		
 		community.setCommunityMembers(subsRepo.numeroDeMiembros(community.getCommunityId())+1);
 		

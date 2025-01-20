@@ -44,11 +44,12 @@ public class CommunitiesController {
 	}
 	
 	
-	@GetMapping("/{username}/{id}")
-	public ResponseEntity<CommunityDTO> getCommunity(@PathVariable String username,@PathVariable long id) throws IOException{
-		
-		ServiceResponse<CommunityDTO> response = services.findCommunitiesById(username,id);
+	@GetMapping("/data/{id}")
+	public ResponseEntity<CommunityDTO> getCommunity(@PathVariable long id) throws IOException{
+		System.out.println(id);
+		ServiceResponse<CommunityDTO> response = services.findCommunitiesById(id);
 		ImageUtils<Long> imageUtils = new ImageUtils<Long>();
+		System.out.println(response.getObj().getCommunityName()+" aaaaaaaa");
 		response.getObj().setCommunityImage(imageUtils.returnImage(response.getObj().getCommunityId(),"communityImages"));
 		return new ResponseEntity<CommunityDTO>(response.getObj(),response.getStatus());
 		
@@ -91,6 +92,15 @@ public class CommunitiesController {
 	public ResponseEntity<List<Communities>> getHotCommunities(){
 		
 		List<Communities> response = repo.getHotCommunities();
+		ImageUtils<Long> imageUtils = new ImageUtils<Long>();
+		response.forEach(e -> {
+			try {
+				e.setCommunityImage(imageUtils.returnImage(e.getCommunityId(), "communityImages"));
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
 		return new ResponseEntity<List<Communities>>(response,HttpStatus.OK);
 	}
 	
@@ -101,7 +111,15 @@ public class CommunitiesController {
 	public ResponseEntity<List<Communities>> getSubscribedCommunities(@PathVariable String username) {
 	
 	List<Communities> result = repo.getSubscribedCommunities(username);
-		
+	ImageUtils<Long> imageUtils = new ImageUtils<Long>();
+	result.forEach(e -> {
+		try {
+			e.setCommunityImage(imageUtils.returnImage(e.getCommunityId(), "communityImages"));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	});
 	return new ResponseEntity<List<Communities>>(result, HttpStatus.OK);
 		
 		}

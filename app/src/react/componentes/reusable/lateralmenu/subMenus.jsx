@@ -47,7 +47,7 @@ export const ComunidadesMasActivas = () => {
     }
 
     return (
-        <div className="border-b-2 border-moradoLight">
+        <div className=" border-moradoLight">
             <div
                 onClick={() => setCollapsed(!collapsed)}
                 className="p-2 flex flex-col items-center hover:cursor-pointer hover:brightness-125 bg-moradoOscuro w-full justify-between"
@@ -108,7 +108,7 @@ export const Suscripciones = (props) => {
 
 
     return (
-    <div className="border-b-2  border-moradoLight">
+    <div className="  border-moradoLight">
         <div onClick={()=> {
             setCollapsed(!collapsed)
             

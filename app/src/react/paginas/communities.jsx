@@ -10,7 +10,7 @@ import { LateralMenu } from "../componentes/reusable/lateralmenu/LateralMenu";
 
 export const Communities = () => {
 
-    let {id} = useParams();
+    
     let userData = localStorage.getItem('userData');
     
 
@@ -33,7 +33,7 @@ export const Communities = () => {
         <div className=" p-1  h-full" id='communities'>
         <Header/>
         {/* <LateralMenu/> */}
-        <Body  id={id}/>
+        <Body  />
        
 
         </div>

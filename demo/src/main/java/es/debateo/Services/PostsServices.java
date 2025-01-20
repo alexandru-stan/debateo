@@ -1,11 +1,9 @@
 package es.debateo.Services;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -16,7 +14,7 @@ import es.debateo.Model.Subscriptions;
 import es.debateo.Repositories.commentsRepo;
 import es.debateo.Repositories.likesRepo;
 import es.debateo.Repositories.postsRepo;
-import jakarta.persistence.Tuple;
+import es.debateo.Utils.ImageUtils;
 
 @Service
 
@@ -87,12 +85,18 @@ public class PostsServices {
 		
 		
 		posts.getTotalElements();
-		
+		ImageUtils<Long> imageUtils = new ImageUtils<Long>();
 		
 		posts.forEach(post->{
 			post.setLiked(repo.isItLiked(username, post.getPost().getPublicationId()));
 			post.setLikes(likesRepo.likeCount(post.getPost().getPublicationId()));
 			post.setComments(commentsRepo.countByPostId(post.getPost().getPublicationId()));
+			try {
+				post.getCommunity().setCommunityImage(imageUtils.returnImage(post.getCommunity().getCommunityId(), "communityImages"));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		});
 		
 		ServiceResponse<PostDTO> respuesta = new ServiceResponse<PostDTO>(posts,HttpStatus.OK);
