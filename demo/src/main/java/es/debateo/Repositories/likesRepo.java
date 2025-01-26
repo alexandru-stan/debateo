@@ -5,8 +5,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import es.debateo.Model.Likes;
+import es.debateo.Model.ComplexID.LikesID;
 
-public interface likesRepo extends JpaRepository<Likes,Long>{
+public interface likesRepo extends JpaRepository<Likes,LikesID>{
 
 	
 	@Query(value=""

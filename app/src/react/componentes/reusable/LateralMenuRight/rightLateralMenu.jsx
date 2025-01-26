@@ -63,7 +63,7 @@ export const LateralMenuRight = (props) => {
 
   
         //border-l-2
-        <div id="lateralMenuRight" className={   "  flex brightness-125  flex-col items-center bg-moradoOscuro   border-moradoLight"} style={{display:lateralMenuVisibilityRight,zIndex:'1',position:'fixed', overflow:'scroll',  height:'calc(100vh - 50px)', right:'0%', top:'7%', width:'21%'}}>
+        <div id="lateralMenuRight" className={   "  flex   flex-col items-center bg-moradoOscuro border-l   border-moradoLight"} style={{display:lateralMenuVisibilityRight,zIndex:'1',position:'fixed', overflow:'scroll',  height:'calc(100vh - 50px)', right:'0%', top:'7%', width:'21%'}}>
         {/* <NewsCard imagen={null} titular = {null} cuerpo = {null} enlace ={null}/>
          */}
          <p id="actualidad" style={{marginTop:'4rem'}} className="Kanit text-center font-bold text-3xl text-naranjaMolon">Actualidad</p>

@@ -52,7 +52,7 @@ export const Menu = (props) => {
 
     return (
         <>
-        <div id='menu' className="  p-2  border-moradoLight     text-white flex flex-col   w-full  " >
+        <div id='menu' className="  p-2  border-moradoLight  border-b border-moradoLight   text-white flex flex-col   w-full  " >
             <div className="cursor-pointer menuItem hover:text-naranjaMolon  hover:brightness-125  w-full  bg-moradoOscuro  p-1  m-1  flex items-center   flex  " onClick={() => navigate("/feed")} id='menu-1' >
             <Imagen style={{maxWidth:'50%', height:'2rem'}}   ruta={IconoParaTi}></Imagen>
             <div className="letraObjetoMenu Kanit  p-2 "  style={{}}>Para ti</div>

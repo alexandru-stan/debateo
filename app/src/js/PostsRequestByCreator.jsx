@@ -43,7 +43,7 @@ export async function PostsRequest(request,setPostsArr){
               publicationBody={arr[i].post.publicationBody}
               publicationTitle={arr[i].post.publicationTitle}
               publicationId={arr[i].post.publicationId}
-              publicationImage={(arr[i].post.publicationImage.length>0)?formatImage(arr[i].post.publicationImage):null}
+              publicationImage={(arr[i].post.publicationImage?.length>0)?formatImage(arr[i].post.publicationImage):null}
               publicationUser={arr[i].post.user}
               referencia={(posts.length-i)==1?request.myRef:null}
             //   delete={arr[i].subscription?.subscriptionLevel=="MOD" || arr[i].post.user==request.loggedUser || arr[i].post.user == arr[i].post.user==request.creador ?

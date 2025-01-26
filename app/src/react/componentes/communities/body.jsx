@@ -191,7 +191,7 @@ import { useSelector } from 'react-redux';
 // useEffect(()=> {
 
 // if(subscription !='BANNED'){
-//   if(creadorState==loggedUser) setSubButton(<button className=" hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon" onClick={()=> navigate("/admin/"+state)} id='administrar'>Administrar</button>)
+//   if(  dorState==loggedUser) setSubButton(<button className=" hover:bg-moradoLight rounded-md p-2 text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none    focus:border-naranjaMolon" onClick={()=> navigate("/admin/"+state)} id='administrar'>Administrar</button>)
 //   else if ( subscription!=null) setSubButton(<button className="hover:bg-moradoLight rounded-md p-2  text-gray-700 border-2 border-moradoLight  text-white bg-moradoFondo placeholder-gray-400  placeholder-gray-400 focus:outline-none   focus:border-naranjaMolon" onClick={()=> {
 //     changeSub(subscription)
  
@@ -238,22 +238,177 @@ import { useSelector } from 'react-redux';
 export const Body = (props) => {
  const loc = useLocation();
  const [communityInfo,setCommunityInfo] = useState();
+//  const [page,setPage] = useState(0);
+ const [postArr,setPostArr] = useState(null);
+ const [loading,setLoading] = useState(true);
+ const [isLast,setIslast] = useState(false);
+//  const [creador,setCreador] =useState(null);
+ const myRef = useRef();
+
+ 
+
+ function privateCommunityAfterSubscribePostRequest(){
+  // setPage(0);
+  if(communityInfo.subscription == null) {
+    
+    setCommunityInfo({
+      ...communityInfo,
+    subscription:{
+          
+       
+        subscriptionLevel: 'MEMBER'
+
+      
+    } 
+  
+  })
+
+ 
+
+
+axios.post("http://"+SERV_DIR+":"+SERV_PORT+"/subscriptions/sub/"+loc.pathname.split("community/")[1],null,{
+      headers:{
+          'Authorization':'Bearer '+ JSON.parse(localStorage.getItem('userData')).token,
+          'Content-Type': 'application/json'
+      }
+  }).then(
+
+
+    e => {
+
+      let request = {
+        page:0,
+        myRef:myRef,
+        setIslast:setIslast,
+        cid: loc.pathname.split("community/")[1],
+        setPostArr:setPostArr
+       
+      }
+      PostsRequestByCommunity(request,communityInfo.communityCreator,communityInfo.subscription?.subscriptionLevel).then(response =>{
+              
+        setPostArr({
+         posts: response,
+         page:0
+        });
+        setLoading(false);
+        // setPage(page+1)
+    }).catch(e => {
+      console.log(e);
+      setPostArr(<p className="mt-5 text-center text-lg Kanit text-bold text-naranjaMolon"> {e.response.status== 402 ? "Necesitas suscribirte a la comunidad para acceder a sus publicaciones" : " "} </p>);
+      setLoading(false);
+      
+    });
+
+    }
+
+
+  );
+} else {
+
+
+
+
+  axios.delete("http://"+SERV_DIR+":"+SERV_PORT+"/subscriptions/unsub/"+loc.pathname.split("community/")[1],{
+          headers:{
+              'Authorization':'Bearer '+ JSON.parse(localStorage.getItem('userData')).token,
+              'Content-Type': 'application/json'
+          }
+      }).then(()=>{
+
+  
+        setCommunityInfo({
+          ...communityInfo,
+          subscription:null
+        })
+        communityInfo.privateCommunity ?  setPostArr({page:0,posts:<p className="mt-5 text-center text-lg Kanit text-bold text-naranjaMolon"> Se necesita estar suscrito a la comunidad para acceder a sus publicaciones </p>})
+ : null;
+      });
+  
+
+}
+
+ 
+ }
+
+  const handleIntersection = (entries) => {
+    if (entries[0].isIntersecting && !isLast) {
+      observer.disconnect();
+      setLoading(true);
+      
+      let request = {
+        page:(postArr.page+1),
+        myRef:myRef,
+        setIslast:setIslast,
+        cid: loc.pathname.split("community/")[1]
+       
+       
+      }
+
+      console.log("pido página dentro de observer "+request.page) 
+      
+      PostsRequestByCommunity(request,communityInfo.communityCreator)
+    
+        .then((response) => {
+        
+        setPostArr({
+          page:postArr.page+1,
+          posts: postArr.posts.concat(response)
+       
+        });
+        setLoading(false);
+        // setPage(page+1);
+        })  
+    
+        
+    } 
+    if(isLast) setIslast(false);
+  
+  
+  };
+  const observer = new IntersectionObserver(handleIntersection);
+
 
 useEffect(() => {
-// localStorage.setItem('cid',loc.pathname.split("community/")[1]);
-// setState(loc.pathname.split("community/")[1])
-
+  // myRef.current = null;
+  // setPage(0);
+postArr != null ? setPostArr(null) : null;
 CommunityInfoRequest(loc.pathname.split("community/")[1]).then(e => {
-  
-      setCommunityInfo(e.data);
-      if(e.data.subscription?.subscriptionLevel != 'BANNED' && !(e.data.privateCommunity==true && e.data.subscription?.subscriptionLevel==null)){
-      
-       // PostsRequestByCommunity(request,creador,response.data.subscription);
-      } else {
-      
+setCommunityInfo(e.data);
+     
+   
        
 
-      }
+        let request = {
+          page: 0,
+          myRef:myRef,
+          setIslast:setIslast,
+          cid: loc.pathname.split("community/")[1],
+          setPostArr:setPostArr
+         
+         
+        }
+      
+        console.log(myRef.current==undefined ? 0 : page);
+
+        // console.log(request.cid);
+        // console.log("hola");
+        console.log("pidiendo pagina 0 dentro de original")
+        PostsRequestByCommunity(request,e.data.communityCreator,e.data.subscription?.subscriptionLevel).then(response =>{
+          // console.log("hola");
+          setPostArr({
+            posts:response,
+            page:0
+          
+          }); 
+          setLoading(false);
+          // setPage(page+1)
+      }).catch(e => {
+        console.log(e);
+        setPostArr({page:0,posts:<p className="mt-5 text-center text-lg Kanit text-bold text-naranjaMolon"> {e.response?.status== 402 ? "Se necesita estar suscrito a la comunidad para acceder a sus publicaciones" : " "} </p>});
+        setLoading(false);
+        
+      });
+      
 
 });
 
@@ -261,14 +416,21 @@ CommunityInfoRequest(loc.pathname.split("community/")[1]).then(e => {
 },[loc])
 
 
+useEffect(()=> {
 
 
+
+  if(myRef.current!=null){
+    observer.observe(myRef.current);
+    
+  }
+  },[postArr]);
   
       return (
       <div className='mt-5 flex flex-col justify-center items-center community-body'>
-          <CommunityInfo communityInfo ={communityInfo}/>
-          {/* {postsArr} */}
-          {/* {loading ? <SpinnerLoader hijoStyle={{width:'4rem'}} clase='mt-5' id='spinnerCommunityPosts'/> : null} */}
+        {communityInfo!=undefined  ?  <CommunityInfo recallPostRequest={privateCommunityAfterSubscribePostRequest} communityInfo ={communityInfo}/> : null}
+        {postArr?.posts}
+        {loading ? <SpinnerLoader hijoStyle={{width:'4rem'}} clase='mt-5' id='spinnerCommunityPosts'/> : null}
           {/*messagesRender ? <Mensajes/>:null*/}
       </div>
       )

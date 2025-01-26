@@ -17,7 +17,7 @@ module.exports = {
       moradoOscuro:'#171626',
       moradoFondo:'#1f1e33',
       
-      fondoPublicaciones:'#201D54',
+      fondoPublicacionesHover:'#2a2947',
       naranjaMolon:'#ff8c00',
       rojo:'#04ff00',
       naranjaSeleccionado:'#E2FF00'

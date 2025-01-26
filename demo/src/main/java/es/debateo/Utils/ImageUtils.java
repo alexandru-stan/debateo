@@ -10,25 +10,15 @@ import java.util.List;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-public class ImageUtils<T>{
+public class ImageUtils{
 
     private static final List<String> extensions = Arrays.asList(".jpg", ".jpeg", ".png", ".gif", ".webp", ".jfif");
-    private byte[] image;
+
     
-    public ImageUtils() {
-    }
-
-    public byte[] getImage() {
-        return image;
-    }
-
-    public void setImage(byte[] image) {
-        this.image = image;
-    }
 
     
     
-    public boolean saveImageToFilesystem(MultipartFile file, T id, String folder) throws IllegalStateException, IOException {
+    public static <T> boolean saveImageToFilesystem(MultipartFile file, T id, String folder) throws IllegalStateException, IOException {
     	
     	 String imageExtension = FilenameUtils.getExtension(file.getOriginalFilename());
 	     String rootDir = System.getProperty("user.dir");
@@ -41,7 +31,7 @@ public class ImageUtils<T>{
     
     
     
-    public byte[] returnImage(T id, String folder) throws IOException {
+    public static <T> byte[] returnImage( T id, String folder) throws IOException {
         // Get the user.dir property
         String userDir = System.getProperty("user.dir");
 
@@ -55,14 +45,14 @@ public class ImageUtils<T>{
 
             // Check if the file exists
             if (Files.exists(imagePath)) {
-                this.image = Files.readAllBytes(imagePath);
+                return Files.readAllBytes(imagePath);
                 
-                break;
+              
             }
             
             
         }
 
-        return this.image;
+        return null;
     }
 }

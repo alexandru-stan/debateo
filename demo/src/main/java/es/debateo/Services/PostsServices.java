@@ -33,46 +33,7 @@ public class PostsServices {
 	
 	
 	public final int size = 5;
-	
-	
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//
-//	public void  upload(MultipartFile file) throws IOException{
-//		
-//		
-//		repo.save(new Posts(2238, "mistborn",345,0,"A","AAAAAAAAAAAA",file.getBytes()));
-//		
-//		
-//		
-//	}
-	
-//	
-//	public byte[] download(long id) {
-//		
-//	Optional<Posts> post = repo.findById(id);
-//	post.get().setPublicationImage(Base64.getEncoder().encode(post.get().getPublicationImage()));
-//
-//		return post.get().getPublicationImage();
-//	
-//	}
-//	
-	
 	
 	
 	public ServiceResponse<PostDTO> getPosts(String username,int offset,boolean fyp){
@@ -82,17 +43,17 @@ public class PostsServices {
 		
 //		Page<PostDTO> posts = repo.getPostsBySubscription(username,PageRequest.of(offset, 15));
 		
-		
-		
 		posts.getTotalElements();
-		ImageUtils<Long> imageUtils = new ImageUtils<Long>();
-		
+//		ImageUtils<Long> imageUtils = new ImageUtils<Long>();
 		posts.forEach(post->{
 			post.setLiked(repo.isItLiked(username, post.getPost().getPublicationId()));
 			post.setLikes(likesRepo.likeCount(post.getPost().getPublicationId()));
 			post.setComments(commentsRepo.countByPostId(post.getPost().getPublicationId()));
+			
 			try {
-				post.getCommunity().setCommunityImage(imageUtils.returnImage(post.getCommunity().getCommunityId(), "communityImages"));
+				post.getCommunity().setCommunityImage(ImageUtils.returnImage(post.getCommunity().getCommunityId(), "communityImages"));
+				post.getPost().setPublicationImage(ImageUtils.returnImage(post.getPost().getPublicationId(), "publicationImages"));
+				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -111,12 +72,18 @@ public class PostsServices {
 	
 	public ServiceResponse<PostDTO> getPostsByCommunity(String user,long id,int offset){
 		
-		
+//		ImageUtils<Long> imageUtils = new ImageUtils<Long>();
 		Page<PostDTO> posts = repo.getPostsByCommunity(id,PageRequest.of(offset, 15));
 		posts.forEach(post->{
 			post.setLiked(repo.isItLiked(user, post.getPost().getPublicationId()));
 			post.setLikes(likesRepo.likeCount(post.getPost().getPublicationId()));
 			post.setComments(commentsRepo.countByPostId(post.getPost().getPublicationId()));
+			try {
+				post.getPost().setPublicationImage(ImageUtils.returnImage(post.getPost().getPublicationId(), "publicationImages"));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		});
 		
 		ServiceResponse<PostDTO> respuesta = new ServiceResponse<PostDTO>(posts,HttpStatus.OK);
@@ -137,6 +104,13 @@ public class PostsServices {
 			post.setLiked(repo.isItLiked(user, post.getPost().getPublicationId()));
 			post.setLikes(likesRepo.likeCount(post.getPost().getPublicationId()));
 			post.setComments(commentsRepo.countByPostId(post.getPost().getPublicationId()));
+			try {
+				post.getPost().setPublicationImage(ImageUtils.returnImage(post.getPost().getPublicationId(), "publicationImages"));
+				post.getCommunity().setCommunityImage(ImageUtils.returnImage(post.getCommunity().getCommunityId(), "communityImages"));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		});
 ServiceResponse<PostDTO> respuesta = new ServiceResponse<PostDTO>(posts,HttpStatus.OK);
 		
@@ -148,12 +122,14 @@ ServiceResponse<PostDTO> respuesta = new ServiceResponse<PostDTO>(posts,HttpStat
 	
 	
 	
-	public ServiceResponse<PostDTO> getPost(String username,long id){
+	public ServiceResponse<PostDTO> getPost(String username,long id) throws IOException{
 		
 		PostDTO post = repo.getPost(id);
+//		ImageUtils<Long> imageUtils = new ImageUtils<Long>();
 		post.setLiked(repo.isItLiked(username, id));
 		post.setLikes(likesRepo.likeCount(post.getPost().getPublicationId()));
 		post.setComments(commentsRepo.countByPostId(id));
+		post.getPost().setPublicationImage(ImageUtils.returnImage(post.getPost().getPublicationId(),"publicationImages"));
 		return new ServiceResponse<PostDTO>(post,HttpStatus.OK);
 		
 		

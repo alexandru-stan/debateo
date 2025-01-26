@@ -100,10 +100,10 @@ useEffect(() => {
 
   
   
-//-50px border-r-2
-        <div id="lateralMenu" ref={lateralMenuRef} className={   " overflow-x-hidden bg-moradoOscuro flex brightness-125  "} style={{zIndex:'1',position:'fixed', overflow:'scroll',   left:'0%', bottom:'0%', top:'7%', width:'20%', display:lateralMenuVisibility}}>
-       <div id="user-info" style={{marginTop:'2rem'}} className="  flex items-center  p-2 ">
-     <div style={{width:'30%',height:'4rem'}} className="flex justify-center ">
+//-50px 
+        <div id="lateralMenu" ref={lateralMenuRef} className={   " overflow-x-hidden bg-moradoOscuro flex border-r border-moradoLight   "} style={{zIndex:'1',position:'fixed', overflow:'scroll',   left:'0%', bottom:'0%', top:'7%', width:'20%', display:lateralMenuVisibility}}>
+       <div id="user-info" style={{marginTop:'2rem'}} className=" border-b border-moradoLight flex items-center  p-2 ">
+     <div style={{width:'30%',height:'4rem'}} className="flex  justify-center ">
     
     {profileImage != null ?  <Image onerror={()=>{
         
@@ -117,12 +117,12 @@ useEffect(() => {
        : <SpinnerLoader hijoStyle={{ width:'50%'}}/> }
     
     </div>
-       <div style={{width:'70%'}} className=" flex  flex-row items-center justify-between">
+       <div style={{width:'70%'}} className=" flex  flex-row items-center  justify-between">
         <div>
             <div className="max-text-2xl text-bold text-naranjaMolon Kanit">{userData.username}</div>
             <div className="text-gray-300 text-sm">{userData.name}</div>
         </div>
-            <div  className="  flex justify-center ">
+            <div  className="   flex justify-center ">
                <img style={{width:'2rem'}} onClick={ () => {
 
                 dispatch(assign(
@@ -173,7 +173,7 @@ useEffect(() => {
                 // </div>
                 // ));
                
-               }} title='Cerrar sesión' className=" hover:cursor-pointer hover:bg-moradoFondo  rounded-3xl" src={logout}></img>
+               }} title='Cerrar sesión' className=" hover:cursor-pointer hover:bg-moradoFondo   rounded-3xl" src={logout}></img>
             </div>
         </div>
         </div>

@@ -211,7 +211,12 @@ input::file-selector-button:hover{
 
 
 @media(max-width:1100px){
- #lateralMenu {
+ .publicacion{
+  max-height: 30rem;
+ }
+ 
+ 
+  #lateralMenu {
  
   width:40% !important;
 }
@@ -284,6 +289,25 @@ margin-left:0 !important;
 
     } */
 
+    .post-footer{
+      
+      height:10% !important;
+      
+    }
+
+    .post-body{
+
+      height:70% !important
+
+    }
+
+    .post-header{
+
+      height:20% !important
+    }
+
+
+
     #incomingMessagePopUp{
       width:60% !important
     }
@@ -320,7 +344,13 @@ margin-left:0 !important;
   
   @media  (max-width: 900px){
     /* CSS styles to apply when the viewport width is between 600px and 900px */
-        #carusel{
+    
+    .publicacion{
+      max-height: 30rem;
+     }
+    
+    
+    #carusel{
             display:none;
         }
 

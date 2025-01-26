@@ -10,7 +10,7 @@ import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Info } from "../../reusable/popup/Info";
 export const CrearPublicacion = (props) => {
-    const [image,setImage ] = useState(null);
+const [image,setImage ] = useState(null);
 let form = useRef();    
 const $ = require('jquery');
 const nav = useNavigate();
@@ -61,9 +61,9 @@ const dispatch = useDispatch();
             console.log(titleRef.current.value.length)
         
         if(!bodyRef.current.value.length == 0 && !titleRef.current.value.length == 0){
-
-            let response = subirPublicacion(form,props.communityId,user);
-            response != null ? response.then(r => nav("/"+r.data+"/comments"))  : showInfo();
+            
+            subirPublicacion(form,props.communityId,user).then( e => e!=null? nav("/"+e.data+"/comments"):   showInfo());
+          
         
         }
         

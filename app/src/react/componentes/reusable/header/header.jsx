@@ -21,7 +21,7 @@ const Header = () => {
 
     return (<>
         
-        <div className=" p-2   items-center bg-moradoOscuro brightness-125   m-0 sticky top-0 justify-center  z-30 flex w-full  border-b-2 border-b-moradoLight " id='header-feed'>
+        <div className=" p-2   items-center bg-moradoOscuro   m-0 sticky top-0 justify-center  z-30 flex w-full  border-b border-b-moradoLight " id='header-feed'>
             <Imagen clase={"hover:cursor-pointer hover:bg-moradoLight  "} onclick={()=> lateralMenuVisibility == 'block' ? dispatch(updateLeft("none")) : (function(){ dispatch(updateLeft("block")); dispatch(updateRight("none")); })()  } id='burger-menu' style={{width:'5%'}} ruta={burger}/>
             <Imagen id='logoDebateo' ruta = {Logo} style={{width:'5%',marginLeft:'0%'}} clase='    '/>
             <SearchBar/>

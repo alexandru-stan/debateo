@@ -49,8 +49,8 @@ public class UserServices implements UserDetailsService{
 		if(user!=null && passwordEncoder.matches(password, user.getPassword())) {
 			Users userData = repo.findById(username).get();
 			userData.setSubsCount((subsRepo.countByUsername(userData.getUsername()) + communitiesRepo.countByCommunityCreator(userData.getUsername())));
-			ImageUtils<String> util = new ImageUtils<String>();
-			userData.setProfileImageFile(util.returnImage(userData.getUsername(),"profileImages"));
+//			ImageUtils<String> util = new ImageUtils<String>();
+			userData.setProfileImageFile(ImageUtils.returnImage(userData.getUsername(),"profileImages"));
 			
 			
 			return new ServiceResponse<Users>(userData,HttpStatus.OK);

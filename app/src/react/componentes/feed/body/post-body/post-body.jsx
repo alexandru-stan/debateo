@@ -14,13 +14,15 @@ export const PostBody = (props) => {
 
 
     return (
-        <div style={{overflowWrap:'break-word', overflow:'auto' }} className=' p-1  border-b   border-moradoLight   text-white   post-body'>
-        <div style={{}} className='  p-2 '>{props.publicationBody}</div>
-        {props.publicationImage!=null?<div style={{maxHeight:'20rem'}}  className='   flex  justify-center  '>
-        {/* {props.publicationImage} */}
-        <img src={props.publicationImage}/>
+        <div style={{overflowWrap:'break-word', overflow:'auto', height:'75%' }} className=' p-1  border-b   border-moradoLight   text-white   post-body'>
+      {props.publicationImage==null ?  <p style={{whiteSpace: 'pre-line'}} className='  p-2 '>{ props.publicationBody }</p> : null}
+        {/* {props.publicationImage!=null? */}
+        <div style={{ height:'100%', width:'100%', backgroundImage: `url(${props.publicationImage})` , backgroundSize:'100% 100%'}}   className='    flex  justify-center  '>
+            
+       <div style={{backdropFilter:'blur(100px)', height:'100%', width:'100%'}} className='   flex justify-center '> <img  className='' src={props.publicationImage}/></div>
         
-        </div>:null}
+        </div>
+        {/* :null} */}
         </div>
     )
 }

@@ -27,8 +27,8 @@ useEffect(()=> {
 
     return (
         
-        <div style={{ overflowWrap:'break-word', height:'15%'}} className='post-header  p-1 border-b-2   border-moradoLight  text-white '>
-
+        <div style={{ overflowWrap:'break-word',  height:'15%'}} className='post-header  p-1 border-b-2   border-moradoLight  text-white '>
+        {/* <p>{props.publicationId}</p> */}
        {props.visibleCommunityInfo ? 
        
         <div className=' h-2/6 flex items-center  post-info'>
@@ -80,8 +80,8 @@ useEffect(()=> {
 
         <div style={{}} className='  p-1 h-4/6 flex flex-col justify-center'>
        
-        <p style={{fontSize:'1.3rem',}} className='h-2/4 m-0 '>{props.publicationTitle}</p>
-        <p style={{fontSize:'0.7rem'}} className='h-2/4 m-0   '>Publicado por <span style={{color:'#ff8c00'}}>{props.publicationUser}</span></p>
+        <p style={{fontSize:'1.3rem',}} className='h-2/4 mt-2 '>{props.publicationTitle}</p>
+        <p style={{fontSize:'0.7rem'}} className='h-2/4  mt-2  '>Publicado por <span style={{color:'#ff8c00'}}>{props.publicationUser}</span></p>
         </div>
 
         </div>

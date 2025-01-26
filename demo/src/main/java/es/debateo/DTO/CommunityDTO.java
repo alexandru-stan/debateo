@@ -33,6 +33,9 @@ long communityId;
 	long categoria;
 	Subscriptions subscription;
 
+	
+	
+	
 	public long getCommunityId() {
 		return communityId;
 	}

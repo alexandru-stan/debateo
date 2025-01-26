@@ -99,9 +99,9 @@ public ResponseEntity<Users> validarLogin(@RequestBody Users credentials, HttpSe
 	     
 	     
 	   
-	     ImageUtils<String> imageUtils = new ImageUtils<String>();
+//	     ImageUtils<String> imageUtils = new ImageUtils<String>();
 	     
-	     imageUtils.saveImageToFilesystem(file, username, "profileImages");
+	     ImageUtils.saveImageToFilesystem(file, username, "profileImages");
 	     
 //	     String imageExtension = FilenameUtils.getExtension(file.getOriginalFilename());
 //	     String rootDir = System.getProperty("user.dir");
@@ -145,8 +145,8 @@ public ResponseEntity<Users> validarLogin(@RequestBody Users credentials, HttpSe
 	@GetMapping("/refreshProfileImage/{username}")
 	public UserRecord refreshProfileImage(@PathVariable String username) throws IOException {
 
-	   ImageUtils<String> util = new ImageUtils<String>();
-	    byte[] test = util.returnImage(username,"profileImages");
+//	   ImageUtils<String> util = new ImageUtils<String>();
+	    byte[] test = ImageUtils.returnImage(username,"profileImages");
 		return new UserRecord(test);
 		
 		

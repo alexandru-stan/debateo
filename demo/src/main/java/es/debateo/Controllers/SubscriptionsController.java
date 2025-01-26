@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,16 +34,18 @@ public class SubscriptionsController {
 	
 	
 	
-	@PostMapping("/sub/{username}/{id}")
-	public void sub(@PathVariable String username, @PathVariable long id) {
-		repo.save(new Subscriptions(username,id,new Date(),Subscriptions.subscriptionType.MEMBER));
+	@PostMapping("/sub/{id}")
+	public void sub(@PathVariable long id) {
+		
+		repo.save(new Subscriptions(SecurityContextHolder.getContext().getAuthentication().getName(),id,new Date(),Subscriptions.subscriptionType.MEMBER));
+		
 	}
 	
 	
-	@DeleteMapping("/unsub/{username}/{id}")
-	public void unsub(@PathVariable String username, @PathVariable long id) {
+	@DeleteMapping("/unsub/{id}")
+	public void unsub( @PathVariable long id) {
 		
-		repo.deleteById(new SubscriptionsID(username,id));
+		repo.deleteById(new SubscriptionsID(SecurityContextHolder.getContext().getAuthentication().getName(),id));
 		
 	}
 	

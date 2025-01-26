@@ -31,10 +31,10 @@ public class CommentsController {
 	@GetMapping("/{postid}")
 	public List<CommentsDTO> getComments(@PathVariable long postid) {
 		List<CommentsDTO> comentarios = repo.getComments(postid);
-		ImageUtils<String> util = new ImageUtils<String>();
+//		ImageUtils<String> util = new ImageUtils<String>();
 		comentarios.forEach(e ->{
 			try {
-				e.setProfileImage(util.returnImage(e.getUsername(),"profileImages"));
+				e.setProfileImage(ImageUtils.returnImage(e.getUsername(),"profileImages"));
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

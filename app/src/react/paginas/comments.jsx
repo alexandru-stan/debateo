@@ -52,7 +52,7 @@ const [loadingComments,setLoadingComments] = useState(true);
             publicationBody={data.post.publicationBody}
             publicationTitle={data.post.publicationTitle}
             publicationId={data.post.publicationId}
-            publicationImage={(data.post.publicationImage.length>0)?formatImage(data.post.publicationImage):null}
+            publicationImage={(data.post.publicationImage?.length>0)?formatImage(data.post.publicationImage):null}
             publicationUser={data.post.user}    
   
   

@@ -3,6 +3,7 @@
 
 
 
+import java.io.IOException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ import es.debateo.Repositories.communitiesRepo;
 import es.debateo.Repositories.postsRepo;
 import es.debateo.Repositories.subsRepo;
 import es.debateo.Services.PostsServices;
+import es.debateo.Utils.ImageUtils;
 
 @RestController
 @RequestMapping("/posts")
@@ -58,27 +60,25 @@ public class PostsController {
 
 		
 		ServiceResponse<PostDTO> response = services.getPosts(username,offset,fyp);
-		System.out.println("pido página "+offset);
-	
 		return new ResponseEntity<Page<PostDTO>>(response.getPagina(),response.getStatus());
 		
 	}
 	
-	@GetMapping("/byCommunity/{offset}/{communityId}/{username}")
-	public ResponseEntity<?> getPostsByCommunity(@PathVariable String username, @PathVariable int offset, @PathVariable long communityId){
+	@GetMapping("/byCommunity/{offset}/{communityId}")
+	public ResponseEntity<?> getPostsByCommunity(@PathVariable int offset, @PathVariable long communityId){
 		
-//		
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		
 		Optional<Subscriptions> sub = subsRepo.findById(new SubscriptionsID(username,communityId));
 		boolean isPrivate = communitiesRepo.isCommunityPrivate(communityId);
 		String creator = communitiesRepo.getCommunityCreator(communityId);
 	
-		System.out.println("pido página "+offset);
+		System.out.println("pido páginaaa "+offset);
 		
 		
 		if(sub.isPresent() && sub.get().getSubscriptionLevel() == Subscriptions.subscriptionType.BANNED ) {
 			
-			return new ResponseEntity<String>("Has sido vetado de esta comunidad", HttpStatus.FORBIDDEN);
+			return new ResponseEntity<String>("No tienes acceso a las publicaciones de esta comunidad", HttpStatus.FORBIDDEN);
 	
 	
 		} else if(sub.isEmpty() && isPrivate && !creator.equals(username)){
@@ -87,8 +87,9 @@ public class PostsController {
 			
 			
 		} else {
+			System.out.println("aqui");
 			ServiceResponse<PostDTO> response = services.getPostsByCommunity(username,communityId,offset);
-			
+			System.out.println("aqui2");
 			return new ResponseEntity<Page<PostDTO>>(response.getPagina(),response.getStatus());
 		}
 	}
@@ -98,31 +99,35 @@ public class PostsController {
 	public ResponseEntity<Page<PostDTO>> getPostsByCreator(@PathVariable String username , @PathVariable int offset){
 		
 		ServiceResponse<PostDTO> response = services.getPostsByCreator(username,offset);
-		
+	
 		return new ResponseEntity<Page<PostDTO>>(response.getPagina(),response.getStatus());
 	}
 	
 	
 	@PostMapping("/new")
-	public int  addPost( @RequestParam("image")  MultipartFile file,
+	public long  addPost( @RequestParam("image")  MultipartFile file,
 			@RequestParam("titulo") String titulo,
 			@RequestParam("cuerpo") String cuerpo,
 			@RequestParam("user") String user,
-			@RequestParam("community") String community){
+			@RequestParam("community") String community) throws NumberFormatException, IOException{
 		Posts savedPost = null;
-		try {
-			
-			Posts post = new Posts(user,Long.valueOf(community),titulo,cuerpo,file.getBytes());
-			
-		     System.out.println("aaaaaa");
-			 savedPost= repo.save(post);
+//		System.out.println(user +"||"+community+"||"+titulo+"||"+cuerpo);
 		
-			 
-			} catch ( Exception e) {
-					System.out.println("puta");
-					return 0;
-			}
-	return (int) savedPost.getPublicationId();
+		
+		
+		
+		
+
+		Posts post = new Posts(user,Long.valueOf(community),titulo,cuerpo,null);
+		savedPost= repo.save(post);
+		
+
+		if(file!=null) {
+//			ImageUtils<Long> iu = new ImageUtils<Long>();
+			ImageUtils.saveImageToFilesystem(file, savedPost.getPublicationId() , "publicationImages");
+		}
+		
+		return savedPost.getPublicationId();
 	}
 	
 	
@@ -141,8 +146,8 @@ public class PostsController {
 //	}
 	
 	@GetMapping("/getPost/{username}/{id}")
-	public ResponseEntity<PostDTO> getPost(@PathVariable String username,@PathVariable long id){
-		
+	public ResponseEntity<PostDTO> getPost(@PathVariable String username,@PathVariable long id) throws IOException{
+		System.out.println(id);
 		ServiceResponse<PostDTO> response = services.getPost(username, id);
 		
 		return new ResponseEntity<PostDTO>(response.getObj(),response.getStatus());

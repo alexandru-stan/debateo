@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,10 +49,12 @@ public class CommunitiesController {
 	public ResponseEntity<CommunityDTO> getCommunity(@PathVariable long id) throws IOException{
 		System.out.println(id);
 		ServiceResponse<CommunityDTO> response = services.findCommunitiesById(id);
-		ImageUtils<Long> imageUtils = new ImageUtils<Long>();
-		System.out.println(response.getObj().getCommunityName()+" aaaaaaaa");
-		response.getObj().setCommunityImage(imageUtils.returnImage(response.getObj().getCommunityId(),"communityImages"));
+//		ImageUtils<Long> imageUtils = new ImageUtils<Long>();
+
+		response.getObj().setCommunityImage(ImageUtils.returnImage(response.getObj().getCommunityId(),"communityImages"));
+	
 		return new ResponseEntity<CommunityDTO>(response.getObj(),response.getStatus());
+		
 		
 	}
 	
@@ -73,9 +76,9 @@ public class CommunitiesController {
 		
 
 		Communities response=null;
-		ImageUtils<Long> imageUtils = new ImageUtils<Long>();
+//		ImageUtils<Long> imageUtils = new ImageUtils<Long>();
 		response = repo.save(new Communities(name,desc,null,creator,sensitiveContent,privateCommunity,blockNewSubscriptions,adminMode));
-		imageUtils.saveImageToFilesystem(file,response.getCommunityId(), "communityImages");
+		ImageUtils.saveImageToFilesystem(file,response.getCommunityId(), "communityImages");
 		return response.getCommunityId();
 //		return response.getCommunityId();
 		
@@ -92,10 +95,10 @@ public class CommunitiesController {
 	public ResponseEntity<List<Communities>> getHotCommunities(){
 		
 		List<Communities> response = repo.getHotCommunities();
-		ImageUtils<Long> imageUtils = new ImageUtils<Long>();
+//		ImageUtils<Long> imageUtils = new ImageUtils<Long>();
 		response.forEach(e -> {
 			try {
-				e.setCommunityImage(imageUtils.returnImage(e.getCommunityId(), "communityImages"));
+				e.setCommunityImage(ImageUtils.returnImage(e.getCommunityId(), "communityImages"));
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -111,10 +114,10 @@ public class CommunitiesController {
 	public ResponseEntity<List<Communities>> getSubscribedCommunities(@PathVariable String username) {
 	
 	List<Communities> result = repo.getSubscribedCommunities(username);
-	ImageUtils<Long> imageUtils = new ImageUtils<Long>();
+//	ImageUtils<Long> imageUtils = new ImageUtils<Long>();
 	result.forEach(e -> {
 		try {
-			e.setCommunityImage(imageUtils.returnImage(e.getCommunityId(), "communityImages"));
+			e.setCommunityImage(ImageUtils.returnImage(e.getCommunityId(), "communityImages"));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

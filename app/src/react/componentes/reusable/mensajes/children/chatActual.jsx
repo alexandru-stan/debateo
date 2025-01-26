@@ -164,8 +164,28 @@ selectedChat==null ?
         </div>
 
         <div className="flex bg-moradoOscuro items-center p-1 " style={{height:'15%'}} id='bandejaMensajes'>
-            <input id='chatBox' placeholder="Escribe un mensaje" className="bg-moradoOscuro w-5/6"></input>
-            <img onClick={() => { 
+            <input 
+            
+            onKeyDown={(event) => { 
+            
+                if(event.key == 'Enter'){
+            
+                sendMessage($("#chatBox").val())
+                $("#chatBox").val(null);
+                $("#chatBox").attr("rows");
+            }
+            
+            
+            }
+                }
+
+            
+            id='chatBox' placeholder="Escribe un mensaje" className="bg-moradoOscuro w-5/6"/>
+            <img 
+            
+            
+            
+            onClick={() => { 
 
                 sendMessage($("#chatBox").val()) 
                 $("#chatBox").val(null);

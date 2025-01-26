@@ -30,10 +30,10 @@ public class MessagesServices {
 		tuple.forEach(e -> {
 		
 			MessagesDTO message = new MessagesDTO(null, (String) e.get(0), (Date) e.get(1), (int) e.get(2), (String) e.get(3), (Long)e.get(4));
-			ImageUtils<String> util = new ImageUtils<String>();
+		
 			
 			try {
-				message.setProfile_image(util.returnImage(message.getInteractuer(),"profileImages"));
+				message.setProfile_image(ImageUtils.returnImage(message.getInteractuer(),"profileImages"));
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
