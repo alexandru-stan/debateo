@@ -37,18 +37,18 @@ useEffect(()=> {
         <img  style={{borderRadius:'50%', width:'100%' ,height:'100%',  border:'none'}} src={props.communityImage} />
         </div>
         <div 
-            className='text-white font-bold cursor-pointer  hover:underline ml-marginLigero '
+            className='text-white font-bold cursor-pointer communityName  hover:underline ml-marginLigero '
             onClick={() => { 
             localStorage.setItem('cid',props.communityId);
             navigate('/community/'+props.communityId)}}>{props.communityName}</div> 
 
                 
         <div ref={myRef} tabIndex="0" id='postMenu' className='ml-auto'>
-                    <Image clase={'hover:cursor-pointer'} style={{width:'1.5rem'}} onclick={() => dotsMenuVisibility=='none' ? setDotsMenuVisibility('block') : setDotsMenuVisibility('none') } ruta={dotsmenu}/>
-                        <div  className=' postMenuButtons  bg-moradoFondo p-2 border-2 border-moradoLight  rounded-lg' id={"a"} style={{ position:'absolute', display:dotsMenuVisibility}}>
-                            <p onClick={() => {dispatch(assign({block:true,value:<PopUp effect={"close"} title="¡Quieto ahí!" value={"Esta funcionalidad todavía no ha sido implementada"} />}));}} className=' rounded-lg p-1 hover:brightness-150 bg-moradoFondo hover:cursor-pointer '>Denunciar publicación </p>
-                            <p onClick={() => dispatch(assign({block:true,value:<PopUp  effect={"close"} title="¡Quieto ahí!" value={"Esta funcionalidad todavía no ha sido implementada"} />}))} className=' rounded-lg p-1 hover:brightness-150 bg-moradoFondo hover:cursor-pointer '>Guardar </p>
-                            <p onClick={() => dispatch(assign({block:true,value:<PopUp  effect={"close"} title="¡Quieto ahí!" value={"Esta funcionalidad todavía no ha sido implementada"} />}))} className=' rounded-lg  p-1 hover:brightness-150 bg-moradoFondo hover:cursor-pointer' >No me interesa <span className='text-naranjaMolon'>{props.communityName}</span></p>      
+                    <Image clase={' postMenuButtons hover:cursor-pointer'} style={{width:'1.5rem'}} onclick={() => dotsMenuVisibility=='none' ? setDotsMenuVisibility('block') : setDotsMenuVisibility('none') } ruta={dotsmenu}/>
+                        <div  className=' postMenuButtons  bg-moradoFondo p-2 border-2 border-moradoLight  rounded-lg' id={"a"} style={{ position:'absolute', zIndex:'2', display:dotsMenuVisibility}}>
+                            <p onClick={() => {dispatch(assign({block:true,value:<PopUp effect={"close"} title="¡Quieto ahí!" value={"Esta funcionalidad todavía no ha sido implementada"} />}));}} className='postMenuButtons rounded-lg p-1 hover:brightness-150 bg-moradoFondo hover:cursor-pointer '>Denunciar publicación </p>
+                            <p onClick={() => dispatch(assign({block:true,value:<PopUp  effect={"close"} title="¡Quieto ahí!" value={"Esta funcionalidad todavía no ha sido implementada"} />}))} className='postMenuButtons rounded-lg p-1 hover:brightness-150 bg-moradoFondo hover:cursor-pointer '>Guardar </p>
+                            <p onClick={() => dispatch(assign({block:true,value:<PopUp  effect={"close"} title="¡Quieto ahí!" value={"Esta funcionalidad todavía no ha sido implementada"} />}))} className='postMenuButtons rounded-lg  p-1 hover:brightness-150 bg-moradoFondo hover:cursor-pointer' >No me interesa <span className='text-naranjaMolon'>{props.communityName}</span></p>      
                             {/* <p onClick={()=> dispatch(assign(<div style={{ position:'fixed', top:'0%', bottom:'50%'}} className='  w-full h-full flex justify-center'><SpinnerLoader/></div>))}>TEST</p> */}
                         </div>
                 </div>
@@ -62,10 +62,10 @@ useEffect(()=> {
         :  
         <div className='flex '>
         
-        <div ref={myRef} tabIndex="0" id='postMenu' style={{marginLeft:'auto'}} className=' ml-auto'>
+        <div ref={myRef} tabIndex="0" id='postMenu' style={{marginLeft:'auto', position:'relative',zIndex:'100'}} className=' ml-auto'>
         
         <Image clase={'hover:cursor-pointer'} style={{width:'1.5rem'}} onclick={() => dotsMenuVisibility=='none' ? setDotsMenuVisibility('block') : setDotsMenuVisibility('none') } ruta={dotsmenu}/>
-                        <div    className=' postMenuButtons  bg-moradoFondo p-2 border-2 border-moradoLight  rounded-lg' id={"a"} style={{ position:'absolute', display:dotsMenuVisibility}}>
+                        <div    className=' postMenuButtons  bg-moradoFondo p-2 border-2 border-moradoLight  rounded-lg' id={"a"} style={{zIndex:'100', position:'absolute', display:dotsMenuVisibility}}>
                             <p onClick={() => {dispatch(assign(<PopUp title="¡Quieto ahí!" value={"Esta funcionalidad todavía no ha sido implementada"} />));}} className=' rounded-lg p-1 hover:brightness-150 bg-moradoFondo hover:cursor-pointer '>Denunciar publicación </p>
                             <p onClick={() => {dispatch(assign(<PopUp title="¡Quieto ahí!" value={"Esta funcionalidad todavía no ha sido implementada"} />));}} className=' rounded-lg p-1 hover:brightness-150 bg-moradoFondo hover:cursor-pointer '>Guardar </p>
                         </div>

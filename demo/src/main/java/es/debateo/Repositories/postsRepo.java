@@ -45,6 +45,7 @@ public interface postsRepo extends JpaRepository<Posts,Long>{
 		       " JOIN Communities c ON p.community = c.communityId"
 		       + " LEFT JOIN  Subscriptions s ON s.communityId = c.communityId AND s.username =:name"
 		       + " WHERE s.subscriptionLevel <> :banned OR s.subscriptionLevel IS NULL "
+		       + " AND NOT (s.subscriptionLevel IS NULL AND c.privateCommunity = true) "
 		       + " ORDER BY p.publicationId DESC ")
 	Page<PostDTO> getPostsFyp(PageRequest page, @Param("name") String name, @Param("banned") Subscriptions.subscriptionType banned);
 	

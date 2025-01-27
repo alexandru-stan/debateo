@@ -8,7 +8,7 @@ const Logo = (props) => {
 
 
     return (
-        <img alt="" onLoad={props.onload} onError={() => {
+        <img alt="" onMouseOver={ props.onmouseover } onMouseOut={props.onmouseout} onLoad={props.onload} onError={() => {
     
             props.onerror();
 

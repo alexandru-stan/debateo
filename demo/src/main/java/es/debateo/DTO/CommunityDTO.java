@@ -1,5 +1,7 @@
 package es.debateo.DTO;
 
+import java.util.Arrays;
+
 import es.debateo.Model.Subscriptions;
 
 public class CommunityDTO {
@@ -163,6 +165,17 @@ long communityId;
 
 	public void setAdminMode(boolean adminMode) {
 		this.adminMode = adminMode;
+	}
+
+	@Override
+	public String toString() {
+		return "CommunityDTO [communityId=" + communityId + ", communityName=" + communityName
+				+ ", communityDescription=" + communityDescription + ", communityImage="
+				+ Arrays.toString(communityImage) + ", communityBackgroundImage="
+				+ Arrays.toString(communityBackgroundImage) + ", communityMembers=" + communityMembers
+				+ ", communityCreator=" + communityCreator + ", sensitiveContent=" + sensitiveContent
+				+ ", privateCommunity=" + privateCommunity + ", blockNewSubscriptions=" + blockNewSubscriptions
+				+ ", adminMode=" + adminMode + ", categoria=" + categoria + ", subscription=" + subscription + "]";
 	}
 
 

@@ -249,6 +249,7 @@ export const Body = (props) => {
 
  function privateCommunityAfterSubscribePostRequest(){
   // setPage(0);
+
   if(communityInfo.subscription == null) {
     
     setCommunityInfo({

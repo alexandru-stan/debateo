@@ -50,7 +50,7 @@ public class CommunitiesController {
 		System.out.println(id);
 		ServiceResponse<CommunityDTO> response = services.findCommunitiesById(id);
 //		ImageUtils<Long> imageUtils = new ImageUtils<Long>();
-
+		System.out.println(response.getObj().getSubscription());
 		response.getObj().setCommunityImage(ImageUtils.returnImage(response.getObj().getCommunityId(),"communityImages"));
 	
 		return new ResponseEntity<CommunityDTO>(response.getObj(),response.getStatus());

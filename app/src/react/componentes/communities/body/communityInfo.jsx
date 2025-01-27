@@ -27,7 +27,7 @@ export const CommunityInfo = (props) => {
         setAdminButton();
         setCreateButton();
         setBannedButton();
-        // console.log(props.communityInfo);
+        console.log(props.communityInfo);
         if (props.communityInfo.subscription?.subscriptionLevel != 'BANNED') {
 
             // console.log("no estas baneado");

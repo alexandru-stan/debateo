@@ -35,9 +35,9 @@ public class CommunitiesServices {
 	
 	public ServiceResponse<CommunityDTO> findCommunitiesById(long id){
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
-		System.out.println(username);
-		CommunityDTO community = repo.getCommunityData(id,"pap");
 		
+		CommunityDTO community = repo.getCommunityData(id,username);
+		System.out.println(community.toString());
 		
 		
 		community.setCommunityMembers(subsRepo.numeroDeMiembros(community.getCommunityId())+1);
