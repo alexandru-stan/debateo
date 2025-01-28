@@ -47,7 +47,7 @@ export const CommunityInfo = (props) => {
 
 
 
-                setAdminButton(<button className=" hover:bg-moradoLight  rounded-md p-2  border-2 border-moradoLight bg-moradoFondo placeholder-gray-400  placeholder-gray-400 ">Administrar</button>)
+                setAdminButton(<button onClick ={() => navigate("/admin/"+props.communityInfo.communityId)} className=" hover:bg-moradoLight  rounded-md p-2  border-2 border-moradoLight bg-moradoFondo placeholder-gray-400  placeholder-gray-400 ">Administrar</button>)
             }
 
 

@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import es.debateo.Model.Subscriptions;
 import es.debateo.Model.ComplexID.SubscriptionsID;
+import es.debateo.Repositories.communitiesRepo;
 import es.debateo.Repositories.subscriptionsRepo;
 
 @RestController
@@ -31,6 +31,8 @@ public class SubscriptionsController {
 	}
 	@Autowired
 	subscriptionsRepo repo;
+	@Autowired
+	communitiesRepo crepo;
 	
 	
 	
@@ -84,12 +86,26 @@ public class SubscriptionsController {
 	@PutMapping("/banUsers/{id}/{type}")
 	public void ban(@RequestBody List<String> items,@PathVariable int id, @PathVariable String type) {
 		
+		String communityCreator = crepo.getCommunityCreator(id);
+		System.out.println(communityCreator);
+	
+	
+	if(items.contains(communityCreator)) {
+		items.remove(communityCreator);
+	} 
+	
+		
 		if(type.equals("banned")) {
 			items.forEach(e -> {
 				boolean exists = repo.existsByUsernameAndCommunityId(e,id);
 				
+		
 				if(exists) {
+				
+				
 					repo.banUsers(id,items, Subscriptions.subscriptionType.BANNED);
+				
+				
 				} else {
 					repo.save(new Subscriptions(e,id,new Date(),Subscriptions.subscriptionType.BANNED));
 				}

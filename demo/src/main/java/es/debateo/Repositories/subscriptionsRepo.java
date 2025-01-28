@@ -23,6 +23,10 @@ public interface subscriptionsRepo extends JpaRepository<Subscriptions,Subscript
 			+ " WHERE s.username=:username AND s.communityId=:id")
 	SubscriptionDTO getSub(@Param("username") String username, @Param("id") long id);
 	
+
+	
+	
+	
 	@Query("SELECT Count(s) "
 			+ " FROM Subscriptions s"
 			+ " WHERE s.communityId=:id")

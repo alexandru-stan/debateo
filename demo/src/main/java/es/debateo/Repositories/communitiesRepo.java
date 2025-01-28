@@ -17,6 +17,9 @@ public interface communitiesRepo extends JpaRepository<Communities,Long> {
     List<Communities> search(@Param("param") String cadena);
 	
 	
+	public String getCommunityCreatorByCommunityId(long communityId);
+
+	
 	@Query("SELECT new es.debateo.DTO.CommunityDTO("
 			+ "c.communityId,"
 			+ "c.communityName,"
