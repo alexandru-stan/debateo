@@ -110,7 +110,7 @@ if(myRef.current!=null){
     {/*messagesRender ? <Mensajes/>:null*/}
      
     
-      <div id="fyp" className='mt-4 flex flex-row bg-moradoFondo  rounded-lg w-2/6 justify-center' >
+      <div id="fyp" className='mt-4 flex flex-row bg-moradoFondo  rounded-lg w-2/6  mb-5 justify-center' >
       
         <div onClick={(()=>{ 
         fyp? 

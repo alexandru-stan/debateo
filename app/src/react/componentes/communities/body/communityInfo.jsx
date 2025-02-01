@@ -14,10 +14,7 @@ export const CommunityInfo = (props) => {
     const [subscribeButton, setSubscribeButton] = useState();
     const [adminButton, setAdminButton] = useState();
     const [createButton, setCreateButton] = useState();
-    // const commun
 
-
-    // alert(props.communityInfo.subscription?.subscriptionLevel)
 
 
 

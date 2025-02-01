@@ -27,20 +27,25 @@ useEffect(()=> {
 
     return (
         
-        <div style={{ overflowWrap:'break-word',  height:'15%'}} className='post-header  p-1 border-b-2   border-moradoLight  text-white '>
+        <div style={{ overflowWrap:'break-word',  height:'15%'}} className='post-header  p-1      text-white '>
         {/* <p>{props.publicationId}</p> */}
        {props.visibleCommunityInfo ? 
        
         <div className=' h-2/6 flex items-center  post-info'>
           
-        <div style={{width:'2rem' ,  height:'2rem'}}>
+        <div className='' style={{width:'2rem' ,  height:'2rem'}}>
         <img  style={{borderRadius:'50%', width:'100%' ,height:'100%',  border:'none'}} src={props.communityImage} />
         </div>
         <div 
-            className='text-white font-bold cursor-pointer communityName  hover:underline ml-marginLigero '
+            className='text-white w-full  font-bold cursor-pointer communityName  hover:underline ml-marginLigero '
             onClick={() => { 
             localStorage.setItem('cid',props.communityId);
-            navigate('/community/'+props.communityId)}}>{props.communityName}</div> 
+            navigate('/community/'+props.communityId)}}>
+           <p> {props.communityName} </p>
+            <p style={{fontSize:'0.7rem'}} className=' '>publicado por <span style={{color:'#ff8c00'}}>{props.publicationUser}</span></p>
+
+            
+            </div> 
 
                 
         <div ref={myRef} tabIndex="0" id='postMenu' className='ml-auto'>
@@ -81,7 +86,7 @@ useEffect(()=> {
         <div style={{}} className='  p-1 h-4/6 flex flex-col justify-center'>
        
         <p style={{fontSize:'1.3rem',}} className='h-2/4 mt-2 '>{props.publicationTitle}</p>
-        <p style={{fontSize:'0.7rem'}} className='h-2/4  mt-2  '>Publicado por <span style={{color:'#ff8c00'}}>{props.publicationUser}</span></p>
+        
         </div>
 
         </div>

@@ -8,7 +8,7 @@ export const stompClient = new StompJs.Client({
     
 });
 
-const username = JSON.parse(localStorage.getItem("user"))?.username;
+// const username = JSON.parse(localStorage.getItem("user"))?.username;
 
 
 

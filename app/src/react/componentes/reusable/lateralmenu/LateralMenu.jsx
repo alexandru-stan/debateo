@@ -58,11 +58,6 @@ export const LateralMenu = (props) => {
       let mensaje = JSON.parse(message.body);
       audio.play();
       dispatch(incoming(mensaje))
-      
-
-      // alert("jeje")
-      // cambiarUltimoMensajeDelChat(mensaje);
-
 
 
     
