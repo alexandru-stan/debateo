@@ -34,16 +34,18 @@ public class JwtFilter extends OncePerRequestFilter{
 		
 		
 		String requestUri = request.getRequestURI();
-	
+//		System.out.println(requestUri);
 		
-		
-		  if (  requestUri.startsWith("/users/login") || requestUri.contains("websocket") || requestUri.contains("/users/signin")) {
+		  if (  requestUri.startsWith("/users/login") || requestUri.startsWith("/test") ||requestUri.contains("/users/signin")) {
 		        filterChain.doFilter(request, response); // Continue without applying the filter
 		  } else {
 //			  System.out.println("A");
 			  
-			  String authHeader = request.getHeader("Authorization");
-		
+			  
+
+			  String authHeader = !requestUri.startsWith("/websocket") ?  request.getHeader("Authorization") : "Bearer " + requestUri.substring(11);
+			  
+			  
 			
 			  if (authHeader == null || !authHeader.startsWith("Bearer ")) {
 				  
@@ -53,8 +55,7 @@ public class JwtFilter extends OncePerRequestFilter{
 		        }
 			  
 			  String token = authHeader.substring(7);
-			  
-			
+
 			  
 			 
 			 JwtAuthentication auth = new JwtAuthentication(false,token,null);
@@ -64,12 +65,15 @@ public class JwtFilter extends OncePerRequestFilter{
 			
 			  
 			 if(resultAuth.isAuthenticated()) {
+//				 System.out.println(resultAuth.getName());
 			  SecurityContextHolder.getContext().setAuthentication(resultAuth);
 			  filterChain.doFilter(request, response);
+			  
+			
 		
 			 } else {
 				 	response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-		            response.getWriter().write("Invalid authentication token");
+		            response.getWriter().write("Invalid authenti cation token");
 		            return;
 			 }
 			  

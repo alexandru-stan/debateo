@@ -76,7 +76,8 @@ let audio = new Audio(newMessage);
       setSpinner(false);
     let tempArr = [];
       r.data.forEach(e=>{
-        
+
+  
                 tempArr.push(<Chat unreadMessages={e.null_isRead_count}   onClick={() => {
 
           
@@ -89,7 +90,7 @@ let audio = new Audio(newMessage);
 
           dispatch(change(e.interactuer))
           ReadMessages(e.interactuer,username);
-          }} profileImage = {formatImage(e.profile_image)} interactuer={e.interactuer} lastInteraction={e.last_interaction} newChat={"ALUPIGUS"} key={e.message_id}  lastMessage={e.message_body}/>);
+          }} profileImage = {formatImage(e.profile_image)} isConnected = {e.connected} interactuer={e.interactuer} lastInteraction={e.last_interaction} newChat={"ALUPIGUS"} key={e.message_id}  lastMessage={e.message_body}/>);
     
     
     });
@@ -108,7 +109,7 @@ let audio = new Audio(newMessage);
     },[]);
 
 
-    console.log(arrChats);
+
 
     function cambiarUltimoMensajeDelChat(mensaje){
       

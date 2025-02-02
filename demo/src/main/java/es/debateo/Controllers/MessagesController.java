@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import es.debateo.Config.MessagingConfig.UserConnections;
 import es.debateo.DTO.ChatAndUnreadMessagesDTO;
 import es.debateo.DTO.MessagesDTO;
 import es.debateo.DTO.ServiceResponse;
@@ -33,13 +34,17 @@ public class MessagesController {
 	@Autowired 
 	messagesRepo repo;
 	
-	
+	@Autowired
+	UserConnections userConnections;
 	
 	@GetMapping("/RetrieveChats/{username}")
 	public ResponseEntity<List<MessagesDTO> > RetrieveChats(@PathVariable String username) {
 	
 		List<MessagesDTO> respuesta = services.RetrieveChats(username);
-		
+		respuesta.forEach(e -> {
+			System.out.println(userConnections.getConnectedUsers().contains(e.getInteractuer()));
+			e.setConnected(userConnections.getConnectedUsers().contains(e.getInteractuer()));
+		});
 		return new ResponseEntity<List<MessagesDTO> >(respuesta,HttpStatus.OK);
 		
 	}

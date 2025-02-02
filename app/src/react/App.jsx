@@ -20,7 +20,6 @@ import { useDispatch } from 'react-redux';
 import { PopUp } from '../react/componentes/reusable/popup/PopUp';
 import { update } from '../redux-store/slices/IncomingMessage';
 import newMessage from "../assets/audio/newMessage.mp3";
-import { stompClient } from "../webSocketTesting/webSocket";
 import { LateralMenu } from './componentes/reusable/lateralmenu/LateralMenu';
 import { update as tokenUpdate } from '../redux-store/slices/LateralRender';
 import axios from 'axios';

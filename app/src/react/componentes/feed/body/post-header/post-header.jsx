@@ -37,11 +37,11 @@ useEffect(()=> {
         <img  style={{borderRadius:'50%', width:'100%' ,height:'100%',  border:'none'}} src={props.communityImage} />
         </div>
         <div 
-            className='text-white w-full  font-bold cursor-pointer communityName  hover:underline ml-marginLigero '
-            onClick={() => { 
+            className='text-white w-full font-medium  flex flex-col items-start    ml-marginLigero '
+           >
+           <p className='   hover:underline communityName' onClick={() => { 
             localStorage.setItem('cid',props.communityId);
-            navigate('/community/'+props.communityId)}}>
-           <p> {props.communityName} </p>
+            navigate('/community/'+props.communityId)}}> {props.communityName} </p>
             <p style={{fontSize:'0.7rem'}} className=' '>publicado por <span style={{color:'#ff8c00'}}>{props.publicationUser}</span></p>
 
             

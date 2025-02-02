@@ -19,7 +19,10 @@ import { update as incoming } from "../../../../redux-store/slices/IncomingMessa
 import newMessage from "../../../../assets/audio/newMessage.mp3"
 import { stompClient } from "../../../../webSocketTesting/webSocket";
 import { update as updateLatRender } from "../../../../redux-store/slices/LateralRender";
-
+import { disconnect } from "../../../../webSocketTesting/webSocket";
+import { condiscon } from "../../../../redux-store/slices/ConnectionChange";
+import { initializeStompClient } from "../../../../webSocketTesting/webSocket";
+// import { stompClient } from "../webSocketTesting/webSocket";
 export const LateralMenu = (props) => {
     
     const dispatch = useDispatch();
@@ -50,20 +53,49 @@ export const LateralMenu = (props) => {
 
     let audio = new Audio(newMessage);
 
+    useEffect(() => {
+
+        initializeStompClient(userData,dispatch,incoming,condiscon);
+        stompClient.activate();
+    
+    },[])
   
     
-    stompClient.activate();
-    stompClient.onConnect = (frame) => {
-    stompClient.subscribe('/'+userData.username,(message) => {
-      let mensaje = JSON.parse(message.body);
-      audio.play();
-      dispatch(incoming(mensaje))
+  
+    // stompClient.deactivate();
+
+    
+// //     stompClient.onConnect = (frame) => {
+// //     stompClient.subscribe('/'+userData.username,(message) => {
+// //       let mensaje = JSON.parse(message.body);
+// //       audio.play();
+// //       dispatch(incoming(mensaje));
+
+// //     // stompClient.subscribe("/"+connectedUsers)
 
 
     
-  });
+// //   },
 
-    }  
+// //   {username : " tuputamadre "}
+
+
+
+// // );
+
+// //   stompClient.subscribe('/onlineUsers',(message) => {
+// //    alert(message.body +" is now online ");
+
+// //   // stompClient.subscribe("/"+connectedUsers)
+
+
+  
+// // });
+
+
+
+
+//     }  
 
 
 
@@ -130,7 +162,9 @@ useEffect(() => {
                                  <p  
                                  onClick={()=>{
                                      dispatch(assign(null));
-                                     stompClient.deactivate();
+                                     
+                                     disconnect(userData.username);
+                                     
                                      localStorage.removeItem('userData');
                                      nav("/")
                                      dispatch(updateLatRender(false));

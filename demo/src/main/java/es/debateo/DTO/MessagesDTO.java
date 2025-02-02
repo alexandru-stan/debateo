@@ -1,8 +1,7 @@
 package es.debateo.DTO;
 
 import java.util.Date;
-
-import jakarta.persistence.Transient;
+import java.util.concurrent.ConcurrentMap;
 
 
 
@@ -16,6 +15,7 @@ public class MessagesDTO {
 	int message_id;
 	String message_body;
 	Long null_isRead_count;
+	boolean isConnected;
 	public byte[] getProfile_image() {
 		return profile_image;
 	}
@@ -67,6 +67,12 @@ public class MessagesDTO {
 		return "MessagesDTO [profile_image=" + profile_image + ", interactuer=" + interactuer + ", last_interaction="
 				+ last_interaction + ", message_id=" + message_id + ", message_body=" + message_body
 				+ ", null_isRead_count=" + null_isRead_count + "]";
+	}
+	public boolean isConnected() {
+		return isConnected;
+	}
+	public void setConnected(boolean isConnected) {
+		this.isConnected = isConnected;
 	}
 	
 	

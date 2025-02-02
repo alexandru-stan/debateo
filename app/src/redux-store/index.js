@@ -10,7 +10,7 @@ import RecentCommunityTrigger from "./slices/RecentCommunityTrigger";
 import PopUp from "./slices/PopUp";
 import MessagesRender from "./slices/MessagesRender";
 import  LateralRender from "./slices/LateralRender";
-
+import  ConnectionChange  from "./slices/ConnectionChange";
 export default configureStore({
     reducer: {
         status : StatusReducer,
@@ -23,7 +23,8 @@ export default configureStore({
         recentCommunityTrigger: RecentCommunityTrigger,
         popUp: PopUp,
         messagesRender: MessagesRender,
-        lateralRender: LateralRender
+        lateralRender: LateralRender,
+        connectionChange: ConnectionChange
         
     },
     middleware: (getDefaultMiddleware) =>

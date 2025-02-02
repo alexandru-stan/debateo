@@ -23,9 +23,6 @@ root.render(
 <Provider store={store}>
    
     <App/>
-   
-
- 
    {/* <IncomingMessageNotification/> */}
 </Provider>
 

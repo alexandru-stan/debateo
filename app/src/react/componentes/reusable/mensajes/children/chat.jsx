@@ -17,18 +17,28 @@ export const Chat = (props) => {
   const selectedChat = useSelector( state => state.selectedChat.value)
   const [unread,setUnread] = useState(0);
   const [profileImage,setProfileImage] = useState(props.profileImage);
-
+  const [connection, setConnection] = useState(props.isConnected);
   const username = JSON.parse(localStorage.getItem('userData')).username;
+  const incomingConnectionChange = useSelector(state => state.connectionChange.value);
 
-
+  let tumadre = 0;
 
   useEffect(()=>{
  
-    console.log("DENTRO DE CHAT " +props.interactuer);
+    // console.log("DENTRO DE CHAT " +props.interactuer);
     profileImage==null ? refreshProfileImage(props.interactuer).then(e => setProfileImage(formatImage(e.data.profileImage))) : null
   },[])
   
   
+  useEffect(() => {
+    // console.log(incomingConnectionChange);
+   incomingConnectionChange!=null && incomingConnectionChange.name == props.interactuer
+    ? setConnection(incomingConnectionChange.connection) 
+    : null;
+
+
+  },[incomingConnectionChange]);
+
 
   useEffect(()=>{
 
@@ -82,15 +92,21 @@ export const Chat = (props) => {
   // }, []); 
 
     return(
-    <div  id={props.interactuer} style={{height:'5rem', direction:'ltr' }} onClick={props.onClick} className='chat p-2 bg-moradoFondo hover:cursor-pointer  flex-col flex m-2 justify-between rounded-lg  hover:bg-moradoLight hover:cursor '>
-        <div id='chatInfo' className='flex justify-between ' >
-        <div className="flex items-center">
+    <div  id={props.interactuer} style={{height:'5rem', direction:'ltr' }} onClick={props.onClick} className='chat p-2 bg-moradoFondo hover:cursor-pointer  flex-col justify-center flex m-2 justify-between rounded-lg  hover:bg-moradoLight hover:cursor '>
+        <div id='chatInfo' className='flex items-center justify-between ' >
+        <div className="flex w-2/4  relative items-center">
         <img style={{width:'2rem', height:'2rem', borderRadius:'100%'}} src={profileImage}></img>
+        <div  style={{ backgroundColor:(connection ? "#1d9e00" : "grey"), position:'absolute', top:'70%', left:'15%',borderRadius:'100%', width:'10px', height:'10px'}} className="connectionFlair"></div>
+
           <div style={{fontSize:'0.8rem',whiteSpace: 'nowrap',
   overflow: 'hidden',
-  textOverflow: 'ellipsis'  }} className='nombreUsuario p-2 text-naranjaMolon '>
+  textOverflow: 'ellipsis',
+  marginLeft:'15px',
+   }} className='nombreUsuario  text-naranjaMolon '>
   
   {props.interactuer}</div>
+
+   
   </div>
           <div ref={hola} id="lastInteraction" style={{fontSize:'0.6rem'}} className='p-2  text-naranjaMolon'>{fechaMostrada}</div>
         </div>

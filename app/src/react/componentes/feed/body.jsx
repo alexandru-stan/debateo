@@ -104,7 +104,7 @@ if(myRef.current!=null){
     return(
       <>
  
-    <div  className=' flex flex-col                   items-center    '  id='body-feed'>
+    <div  className=' flex flex-col   mb-3 mt-5                items-center    '  id='body-feed'>
    
    
     {/*messagesRender ? <Mensajes/>:null*/}
