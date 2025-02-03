@@ -130,6 +130,7 @@ ServiceResponse<PostDTO> respuesta = new ServiceResponse<PostDTO>(posts,HttpStat
 		post.setLikes(likesRepo.likeCount(post.getPost().getPublicationId()));
 		post.setComments(commentsRepo.countByPostId(id));
 		post.getPost().setPublicationImage(ImageUtils.returnImage(post.getPost().getPublicationId(),"publicationImages"));
+		post.getCommunity().setCommunityImage(ImageUtils.returnImage(post.getCommunity().getCommunityId(), "communityImages"));
 		return new ServiceResponse<PostDTO>(post,HttpStatus.OK);
 		
 		

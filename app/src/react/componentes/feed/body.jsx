@@ -104,13 +104,13 @@ if(myRef.current!=null){
     return(
       <>
  
-    <div  className=' flex flex-col   mb-3 mt-5                items-center    '  id='body-feed'>
+    <div   className=' flex flex-col       mt-2 mb-2            items-center    '  id='body-feed'>
    
    
     {/*messagesRender ? <Mensajes/>:null*/}
      
     
-      <div id="fyp" className='mt-4 flex flex-row bg-moradoFondo  rounded-lg w-2/6  mb-5 justify-center' >
+      <div id="fyp" className=' flex flex-row bg-moradoFondo  rounded-lg w-2/6  mb-5 justify-center' >
       
         <div onClick={(()=>{ 
         fyp? 
@@ -156,7 +156,7 @@ if(myRef.current!=null){
 
 
     </div>
-   
+   <div> </div> 
     </>
     );
 

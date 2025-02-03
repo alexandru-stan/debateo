@@ -18,7 +18,7 @@ const Post = (props) => {
     return (
      
        
-        <div onClick={(ea) => !navignore.some(e => ea.target.className.includes(e)) ? nav("/" + props.publicationId + "/comments") : null} key={props.publicationId} style={ props.publicationImage == null ? {maxHeight:'40rem',width:'40%'} : {height:'40rem',width:'40%'}}  ref={props.referencia} className={'p-2   publicacion flex border-b border-t border-moradoLight flex-column post   ' + (!loc.pathname.includes("comments") ? ' hover:bg-fondoPublicacionesHover hover:cursor-pointer' : null)} >
+        <div onClick={(ea) => !navignore.some(e => ea.target.className.includes(e)) ? nav("/" + props.publicationId + "/comments") : null} key={props.publicationId} style={ props.publicationImage == null ? {maxHeight:'40rem',width:'40%'} : {height:'40rem',width:'40%'}}  ref={props.referencia} className={'p-2  publicacion flex border-b border-t border-moradoLight flex-column post   ' + ' '+ props.class + ' ' +   (!loc.pathname.includes("comments") ? ' hover:bg-fondoPublicacionesHover hover:cursor-pointer ' : null)}  >
             
             <PostHeader userData = {userData} fyp={props.fyp} visibleCommunityInfo ={props.visibleCommunityInfo} referencia={props.referencia} publicationId={props.publicationId} publicationTitle = {props.publicationTitle} communityId = {props.communityId} communityName={props.communityName} communityImage = {props.communityImage} publicationUser={props.publicationUser} delete={props.delete}/>
             <PostBody liked={props.liked} publicationBody={props.publicationBody} publicationImage={props.publicationImage} />

@@ -36,7 +36,7 @@ export function initializeStompClient(userData, dispatch, incoming,condiscon){
     );
     
       subscription2 = stompClient.subscribe('/onlineUsers',(message) => {
-       
+        
         dispatch(condiscon(JSON.parse(message.body)));
     
       // stompClient.subscribe("/"+connectedUsers)

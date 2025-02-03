@@ -61,6 +61,7 @@ import { Mensajes } from './componentes/reusable/mensajes/mensajes';
         </Routes>
         </div>
        {popUpVal != null ? popUpVal.value : null } 
+
       </Router>
      
     

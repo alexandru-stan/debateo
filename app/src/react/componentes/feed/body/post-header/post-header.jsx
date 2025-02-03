@@ -29,7 +29,7 @@ useEffect(()=> {
         
         <div style={{ overflowWrap:'break-word',  height:'15%'}} className='post-header  p-1      text-white '>
         {/* <p>{props.publicationId}</p> */}
-       {props.visibleCommunityInfo ? 
+       {/* {props.visibleCommunityInfo ?  */}
        
         <div className=' h-2/6 flex items-center  post-info'>
           
@@ -58,25 +58,12 @@ useEffect(()=> {
                         </div>
                 </div>
 
-       
+
                 
               
         
         </div>
-        
-        :  
-        <div className='flex '>
-        
-        <div ref={myRef} tabIndex="0" id='postMenu' style={{marginLeft:'auto', position:'relative',zIndex:'100'}} className=' ml-auto'>
-        
-        <Image clase={'hover:cursor-pointer'} style={{width:'1.5rem'}} onclick={() => dotsMenuVisibility=='none' ? setDotsMenuVisibility('block') : setDotsMenuVisibility('none') } ruta={dotsmenu}/>
-                        <div    className=' postMenuButtons  bg-moradoFondo p-2 border-2 border-moradoLight  rounded-lg' id={"a"} style={{zIndex:'100', position:'absolute', display:dotsMenuVisibility}}>
-                            <p onClick={() => {dispatch(assign(<PopUp title="¡Quieto ahí!" value={"Esta funcionalidad todavía no ha sido implementada"} />));}} className=' rounded-lg p-1 hover:brightness-150 bg-moradoFondo hover:cursor-pointer '>Denunciar publicación </p>
-                            <p onClick={() => {dispatch(assign(<PopUp title="¡Quieto ahí!" value={"Esta funcionalidad todavía no ha sido implementada"} />));}} className=' rounded-lg p-1 hover:brightness-150 bg-moradoFondo hover:cursor-pointer '>Guardar </p>
-                        </div>
-        </div>
-</div>
-    }
+
 
 
    

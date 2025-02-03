@@ -22,7 +22,7 @@ export const Body = (props) => {
 
 
     return (
-        <div className="text-white flex items-center flex-col w-full  mt-5 " id='profile-body'>
+        <div className="text-white  flex items-center flex-col w-full  mt-5 " id='profile-body'>
        {/* <EditProfile/> */}
        <UserData user={props.user}/>
        {/* {messagesRender ? <Mensajes/> : null} */}
@@ -35,7 +35,7 @@ export const Body = (props) => {
         
     </div>
 
-        <div className="w-full flex flex-col items-center justify-center ">
+        <div className="w-full flex mt-5 flex-col items-center justify-center ">
           <UserPosts user={props.user} visibility={selected=="Publicaciones" ? true : false}/>
           <UserComments user ={props.user} visibility = {selected=="Comentarios" ? true : false}/>
         </div>

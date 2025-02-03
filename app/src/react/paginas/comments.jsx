@@ -41,8 +41,10 @@ const [loadingComments,setLoadingComments] = useState(true);
       getPost(user.username,params.id).then(response =>{ 
         let data = response.data;
         setNumeroComentarios(data.comments)
+        console.log(data.community.communityImage);
         setSelectedPost(
           <Post
+            class = "mt-5"
             likes = {data.likes}
             comments = {data.comments}
             liked={data.liked}
@@ -96,7 +98,7 @@ const [loadingComments,setLoadingComments] = useState(true);
         <div  id='comments' className="  flex flex-col items-center">
         <Header/>
         {/* <LateralMenu/> */}
-          {loadingPost? <SpinnerLoader hijoStyle={{width:'4rem'}} id='commPostLoader'/> : selectedPost}
+         {loadingPost? <SpinnerLoader hijoStyle={{width:'4rem'}} id='commPostLoader'/> : selectedPost}
 
           <div id='commentBox' onClick={() => !writable ?  setWritable(true) : null} style={{minHeight:'4rem',border:'1px solid #444073'}} className=" hover:cursor-text w-2/6 rounded-3xl flex flex-col  justify-center   mt-3 p-2">
 
