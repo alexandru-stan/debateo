@@ -13,6 +13,7 @@ import { assign } from "../../../../redux-store/slices/PopUp";
 import subscount from "../../../../assets/img/subsCount.png";
 import { useEffect } from "react";
 import SpinnerLoader from "../../reusable/SpinnerLoader";
+import defaultProfileImage from "../../../../assets/img/defaultProfileImage.png"
 export const UserData = (props) =>  {
     const [editProfile,setEditProfile] = useState(false);
     const user = JSON.parse(localStorage.getItem('userData'));
@@ -30,7 +31,7 @@ export const UserData = (props) =>  {
       
       {
 
-        refreshProfileImage(user.username).then(r => setProfileImage(formatImage(r.data.profileImage)));
+        refreshProfileImage(user.username).then(r => r.data.profileImage != null ?  setProfileImage(formatImage(r.data.profileImage)) : setProfileImage(defaultProfileImage));
 
 
       }
@@ -46,7 +47,7 @@ export const UserData = (props) =>  {
         {/* {editProfile ? <EditProfile editProfile = {updateParentState}/> : null} */}
         <div  className="w-full  p-3  ">
           
-          { profileImage != null ? <img style={{width:'100px',height:'100px'}} className=" rounded-full" src={profileImage}></img> : <SpinnerLoader padreStyle={{width:'100%', justifyContent:'flex-start'}} hijoStyle={{width:'10%'}}/>}
+          { profileImage != null ? <img style={{width:'100px',height:'100px'}} className="rounded-full" src={profileImage}></img> : <SpinnerLoader padreStyle={{width:'100%', justifyContent:'flex-start'}} hijoStyle={{width:'10%'}}/>}
         
             {/* <p onClick={()=> setEditProfile(!editProfile)} className="ml-auto bg-moradoFondo text-naranjaMolon font-semibold hover:bg-moradoLight hover:cursor-pointer border-2 border-moradoLight py-2 px-4 rounded-lg ">Editar perfil</p> */}
             {/* <p onClick={()=> {dispatch(assign(<EditProfile editProfile = {updateParentState}/>))}} className="ml-auto bg-moradoFondo text-naranjaMolon font-semibold hover:bg-moradoLight hover:cursor-pointer border-2 border-moradoLight py-2 px-4 rounded-lg ">Editar perfil</p> */}

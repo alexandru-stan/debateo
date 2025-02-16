@@ -5,6 +5,7 @@ import IconoMensajes from "../../../../assets/img/menuIcons/mensajes.png";
 import IconoComunidades from "../../../../assets/img/menuIcons/crear.png";
 import IconoMenuMovil from "../../../../assets/img/menuIcons/menuMovil.png";
 import { getUnreadMessages } from "../../../../js/getUnreadMessages";
+import { updateUnreadMessages } from "../../../../redux-store/slices/UnreadMessages";
 import { useState,useEffect } from "react";
 import Imagen from "../img";
 import { useNavigate } from "react-router-dom";
@@ -19,6 +20,7 @@ export const Menu = (props) => {
 
     const messagesRender = useSelector(state => state.messagesRender.value);
     const selectedChat = useSelector(state => state.selectedChat.value);
+    const unreadMessages = useSelector(state => state.unreadMessages.value);
     const dispatch = useDispatch();
     const  $ = require('jquery');
     const navigate = useNavigate();
@@ -34,6 +36,11 @@ export const Menu = (props) => {
         
     },[])
 
+
+    useEffect(() => {
+
+  
+    },[ selectedChat ]) 
   
     
 
@@ -41,7 +48,7 @@ export const Menu = (props) => {
 
 
 
-        incomingMessage!=null ? 
+        incomingMessage!=null && !messagesRender ? 
 
     
            selectedChat != incomingMessage.messageSender ?   setMensajesSinLeer(state => state+1)    : null

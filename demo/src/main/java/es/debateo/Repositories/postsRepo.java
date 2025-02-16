@@ -75,7 +75,7 @@ public interface postsRepo extends JpaRepository<Posts,Long>{
 	
 	
 	
-	@Query("SELECT new es.debateo.DTO.PostDTO(p, 0 , 0, 0) FROM Posts p"
+	@Query("SELECT new es.debateo.DTO.PostDTO(p , 0 , 0, 0) FROM Posts p"
 			+ "  "
 		   + " WHERE p.community = :community "
 		   + " ORDER BY p.publicationId DESC"

@@ -78,8 +78,10 @@ public class PostsServices {
 			post.setLiked(repo.isItLiked(user, post.getPost().getPublicationId()));
 			post.setLikes(likesRepo.likeCount(post.getPost().getPublicationId()));
 			post.setComments(commentsRepo.countByPostId(post.getPost().getPublicationId()));
+			
 			try {
 				post.getPost().setPublicationImage(ImageUtils.returnImage(post.getPost().getPublicationId(), "publicationImages"));
+		
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

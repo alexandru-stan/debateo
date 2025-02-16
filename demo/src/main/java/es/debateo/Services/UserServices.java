@@ -43,7 +43,7 @@ public class UserServices implements UserDetailsService{
 
 	public ServiceResponse<Users> login(String username,String password) throws IOException {
 	
-
+		username = username.toLowerCase();
 		Users user = repo.existsById(username) ?  repo.findById(username).get() : null;
 		
 		if(user!=null && passwordEncoder.matches(password, user.getPassword())) {

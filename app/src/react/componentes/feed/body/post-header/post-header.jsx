@@ -34,7 +34,7 @@ useEffect(()=> {
         <div className=' h-2/6 flex items-center  post-info'>
           
         <div className='' style={{width:'2rem' ,  height:'2rem'}}>
-        <img  style={{borderRadius:'50%', width:'100%' ,height:'100%',  border:'none'}} src={props.communityImage} />
+       {props.communityImage != null ?  <img  style={{borderRadius:'50%', width:'100%' ,height:'100%', }} src={props.communityImage} /> : null }
         </div>
         <div 
             className='text-white w-full font-medium  flex flex-col items-start    ml-marginLigero '

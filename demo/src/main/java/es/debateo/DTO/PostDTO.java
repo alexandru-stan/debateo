@@ -16,7 +16,7 @@ public class PostDTO {
 	Posts post;
 	Communities community;
 	Subscriptions subscription;
-	
+
 
 	public PostDTO( Posts post, Communities community ,Subscriptions subscription,long likes, long comments, long liked) {
 		super();
@@ -32,6 +32,10 @@ public class PostDTO {
 	
 	
 	
+
+
+
+
 	public PostDTO( Posts post,long likes, long comments, long liked) {
 		super();
 		this.likes = likes;

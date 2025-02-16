@@ -62,7 +62,7 @@ public class MessagesServices {
 	}
 	
 	public Messages sendMessage(Messages message) {
-		
+		message.setMessageDate(new Date());
 		Messages savedMessage = repo.saveAndFlush(message);
 		
 		

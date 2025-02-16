@@ -68,10 +68,11 @@ let audio = new Audio(newMessage);
         let obj = {};
          response.data.forEach(e => obj[e.interactuer] = e.unreadMessages)
          dispatch(updateUnreadMessages(obj));
+      
         });
   
-   
- 
+      
+        
     RetrieveChats().then( r => {
       setSpinner(false);
     let tempArr = [];
@@ -81,7 +82,7 @@ let audio = new Audio(newMessage);
                 tempArr.push(<Chat unreadMessages={e.null_isRead_count}   onClick={() => {
 
           
-
+          
           if($("#chatActual").css("display")=="none"){
             $("#chatList").css("display","none");
             $("#chatActual").css("display","block");
@@ -173,13 +174,13 @@ let audio = new Audio(newMessage);
     return( 
   
       <div 
-      style={{ border: '1px solid #444073', height: '30rem', fontSize: '1rem', position:'fixed', bottom:'0', right:'0' }} 
-      className=" flex w-2/4 bg-moradoOscuro rounded-lg" 
+      style={{width:'800px', border: '1px solid #444073', height: '30rem', fontSize: '1rem', position:'fixed', bottom:'0', right:'0' }} 
+      className=" flex  bg-moradoOscuro rounded-lg" 
       id='mensajes'
     >
       <div 
-        style={{ direction: "rtl", borderRight: '1px solid #444073' }} 
-        className="flex flex-col   items-center overflow-auto p-3 w-2/6" 
+        style={{ direction: "rtl", width:'40%', borderRight: '1px solid #444073' }} 
+        className="flex flex-col   items-center overflow-auto p-3 " 
         id='chatList'
       >
         <div className="flex flex-row items-center justify-center w-full">
@@ -193,12 +194,13 @@ let audio = new Audio(newMessage);
             ruta={backIcon}
           />
         </div>
-        <div key="tupu" id="chats" className="flex w-full flex-col">
+        <div key="tupu" id="chats" className=" flex w-full  flex-col">
         {spinner ? <div className="flex justify-center w-full"><SpinnerLoader hijoStyle={{width:'4rem'}} className='w-1/6' id="messagesSpinner" /></div> : null }
           {arrChats}  
+          {unreadMessages?.['rand']}
         </div>   
       </div>
-      <div id="chatActual" className="p-2 bg-moradoOscuro w-4/6">
+      <div id="chatActual" style={{width:'60%'}} className="p-2 bg-moradoOscuro ">
         <ChatActual 
           stompClient={stompClient}  
           cambiarUltimoMensajeDelChat={cambiarUltimoMensajeDelChat}

@@ -22,6 +22,7 @@ import { update as updateLatRender } from "../../../../redux-store/slices/Latera
 import { disconnect } from "../../../../webSocketTesting/webSocket";
 import { condiscon } from "../../../../redux-store/slices/ConnectionChange";
 import { initializeStompClient } from "../../../../webSocketTesting/webSocket";
+import noProfileImage from "../../../../assets/img/defaultProfileImage.png"
 // import { stompClient } from "../webSocketTesting/webSocket";
 export const LateralMenu = (props) => {
     
@@ -103,7 +104,13 @@ export const LateralMenu = (props) => {
 
  
 useEffect(() => {
-    refreshProfileImage(userData.username).then(r => setProfileImage(formatImage(r.data.profileImage)));
+    refreshProfileImage(userData.username).then(r => {
+     
+        r.data.profileImage != null ? setProfileImage(formatImage(r.data.profileImage)) : setProfileImage(noProfileImage)
+  
+    
+    }
+    );
     const handleClickOutside = (event) => {
         if (lateralMenuRef.current && !lateralMenuRef.current.contains(event.target) && lateralMenuVisibility=='block' && window.innerWidth < 1101 ) {
         
@@ -128,7 +135,7 @@ useEffect(() => {
   
   
 //-50px 
-        <div id="lateralMenu" ref={lateralMenuRef} className={   " overflow-x-hidden bg-moradoOscuro flex border-r border-moradoLight   "} style={{zIndex:'1',position:'fixed', overflow:'scroll',   left:'0%', bottom:'0%', top:'7%', width:'20%', display:lateralMenuVisibility}}>
+        <div id="lateralMenu" ref={lateralMenuRef} className={   " overflow-x-hidden  bg-moradoOscuro flex border-r border-moradoLight   "} style={{zIndex:'1',position:'fixed', overflow:'auto',   left:'0%', bottom:'0%', top:'7%', width:'20%', display:lateralMenuVisibility}}>
        <div id="user-info" style={{marginTop:'2rem'}} className=" border-b border-moradoLight flex items-center  p-2 ">
      <div style={{width:'30%',height:'4rem'}} className="flex  justify-center ">
     
@@ -137,7 +144,7 @@ useEffect(() => {
     
         refreshProfileImage(userData.username).then(r => setProfileImage(formatImage(r.data.profileImage)));
 
-        }} style={{borderRadius:'100% ',  width:'4rem', height:'4rem'}} clase={" p-2"}  ruta={profileImage}/>
+        }} style={{borderRadius:'100% ',  width:'4rem', height:'4rem'}} clase={" p-2 "}  ruta={profileImage}/>
        
      
 

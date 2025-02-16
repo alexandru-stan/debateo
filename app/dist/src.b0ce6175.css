@@ -612,6 +612,11 @@ video {
   height: 100%;
 }
 
+.h-max {
+  height: -webkit-max-content;
+  height: max-content;
+}
+
 .w-1\/4 {
   width: 25%;
 }
@@ -1316,9 +1321,9 @@ margin-left:0 !important;
    
   }
 
-  #mensajes {
+  /* #mensajes {
     width:80% !important;
-  }
+  } */
 
   #logoDebateo{
     display:none;
@@ -1460,8 +1465,14 @@ margin-left:0 !important;
 
   @media(max-width:800px){
 
+  
+
    
 
+    #chatActual,#chatList {
+      width:100% !important;
+
+    }
 
     /* .community-image {
       width:30% !important;

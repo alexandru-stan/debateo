@@ -108,7 +108,7 @@ public ResponseEntity<Users> validarLogin(@RequestBody Users credentials, HttpSe
 //	     Path filePath = Paths.get(rootDir, "images/"+username+"."+imageExtension);
 //	     file.transferTo(new File((filePath.toString())));
 	        
-	     Users user = new Users(username,password,name,mail,formatter.parse(birth_date));
+	     Users user = new Users(username.toLowerCase(),password,name,mail,formatter.parse(birth_date));
 		
 		ServiceResponse<String> response = servicio.signin(user);
 //		servicioMensajes.sendMessage(new Messages("Hola "+user.getUsername()+", bienvenido a Debateo. \n Estamos aquí para cualquier cosa que necesites :) ","debateosoporte",user.getUsername(),new Date(),false));

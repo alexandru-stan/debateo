@@ -29,8 +29,9 @@ let loggedUser = JSON.parse(localStorage.getItem('userData')).username
     }
 
     let posts = new Array(response.data.numberOfElements);
-   
+
     for(let i=0;i<response.data.numberOfElements;i++){
+     
                     posts[i] = <Post
               key= {arr[i].post.publicationId}
               likes={arr[i].likes}
@@ -40,7 +41,7 @@ let loggedUser = JSON.parse(localStorage.getItem('userData')).username
               publicationBody={arr[i].post.publicationBody}
               publicationTitle={arr[i].post.publicationTitle}
               publicationId={arr[i].post.publicationId}
-              publicationImage={(arr[i].post.publicationImage?.length>0)?formatImage(arr[i].post.publicationImage):null}
+              // publicationImage={(arr[i].post.publicationImage?.length>0)? formatImage(arr[i].post.publicationImage):null}
               publicationUser={arr[i].post.user}
               referencia={(posts.length-i)==1?request.myRef:null}
               delete={arr[i].post.user==loggedUser || loggedUser==creador || rol== "MOD" ?<button

@@ -21,7 +21,7 @@ function Principal(){
 
     return (
 <>
-        <div className=" overlay  flex flex-col">
+        <div  className=" overlay flex flex-col">
             <Header/>
             <Body/>
             

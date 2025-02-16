@@ -1,20 +1,11 @@
 import React, { useState } from "react";
-import { Menu } from "../header/menu";
-import collapse from "../../../../assets/img/collapse.png"
-import Image from "../img"
-import profileImage from "../../../../assets/img/stockProfileImage.jpg"
 import { useWindowSize } from "@uidotdev/usehooks";
 import { useRef } from "react";
 import { useEffect } from "react";
+import {getNews} from "../../../../js/getNews";
 import { useSelector,useDispatch } from "react-redux";
-// import { update } from "../../../../redux-store/slices/LateralMenuRightVisibility";
-// import { ComunidadesMasActivas,ComunidadesRecientes,Suscripciones } from "./subMenus";
-import { refreshProfileImage } from "../../../../js/RefreshProfileImage";
-import { formatImage } from "../../../../js/imageFormatting";
 import { NewsCard } from "./news";
-import { getNews } from "../../../../js/getNews";
 import SpinnerLoader from "../SpinnerLoader";
-import { Spinner } from "react-bootstrap";
 import { setRightVisibility as update } from "../../../../redux-store/slices/LateralMenuVisibility";
 export const LateralMenuRight = (props) => {
     
@@ -63,7 +54,7 @@ export const LateralMenuRight = (props) => {
 
   
         //border-l-2
-        <div id="lateralMenuRight" className={   "  flex   flex-col items-center bg-moradoOscuro border-l   border-moradoLight"} style={{display:lateralMenuVisibilityRight,zIndex:'1',position:'fixed', overflow:'scroll',  height:'calc(100vh - 50px)', right:'0%', top:'7%', width:'21%'}}>
+        <div id="lateralMenuRight" className={   "  flex   flex-col items-center bg-moradoOscuro border-l   border-moradoLight"} style={{zIndex:'1',position:'fixed', overflow:'auto',   right:'0%', bottom:'0%', top:'7%', width:'20%', display:lateralMenuVisibilityRight}}>
         {/* <NewsCard imagen={null} titular = {null} cuerpo = {null} enlace ={null}/>
          */}
          <p id="actualidad" style={{marginTop:'4rem'}} className="Kanit text-center font-bold text-3xl text-naranjaMolon">Actualidad</p>
