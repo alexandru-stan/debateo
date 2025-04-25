@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+ 
+  font-family: 'Lato';
+  
+}
+
+
+@media(max-width:1200px){
+  .publicacion,#comment-section,.community-info{
+    width: 60%;
+  }
+ 
+
+
+
+}
+
+@media(max-width:1000px){
+ 
+ 
+}
+
+
+.placeholder-center::-webkit-input-placeholder {
+  text-align: center;
+}
+
+  
+  @media  (max-width: 900px){
+    /* CSS styles to apply when the viewport width is between 600px and 900px */
+        #carusel{
+            display:none;
+        }
+  }
+
+  @media(max-width:800px){
+
+    .publicacion,#comment-section,.community-info{
+      width: 80% !important;
+    }
+
+  
+
+    .imagenComunidad {
+      
+    
+
+    }
+
+    body{
+    
+      padding:5% !important; 
+      
+    }
+
+    #menuMovil{
+      display:block;
+    }
+
+    #feed{
+      
+      display:flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+
+   
+
+   #header-feed{
+    flex-direction: column;
+   
+   }
+   #header-logo{
+    width:100%;
+    padding-bottom:10px;
+   }
+
+    #search-bar{
+   
+      width: 100%;
+ 
+     
+    }
+  
+
+   
+
+
+   
+    #communityButtons{
+    
+      width: 100%;
+    }
+
+    .info{
+    
+     
+    }
+
+   .Reco-Imagen {
+    width:100%;
+   }
+  
+    .post-footer span img{
+
+     
+     width: 50%;
+
+    }
+    #menu {
+      display:none;
+    }
+
+    .letraObjetoMenu{
+
+      font-size:0.8rem !important;
+
+    }
+  
+
+   
+  }
+
+
+  
+@media  (max-width: 500px){
+  /* CSS styles to apply when the viewport width is between 600px and 900px */
+  .publicacion,#comment-section,.community-info{
+  
+    width:100% !important;
+  }
+
+
+  .bienvenida,.mensajePrincipal{
+  
+    font-size:1em !important;
+  }
+  
+
+  .campoFormularioPrincipal{
+          flex-direction: column !important;
+          align-items: center;
+        
+      }
+
+      #Recommendations{
+        width: 100%;
+        
+        
+      
+      }
+      #recommendationText * {
+        font-size: 100%;
+       
+      }
+
+      #recommendationText {
+        padding:2px !important;
+      }
+  
+      .reco-cards{
+        flex-direction: column;
+        width: 100%;
+        
+  
+      }
+  
+   
+  
+      #individualReco   {
+       width: 100%;
+        
+      }
+
+}
+
+
+/*# sourceMappingURL=/css.597c36cf.css.map */

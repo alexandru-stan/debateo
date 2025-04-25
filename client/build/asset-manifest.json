@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.037c2b25.css",
+    "main.js": "/static/js/main.361bc814.js",
+    "static/media/friends.png": "/static/media/friends.1721903d9ffcaafc33d3.png",
+    "static/media/hobbies.png": "/static/media/hobbies.fba66e67284d2f488211.png",
+    "static/media/actualidad.png": "/static/media/actualidad.544e758715cdd39b7d81.png",
+    "static/media/PlaywriteGBS-VariableFont_wght.ttf": "/static/media/PlaywriteGBS-VariableFont_wght.84ef3edc02df7c19584c.ttf",
+    "static/media/Ubuntu-Regular.ttf": "/static/media/Ubuntu-Regular.1cbb1b79a23478cc89ad.ttf",
+    "static/media/Kanit-Regular.ttf": "/static/media/Kanit-Regular.f3bae13d78ced30b6ea3.ttf",
+    "static/media/Nunito-Regular.ttf": "/static/media/Nunito-Regular.9d7a6e03c6e3ed49c7ac.ttf",
+    "static/media/Lato-Regular.ttf": "/static/media/Lato-Regular.9d883d540ee2b4de8024.ttf",
+    "static/media/newMessage.mp3": "/static/media/newMessage.08acd6a4106841a511ad.mp3",
+    "static/media/LogoDebateo.png": "/static/media/LogoDebateo.079444e15c64dca43082.png",
+    "static/media/sensible.png": "/static/media/sensible.28b005b8b6d59cb920f9.png",
+    "static/media/stockProfileImage.jpg": "/static/media/stockProfileImage.4ed492ec0262ba7ffb56.jpg",
+    "static/media/stockNews.jpg": "/static/media/stockNews.e0b2ba9a612a8c806c13.jpg",
+    "static/media/inprogress.png": "/static/media/inprogress.3ac7b3b03e2d71b3f5dd.png",
+    "static/media/loadingSpinner.svg": "/static/media/loadingSpinner.fc777be7371682fa6796607c6e90f6a9.svg",
+    "index.html": "/index.html",
+    "main.037c2b25.css.map": "/static/css/main.037c2b25.css.map",
+    "main.361bc814.js.map": "/static/js/main.361bc814.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.037c2b25.css",
+    "static/js/main.361bc814.js"
+  ]
+}
